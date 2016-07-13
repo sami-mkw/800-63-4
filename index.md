@@ -3,6 +3,9 @@ layout: cover
 title: "NIST SP 800-63-3 Digital Authentication Guideline"
 description: "Public Preview for NIST Special Publication: SP 800-63-3 Digital Authentication Guideline"
 ---
+
+<meta http-equiv="refresh" content="0; url=index.ja.html" />
+
 <section class="home home-title" markdown="1">
 
 # Digital Authentication Guideline: Public Preview
