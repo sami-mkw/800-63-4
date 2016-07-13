@@ -1,16 +1,19 @@
-**Organization**:
- 
-**Type**:
- 
-**Document (63-3, 63A, 63B, or 63C)**:
+**対象ドキュメント**
 
-**Reference (Include section and paragraph number)**:
- 
-**Comment (Include rationale for comment)**:
- 
-**Suggested Change**:
- 
+以下からお選びください。
+* 63-3
+* 63A
+* 63B
+* 63C
+
+**対象セクション**
+
+Section X.Y.Z
+
+**コメント**
+
+
+**修正案 (あれば)**
+
+
 ---
- 
-Organization: 1 = Federal, 2 = Industry, 3 = Other 
-
