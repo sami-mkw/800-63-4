@@ -5,7 +5,7 @@ description: "Public Preview for NIST Special Publication: SP 800-63-3 Digital A
 ---
 <section class="home home-title" markdown="1">
 
-# Digital Authentication Guideline: Public Preview
+# Digital Authentication Guideline: Public Preview (翻訳版)
 
 </section>
 <section class="home home-about" markdown="1">
@@ -36,9 +36,9 @@ description: "Public Preview for NIST Special Publication: SP 800-63-3 Digital A
 </li>
 <li>
   <div>
-    <a href="sp800-63c.html"><img src="assets/800_63_3_Federation.png" alt="SP 800-63C" width="150px" height="150px"></a>
+    <a href="sp800-63c.ja.html"><img src="assets/800_63_3_Federation.png" alt="SP 800-63C" width="150px" height="150px"></a>
   </div>
-  <h3><a href="sp800-63c.html">SP 800-63C</a></h3>
+  <h3><a href="sp800-63c.ja.html">SP 800-63C</a></h3>
   <h6>Federation & Assertions</h6>
 </li>
 </ul>
@@ -55,7 +55,7 @@ If you've made it to this page, you can see we're approaching this a little diff
 
 This public preview is focused on gaining input through successive open comment periods and editing iterations of the SP draft. This phase will include multiple iterations of comments of approximately 2 weeks in length, followed by a 2-3 week period for the editors to adjudicate comments and make appropriate updates to the document.
 
-We'll continue iterations for as long as we have feedback that results in meaningful changes. We welcome you to come back every iteration to see what's new, or watch daily. While we'll be posting major iterations every few weeks, we'll also make updates mid-cycle. 
+We'll continue iterations for as long as we have feedback that results in meaningful changes. We welcome you to come back every iteration to see what's new, or watch daily. While we'll be posting major iterations every few weeks, we'll also make updates mid-cycle.
 
 ### The first release
 
@@ -81,11 +81,11 @@ Please note that the privacy and usability chapters are under construction.  We 
 
 ## Why GitHub
 
-Ok, "Why GitHub?" you ask. For us, the choice was relatively straightforward. GitHub has been a mainstay of the development and standards communities for many years now, serving as a space for collaborative interaction, the epicenter for evolving open source software, and an essential component in every coder’s toolkit. It only seemed appropriate for us to engage where so much of our community already congregates and collaborates. 
+Ok, "Why GitHub?" you ask. For us, the choice was relatively straightforward. GitHub has been a mainstay of the development and standards communities for many years now, serving as a space for collaborative interaction, the epicenter for evolving open source software, and an essential component in every coder’s toolkit. It only seemed appropriate for us to engage where so much of our community already congregates and collaborates.
 
 Second, as a platform, GitHub has many unique characteristics that make it attractive as a place to develop this special publication. From its ability to support broad engagement, to excellent version control, and multiple avenues for collecting and receiving input—it is a robust forum suited to this phase of drafting the 800-63-3 suite.
 
-Overall, GitHub is the right tool for the job. But this is a new process for us; we don't want to leave anyone out, and we anticipate some growing pains as we work this out together. 
+Overall, GitHub is the right tool for the job. But this is a new process for us; we don't want to leave anyone out, and we anticipate some growing pains as we work this out together.
 
 To that end, our use of GitHub is additive to the existing open and transparent process that NIST already follows. If you don't have the time this spring and summer to keep up with us, don't worry.  We will maintain our tradition of extended public comment after this process comes to a close.  
 
@@ -130,9 +130,9 @@ Source information, current standards, and public comments received through May 
 </li>
 <li>
   <div>
-    <a href="sp800-63c.html"><img src="assets/800_63_3_Federation.png" alt="SP 800-63C" width="150px" height="150px"></a>
+    <a href="sp800-63c.ja.html"><img src="assets/800_63_3_Federation.png" alt="SP 800-63C" width="150px" height="150px"></a>
   </div>
-  <h3><a href="sp800-63c.html">SP 800-63C</a></h3>
+  <h3><a href="sp800-63c.ja.html">SP 800-63C</a></h3>
   <h6>Federation & Assertions</h6>
 </li>
 </ul>
