@@ -93,3 +93,14 @@ bundle exec jekyll server
 不要な変更反映作業を避けるため, 翻訳開始していない Section に関しては, `*.ja.md` ファイルを作成しないことを推奨します.
 
 git rebase の仕方がわからない場合は, @nov に連絡していただければ rebase します.  
+基本的には @nov が以下のコマンドを実行して, 各担当者に変更があった旨を通知するので, 各担当者が git log や [GitHub 上の commit history](https://github.com/openid-foundation-japan/800-63-3/commits/gh-pages) 等から, 自分の最後の commit 以降の英語版の変更を確認しながら, 更新分を日本語版に反映していくのが良いかなと思っています.
+
+```
+git remote add nist git@github.com:usnistgov/800-63-3.git # 最初だけ
+git checkout -t origin/nist-pages # 最初だけ
+git checkout nist-pages
+git fetch nist
+git rebase nist/nist-pages
+git checkout gh-pages
+git merge nist-pages # commit history 上で英語版の更新分を日本語版の最終 commit より後に持ってくるために, rebase ではなく merge
+```
