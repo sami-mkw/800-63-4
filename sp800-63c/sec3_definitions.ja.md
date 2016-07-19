@@ -15,9 +15,9 @@ Authentication のエリアでは数多くの用語定義がなされている.
 
 #### Federation
 
-Identity / Authentication Information を一連のネットワークシステム間でやりとりするための技術プロセス.
+Identity / Authentication Information を一連のネットワークシステム間でやりとりするためのプロセス.
 
-<!-- A technological process that allows for the conveyance of identity and authentication information across a set of networked systems. -->
+<!-- A process that allows for the conveyance of identity and authentication information across a set of networked systems. -->
 
 #### Identity Provider (IdP)
 
