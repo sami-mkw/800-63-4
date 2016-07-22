@@ -12,10 +12,9 @@ Subscriber の属性が RP に渡される前に, Subscriber による同意を�
 もし利用するプロトコルが追加の属性のやりとりをサポートしている場合, Subscriber はそれらの属性についても RP に渡すか否かの選択肢を与えられるべきである (SHALL).
 CSP はある RP に送信された Attribute Bundle を記憶し, 同じ RP へ当該 Attribute Bundle を再送信するような仕組みを導入してもよい (MAY).
 CSP は RP から明示的に要求された属性のみを返すべきである (SHALL).
-Assertion の提示方法は, Subscriber への明示と同意取得を誰が行うのが最適かという点に影響する.
-したがって, CSP, RP および Broker は, 誰が明示と同意取得を行うかをあらかじめ取り決めておくべきである (SHALL).
+当該トランザクションにおいて属性情報を収集するあらゆる主体は, Subscriber にそれを明示し承認を得るべきである (SHALL).
 
-<!-- Positive confirmation SHALL be obtained from the subscriber before any attributes about the subscriber are transmitted to any RP. If the protocol in use allows for optional attributes, the subscriber SHALL be given the option to decide whether transmit those attributes to the RP. A CSP MAY employ mechanisms to remember and re-transmit the exact attribute bundle to the same RP. The CSP SHALL transmit only those attributes that were explicitly requested by the RP. The manner of presentation may impact who is in the best position to provide notice and obtain confirmation from the subscriber.  Accordingly, the CSP, RP and any broker SHALL agree in advance on who will provide notice and obtain confirmation. -->
+<!-- Positive confirmation SHALL be obtained from the subscriber before any attributes about the subscriber are transmitted to any RP. If the protocol in use allows for optional attributes, the subscriber SHALL be given the option to decide whether transmit those attributes to the RP. A CSP MAY employ mechanisms to remember and re-transmit the exact attribute bundle to the same RP. The CSP SHALL transmit only those attributes that were explicitly requested by the RP. Any party in the transaction who collects attribute information SHALL provide notice and obtain confirmation from the subscriber. -->
 
 CSP は Subscriber に対して RP に渡された属性を確認できるようにすべきである (SHALL).
 また (のぞき見などで) センシティブな情報が漏洩することを防ぐため, 必要に応じてマスキングなどを行うことも検討すること (SHALL).

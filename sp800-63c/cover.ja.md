@@ -43,6 +43,11 @@ Sarah K. Squire
 *Engage Identity  
 Seattle, WA*
 
+### 翻訳者
+
+Nov Matake  
+*YAuth.jp LLC*
+
 {::comment}
 
 This publication is available free of charge from:

@@ -1,8 +1,8 @@
 # Site settings
-title: SP 800-63-3 Digital Authentication Guideline
+title: SP 800-63-3 Digital Authentication Guideline (翻訳版)
 description: "Public Preview for NIST Special Publication: SP 800-63-3 Digital Authentication Guideline"
 baseurl: "/800-63-3" # the subpath of your site, e.g. /blog
-url: "https://pages.nist.gov/" # the base hostname & protocol for your site
+url: "https://openid-foundation-japan.github.io/" # the base hostname & protocol for your site
 
 # Build settings
 markdown: kramdown
@@ -23,7 +23,7 @@ exclude:
 - LICENSE.md
 
 # GitHub information
-org_name: usnistgov
+org_name: openid-foundation-japan
 repo_name: 800-63-3
 
 # Navigation

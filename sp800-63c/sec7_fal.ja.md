@@ -2,11 +2,11 @@
 
 ## 7. Federation Assurance Level (FAL)
 
-本セクションでは Federation and Assertion Level, もしくは FAL を定義する.
+本セクションでは利用可能な Federation Assurance Level (FAL) の一覧を定義する.
 FAL はあるトランザクションで利用されている Assertion と Federation Protocol の特徴を記述するものである.
 RP が当該トランザクションにおける要求レベルを明示したり, RP と CSP が当該トランザクションにおける必要レベルをあらかじめ設定しておいたりといった利用方法が想定される.
 
-<!-- This section defines a Federation and Assertion Level, or FAL. The FAL describes aspects of the assertion and federation protocol used in a given transaction. These levels can be requested by an RP or required by configuration of both RP and CSP for a given transaction. -->
+<!-- This section defines allowable Federation Assurance Levels, or FAL. The FAL describes aspects of the assertion and federation protocol used in a given transaction. These levels can be requested by an RP or required by configuration of both RP and CSP for a given transaction.  -->
 
 FAL は [federation model](#sec4), [assertion protection strength](#sec5), および [assertion presentation](#sec6) を統合し, スカラーで比較可能な値としたものである.
 他の様々な要素を組み合わせることも可能だが, FAL の上記3要素を用いて段階的によりセキュアな実装方法の選択肢を提示することにより, 実装ガイドラインとして分かりやすいものを作ることを意図している.
