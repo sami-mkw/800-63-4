@@ -15,9 +15,9 @@ description: "Public Preview for NIST Special Publication: SP 800-63-3 Digital A
 <ul class="audiences">
 <li>
   <div>
-    <a href="sp800-63-3.html"><img src="assets/800_63_3_doc.png" alt="SP 800-63-3" width="150px" height="150px"></a>
+    <a href="sp800-63-3.ja.html"><img src="assets/800_63_3_doc.png" alt="SP 800-63-3" width="150px" height="150px"></a>
   </div>
-  <h3><a href="sp800-63-3.html">SP 800-63-3</a></h3>
+  <h3><a href="sp800-63-3.ja.html">SP 800-63-3</a></h3>
   <h6>Digital Authentication Guideline</h6>
 </li>
 <li>
@@ -158,9 +158,9 @@ Source information, current standards, and public comments received through May 
 <ul class="audiences">
 <li>
   <div>
-    <a href="sp800-63-3.html"><img src="assets/800_63_3_doc.png" alt="SP 800-63-3" width="150px" height="150px"></a>
+    <a href="sp800-63-3.ja.html"><img src="assets/800_63_3_doc.png" alt="SP 800-63-3" width="150px" height="150px"></a>
   </div>
-  <h3><a href="sp800-63-3.html">SP 800-63-3</a></h3>
+  <h3><a href="sp800-63-3.ja.html">SP 800-63-3</a></h3>
   <h6>Digital Authentication Guideline</h6>
 </li>
 <li>
