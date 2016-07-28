@@ -302,9 +302,9 @@ Assertion には非対称暗号方式の署名に加え暗号化も行う.
 
 ### M-04-04 Levels of Assurance Requirements
 
+以下の表は M-04-04 Level of Assurance を満たす Identity Assurance Level, Authenticator Assurance Level, Federation Assurance Level の組み合わせの厳密な要件を示している.
 
-The following table shows strict adherence to M-04-04 Level of Assurance, mapping corresponding Identity, Authenticator, and Federation Assurance Levels.
-
+<!-- The following table shows strict adherence to M-04-04 Level of Assurance, mapping corresponding Identity, Authenticator, and Federation Assurance Levels. -->
 
 | Level of Assurance (LOA) | Identity Assurance Level (IAL)| Authenticator Assurance Level (AAL) | Federation Assurance Level (FAL)
 |:------------------:|:-----------------------------:|:------------------------:|:------------------------:|
@@ -313,8 +313,10 @@ The following table shows strict adherence to M-04-04 Level of Assurance, mappin
 | 3 | 2 | 2 or 3 |2
 | 4 | 3 | 3 |4
 
-However, the table below shows the new requirements that are allowable for M-04-04 Level of Assurance, by combining IAL, AAL, and FAL based on agency need. Further details and normative requirements are provided in are provided in [SP 800-63A](sp800-63a.html), [SP 800-63B](sp800-63b.html), and [SP 800-63C](sp800-63c.html) respectively.
+また, 以下の表には, 政府機関のニーズに基づいて新たに M-04-04 Level of Assurance の要件として認められることとなる IAL, AAL, FAL の組み合わせを示す.
+さらなる詳細や基準となる要素については [SP 800-63A](sp800-63a.html), [SP 800-63B](sp800-63b.html), [SP 800-63C](sp800-63c.ja.html) を参照のこと.
 
+<!-- However, the table below shows the new requirements that are allowable for M-04-04 Level of Assurance, by combining IAL, AAL, and FAL based on agency need. Further details and normative requirements are provided in are provided in [SP 800-63A](sp800-63a.html), [SP 800-63B](sp800-63b.html), and [SP 800-63C](sp800-63c.html) respectively. -->
 
 | Level of Assurance (LOA) | Identity Assurance Level (IAL)| Authenticator Assurance Level (AAL) | Federation Assurance Level (FAL)
 |:------------------:|:-----------------------------:|:------------------------:|:------------------------:|
@@ -323,17 +325,39 @@ However, the table below shows the new requirements that are allowable for M-04-
 | 3 | 1 or 2 | 2 or 3 |2
 | 4 | 1, 2 or 3 | 3 |3
 
-This mapping takes advantage of the ability to separate distinct identity elements per assurance level.  For example, an agency is allowed to adopt multi-factor authentication (MFA) at LOA1. Conversely, little or no identity proofing can be performed at the higher LOAs.  
+上記の組み合わせでは, Identity 要素を Assurance Level から切り離すことができる.
+例えば LOA1 で Multi-factor Authentication (MFA) を採用することも可能である.
+逆に高い LOA において Identity Proofing を最低限もしくは不要とすることもできる.
 
-Agency mission need will assist in determining the acceptable IAL at a given LOA.  Since agencies should limit the collection of personal data in order to provide services and allow for strong pseudonymity, a specific IAL is not explicitly required for each LOA. For example, an agency may establish a "health tracker" application.  In line with the terms of [Executive Order 13681](#EO13681) requiring "...that all agencies making personal data accessible to citizens through digital applications require the use of multiple factors of authentication and an effective identity proofing process, as appropriate.", the agency could select LOA3 such that an AAL2 authenticator is required.  However, in this example, there may be no need for the agency system to know the true identity of the user.  In the past, the LOA3 assessment of data sensitivity would also require the agency to identity proof the user.  This is no longer necessary and the agency is encouraged in this case to not perform any identity proofing and allow the user of the health tracker system to be pseudonymous at IAL1.  The MFA authenticator at AAL2 or AAL3 will not leak any personal information because it is bound to an IAL 1 identity.
+<!-- This mapping takes advantage of the ability to separate distinct identity elements per assurance level.  For example, an agency is allowed to adopt multi-factor authentication (MFA) at LOA1. Conversely, little or no identity proofing can be performed at the higher LOAs. -->
 
-In the case of federal employees, bound by HSPD-12 and required to obtain a Personal Identity Verification (PIV) smart card, the requirement is that agencies meet LOA4. The HSPD-12 use case requires an authenticator at AAL3 **and** identity proofing at IAL 3.   
+各機関はそのミッションやニーズにしたがって許容される IAL を各 LOA で定めることとなる.
+必要最小限のパーソナルデータのみを収集して強い仮名性の元でサービスを提供する政府機関にとっては, 各 LOA ごとに厳格に特定の IAL が求められることは決して望ましくはないのである.
+そういった政府機関提供サービスの例としては, "health tracker" アプリケーションなどが挙げられるであろう.
+[Executive Order 13681](#EO13681) の "デジタルアプリケーションを通じてパーソナルデータを市民にアクセス可能にしているすべての政府機関は, 多要素認証と効果的な Identity Proofing プロセスを必須とする" という要求に従うと, 政府機関は AAL2 が求める Authenticator が必要となる LOA3 を選択することもありうる.
+しかしながら, その場合でも当該政府機関はユーザーの Identity について知る必要がない場合もある.
+いままでは, センシティブなデータを扱うがゆえに LOA3 を求められた政府機関には, Identity Proofing も必須となっていた.
+このような要件は今後は不要となり, 政府機関はこのような場合には Identity Proofing を行わず, health tracker システムのようなサービスのユーザーには IAL1 レベルの仮名性を許すよう推奨されることとなる.
+AAL2 や AAL3 を満たす MFA Authenticator を利用する場合でも, IAL1 の Identity と紐付けることができれば, 不要なパーソナルインフォメーションの提供は不要となる.
 
->Important Note: An agency can accept a higher assurance level than those required in the table above.  For example, in a federated transaction, an agency can accept an IAL3 identity if their application is assessed at IAL2.  The same holds true for authenticators; stronger authenticators can be used at RP's that have lower authenticator requirements.  However, RPs will ensure that these scenarios only occur in federated scenarios with appropriate privacy protections by the CSP to ensure that only the requested attributes are provided to the RP and that no personal information leaks from the authenticator or the assertion.  See [privacy requirements](../sp800-63c/sec8_privacy.md) in SP 800-63C for more details.   
+<!-- Agency mission need will assist in determining the acceptable IAL at a given LOA.  Since agencies should limit the collection of personal data in order to provide services and allow for strong pseudonymity, a specific IAL is not explicitly required for each LOA. For example, an agency may establish a "health tracker" application.  In line with the terms of [Executive Order 13681](#EO13681) requiring "...that all agencies making personal data accessible to citizens through digital applications require the use of multiple factors of authentication and an effective identity proofing process, as appropriate.", the agency could select LOA3 such that an AAL2 authenticator is required.  However, in this example, there may be no need for the agency system to know the true identity of the user.  In the past, the LOA3 assessment of data sensitivity would also require the agency to identity proof the user.  This is no longer necessary and the agency is encouraged in this case to not perform any identity proofing and allow the user of the health tracker system to be pseudonymous at IAL1.  The MFA authenticator at AAL2 or AAL3 will not leak any personal information because it is bound to an IAL 1 identity. -->
+
+政府機関の従業員の場合は, HSPD-12 への準拠と Personal Identity Verification (PIV) Smart Card の取得が求められるため, 政府機関は LOA4 を満たす必要がある. HSPD-12 のコンテキストでは, AAL3 Authenticator と IAL3 Identity Proofing が必須となる.
+
+<!-- In the case of federal employees, bound by HSPD-12 and required to obtain a Personal Identity Verification (PIV) smart card, the requirement is that agencies meet LOA4. The HSPD-12 use case requires an authenticator at AAL3 **and** identity proofing at IAL 3. -->
+
+>Important Note: 政府機関は上記表より高レベルの Assurance Level を受け入れてもよい.
+例えば, 政府系トランザクションにおいて, 当該アプリケーションが IAL2 を要件とする場合であっても, 政府機関は IAL3 Identity を受け入れることもできる.
+これは Authenticator についても同様であり, RP は必要とされるレベルより高いレベルの Authenticator を利用することもできる.
+しかしながら RP は, こういった政府系サービスのシナリオにおいても, CSP が適切にプライバシーが保護しており, RP が要求した属性のみが提供され Authenticator や Assertion からパーソナルインフォメーションが漏れないことを保証することになるであろう. 
+
+<!-- >Important Note: An agency can accept a higher assurance level than those required in the table above.  For example, in a federated transaction, an agency can accept an IAL3 identity if their application is assessed at IAL2.  The same holds true for authenticators; stronger authenticators can be used at RP's that have lower authenticator requirements.  However, RPs will ensure that these scenarios only occur in federated scenarios with appropriate privacy protections by the CSP to ensure that only the requested attributes are provided to the RP and that no personal information leaks from the authenticator or the assertion.  See [privacy requirements](../sp800-63c/sec8_privacy.md) in SP 800-63C for more details. -->
 
 ### Acceptable IAL and AAL Combinations
 
-The following table details valid combinations of IAL and AAL that may be established during the enrollment process:
+以下の表は, 登録プロセスで確立されうる IAL, AAL の組み合わせを示す.
+
+<!-- The following table details valid combinations of IAL and AAL that may be established during the enrollment process: -->
 
 | | IAL 1 | IAL 2 | IAL 3 |
 |:-:|:-:|:-:|:-:|
@@ -341,9 +365,16 @@ The following table details valid combinations of IAL and AAL that may be establ
 | **AAL 2** | Allowed | Allowed | See Note |
 | **AAL 3** | Allowed | Allowed | Allowed |
 
-Note: AAL 2 capable authenticators MUST be bound to credentials at IAL 2 enrollment since management (and often use) of those credentials is a release of personal data requiring multi-factor authentication. AAL 3 authenticators SHOULD be bound to IAL 3 credentials since they are frequently required for the high-sensitivity applications that require in-person identity proofing.
+注) IAL2 の登録フローで発行された Credential は, AAL2 を満たす Authenticator に紐付ける必要がある (MUST).
+これらの Credential を管理・利用する際に必要となるパーソナルデータを扱うには, Multi-factor Authentication が必要となる.
+また IAL3 で発行された Credential は, AAL3 Authenticator に紐づけるべきである (SHOULD).
+こういった Credential は, 対面の Identity Proofing を必要とするようなセンシティブなアプリケーションで必要となることが多い.
 
-In limited situations, a given transaction requiring IAL 2 MAY be able to authenticate at AAL 1 when personal data is not made accessible to the subscriber (per Executive Order 13681) and the other risk and sensitivity requirements of M-04-04 are satisfied.
+<!-- Note: AAL 2 capable authenticators MUST be bound to credentials at IAL 2 enrollment since management (and often use) of those credentials is a release of personal data requiring multi-factor authentication. AAL 3 authenticators SHOULD be bound to IAL 3 credentials since they are frequently required for the high-sensitivity applications that require in-person identity proofing. -->
+
+IAL2 を要件とするトランザクションでも, Subscriber がパーソナルデータにアクセス不可であり, その他のリスクやセンシティビティに関する M-04-04 の要件が満たされる場合には, AAL1 の Authenticator を利用することができる (MAY) 場合もある. (Executive Order 13681 参照)
+
+<!-- In limited situations, a given transaction requiring IAL 2 MAY be able to authenticate at AAL 1 when personal data is not made accessible to the subscriber (per Executive Order 13681) and the other risk and sensitivity requirements of M-04-04 are satisfied. -->
 
 ## Table of Contents
 
