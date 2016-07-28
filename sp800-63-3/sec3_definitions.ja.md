@@ -136,86 +136,184 @@ Applicant により申告された現在の Personal Name, 誕生日, 住所. ([
 <!-- A declaration by the applicant of their current Personal Name, date of birth and address. [[GPG45]](#gpg45) -->
 
 #### Credential
-An object or data structure that authoritatively binds an identity (and optionally, additional attributes) to an authenticator possessed and controlled by a subscriber.
 
-While common usage often assumes that the credential is maintained by the subscriber, this document also uses the term to refer to electronic records maintained by the CSP which establish a binding between the subscriber’s authenticator(s) and identity.
+ある Identity (および付加的属性) を Subscriber が所有ないしは管理する Authenticator に紐付ける信頼の置けるオブジェクトもしくはデータ構造.
+
+<!-- An object or data structure that authoritatively binds an identity (and optionally, additional attributes) to an authenticator possessed and controlled by a subscriber. -->
+
+一般的に Credential は Subscriber に管理されることが想定されるが, 本ドキュメントでは Subscriber の Authenticator と Identity の紐付けを確立する CSP 管理下の電子レコードを指すこともある.
+
+<!-- While common usage often assumes that the credential is maintained by the subscriber, this document also uses the term to refer to electronic records maintained by the CSP which establish a binding between the subscriber’s authenticator(s) and identity. -->
 
 #### Credential Service Provider (CSP)
-A trusted entity that issues or registers subscriber authenticators and issues electronic credentials to subscribers. The CSP may encompass Registration Authorities (RAs) and verifiers that it operates. A CSP may be an independent third party, or may issue credentials for its own use.
+
+Subscriber の Authenticator を発行もしくは登録し, Subscriber に電子的な Credential を発行する信頼された主体.
+CSP は自身が運営する Registration Authorities (RAs) および Verifier を内包することもある.
+CSP は独立した第三者となることもあれば, 自身で発行した Credential を用いて自らサービスを提供することもある.
+
+<!-- A trusted entity that issues or registers subscriber authenticators and issues electronic credentials to subscribers. The CSP may encompass Registration Authorities (RAs) and verifiers that it operates. A CSP may be an independent third party, or may issue credentials for its own use. -->
 
 #### Cryptographic Key
-A value used to control cryptographic operations, such as decryption, encryption, signature generation or signature verification. For the purposes of this document, key requirements shall meet the minimum requirements stated in Table 2 of NIST SP 800-57 Part 1.
 
-See also Asymmetric keys, Symmetric key.
+復号, 暗号化, 署名生成, 署名検証等の暗号論的オペレーションを管理するために用いられる値.
+本ドキュメントでは, NIST SP 800-57 Part 1 の Table 2 で述べられた最低限の要件を満たすものとする.
+
+<!-- A value used to control cryptographic operations, such as decryption, encryption, signature generation or signature verification. For the purposes of this document, key requirements shall meet the minimum requirements stated in Table 2 of NIST SP 800-57 Part 1. -->
+
+Asymmetric keys および Symmetric key も参照のこと.
+
+<!-- See also Asymmetric keys, Symmetric key. -->
 
 #### Cryptographic Authenticator
-An authenticator where the secret is a cryptographic key.
+
+Cryptographic Key を利用する Authenticator.
+
+<!-- An authenticator where the secret is a cryptographic key. -->
 
 #### Digital Authentication
 
-The process of establishing confidence in user identities digitally presented to an information system.
+情報システムに対して, デジタル表現されたユーザーの Identity の確からしさを確立するプロセス.
+
+<!-- The process of establishing confidence in user identities digitally presented to an information system. -->
 
 #### Digital Signature
-An asymmetric key operation where the private key is used to digitally sign data and the public key is used to verify the signature. Digital signatures provide authenticity protection, integrity protection, and non-repudiation.
 
+秘密鍵を用いてデータに電子署名を行い, 公開鍵を用いて署名検証を行う, Asymmetric Key を用いたオペレーション.
+Digital Signature は Authenticity Protection (真正性), Integrity Protection (完全性), Non-Repudication (否認防止) を提供する.
+
+<!-- An asymmetric key operation where the private key is used to digitally sign data and the public key is used to verify the signature. Digital signatures provide authenticity protection, integrity protection, and non-repudiation. -->
 
 #### Federal Information Security Management Act (FISMA)
-Title III of the E-Government Act requiring each federal agency to develop, document, and implement an agency-wide program to provide information security for the information and information systems that support the operations and assets of the agency, including those provided or managed by another agency, contractor, or other source.
+
+E-Government Act の Title III に規定されている.
+FISMA は, 各政府機関に対して, 当該機関のオペレーションおよびアセットを支える情報および情報システムにおける情報セキュリティを確保する機関全体を通したプログラムの開発, 記録, 実装を要求する.
+ここで保護対象となる情報および情報システムには, 他の機関や受託業者などに提供および管理されるものも含む.
+
+<!-- Title III of the E-Government Act requiring each federal agency to develop, document, and implement an agency-wide program to provide information security for the information and information systems that support the operations and assets of the agency, including those provided or managed by another agency, contractor, or other source. -->
 
 #### Federal Information Processing Standard (FIPS)
-Under the Information Technology Management Reform Act (Public Law 104-106), the Secretary of Commerce approves standards and guidelines that are developed by the National Institute of Standards and Technology (NIST) for Federal computer systems. These standards and guidelines are issued by NIST as Federal Information Processing Standards (FIPS) for use government-wide. NIST develops FIPS when there are compelling Federal government requirements such as for security and interoperability and there are no acceptable industry standards or solutions. See background information for more details.
 
-FIPS documents are available online through the FIPS home page: <http://www.nist.gov/itl/fips.cfm>
+Information Technology Management Reform Act (Public Law 104-106) のもとで, Secretary of Commerce は National Institute of Standards and Technology (NIST) が連邦のコンピューターシステムのために作成した標準およびガイドラインを承認する.
+これらの標準およびガイドラインは, NIST によって Federal Information Processing Standards (FIPS) として発行され, 政府全体で利用される.
+NIST は, 連邦政府がセキュリティや相互運用性に対する必要性を持っており, 利用可能な業界標準やソリューションが存在しない場合に, FISP を作成する.
+
+<!-- Under the Information Technology Management Reform Act (Public Law 104-106), the Secretary of Commerce approves standards and guidelines that are developed by the National Institute of Standards and Technology (NIST) for Federal computer systems. These standards and guidelines are issued by NIST as Federal Information Processing Standards (FIPS) for use government-wide. NIST develops FIPS when there are compelling Federal government requirements such as for security and interoperability and there are no acceptable industry standards or solutions. See background information for more details. -->
+
+FISP ドキュメントは FISP ホームページからオンラインで閲覧可能である. : <http://www.nist.gov/itl/fips.cfm>
+
+<!-- FIPS documents are available online through the FIPS home page: <http://www.nist.gov/itl/fips.cfm> -->
 
 #### Federation
-A process that allows for the conveyance of identity and authentication information across a set of networked systems.
+
+一連のネットワークシステム間で Identity および認証情報の伝搬を行うためのプロセス.
+
+<!-- A process that allows for the conveyance of identity and authentication information across a set of networked systems. -->
 
 #### Identity
-A set of attributes that uniquely describe a person within a given context.
+
+特定のコンテキストにおいてある人物を他と区別できるかたちで表現する属性の集合.
+
+<!-- A set of attributes that uniquely describe a person within a given context. -->
 
 #### Identity Assurance Level (IAL)
-A metric describing degree of confidence that the applicant’s claimed identity is their real identity.
+
+Applicant の Claimed Identity が本人の本物の Identity であることの確からしさの度合いをあらわす指標.
+
+<!-- A metric describing degree of confidence that the applicant’s claimed identity is their real identity. -->
 
 #### Identity Proofing
-The process by which a CSP and a Registration Authority (RA) collect and verify information about a person for the purpose of issuing credentials to that person.
+
+CSP および Registration Authority (RA) が, Credential 発行のためにある人物に関する情報を収集および検証するプロセス.
+
+<!-- The process by which a CSP and a Registration Authority (RA) collect and verify information about a person for the purpose of issuing credentials to that person. -->
 
 #### Multi-Factor
-A characteristic of an authentication system or an authenticator that uses more than one authentication factor.
 
-The three types of authentication factors are something you know, something you have, and something you are.
+2つ以上の Authentication Factor を用いる認証システムや Authenticator の特徴.
+
+<!-- A characteristic of an authentication system or an authenticator that uses more than one authentication factor. -->
+
+Authentication Factor としては, Something You Know, Something You Have, Something You Are の3種類がある.
+
+<!-- The three types of authentication factors are something you know, something you have, and something you are. -->
 
 #### Network
-An open communications medium, typically the Internet, that is used to transport messages between the claimant and other parties. Unless otherwise stated, no assumptions are made about the security of the network; it is assumed to be open and subject to active (i.e., impersonation, man-in-the-middle, session hijacking) and passive (i.e., eavesdropping) attack at any point between the parties (e.g., claimant, verifier, CSP or RP).
+
+オープンなコミュニケーションの伝達手段.
+Internet がその代表例である.
+Network は Claimant とその他の主体の間でメッセージを伝達するために用いられる.
+特に明示されない限り, Network のセキュリティは前提とされず, オープンであり, 任意の主体 (Claimant, Verifier, CSP および RP) 間の任意の点において自発的な攻撃 (なりすまし, Man-in-the-Middle, Session Hijacking 等) や受動的な攻撃 (盗聴等) にさらされうるものと想定される.
+
+<!-- An open communications medium, typically the Internet, that is used to transport messages between the claimant and other parties. Unless otherwise stated, no assumptions are made about the security of the network; it is assumed to be open and subject to active (i.e., impersonation, man-in-the-middle, session hijacking) and passive (i.e., eavesdropping) attack at any point between the parties (e.g., claimant, verifier, CSP or RP). -->
 
 #### Password
-A secret that a claimant memorizes and uses to authenticate his or her identity. Passwords are typically character strings.
+
+Claimant が記憶し自身の Identity の認証に用いる鍵.
+Password は一般的に文字列である.
+
+<!-- A secret that a claimant memorizes and uses to authenticate his or her identity. Passwords are typically character strings. -->
 
 #### Personal Identification Number (PIN)
-A password consisting only of decimal digits.
+
+10進数の数値のみで構成された Password.
+
+<!-- A password consisting only of decimal digits. -->
 
 #### Personally Identifiable Information (PII)
-As defined by OMB Circular A-130, Personally Identifiable Information means information that can be used to distinguish or trace an individual's identity, either alone or when combined with other information that is linked or linkable to a specific individual.
+
+OMB Circular A-130 で定義されているように, Personally Identifiable Information とは個人の Identity を識別したり追跡するために用いられる情報である.
+単体の情報で個人を識別・追跡可能なものもあれば, 特定の個人に紐付け済もしくは紐付け可能なその他の情報と組み合わせることで識別・追跡可能となるものもある.
+
+<!-- As defined by OMB Circular A-130, Personally Identifiable Information means information that can be used to distinguish or trace an individual's identity, either alone or when combined with other information that is linked or linkable to a specific individual. -->
 
 #### Private Key
-The secret part of an asymmetric key pair that is used to digitally sign or decrypt data.
+
+Asymmetric Key ペアの秘密鍵.
+データへの署名生成や復号に用いられる.
+
+<!-- The secret part of an asymmetric key pair that is used to digitally sign or decrypt data. -->
 
 #### Pseudonymous Identifer
-A meaningless, but unique number that does not allow the RP to infer the subscriber but which does permit the RP to associate multiple interactions with the subscriber’s claimed identity.
+
+RP による Subscriber の推測を許さず, かつ RP が複数のインタラクションに渡って Subscriber の Claimed Identity を紐づけられるような, 意味のないユニークな識別子.
+
+<!-- A meaningless, but unique number that does not allow the RP to infer the subscriber but which does permit the RP to associate multiple interactions with the subscriber’s claimed identity. -->
 
 #### Public Key
-The public part of an asymmetric key pair that is used to verify signatures or encrypt data.
+
+Asymmetric Key ペアの公開鍵.
+データへの署名検証や暗号化に用いられる.
+
+<!-- The public part of an asymmetric key pair that is used to verify signatures or encrypt data. -->
 
 #### Public Key Certificate
-A digital document issued and digitally signed by the private key of a Certificate authority that binds the name of a subscriber to a public key. The certificate indicates that the subscriber identified in the certificate has sole control and access to the private key. See also [[RFC 5280]](#RFC5280).
+
+Certificate Authority によって発行され, Certificate Authority の秘密鍵でデジタル署名された電子文書.
+Public Key Certificate により Subscriber の名前が Public Key と紐づけられる.
+当該 Certificate により識別される Subscriber のみが Private Key の管理およびアクセス権限を持っていることが暗示される.
+[[RFC 5280]](#RFC5280) も参照のこと.
+
+<!-- A digital document issued and digitally signed by the private key of a Certificate authority that binds the name of a subscriber to a public key. The certificate indicates that the subscriber identified in the certificate has sole control and access to the private key. See also [[RFC 5280]](#RFC5280). -->
 
 #### Public Key Infrastructure (PKI)
-A set of policies, processes, server platforms, software and workstations used for the purpose of administering certificates and public-private key pairs, including the ability to issue, maintain, and revoke public key certificates.
+
+Certificate と Public-Private Key Pair を管理する目的で利用される, 一連のポリシー, プロセス, サーバープラットフォーム, ソフトウェア, ワークステーションなど.
+Public Key Certificate の発行, 管理, 失効を行う能力を備える.
+
+<!-- A set of policies, processes, server platforms, software and workstations used for the purpose of administering certificates and public-private key pairs, including the ability to issue, maintain, and revoke public key certificates. -->
 
 #### Registration
-The process through which an applicant applies to become a subscriber of a CSP and an RA validates the identity of the applicant on behalf of the CSP.
+
+Applicant が CSP の Subscriber となるべく申請し, RA が CSP に代わって Applicant の Identity を確認する一連のプロセス.
+
+<!-- The process through which an applicant applies to become a subscriber of a CSP and an RA validates the identity of the applicant on behalf of the CSP. -->
 
 #### Registration Authority (RA)
-A trusted entity that establishes and vouches for the identity or attributes of a subscriber to a CSP. The RA may be an integral part of a CSP, or it may be independent of a CSP, but it has a relationship to the CSP(s).
+
+CSP に対して Subscriber の Identity および Attribute を発行および保証する信頼された主体.
+RA は, CSP の一部であることもあれば, CSP から独立した主体であることもあるが, CSP と何らかの結び付きを持つ.
+
+<!-- A trusted entity that establishes and vouches for the identity or attributes of a subscriber to a CSP. The RA may be an integral part of a CSP, or it may be independent of a CSP, but it has a relationship to the CSP(s). -->
 
 #### Relying Party (RP)
 An entity that relies upon the subscriber's authenticator(s) and credentials or a verifier's assertion of a claimant’s identity, typically to process a transaction or grant access to information or a system.
