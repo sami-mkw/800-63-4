@@ -6,7 +6,6 @@
 ## 1. 目的
 
 <!--This recommendation and its companion documents, [SP 800-63-3](sp800-63-3.html), [SP 800-63A](sp800-63a.html), and [SP 800-63C](sp800-63c.html), provide technical guidelines to credential service providers for the implementation of digital authentication.-->
-
 本推奨、及び付随文書 [SP 800-63-3](sp800-63-3.html), [SP 800-63A](sp800-63a.html) 及び [SP 800-63C](sp800-63c.html) は、クレデンシャル・サービス・プロバイダがデジタル認証の実装を行う際の技術的なガイドラインを提供する。
 
 <a name="sec2"></a>
@@ -17,9 +16,7 @@
 
 ## 2. イントロダクション
 
-<!--
 Digital authentication is the process of establishing confidence in user identities electronically presented to an information system. E-authentication presents a technical challenge when this process involves the digital authentication of individual people over a network.
--->
 
 デジタル認証は、情報システムにおいて電子的に表現されたユーザのアイデンティティの確かさを証明するためのプロセスである。E-authentiationは、本プロセスがネットワークを介した個々人のデジタル認証に関与する際、技術的なチャレンジを提起する。
 
