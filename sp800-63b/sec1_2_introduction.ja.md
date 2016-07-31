@@ -16,9 +16,7 @@
 
 ## 2. イントロダクション
 
-<!--
 Digital authentication is the process of establishing confidence in user identities electronically presented to an information system. E-authentication presents a technical challenge when this process involves the digital authentication of individual people over a network.
--->
 
 デジタル認証は、情報システムにおいて電子的に表現されたユーザのアイデンティティの確かさを証明するためのプロセスである。E-authentiationは、本プロセスがネットワークを介した個々人のデジタル認証に関与する際、技術的なチャレンジを提起する。
 
