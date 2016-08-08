@@ -320,29 +320,55 @@ An asymmetric key operation where the private key is used to digitally sign data
 
 
 <!--#### Entropy-->
+
 #### エントロピー
 攻撃者がシークレットの値を決定することに対峙する際の不確実性の量の尺度。エントロピーは、通常ビットで表現される。
 
 <!--A measure of the amount of uncertainty that an attacker faces to determine the value of a secret. Entropy is usually stated in bits.-->
 
-#### Equal Error Rate (EER)
-The value where the false match rate (FMR) and false non-match rate (FNMR) of a sensor are equal. EER is a figure of merit for the sensor; the lower the EER is, the more certain the sensor's decision is likely to be.
+<!--#### Equal Error Rate (EER)-->
+
+#### 等価エラー率 (Equal Error Rate: EER)
+
+センサーにおいて、マッチすべきものがマッチしない割合(False Match Rate: FMR)、及びマッチすべきではないものがマッチしてしまう割合(False Non-Match Rate: FNMR) が等しくなる地点の値である等価エラー率を、センサーの性能指数とする。等価エラー率が低ければ低いほど、センサーの検出結果がより確からしいものとなる。
+
+<!--The value where the false match rate (FMR) and false non-match rate (FNMR) of a sensor are equal. EER is a figure of merit for the sensor; the lower the EER is, the more certain the sensor's decision is likely to be.-->
+
+<!--#### Federal Information Security Management Act (FISMA)-->
 
 #### Federal Information Security Management Act (FISMA)
-Title III of the E-Government Act requiring each federal agency to develop, document, and implement an agency-wide program to provide information security for the information and information systems that support the operations and assets of the agency, including those provided or managed by another agency, contractor, or other source.
+Title III of the E-Government Actは各連邦政府機関に対し、運営や資源を支援する情報及び情報システムへの情報セキュリティを備えるための機関横断的なプログラムを、開発、記録、実行していくことを要求している。対象となる情報及び情報システムには、別の機関、業者や他の調達元によって導入・管理されるものも含まれる。
+
+<!--Title III of the E-Government Act requiring each federal agency to develop, document, and implement an agency-wide program to provide information security for the information and information systems that support the operations and assets of the agency, including those provided or managed by another agency, contractor, or other source.-->
 
 #### Federal Information Processing Standard (FIPS)
-Under the Information Technology Management Reform Act (Public Law 104-106), the Secretary of Commerce approves standards and guidelines that are developed by the National Institute of Standards and Technology (NIST) for Federal computer systems. These standards and guidelines are issued by NIST as Federal Information Processing Standards (FIPS) for use government-wide. NIST develops FIPS when there are compelling Federal government requirements such as for security and interoperability and there are no acceptable industry standards or solutions. See background information for more details.
+
+Information Technology Management Reform Act (Public Law 104-106)に基づいて、商務長官は、連邦政府機関のコンピュータ・システムに適用するために国立標準技術研究所(NIST)が開発した標準及びガイドラインを承認する。これらの標準及びガイドラインは、NISTによってFIPSとして発行されたものであり、政府機関で横断的に使われるものである。
+NISTは、セキュリティや相互運用性といった強制力のある連邦政府の要求事項がある場合や、許容可能な業界標準やソリューションが存在しない場合に、FIPSを開発する。詳細については背景を参照すること。
+
+<!--
+Under the Information Technology Management Reform Act (Public Law 104-106), the Secretary of Commerce approves standards and guidelines that are developed by the National Institute of Standards and Technology (NIST) for Federal computer systems. These standards and guidelines are issued by NIST as Federal Information Processing Standards (FIPS) for use government-wide. NIST develops FIPS when there are compelling Federal government requirements such as for security and interoperability and there are no acceptable industry standards or solutions. See background information for more details.-->
+
+FIPS文書は、FIPSホームページ <http://www.nist.gov/itl/fips.cfm> からオンラインで利用できる。
 
 FIPS documents are available online through the FIPS home page: <http://www.nist.gov/itl/fips.cfm>
 
-#### Hash Function
-A function that maps a bit string of arbitrary length to a fixed length bit string. Approved hash functions satisfy the following properties:
+<!--#### Hash Function-->
 
-1. (One-way) It is computationally infeasible to find any input that
-                                                                                         maps to any pre-specified output, and
+#### ハッシュ関数
 
-2. (Collision resistant) It is computationally infeasible to find any two distinct inputs that map to the same output.
+任意長の短いの文字列を、固定長の文字列に変換する関数。承認されているハッシュ関数は以下の性質を満たす。
+
+<!--A function that maps a bit string of arbitrary length to a fixed length bit string. Approved hash functions satisfy the following properties:-->
+
+<!--1. (One-way) It is computationally infeasible to find any input that
+                                                                                         maps to any pre-specified output, and-->
+                                                                                         
+1. (一方向性) 指定された出力結果から、対応する入力を特定することが計算上困難で、
+
+<!--2. (Collision resistant) It is computationally infeasible to find any two distinct inputs that map to the same output.-->
+
+2. (対衝突性) 同じ出力となる任意の2つの異なる入力を特定することが計算上困難である
 
 #### Holder-of-Key Assertion
 An assertion that contains a reference to a symmetric key or a public key (corresponding to a private key) held by the subscriber. The RP may authenticate the subscriber by verifying that he or she can indeed prove possession and control of the referenced key.
