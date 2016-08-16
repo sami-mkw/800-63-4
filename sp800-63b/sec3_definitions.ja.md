@@ -363,52 +363,129 @@ FIPS documents are available online through the FIPS home page: <http://www.nist
 
 <!--1. (One-way) It is computationally infeasible to find any input that
                                                                                          maps to any pre-specified output, and-->
+   <!--2. (Collision resistant) It is computationally infeasible to find any two distinct inputs that map to the same output.-->
                                                                                          
 1. (一方向性) 指定された出力結果から、対応する入力を特定することが計算上困難で、
-
-<!--2. (Collision resistant) It is computationally infeasible to find any two distinct inputs that map to the same output.-->
-
 2. (対衝突性) 同じ出力となる任意の2つの異なる入力を特定することが計算上困難である
 
-#### Holder-of-Key Assertion
-An assertion that contains a reference to a symmetric key or a public key (corresponding to a private key) held by the subscriber. The RP may authenticate the subscriber by verifying that he or she can indeed prove possession and control of the referenced key.
+<!--#### Holder-of-Key Assertion-->
 
-#### Identity
-A set of attributes that uniquely describe a person within a given context.
+#### Holder-of-Keyアサーション
 
-#### Identity Assurance Level (IAL)
-A metric describing degree of confidence that the Applicant’s Claimed Identity is their real identity.
+加入者が保持している対称鍵または（秘密鍵に対応する）公開鍵への参照を含んだアサーション。
+RPは、加入者が実際にその鍵を所有・管理することが可能である、ということを検証することで、加入者を認証しても良い。
+
+<!--An assertion that contains a reference to a symmetric key or a public key (corresponding to a private key) held by the subscriber. The RP may authenticate the subscriber by verifying that he or she can indeed prove possession and control of the referenced key.-->
+
+<!--#### Identity-->
+
+#### アイデンティティ
+
+与えられた文脈において、人物を一意に指し示す属性の集合。
+
+<!--A set of attributes that uniquely describe a person within a given context.-->
+
+
+<!--#### Identity Assurance Level (IAL)-->
+
+#### アイデンティティ保証レベル(Identity Assurance Level: IAL)
+
+申請者が申告したアイデンイティが、彼ら自身の実際のアイデンティティに一致することの信頼の度合いを表現する尺度。
+
+<!-- A metric describing degree of confidence that the Applicant’s Claimed Identity is their real identity. -->
+
+<!-- #### Kerberos -->
 
 #### Kerberos
-A widely used authentication protocol developed at MIT. In “classic” Kerberos, users share a secret password with a Key Distribution Center (KDC). The user, Alice, who wishes to communicate with another user, Bob, authenticates to the KDC and is furnished a “ticket” by the KDC to use to authenticate with Bob.
 
-When Kerberos authentication is based on passwords, the protocol is known to be vulnerable to offline dictionary attacks by eavesdroppers who capture the initial user-to- KDC exchange. Longer password length and complexity provide some mitigation to this vulnerability, although sufficiently long passwords tend to be cumbersome for users.
+MITで開発された認証プロトコルで幅広く利用されている。古典的なKerberosでは、ユーザは秘密のパスワードをKey Distribution Center(KDC)に共有する。ユーザAliceは、他のユーザBobと通信するため、KDCに対して認証を行い、KDCからチケットの提供を受ける。
+そのチケットは、Bobとの間で認証を行うために利用する。
 
-#### Knowledge Based Authentication
-Authentication of an individual based on knowledge of information associated with his or her claimed identity in public databases. Knowledge of such information is considered to be private rather than secret, because it may be used in contexts other than authentication to a verifier, thereby reducing the overall assurance associated with the authentication process.
+<!--A widely used authentication protocol developed at MIT. In “classic” Kerberos, users share a secret password with a Key Distribution Center (KDC). The user, Alice, who wishes to communicate with another user, Bob, authenticates to the KDC and is furnished a “ticket” by the KDC to use to authenticate with Bob.-->
 
-#### Man-in-the-Middle Attack (MitM)
-An attack on the authentication protocol run in which the attacker positions himself or herself in between the claimant and verifier so that he can intercept and alter data traveling between them.
+Kerberos認証はパスワードに基づいており、プロトコルは最初にユーザとKDCの間で行われるやり取りを盗聴することにより可能となる、オフラインの辞書攻撃に対して脆弱であることが知られている。パスワードをより長く・複雑にすることで、この脆弱性に対する一定の緩和策となる一方、十分に長いパスワードはユーザにとって扱いにくいものとなってしまう。
 
-#### Message Authentication Code (MAC)
-A cryptographic checksum on data that uses a symmetric key to detect both accidental and intentional modifications of the data. MACs provide authenticity and integrity protection, but not non-repudiation protection.
+<!--When Kerberos authentication is based on passwords, the protocol is known to be vulnerable to offline dictionary attacks by eavesdroppers who capture the initial user-to- KDC exchange. Longer password length and complexity provide some mitigation to this vulnerability, although sufficiently long passwords tend to be cumbersome for users.-->
 
-#### Multi-Factor
+
+<!--#### Knowledge Based Authentication-->
+
+#### 知識ベース認証
+
+当人が主張している公のデータベースに記録されているアイデンティティと関連付けられた情報に関する知識に基づいて行われる個人に対する認証。
+そのような情報に関する知識は、機密というよりはむしろ内密という程度のものである、と考えられる。なぜならば、知識は、検証主体に対して実施する認証以外の文脈で利用されることがあり、認証プロセスに関連付けられる全体的な信頼性を減ずるためである。
+
+<!--Authentication of an individual based on knowledge of information associated with his or her claimed identity in public databases. Knowledge of such information is considered to be private rather than secret, because it may be used in contexts other than authentication to a verifier, thereby reducing the overall assurance associated with the authentication process.-->
+
+#### 中間者(Man-in-the-Middle)攻撃(MitM)
+<!--#### Man-in-the-Middle Attack (MitM)-->
+
+認証プロトコルの実行にあたり、攻撃者が、認証の要求主体と検証主体との間に立ち、送受信されるデータを横取り・改ざんする攻撃。
+
+<!--An attack on the authentication protocol run in which the attacker positions himself or herself in between the claimant and verifier so that he can intercept and alter data traveling between them.-->
+
+<!--#### Message Authentication Code (MAC)-->
+
+#### メッセージ認証コード(MAC)
+
+暗号理論に基づくデータのチェックサムであり、対称鍵を用いて、データの予期していない変更及び意図的な変更との両方を検知するために用いられる。MACは真正性(authenticity)と一貫性(integrity)の保護を行うが、非否認性(non-repudiation)は保護は行わない。
+
+<!--A cryptographic checksum on data that uses a symmetric key to detect both accidental and intentional modifications of the data. MACs provide authenticity and integrity protection, but not non-repudiation protection.-->
+
+
+<!--#### Multi-Factor-->
+
+#### 多要素(Multi-Factor)
+
+2つ以上の認証要素を利用するような認証システムや認証器の性質。
+
+認証要素の3つのタイプは、本人が知っていること(something you know)、本人が所持しているもの(something you have)、本人に備わっているもの(something you are)である。
+
+<!--
 A characteristic of an authentication system or an authenticator that uses more than one authentication factor.
 
-The three types of authentication factors are something you know, something you have, and something you are.
+The three types of authentication factors are something you know, something you have, and something you are.-->
 
-#### Network
-An open communications medium, typically the Internet, that is used to transport messages between the claimant and other parties. Unless otherwise stated, no assumptions are made about the security of the network; it is assumed to be open and subject to active (i.e., impersonation, man-in-the-middle, session hijacking) and passive (i.e., eavesdropping) attack at any point between the parties (e.g., claimant, verifier, CSP or RP).
 
-#### Nonce
-A value used in security protocols that is never repeated with the same key. For example, nonces used as challenges in challenge-response authentication protocols SHALL not be repeated until authentication keys are changed. Otherwise, there is a possibility of a replay attack. Using a nonce as a challenge is a different requirement than a random challenge, because a nonce is not necessarily unpredictable.
+<!--#### Network-->
 
-#### Offline Attack
-An attack where the attacker obtains some data (typically by eavesdropping on an authentication protocol run or by penetrating a system and stealing security files) that he/she is able to analyze in a system of his/her own choosing.
+#### ネットワーク
 
-#### Online Attack
-An attack against an authentication protocol where the attacker either assumes the role of a claimant with a genuine verifier or actively alters the authentication channel.
+オープンコミュニケーションの媒介、典型的にはインターネットであり、要求者と対応する関係者間でメッセージを伝送するために利用されるもの。
+特別に宣言をしていない限り、ネットワークのセキュリティについては何ら仮定は行わないものとする。
+すなわち、オープンであり、関係者（例：要求者、検証主体、CSP、RP）間の任意の地点で、能動的攻撃(例：なりすまし、中間者、セッションハイジャック）と受動的攻撃(例：盗聴）に晒されている、と仮定する。
+
+<!--
+An open communications medium, typically the Internet, that is used to transport messages between the claimant and other parties. Unless otherwise stated, no assumptions are made about the security of the network; it is assumed to be open and subject to active (i.e., impersonation, man-in-the-middle, session hijacking) and passive (i.e., eavesdropping) attack at any point between the parties (e.g., claimant, verifier, CSP or RP).-->
+
+#### ノンス
+
+<!--#### Nonce-->
+
+セキュリティプロトコル中で利用され、同じキーによる繰り返しを許さない値。例えば、ノンスはチャレンジ・レスポンス認証プロトコルのチャレンジとして利用され、認証キーが変更されるまでの間、繰り返されないものとする(SHALL NOT)。
+さもなければ、再生攻撃(replay attack)の可能性がある。
+ノンスをチャレンジとして利用することと、チャレンジをランダムにすることとは異なる要件である。というのも、ノンスは必ずしも予測不可能である必要性がないからである。
+
+<!-- SHALL notとなっており小文字になっているので要指摘-->
+
+<!--A value used in security protocols that is never repeated with the same key. For example, nonces used as challenges in challenge-response authentication protocols SHALL not be repeated until authentication keys are changed. Otherwise, there is a possibility of a replay attack. Using a nonce as a challenge is a different requirement than a random challenge, because a nonce is not necessarily unpredictable.-->
+
+<!--#### Offline Attack-->
+
+#### オフライン攻撃
+
+攻撃者が何らかの情報を得る（典型的には認証プロトコルの実行を盗聴したり、システムに侵入してセキュリティファイルを盗む）ことで、選択したシステムを分析する攻撃。
+
+<!--An attack where the attacker obtains some data (typically by eavesdropping on an authentication protocol run or by penetrating a system and stealing security files) that he/she is able to analyze in a system of his/her own choosing.-->
+
+<!--#### Online Attack-->
+
+#### オンライン攻撃
+
+認証プロトコルにおいて、正当な認証主体に対する要求者の役割を詐称する、または能動的に認証チャネルを改ざんする攻撃。
+
+<!--
+An attack against an authentication protocol where the attacker either assumes the role of a claimant with a genuine verifier or actively alters the authentication channel.-->
 
 #### Online Guessing Attack
 An attack in which an attacker performs repeated logon trials by guessing possible values of the authenticator output.
