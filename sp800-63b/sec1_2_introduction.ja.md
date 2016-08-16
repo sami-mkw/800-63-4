@@ -16,7 +16,7 @@
 
 ## 2. イントロダクション
 
-Digital authentication is the process of establishing confidence in user identities electronically presented to an information system. E-authentication presents a technical challenge when this process involves the digital authentication of individual people over a network.
+<!--Digital authentication is the process of establishing confidence in user identities electronically presented to an information system. E-authentication presents a technical challenge when this process involves the digital authentication of individual people over a network.-->
 
 デジタル認証は、情報システムにおいて電子的に表現されたユーザのアイデンティティの確かさを証明するためのプロセスである。E-authentiationは、本プロセスがネットワークを介した個々人のデジタル認証に関与する際、技術的なチャレンジを提起する。
 
@@ -63,6 +63,6 @@ The strength of an authentication transaction is characterized by a categorizati
 **Authentication Assurance Level 3** – AAL 3 is intended to provide the highest practical remote network authentication assurance. Authentication at AAL 3 is based on proof of possession of a key in a physical authenticator through a cryptographic protocol. AAL 3 is similar to AAL 2 except that only multifactor hardware cryptographic authenticators are allowed. The authenticator SHALL be a hardware cryptographic module validated at Federal Information Processing Standard (FIPS) 140 Level 2 or higher overall with at least FIPS 140 Level 3 physical security.
 -->
 
-**認証器信頼レベル 3** - AAL 3は、リモートネットワークにおける実現しうる最も高い認証信頼性を提供することを目的としている。AAL 3は、暗号プロトコルを介した、物理的な認証器に格納されている鍵の所有証明(proof of posession)に基づいたものである。AAL 3は、多要素ハードウェア暗号化認証器(multifactor hardware cryptographic authenticator)だけが認められているということを除けば、AAL 2と同様である。認証器は、連邦情報処理標準(FIPS) 140 Level 2、または少なくともFIPS 140 Level 3の物理セキュリティを確保しているような高度な基準で検証されたハードウェア暗号化装置であるものとする(SHALL)。
+**認証器信頼レベル 3** - AAL 3は、リモートネットワークにおける実現しうる最も高い認証信頼性を提供することを目的としている。AAL 3は、暗号プロトコルを介した、物理的な認証器に格納されている鍵の所有証明(proof of posession)に基づいたものである。AAL 3は、多要素ハードウェア暗号化認証器(multifactor hardware cryptographic authenticator)だけが認められているということを除けば、AAL 2と同様である。認証器は、Federal Information Processing Standard(FIPS) 140 Level 2、または少なくともFIPS 140 Level 3の物理セキュリティを確保しているような高度な基準で検証されたハードウェア暗号化装置であるものとする(SHALL)。
 
 
