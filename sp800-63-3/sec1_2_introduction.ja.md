@@ -31,7 +31,7 @@ recommendation also provides guidelines for credential service providers
 Guidance for Federal Agencies* \[[OMB M-04-04](#M-04-04)\] を補完し, NIST SP 800-63-1 および SP 800-63-2 を置き換えるものである.
 OMB M-04-04 は, 誤った認証結果や Credential の誤用などによりもたらされる結果といった観点から, Level1 から Level4 まで4つの Level of Assurance を定義している.
 なお Level1 が最低で Level4 が最高の Assurance Level となる.
-この OMB のガイダンスでは, 誤った認証結果によりもたらされるであろう結果という観点から, 必要となる Identity Assurance の Level を定義している.
+この OMB のガイダンスでは, 誤った認証結果によりもたらされるであろう結果という観点から, 必要となる Assurance Level を定義している.
 より深刻な影響が想定されるほど, 必要となる Level of Assurance も高くなる.
 OMB ガイダンスは, 政府機関に対して, 特定のデジタルトランザクションおよびシステムにおいて必要となる Level of Assurance を定めるための基準を提供している.
 必要となる Level of Assurance は, リスクやその発生確率に基づいて求められる.
