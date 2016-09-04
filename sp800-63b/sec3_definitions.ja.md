@@ -418,6 +418,7 @@ Kerberos認証はパスワードに基づいており、プロトコルは最初
 <!--Authentication of an individual based on knowledge of information associated with his or her claimed identity in public databases. Knowledge of such information is considered to be private rather than secret, because it may be used in contexts other than authentication to a verifier, thereby reducing the overall assurance associated with the authentication process.-->
 
 #### 中間者(Man-in-the-Middle)攻撃(MitM)
+
 <!--#### Man-in-the-Middle Attack (MitM)-->
 
 認証プロトコルの実行にあたり、攻撃者が、認証の要求主体と検証主体との間に立ち、送受信されるデータを横取り・改ざんする攻撃。
@@ -443,7 +444,6 @@ Kerberos認証はパスワードに基づいており、プロトコルは最初
 
 <!--
 A characteristic of an authentication system or an authenticator that uses more than one authentication factor.
-
 The three types of authentication factors are something you know, something you have, and something you are.-->
 
 
@@ -487,143 +487,375 @@ An open communications medium, typically the Internet, that is used to transport
 <!--
 An attack against an authentication protocol where the attacker either assumes the role of a claimant with a genuine verifier or actively alters the authentication channel.-->
 
-#### Online Guessing Attack
-An attack in which an attacker performs repeated logon trials by guessing possible values of the authenticator output.
+<!-- #### Online Guessing Attack -->
 
-#### Passive Attack
-An attack against an authentication protocol where the attacker intercepts data traveling along the network between the claimant and verifier, but does not alter the data (i.e., eavesdropping).
+#### オンライン推測攻撃
 
+<!--An attack in which an attacker performs repeated logon trials by guessing possible values of the authenticator output.-->
+
+攻撃者が認証器の出力が取りうる値を推測して、ログオンを繰り返し行うような攻撃。
+
+<!-- #### Passive Attack -->
+
+#### 受動的攻撃
+認証プロトコルに対する攻撃。要求者と検証主体との間をネットワークを介してやり取りされるデータを傍受するが、データは改ざんしない(例. 盗聴)。
+
+<!-- An attack against an authentication protocol where the attacker intercepts data traveling along the network between the claimant and verifier, but does not alter the data (i.e., eavesdropping).-->
+
+<!--
 #### Password
 A secret that a claimant memorizes and uses to authenticate his or her identity. Passwords are typically character strings.
+-->
+
+#### パスワード
+要求者が記憶し、自身のアイデンティティを認証するために利用するシークレット。パスワードは一般的に、文字列である。
 
 #### Personal Identification Number (PIN)
-A password consisting only of decimal digits.
+数字のみで構成されているパスワード。
+
+<!-- A password consisting only of decimal digits.-->
 
 #### Personal Identity Verification (PIV) Card
-Defined by \[FIPS 201\] as a physical artifact (e.g., identity card, smart card) issued to federal employees and contractors that contains stored credentials (e.g., photograph, cryptographic keys, digitized fingerprint representation) so that the claimed identity of the cardholder can be verified against the stored credentials by another person (human readable and verifiable) or an automated process (computer readable and verifiable).
+Personal Identity Verification (PIV) カードは \[FIPS 201\]で定義された物理的な人工物(例. IDカード、スマートカード)であり、連邦政府の職員や契約業者に対して発行される。クレデンシャル(例. 写真、暗号鍵、デジタル化した指紋)を含んでおり、カード所有者が主張するアイデンティティは、あらかじめ保存してあるクレデンシャルと比較することで、他者による検証(人間による読み取り、検証)や、自動化手続きによる検証(コンピュータによる読み取り、検証)が可能である。
 
+<!--
+Defined by \[FIPS 201\] as a physical artifact (e.g., identity card, smart card) issued to federal employees and contractors that contains stored credentials (e.g., photograph, cryptographic keys, digitized fingerprint representation) so that the claimed identity of the cardholder can be verified against the stored credentials by another person (human readable and verifiable) or an automated process (computer readable and verifiable).
+-->
+
+<!--
 #### Pharming
 An attack in which an attacker corrupts an infrastructure service such as DNS (Domain Name Service) causing the subscriber to be misdirected to a forged verifier/RP, which could cause the subscriber to reveal sensitive information, download harmful software or contribute to a fraudulent act.
+-->
 
+#### ファーミング
+DNS(Domain Name Service) のようなインフラストラクチャサービスを汚染する手法により、加入者を偽造した検証主体/RPへ誘導し、機微情報を入力させる、有害なソフトウェアをダウンロードさせる、詐欺活動に加担させる可能性のある攻撃。
+
+<!--
 #### Phishing
 An attack in which the subscriber is lured (usually through an email) to interact with a counterfeit verifier/RP and tricked into revealing information that can be used to masquerade as that subscriber to the real verifier/RP.
+-->
 
+#### フィッシング
+加入者を(主にemailを通じて)偽の検証主体/RPに誘導し、真の検証主体/RPに対して加入者に成りすましを行うために利用する情報を騙し取る攻撃。
+
+<!--
 #### Possession and control of an authenticator
 The ability to activate and use the authenticator in an authentication protocol.
+-->
 
+#### 認証器の所有およびコントロール
+認証プロトコルにおいて、認証器をアクティベートし、利用できること。
+
+
+<!--
 #### Practice Statement
 A formal statement of the practices followed by the parties to an authentication process (i.e., RA, CSP, or verifier). It usually describes the policies and practices of the parties and can become legally binding.
+-->
 
+#### 実施規定
+認証プロセスの当事者(例. RA、CSP、検証主体)が従う実践的な内容を正式に記載した文書。通常、当事者のポリシーと実行内容が記述されており、法的拘束力を持つ可能性がある。
+
+<!--
 #### Private Credentials
 Credentials that cannot be disclosed by the CSP because the contents can be used to compromise the authenticator.
+-->
 
+#### プライベートクレデンシャル
+認証器を損なうために使うことができるため、CSPによって開示されることがないクレデンシャル。
+
+<!--
 #### Private Key
 The secret part of an asymmetric key pair that is used to digitally sign or decrypt data.
+-->
 
+#### 秘密鍵
+非対称鍵ペアの秘密である側。デジタル署名やデータ暗号化に用いる。
+
+<!--
 #### Protected Session
 A session wherein messages between two participants are encrypted and integrity is protected using a set of shared secrets called session keys.
-
+-->
+<!--
 A participant is said to be *authenticated* if, during the session, he, she or it proves possession of an authenticator in addition to the session keys, and if the other party can verify the identity associated with that authenticator. If both participants are authenticated, the protected session is said to be *mutually authenticated*.
+-->
 
+#### 保護されたセッション
+セッション鍵と呼ばれる共通シークレット一式を用いて、二者間のメッセージが暗号化され、一貫性が保護されるようなセッション。
+
+セッションが継続する間において、セッション鍵に加えて当事者が認証器の所持を証明する、または他方が認証器に関連付けられたアイデンティティを検証することができるならば、当事者が *認証済み(authenticated)* であるという。もし相互の当事者が認証済みである場合、保護されたセッションは *相互に認証済み(mutually authenticated)* と呼ばれる。
+
+<!--
 #### Public Credentials
 Credentials that describe the binding in a way that does not compromise the authenticator.
+-->
 
+#### パブリッククレデンシャル
+認証器を損なうことのない方法で紐付けされているクレデンシャル。
+
+<!--
 #### Public Key
 The public part of an asymmetric key pair that is used to verify signatures or encrypt data.
+-->
 
+#### 公開鍵
+非対称鍵ペアの公開側。署名検証やデータ復号に用いる。
+
+<!--
 #### Public Key Certificate
 A digital document issued and digitally signed by the private key of a certificate authority that binds the name of a subscriber to a public key. The certificate indicates that the subscriber identified in the certificate has sole control and access to the private key. See also [[RFC 5280]](#RFC5280).
+-->
+
+#### 公開鍵証明書
+加入者の名前と公開鍵を紐付けている認証局(CA)の秘密鍵でデジタル署名され発行されるデジタル文書。証明書は、証明書中で識別される加入者が、唯一、その秘密鍵のコントロールとアクセスがであることを示す。 [[RFC 5280]](#RFC5280) も参照のこと。
+
+
 
 #### Public Key Infrastructure (PKI)
-A set of policies, processes, server platforms, software and workstations used for the purpose of administering certificates and public-private key pairs, including the ability to issue, maintain, and revoke public key certificates.
+発行、維持、証明書、公開-秘密の鍵ペアの管理のために用いるポリシー、プロセス、サーバプラットフォーム、ソフトウェア、およびワークステーションのこと。
 
-#### Registration
+<!--
+A set of policies, processes, server platforms, software and workstations used for the purpose of administering certificates and public-private key pairs, including the ability to issue, maintain, and revoke public key certificates.
+-->
+
+#### 登録(Registration)
+申請者がCSPの加入者となり、CSPが申請者のアイデンティティの正当性を確認するプロセス。
+
+<!--
 The process through which an Applicant applies to become a subscriber of a CSP and the CSP validates the identity of the Applicant.
+-->
 
 #### Relying Party (RP)
-An entity that relies upon the subscriber's authenticator and credentials or a verifier's assertion of a claimant’s identity, typically to process a transaction or grant access to information or a system.
+加入者の認証器とクレデンシャル、または検証主体が発行する要求者のアイデンティティのアサーションを信頼し、一般的には、取引を進めたり、情報やシステムへのアクセス権限を与えたりするエンティティ。
 
+<!--
+An entity that relies upon the subscriber's authenticator and credentials or a verifier's assertion of a claimant’s identity, typically to process a transaction or grant access to information or a system.
+-->
+
+#### リモート
+(*リモート認証やリモート取引で*)ネットワークで繋がったデバイス間で交換される情報。その情報は、単一の組織のセキュリティ統制によるエンドツーエンドの信頼できる保護ができない。
+
+<!--
 #### Remote
 (*As in remote authentication or remote transaction*) An information exchange between network-connected devices where the information cannot be reliably protected end-to-end by a single organization’s security controls.
+-->
 
+注記: インターネット上でやり取りされる全ての情報は、リモートである、と考える。
+
+<!--
 Note: Any information exchange across the Internet is considered remote.
+-->
 
+
+#### リプレイ攻撃
+攻撃者が、正当な申請者と検証主体との間のメッセージをキャプチャし、申請者から検証主体、またはその逆であるかのように振る舞うために再送できるような攻撃。
+
+<!--
 #### Replay Attack
 An attack in which the attacker is able to replay previously captured messages (between a legitimate claimant and a verifier) to masquerade as that claimant to the verifier or vice versa.
+-->
 
+#### リスクアセスメント
+システム・セキュリティに対するリスクを識別し、発生確率、与える影響、影響を緩和しうる追加の防御策を決定するプロセス。リスクマネジメント及びリスク分析と同義のものの一部。
+
+<!--
 #### Risk Assessment
 The process of identifying the risks to system security and determining the probability of occurrence, the resulting impact, and additional safeguards that would mitigate this impact. Part of Risk Management and synonymous with Risk Analysis.
+-->
 
+#### ソルト
+暗号プロセスにおいて用いられる秘密でない(non-secret)値で、通常、ある特定の計算結果が攻撃者によって再利用されないことを保証するために用いられる。
+
+<!--
 #### Salt
 A non-secret value that is used in a cryptographic process, usually to ensure that the results of computations for one instance cannot be reused by an attacker.
+-->
 
+#### 二次認証器(Secondary Authenticator)
+アサーションプロトコルの一部分において、正しく認証された加入者を検証することで発行された一時的なシークレット。このシークレットは発行後、加入者がRPに対して認証するために利用する。
+
+二次認証器の例としては、無記名アサーション、アサーション参照、及びKerberosセッションキーがある。
+
+<!--
 #### Secondary Authenticator
 A temporary secret, issued by the verifier to a successfully authenticated subscriber as part of an assertion protocol. This secret is subsequently used, by the subscriber, to authenticate to the RP.
-
+-->
+<!--
 Examples of secondary authenticators include bearer assertions, assertion references, and Kerberos session keys.
+-->
 
 #### Secure Sockets Layer (SSL)
+*Transport Layer Security (TLS)*を参照のこと。
+
+<!--
 See *Transport Layer Security (TLS)*.
+-->
+
 
 #### Security Assertion Mark-up Language (SAML)
-An XML-based security specification developed by the Organization for the Advancement of Structured Information Standards (OASIS) for exchanging authentication (and authorization) information between trusted entities over the Internet. See \[[SAML](#SAML)\].
+OASIS(Organization for the Advancement of Structured Information Standards)によって開発されたXMLベースのセキュリティ仕様で、信頼されたエンティティ間がインターネット上で、認証（及び認可）情報を交換するために利用される。\[[SAML](#SAML)\]を参照のこと。
 
+<!--
+An XML-based security specification developed by the Organization for the Advancement of Structured Information Standards (OASIS) for exchanging authentication (and authorization) information between trusted entities over the Internet. See \[[SAML](#SAML)\].
+-->
+
+
+<!--
 #### SAML Authentication Assertion
 A SAML assertion that conveys information from a verifier to an RP about a successful act of authentication that took place between the verifier and a subscriber.
+-->
 
+#### SAML認証アサーション
+検証主体と加入者の間で行われた成功した認証行為について、検証主体からRPに対して情報を伝達するSAMLアサーションの一つ。
+
+#### セッション
+加入者とエンドポイント、またはRPやCSPとの間の継続的なインタラクション。セッションは認証イベントで開始し、セッション終了イベントで終了する。セッションは、加入者のソフトウェア(ブラウザ、アプリケーションやOS）がRPやCSPに対して、加入者の認証クレデンシャルの代わりに提示するセッションシークレットを用いて結び付けられる。
+
+<!--
 #### Session
 A persistent interaction between a subscriber and an endpoint, either an RP or a CSP. A session begins with an authentication event and ends with a session termination event. A session is bound by use of a session secret that the subscriber's software (a browser, application, or OS) can present to the RP or CSP in lieu of the subscriber's authentication credentials.
+-->
 
+#### セッションハイジャック攻撃
+攻撃者が自身を申請者と検証主体の間に入り込み、その後、当事者間で認証を成功させるような攻撃。攻撃者は検証主体に対して加入者であるかのように振る舞うことができ、逆にセッションデータののやり取りを制御することもできる。申請者とRP間のセッションも同様に侵害される可能性がある。
+
+<!--
 #### Session Hijack Attack
 An attack in which the attacker is able to insert himself or herself between a claimant and a verifier subsequent to a successful authentication exchange between the latter two parties. The attacker is able to pose as a subscriber to the verifier or vice versa to control session data exchange. Sessions between the claimant and the Relying Party can also be similarly compromised.
+-->
 
+#### シェーアド・シークレット
+申請者と検証主体にとっては既知である認証で使用する秘密。
+
+<!--
 #### Shared Secret
 A secret used in authentication that is known to the claimant and the verifier.
+-->
 
+#### サイドチャネル攻撃
+物理的な暗号システムからの情報漏洩によって可能となる攻撃。タイミング、消費電力、電磁波放出はサイドチャネル攻撃で活用されうる特徴の例である。
+
+<!--
 #### Side Channel Attack
 An attack enabled by leakage of information from a physical cryptosystem. Timing, power consumption, and electromagnetic emissions are examples of characteristics that could be exploited in a side-channel attack.
+-->
 
+#### ソーシャルエンジニアリング
+ある個人と親交を深めて信用・信頼を得ることによって、個人を騙して個人の機微情報を明らかにする行為。
+
+<!--
 #### Social Engineering
 The act of deceiving an individual into revealing sensitive information by associating with the individual to gain confidence and trust.
+-->
 
 #### Special Publication (SP)
-A type of publication issued by NIST. Specifically, the Special Publication 800-series reports on the Information Technology Laboratory's research, guidelines, and outreach efforts in computer security, and its collaborative activities with industry, government, and academic organizations.
+NISTによって発行される出版物。特に、Special Publication 800シリーズは、Information Technology Laboratoryの研究、ガイドライン、及びコンピュータセキュリティにおける教育・援助を行う努力、さらに産業、政府、及び学術機関との協調的な活動についての報告である。
 
+<!--
+A type of publication issued by NIST. Specifically, the Special Publication 800-series reports on the Information Technology Laboratory's research, guidelines, and outreach efforts in computer security, and its collaborative activities with industry, government, and academic organizations.
+-->
+
+#### 強結合クレデンシャル
+改ざんの痕跡が残る方法で加入者と結びつけられたクレデンシャル。
+
+<!--
 #### Strongly Bound Credentials
 Credentials that are bound to a subscriber in a tamper-evident fashion.
+-->
 
+#### 加入者
+CSPから認証器に結びつけられたクレデンシャルを受け取る当事者。
+
+<!--
 #### Subscriber
 A party who has received a credential bound to an authenticator from a CSP.
+-->
 
+#### 対象鍵
+暗号化と複合、またはメッセージ認証コードの作成と検証に例示される暗号操作及びその逆操作の両方を実施するために利用する鍵。
+
+<!--
 #### Symmetric Key
 A cryptographic key that is used to perform both the cryptographic operation and its inverse, for example to encrypt and decrypt, or create a message authentication code and to verify the code.
+-->
 
+#### トークン
+*認証器* を参照のこと。
+
+<!--
 #### Token
 See *Authenticator*.
+-->
 
+### トークン認証器
+*認証器出力* を参照のこと。
+
+<!--
 #### Token Authenticator
 See *Authenticator Output*.
+-->
 
+<!-- TODO: Token Output??? -->
+
+#### トークンシークレット
+*認証器シークレット* を参照のこと。
+
+<!--
 #### Token Secret
 See *Authenticator Secret*.
+-->
 
 #### Transport Layer Security (TLS)
-An authentication and security protocol widely implemented in browsers and web servers. TLS is defined by [[RFC 5246]](#RFC5246). TLS is similar to the older Secure Sockets Layer (SSL) protocol, and TLS 1.0 is effectively SSL version 3.1. NIST [[SP 800-52]](#SP800-52), *Guidelines for the Selection and Use of Transport Layer Security (TLS) Implementations* specifies how TLS is to be used in government applications.
+ブラウザやウェブサーバに広く実装されている認証・セキュリティプロトコル。TLSは [[RFC 5246]](#RFC5246) で定義されている。TLSはより古い Secure Socket Layer (SSL)プロトコルと、実質的にSSLバージョン3.1であるTLS1.0と同様である。NIST [[SP 800-52]](#SP800-52) ガイドラインでは、Transport Layer Security (TLS)実装の選択と利用について記載しており、TLSを政府のアプリケーションでどのように利用すべきであるかを指定している。
 
+<!--
+An authentication and security protocol widely implemented in browsers and web servers. TLS is defined by [[RFC 5246]](#RFC5246). TLS is similar to the older Secure Sockets Layer (SSL) protocol, and TLS 1.0 is effectively SSL version 3.1. NIST [[SP 800-52]](#SP800-52), *Guidelines for the Selection and Use of Transport Layer Security (TLS) Implementations* specifies how TLS is to be used in government applications.
+-->
+
+#### トラストアンカー
+公開鍵・共通鍵が、別の（例えば公開鍵証明書で）信頼されている存在によって保証されているよりむしろ、直接的に、ハードウェアやソフトウェアに組み込まれた、セキュアに経路外の方法でプロビジョニングされている、といった理由で信頼されていること。
+
+<!--
 #### Trust Anchor
 A public or symmetric key that is trusted because it is directly built into hardware or software, or securely provisioned via out-of-band means, rather than because it is vouched for by another trusted entity (e.g. in a public key certificate).
+-->
 
+#### 検証主体
+認証プロトコルを利用して、1つまたは2つの認証器を申請者が所有、操作できることを検証し、申請者のアイデンティティを検証する存在。
+
+<!--
 #### Verifier
 An entity that verifies the claimant’s identity by verifying the claimant’s possession and control of one or two authenticators using an authentication protocol. To do this, the verifier may also need to validate credentials that link the authenticator(s) and identity and check their status.
+-->
 
+#### 検証主体なりすまし攻撃
+認証プロトコルにおいて、攻撃者が検証主体になりすまし、一般的には真の検証主体に対して加入者を詐称することを目的として情報を集めるようなシナリオ。
+
+<!--
 #### Verifier Impersonation Attack
 A scenario where the attacker impersonates the verifier in an authentication protocol, usually to capture information that can be used to masquerade as a subscriber to the real verifier.
+-->
 
+#### 弱結合クレデンシャル
+クレデンシャルを無効化することなく改ざんできてしまう方法で、加入者と結びつけられたクレデンシャル。
+
+<!--
 #### Weakly Bound Credentials
 Credentials that are bound to a subscriber in a manner than can be modified without invalidating the credential.
+-->
 
+#### ゼロ化
+データを破壊し、復元できないようにするために、ゼロ値のビットだけで構成されるデータによってメモリを上書きすること。これはしばしば、データそのものを破壊するのではなく、ファイルシステム上のデータへの参照を破壊するだけの削除手法と対比される。
+
+<!--
 #### Zeroize
 Overwrite a memory location with data consisting entirely of bits with the value zero so that the data is destroyed and not recoverable. This is often contrasted with deletion methods that merely destroy reference to data within a file system rather than the data itself.
+-->
 
+#### ゼロ知識パスワードプロトコル
+申請者が検証主体に対して認証を行う際、検証主体に対してパスワードを提示する必要がないようなパスワードベースの認証プロトコル。
+プロトコルの例としては、EKE、SPEKE及びSRPがある。
+
+<!--
 #### Zero-knowledge Password Protocol
 A password based authentication protocol that allows a claimant to authenticate to a verifier without revealing the password to the verifier. Examples of such protocols are EKE, SPEKE and SRP.
+-->
