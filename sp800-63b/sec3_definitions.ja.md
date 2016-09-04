@@ -39,10 +39,10 @@ A data object, created in conjunction with an assertion, which identifies the ve
 
 <!--#### Assurance-->
 
-#### 信頼性
+#### 確実性
 <!-- In the context of [[OMB M-04-04]](#M-04-04) and this document, assurance is defined as 1) the degree of confidence in the vetting process used to establish the identity of an individual to whom the credential was issued, and 2) the degree of confidence that the individual who uses the credential is the individual to whom the credential was issued. -->
 
-[[OMB M-04-04]](#M-04-04)及び本書の中で、信頼性の定義は、1) クレデンシャルが発行されている個人のアイデンティティを証明するため審査プロセスの信頼度、及び 2) クレデンシャルを利用している個人が、そのクレデンシャルが発行されている個人に一致することの信頼度、と定義される。
+[[OMB M-04-04]](#M-04-04)及び本書の中で、確実性の定義は、1) クレデンシャルが発行されている個人のアイデンティティを証明するため審査プロセスの信頼度、及び 2) クレデンシャルを利用している個人が、そのクレデンシャルが発行されている個人に一致することの信頼度、と定義される。
 
 <!--#### Asymmetric Keys-->
 
@@ -125,7 +125,7 @@ A data object, created in conjunction with an assertion, which identifies the ve
 
 <!--#### Authenticator Assurance Level (AAL)-->
 
-#### 認証器信頼レベル(Authenticator Assurance Level:AAL)
+#### 認証器保証レベル(Authenticator Assurance Level:AAL)
 
 <!--A metric describing robustness of the authentication process proving that the claimant is in control of a given subscriber's authenticator(s).-->
 
@@ -417,7 +417,7 @@ Kerberos認証はパスワードに基づいており、プロトコルは最初
 #### 知識ベース認証
 
 当人が主張している公のデータベースに記録されているアイデンティティと関連付けられた情報に関する知識に基づいて行われる個人に対する認証。
-そのような情報に関する知識は、機密というよりはむしろ内密という程度のものである、と考えられる。なぜならば、知識は、検証主体に対して実施する認証以外の文脈で利用されることがあり、認証プロセスに関連付けられる全体的な信頼性を減ずるためである。
+そのような情報に関する知識は、機密というよりはむしろ内密という程度のものである、と考えられる。なぜならば、知識は、検証主体に対して実施する認証以外の文脈で利用されることがあり、認証プロセスに関連付けられる全体的な確実性を減ずるためである。
 
 <!--Authentication of an individual based on knowledge of information associated with his or her claimed identity in public databases. Knowledge of such information is considered to be private rather than secret, because it may be used in contexts other than authentication to a verifier, thereby reducing the overall assurance associated with the authentication process.-->
 
