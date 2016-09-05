@@ -73,7 +73,7 @@ Assertion は検証済属性情報を含むこともある.
 Claimant が, 正規の Authenticator の所有および管理権限を示すことで自身の Identity を確立するプロセスにおいて, Claimant と Verifier の間でやりとりされる一連のメッセージの定義.
 Claimant が意図した Verifier とコミュニケーションしていることを立証するためのプロセスを含むこともある.
 
-<!-- A defined sequence of messages between a claimant and a verifier that demonstrates that the claimant has possession and control of a valid authenticator to establish his/her identity, and optionally, demonstrates to the claimant that he or she is communicating with the intended verifier. -->
+<!-- A defined sequence of messages between a claimant and a verifier that demonstrates that the claimant has possession and control of one or more valid authenticators to establish his/her identity, and optionally, demonstrates to the claimant that he or she is communicating with the intended verifier. -->
 
 #### Authentication Secret
 
@@ -173,8 +173,9 @@ Cryptographic Key を利用する Authenticator.
 #### Digital Authentication
 
 情報システムに対して, デジタル表現されたユーザーの Identity の確からしさを確立するプロセス.
+本ガイドラインでは以前まで *Electronic Authentication* と呼ばれていたもの.
 
-<!-- The process of establishing confidence in user identities digitally presented to an information system. -->
+<!-- The process of establishing confidence in user identities digitally presented to an information system. In previous editions of this guideline, this was referred to as *Electronic Authentication*. -->
 
 #### Digital Signature
 
@@ -182,6 +183,12 @@ Cryptographic Key を利用する Authenticator.
 Digital Signature は Authenticity Protection (真正性), Integrity Protection (完全性), Non-Repudication (否認防止) を提供する.
 
 <!-- An asymmetric key operation where the private key is used to digitally sign data and the public key is used to verify the signature. Digital signatures provide authenticity protection, integrity protection, and non-repudiation. -->
+
+#### Electronic Authentication (E-Authentication)
+
+*Digital Authentication* 参照.
+
+<!-- See *Digital Authentication*. -->
 
 #### Federal Information Security Management Act (FISMA)
 

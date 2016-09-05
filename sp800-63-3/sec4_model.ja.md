@@ -73,11 +73,11 @@ Authentication の一環として, Device Identity や Geo-location などのメ
 
 <!-- As part of authentication, mechanisms such as device identity or geo-location may be used to identify or prevent possible authentication false positives. While these mechanisms do not directly increase the authenticator assurance level, they can enforce security policies and mitigate risks. In many cases, the authentication process and services will be shared by many applications and agencies. However, it is the individual agency or application acting as the RP that shall make the decision to grant access or process a transaction based on the specific application requirements. -->
 
-[Figure 1](#Figure1) は, Digital Authentication Model に関与する多様な主体およびそれらの間のインタラクションを描いている.
+[Figure 4-1](#63Sec4-Figure1) は, Digital Authentication Model に関与する多様な主体およびそれらの間のインタラクションを描いている.
 左側は登録, Credential 発行, Lifecycle Management, 個人が Identity Proofing および Authentication の各フェーズで取りうるステータスを示している.
 一般的には以下のような一連のインタラクションが行われる.
 
-<!-- The various entities and interactions that comprise the digital authentication model used here are illustrated below in [Figure 1](#Figure1). The left shows the enrollment, credential issuance, lifecycle management activities, and the various states an individual transitions to based on the phase of identity proofing and authentication they are in. The usual sequence of interactions is as follows: -->
+<!-- The various entities and interactions that comprise the digital authentication model used here are illustrated below in [Figure 4-1](#63Sec4-Figure1). The left shows the enrollment, credential issuance, lifecycle management activities, and the various states an individual transitions to based on the phase of identity proofing and authentication they are in. The usual sequence of interactions is as follows: -->
 
 1. 個人 (Applicant) が登録プロセスを通じて CSP に申し込みを行う.
 2. CSP は Applicant に対して Identity Proofing を行い, Proofing が成功すれば Applicant は Subscriber となる.
@@ -93,10 +93,10 @@ Authentication の一環として, Device Identity や Geo-location などのメ
 
 <!-- Other sequences are less common, but could also achieve the same functional requirements. -->
 
-[Figure 1](#Figure1) の右側は, Authenticator を利用して Digital Authentication を行う各主体およびそれらの間でのインタラクションを描いている.
+[Figure 4-1](#63Sec4-Figure1) の右側は, Authenticator を利用して Digital Authentication を行う各主体およびそれらの間でのインタラクションを描いている.
 トランザクション実施のために　Subscriber の認証が必要な時には, Subscriber は Verifier に対する Claimant となり, 以下のようなインタラクションを行うことになる.
 
-<!-- The right side of [Figure 1](#Figure1) shows the entities and the interactions related to using a authenticator to perform digital authentication. When the subscriber needs to authenticate to perform a transaction, he or she becomes a claimant to a verifier. The interactions are as follows: -->
+<!-- The right side of [Figure 4-1](#63Sec4-Figure1) shows the entities and the interactions related to using a authenticator to perform digital authentication. When the subscriber needs to authenticate to perform a transaction, he or she becomes a claimant to a verifier. The interactions are as follows: -->
 
 1. Claimant は自身の Authenticator を所有および管理していることを Authentication Protocol を通じて Verifier に示す.
 2. Verifier や CSP とインタラクションをおこない, Subscriber Identity と Authenticator を紐付ける Credential の検証を行う. また同時に CSP から Claimant の属性を取得することもある.
@@ -115,9 +115,9 @@ Authentication の一環として, Device Identity や Geo-location などのメ
 
 場合によっては, Verifier は CSP とリアルタイムにコミュニケーションを行う必要がないこともある. (例: デジタル証明書を利用する場合など)
 したがって Verifier と CSP の間の点線は, それら2つの主体の間の (物理的というより) 論理的なリンクを示すものである.
-実装によっては Verifier, RP, CSP は [Figure 1](#Figure1) のようにそれぞれ分離・独立していることもあるが, それらが同じプラットフォーム上にある場合, それらの要素間のインタラクションは (Untrusted Network を介したやりとりではなく) 同じシステム上のアプリケーション間のローカルメッセージとなる.
+実装によっては Verifier, RP, CSP は [Figure 4-1](#63Sec4-Figure1) のようにそれぞれ分離・独立していることもあるが, それらが同じプラットフォーム上にある場合, それらの要素間のインタラクションは (Untrusted Network を介したやりとりではなく) 同じシステム上のアプリケーション間のローカルメッセージとなる.
 
-<!-- In some cases, the verifier does not need to communicate in real time with the CSP to complete the authentication activity (e.g., some uses of digital certificates). Therefore, the dashed line between the verifier and the CSP represents a logical link between the two entities rather than a physical link. In some implementations, the verifier, RP and the CSP functions may be distributed and separated as shown in [Figure 1](#Figure1); however, if these functions reside on the same platform, the interactions between the components are local messages between applications running on the same system rather than protocols over shared untrusted networks. -->
+<!-- In some cases, the verifier does not need to communicate in real time with the CSP to complete the authentication activity (e.g., some uses of digital certificates). Therefore, the dashed line between the verifier and the CSP represents a logical link between the two entities rather than a physical link. In some implementations, the verifier, RP and the CSP functions may be distributed and separated as shown in [Figure 4-1](#63Sec4-Figure1); however, if these functions reside on the same platform, the interactions between the components are local messages between applications running on the same system rather than protocols over shared untrusted networks. -->
 
 前述の通り, CSP は自身が発行した Credential のステータスを管理する.
 一般的に CSP は Credential の管理期間を限定するため Credential 発行時にその有効期限を定める.
@@ -128,11 +128,11 @@ Subscriber が Authenticator および Credential の期限切れないし無効
 
 <!-- As noted above, CSPs maintain status information about credentials they issue. CSPs will generally assign a finite lifetime when issuing credentials to limit the maintenance period. When the status changes, or when the credentials near expiration, credentials may be renewed or re-issued; or, the credential may be revoked and/or destroyed. Typically, the subscriber authenticates to the CSP using his or her existing, unexpired authenticator and credential in order to request issuance of a new authenticator and credential. If the subscriber fails to request authenticator and credential re-issuance prior to their expiration or revocation, he or she may be required to repeat the enrollment process to obtain a new authenticator and credential. Alternatively, the CSP may choose to accept a request during a grace period after expiration. -->
 
-<a name="Figure1"></a>
+<a name="63Sec4-Figure1"></a>
 <div class="text-center" markdown="1">
 ![](sp800-63-3/media/model.png)
 
-**Figure 1 - Digital Authentication Model**
+**Figure 4-1 - Digital Authentication Model**
 </div>
 
 ### 4.2. Enrollment and Identity Proofing
@@ -276,10 +276,10 @@ Verifier が CSP から独立した主体である場合, Verifier は Subscribe
 <!-- Normative requirements can be found in [Special Publication 800-63C, Federation and Assertions](sp800-63c.html). -->
 
 全体的に SP 800-63-3 は Federated Identity Architecture を前提とはしない.
-本ガイダンスは市場にある既存のモデルにはとらわれず, 各機関が Digital Authentication Scheme を自身の要件に合わせて採用できるようにしている.
+本ガイドラインは市場にある既存のモデルにはとらわれず, 各機関が Digital Authentication Scheme を自身の要件に合わせて採用できるようにしている.
 しかしながら National Strategy for Trusted Identities in Cyberspace (NSTIC) [[NSTIC]](#theNSTIC) とも整合をとり, Identity Federation は各機関および RP が個別にサイロ化した Identity System を持つ状況よりも好ましいものとしている.
 
-<!-- Overall, SP 800-63-3 does not presuppose a federated identity architecture; rather, the guidance is agnostic to the types of models that exist in the marketplace, allowing agencies to deploy a digital authentication scheme according to their own requirements. However, identity federation, consistent with the National Strategy for Trusted Identities in Cyberspace (NSTIC) [[NSTIC]](#theNSTIC), is preferred over a number of siloed identity systems that each serve a single agency or RP. -->
+<!-- Overall, SP 800-63-3 does not presuppose a federated identity architecture; rather, the guideline is agnostic to the types of models that exist in the marketplace, allowing agencies to deploy a digital authentication scheme according to their own requirements. However, identity federation, consistent with the National Strategy for Trusted Identities in Cyberspace (NSTIC) [[NSTIC]](#theNSTIC), is preferred over a number of siloed identity systems that each serve a single agency or RP. -->
 
 Federated Architecture は以下のような重要な利点をもたらす. (以下に挙げたものに限定はしない)
 
@@ -344,15 +344,58 @@ RP は Subscriber の Authenticated Identity (Pseudonymous な場合もあれば
 Verifier と RP は同じ主体なこともあれば, 相互に独立した主体であることもある.
 両者が相互に独立している場合, RP は通常 Verifier から Assertion を受け取り, Assertion が確かに自身が信頼する Verifier から送られてきたことを確認する.
 RP は Assertion に含まれる個人の属性や有効期限などの追加情報もおなじように処理する.
+RP は, IAL, AAL, FAL に関係なく, Verifier が提示した Assertion が RP のシステムアクセスに必要な基準を満たすかどうかを最終的に判断する.
 
-<!-- An RP relies on results of an authentication protocol to establish confidence in the identity or attributes of a subscriber for the purpose of conducting an online transaction. RPs may use a subscriber’s authenticated identity (pseudonymous or non-pseudonymous), the IAL, AAL and/or FAL (federation assurance level, indicating the strength of the assertion protocol), and other factors to make access control or authorization decisions. The verifier and the RP may be the same entity, or they may be separate entities. If they are separate entities, the RP normally receives an assertion from the verifier. The RP ensures that the assertion came from a verifier trusted by the RP. The RP also processes any additional information in the assertion, such as personal attributes or expiration times. -->
+<!-- An RP relies on results of an authentication protocol to establish confidence in the identity or attributes of a subscriber for the purpose of conducting an online transaction. RPs may use a subscriber’s authenticated identity (pseudonymous or non-pseudonymous), the IAL, AAL and/or FAL (federation assurance level, indicating the strength of the assertion protocol), and other factors to make access control or authorization decisions. The verifier and the RP may be the same entity, or they may be separate entities. If they are separate entities, the RP normally receives an assertion from the verifier. The RP ensures that the assertion came from a verifier trusted by the RP. The RP also processes any additional information in the assertion, such as personal attributes or expiration times. The RP is the final arbiter concerning whether a specific assertion presented by a verifier meets the RP's established criteria for system access regardless of IAL, AAL, and/or FAL. -->
 
 ### 4.5. Assurance Levels
 
-全体的な M-04-04 LOA はアーキテクチャ構成要素個々の Assurance Level の組み合わせによって決定される.
-例えば M-04-04 LOA3 を実現するには以下のような要件が求められる.
+全体的な M-04-04 Level of Assurance (LOA) はアーキテクチャ構成要素個々の Assurance Level の組み合わせによって決定される.
+[Table 4-1](#63Sec4-Table1) は, 厳密に M-04-04 Level of Assurance を順守した場合の, 対応する Identity Assurance Level, Authenticator Assurance Level および Federation Assurance Level とのマッピングを示す.
 
-<!-- The overall M-04-04 LOA is determined by combining the discrete assurance level for each of the components of the architecture. For instance, to achieve M-04-04 LOA3: -->
+<!-- The M-04-04 Level of Assurance (LOA) is determined by combining the discrete assurance level for each of the components of the architecture. [Table 4-1](#63Sec4-Table1) shows strict adherence to M-04-04 Level of Assurance, mapping corresponding Identity, Authenticator, and Federation Assurance Levels. -->
+
+<a name="63Sec4-Table1"></a>
+
+<div class="text-center" markdown="1">
+
+**Table 4-1.  Legacy M-04-04 Requirements**
+
+</div>
+
+| M-04-04 Level of Assurance (LOA) | Identity Assurance Level (IAL)| Authenticator Assurance Level (AAL) | Federation Assurance Level (FAL)
+|:------------------:|:-----------------------------:|:------------------------:|:------------------------:|
+| 1 | 1 | 1| 1
+| 2 | 2 | 2 or 3 |2
+| 3 | 2 | 2 or 3 |2
+| 4 | 3 | 3 |4
+
+一方で, [Table 4-2](#63ES-Table2) は各機関のニーズに合わせて IAL, AAL, FAL のコンビネーションを決定することが許容された, M-04-04 Level of Assurance の新たな要件を示す.
+詳細は [SP 800-63A](sp800-63a.html), [SP 800-63B](sp800-63b.html), [SP 800-63C](sp800-63c.html) を参照のこと.
+
+<!-- However, [Table 4-2](#63ES-Table2) shows the new requirements that are allowable for M-04-04 Level of Assurance, by combining IAL, AAL, and FAL based on agency need. Further details and normative requirements are provided in are provided in [SP 800-63A](sp800-63a.html), [SP 800-63B](sp800-63b.html), and [SP 800-63C](sp800-63c.html) respectively. -->
+
+<a name="63Sec4-Table2"></a>
+
+<div class="text-center" markdown="1">
+
+**Table 4-2.  Recommended M-04-04 Requirements**
+
+</div>
+
+| M-04-04 Level of Assurance (LOA) | Identity Assurance Level (IAL)| Authenticator Assurance Level (AAL) | Federation Assurance Level (FAL)
+|:------------------:|:-----------------------------:|:------------------------:|:------------------------:|
+| 1 | 1 | 1, 2 or 3 | 1, 2, 3, or 4
+| 2 | 1 or 2 | 2 or 3 |2, 3, or 4
+| 3 | 1 or 2 | 2 or 3 |2, 3, or 4
+| 4 | 1, 2, or 3 | 3 |3 or 4
+
+このマッピングでは, Identity 要素を Assurance Level と分離することができる.
+これにより, 個人の Identity の Identification が不要な場合であっても, Multi-Factor Authentication (MFA) を採用することができる.
+言い方を変えれば, より高い LOA を満たすにも, Identity Proofing が不要もしくはごくわずかで済むのである.
+例えば M-04-04 LOA 3 を満たすには, 以下の要件を満たせば良い.
+
+<!-- This mapping takes advantage of the ability to separate distinct identity elements per assurance level.  This allows an agency adopt multi-factor authentication (MFA) when identification of the individual identity is not required. Conversely, little or no identity proofing can be performed at the higher LOAs. For instance, to achieve M-04-04 LOA 3: -->
 
 * 登録および Identity Proofing プロセスが最低でも IAL1 ないし IAL2 を満たす.
 * Authenticator (もしくは Authenticator の組み合わせ) が AAL2 以上である.
@@ -362,7 +405,32 @@ RP は Assertion に含まれる個人の属性や有効期限などの追加情
 * The authenticator (or combination of authenticators) would have an AAL of 2 or higher.
 * Authentication assertions (if used) would have an FAL of 2 or higher. -->
 
-攻撃者はもっとも弱い対象を攻撃する傾向にあるため, 全体のレベルは個々のレベル群の最低値となる.
-例えばあるシステムが AAL2 を満たす Authenticator を利用しており, Assertion メカニズムは FAL3 を満たす場合, Attacker は FAL3 を満たす Assertion に対する攻撃よりも AAL2 を満たす Authenticator への攻撃の方が容易と判断し, Authenticator への攻撃を行うであろう.
+ある LOA に対して許容される IAL は, 各機関のミッションを満たすためのニーズによって決定される.
+仮名でのサービス提供を行うには, 各機関はサービス提供のためのパーソナルデータ収集を限定すべきであり, 各 LOA において特定の IAL が要求されるべきではない.
+例えば "health tracker" アプリケーションを提供する場合などを考えてみよう.
+[Executive Order 13681](#EO13681) が要求する "...Digital Application を通じて市民にパーソナルデータへのアクセスを提供する機関は, 必要に応じて多要素認証と効果的な Identity Proofing プロセスを実施すること." という表現に従うと, 各機関は AAL2 Authenticator が必要な LOA3 を選ぶこともある.
+しかしながらこの例では, ユーザーの真の Identity を機関システムが把握する必要はないかもしれない.
+いままでは, データのセンシティブさから LOA3 が必要と評価された場合, 当該機関はユーザーの Identity Proofing を実施する必要があったが, これは今後不要となり, 各機関はこのようなケースでは Identity Proofing を行わず, Health Tracker システムのユーザーが IAL1 の仮名な状態でサービスを受けられるようにすることが推奨される.
+これにより, AAL2 や AAL3 を満たす MFA Authenticator を利用しても, その Authenticator は IAL1 の Identity と紐付いていることから, パーソナル情報が漏洩することもないだろう.
 
-<!-- The overall level is determined by the lowest level because it will likely be the target of an attacker. For example, if a system uses an authenticator that has AAL 2 assurance, but uses assertion mechanisms at FAL 3, the attacker will likely focus on gaining access to the authenticator since it is easier to attack a system component meeting AAL 2 rather than attacking the assertion that meets FAL 3. -->
+<!-- Agency mission need will assist in determining the acceptable IAL at a given LOA.  Since agencies should limit the collection of personal data in order to provide services and allow for strong pseudonymity, a specific IAL is not explicitly required for each LOA. For example, an agency may establish a "health tracker" application.  In line with the terms of [Executive Order 13681](#EO13681) requiring "...that all agencies making personal data accessible to citizens through digital applications require the use of multiple factors of authentication and an effective identity proofing process, as appropriate.", the agency could select LOA3 such that an AAL2 authenticator is required.  However, in this example, there may be no need for the agency system to know the true identity of the user.  In the past, the LOA3 assessment of data sensitivity would also require the agency to identity proof the user.  This is no longer necessary and the agency is encouraged in this case to not perform any identity proofing and allow the user of the health tracker system to be pseudonymous at IAL1.  The MFA authenticator at AAL2 or AAL3 will not leak any personal information because it is bound to an IAL 1 identity. -->
+
+HSPD-12 および Personal Identity Verification (PIV) Smart Card が必要な連邦の従業員のケースでは, 機関は LOA4 を満たす必要がある.
+このケースでは AAL3 を満たす Authenticator と IAL3 を満たす Identity Proofing が必要となる.
+
+<!-- In the case of HSPD-12 and those federal employees that are required to obtain a Personal Identity Verification (PIV) smart card, the requirement is that agencies meet LOA4. This use case requires an authenticator at AAL3 **and** identity proofing at IAL 3. -->
+
+>Important Note: 政府機関は上記表より高レベルの Assurance Level を受け入れてもよい.
+例えば, Federated トランザクションにおいて, 当該アプリケーションが IAL2 を要件とする場合であっても, 政府機関は IAL3 Identity を受け入れることもできる.
+これは Authenticator についても同様であり, RP は必要とされるレベルより高いレベルの Authenticator を利用することもできる.
+しかしながら RP は, 上記のようなシナリオが CSP が適切にプライバシーを保護している Federated シナリオにおいてのみ発生し, RP が要求した属性のみが提供され, Authenticator や Assertion からパーソナルインフォメーションが漏洩しないことを保証すること.
+詳細は [privacy requirements](./sp800-63c.html#sec9) を参照のこと.
+
+<!-- >Important Note: An agency can accept a higher assurance level than those required in the table above.  For example, in a federated transaction, an agency can accept an IAL3 identity if their application is assessed at IAL2.  The same holds true for authenticators; stronger authenticators can be used at RP's that have lower authenticator requirements.  However, RPs will ensure that these scenarios only occur in federated scenarios with appropriate privacy protections by the CSP to ensure that only the requested attributes are provided to the RP and that no personal information leaks from the authenticator or the assertion.  See [privacy requirements](./sp800-63c.html#sec9) in SP 800-63C for more details. -->
+
+各機関はそれぞれの Assurance 要素を考慮するよう推奨されることから, LOA を決定する際の 'low watermark' の概念はもはや存在しない.
+IAL1 および AAL2 を満たすアプリケーションが IAL2 および AAL2 を満たすアプリケーションよりセキュアでないといった判断をすべきではない.
+そういったアプリケーションの違いは, 各アプリケーションのセキュリティには影響を与えない, 必要な Proofing の量のみである.
+ただし, もし機関が xAL を誤って決定してしまった場合には, セキュリティに影響を与える可能性は大いにある.
+
+<!-- As agencies are encouraged to consider each distinct element of assurance, the notion of the 'low watermark' to determine LOA no longer applies.  An IAL1/AAL2 application should not be considered any less secure than an IAL2/AAL application.  The only difference between these applications is the amount of proofing required, which does not impact security of each application. That said, if an agency incorrectly determines the xAL, security could very well be impacted. -->
