@@ -230,17 +230,17 @@ third component, *Federation Assurance Level (FAL)*, is required. -->
 
 <!-- Accordingly, with this revision, SP 800-63 has been split into a family of documents organized as follows: -->
 
-- SP 800-63-3 *Digital Authentication Guideline* - 一般的な Authentication に関する問題に対するガイダンス, および情報システムにおいて Authenticator, Credential, Assertion を利用する際のガイダンスを提供する.
-<!-- - SP 800-63-3 *Digital Authentication Guideline* - Provides guidance on general authentication issues and for using authenticators, credentials, and assertions together in an information system. -->
+- SP 800-63-3 *Digital Authentication Guideline* - 一般的な Authentication に関する問題に対するガイドライン, および情報システムにおいて Authenticator, Credential, Assertion を利用する際のガイドラインを提供する.
+<!-- - SP 800-63-3 *Digital Authentication Guideline* - Provides guidelines on general authentication issues and for using authenticators, credentials, and assertions together in an information system. -->
 
 - SP 800-63A *Enrollment and Identity Proofing* - Cretential および当該 Credential に紐付けられた Authenticator(s) を特定の個人と紐付けるプロセスを扱う. このプロセスは, Identity Proofing プロセスを経て個人を Identity System に登録する際に利用される.
 <!-- - SP 800-63A *Enrollment and Identity Proofing* - Deals with the processes by which a credential, and authenticator(s) associated with that credential, can be bound to a specific individual. This typically happens when that individual is enrolled in an identity system, through the identity proofing process. -->
 
-- SP 800-63B *Authentication and Lifecycle Management* - Remote Subscriber を特定の Authenticator Assurance Level で認証する際の, (以前は *token* と呼ばれていた) Authenticator の選択, 利用, 管理についてのガイダンスを提供する.
-<!-- - SP 800-63B *Authentication and Lifecycle Management* - provides guidance on the selection, use, and management of authenticators (formerly called *tokens*) to authenticate a remote subscriber to an identity system at specified authenticator assurance levels. -->
+- SP 800-63B *Authentication and Lifecycle Management* - Remote Subscriber を特定の Authenticator Assurance Level で認証する際の, (以前は *token* と呼ばれていた) Authenticator の選択, 利用, 管理についてのガイドラインを提供する.
+<!-- - SP 800-63B *Authentication and Lifecycle Management* - provides guidelines on the selection, use, and management of authenticators (formerly called *tokens*) to authenticate a remote subscriber to an identity system at specified authenticator assurance levels. -->
 
-- SP 800-63C *Federation and Assertions* - Federated Identity, および認証結果の Relying Party への伝搬に用いる Assertion の利用についてのガイダンスを提供する.
-<!-- - SP 800-63C *Federation and Assertions* - Provides guidance on the use of federated identity and assertions to convey the results of authentication processes to a relying party. -->
+- SP 800-63C *Federation and Assertions* - Federated Identity, および認証結果の Relying Party への伝搬に用いる Assertion の利用についてのガイドラインを提供する.
+<!-- - SP 800-63C *Federation and Assertions* - Provides guidelines on the use of federated identity and assertions to convey the results of authentication processes to a relying party. -->
 
 
 ### IAL, AAL, and FAL Summary
@@ -277,23 +277,25 @@ Verifier Impersonation Attack に加え, AAL 1 で規定されるすべての脅
 <!-- **Authenticator Assurance Level 2** – AAL 2 provides higher assurance that the same claimant who participated in previous transactions is accessing the protected transaction or data. Two different authentication factors are required. Various types of authenticators, including multi-factor Software Cryptographic Authenticators, may be used as described in [SP 800-63B](sp800-63b.html). AAL 2 also permits any of the authentication methods of AAL 3. AAL 2 authentication requires cryptographic mechanisms that protect the primary authenticator against compromise by the protocol threats for all threats at AAL 1 as well as verifier impersonation attacks. Approved cryptographic techniques are required for all assertion protocols used at AAL 2 and above. -->
 
 **Authenticator Assurance Level 3** – AAL 3 は実用レベルの Digital Authentication において最高の Assurance を示すものである.
+このレベルでは異なる2要素の Authentication Factor が必要となる.
 AAL 3 における認証では, Cryptographic Protocol を通じて Proof-of-Possession Key に基づいた認証方式を用いる.
-AAL 3 は AAL 2 に似ているが, "ハードウェアの" Cryptographic Authenticator のみが利用可能であるというのが違いである.
-利用するハードウェア暗号モジュールに関しては, 全体として Federal Information Processing Standard (FIPS) 140 Level 2 以上, 物理セキュリティについては FIPS 140 Level 3 以上が要件となる.
-FIPS 201 準拠の Personal Identity Verification (PIV) Card が定める PIV Authentication Key などが, AAL 3 を満たす Authenticator となる.
+AAL 3 は AAL 2 に似ているが, "ハードウェアの" Authenticator のみが利用可能であるというのが違いである.
+(もし Single-Factor Cryptographic Device を利用する場合には, Memoized Secret と併用すること)
+利用するハードウェア暗号モジュールや Multi-factor OTP Device に関しては, 全体として Federal Information Processing Standard (FIPS) 140 Level 2 以上 (Single-Factor Authenticator に関しては Level 1 以上), 物理セキュリティについては FIPS 140 Level 3 以上が要件となる.
+FIPS 201 準拠の Personal Identity Verification (PIV) Card が持つ PIV Authentication Private Key などが, AAL 3 を満たす Authenticator となる.
 
-<!-- **Authenticator Assurance Level 3** – AAL 3 is intended to provide the highest practical digital authentication assurance. Authentication at AAL 3 is based on proof of possession of a key through a cryptographic protocol. AAL 3 is similar to AAL 2 except that only “hard” cryptographic authenticators are allowed. The authenticator is required to be a hardware cryptographic module validated at Federal Information Processing Standard (FIPS) 140 Level 2 or higher overall with at least FIPS 140 Level 3 physical security. AAL 3 authenticator requirements can be met by using the PIV authentication key of a FIPS 201 compliant Personal Identity Verification (PIV) Card. -->
+<!-- **Authenticator Assurance Level 3** – AAL 3 is intended to provide the highest practical digital authentication assurance. Two different authentication factors are required. Authentication at AAL 3 is based on proof of possession of a key through a cryptographic protocol. AAL 3 is similar to AAL 2 except that only “hard” authenticators are allowed (in conjunction with a memorized secret if a single-factor cryptographic device is used). The authenticator is required to be a hardware cryptographic module or multi-factor OTP device validated at Federal Information Processing Standard (FIPS) 140 Level 2 or higher overall (Level 1 for single-factor authenticators) with at least FIPS 140 Level 3 physical security. AAL 3 authenticator requirements can be met by using the PIV authentication private key of a FIPS 201 compliant Personal Identity Verification (PIV) Card. -->
 
-**Federation Assurance Level 1** - FAL 1 では, Subscriber が Bearer Assertion を直接取得し RP に提示することが許容される. Assertion には署名が必要であり, 署名には非対称暗号方式の中から適切なアルゴリズムを用いることになる.
+**Federation Assurance Level 1** - FAL 1 では, Subscriber が Bearer Assertion を Front Channel で直接取得し RP に提示することが許容される. Assertion には署名が必要であり, 署名には非対称暗号方式の中から適切なアルゴリズムを用いることになる.
 
-<!-- **Federation Assurance Level 1** - FAL 1 allows for the subscriber to retrieve and present a bearer assertion directly to the RP. The assertion must be asymmetrically signed with an appropriate algorithm. -->
+<!-- **Federation Assurance Level 1** - FAL 1 allows for the subscriber to retrieve and present a bearer assertion directly to the RP in the front channel. The assertion must be asymmetrically signed with an appropriate algorithm. -->
 
 **Federation Assurance Level 2** - FAL 2 では, Subscriber はまず Assertion Artifact を取得し, RP に提示する.
-RP は受け取った Assertion Artifact を CSP に提示して, Bearer Assertion を取得する.
+RP は受け取った Assertion Artifact を Back Channel で CSP に提示して, Bearer Assertion を取得する.
 Assertion には署名が必要であり, 署名には非対称暗号方式の中から適切なアルゴリズムを用いることになる.
-また, Assertion が直接 Subscriber に渡される場合は, Assertion を暗号化し RP のみが復号できる状態にすることが要求される.
+また, Assertion が Front Channel で直接 Subscriber に渡される場合は, Assertion を暗号化し RP のみが復号できる状態にすることが要求される.
 
-<!-- **Federation Assurance Level 2** - FAL 2 requires the subscriber to retrieve an assertion artifact to present to the RP, which the RP then presents to the CSP to fetch the bearer assertion. The assertion must be asymmetrically signed with an appropriate algorithm. Alternatively, if the assertion is presented directly, the assertion is required to be encrypted such that the RP is the only party that can decrypt it. -->
+<!-- **Federation Assurance Level 2** - FAL 2 requires the subscriber to retrieve an assertion artifact to present to the RP, which the RP then presents to the CSP to fetch the bearer assertion in the back channel. The assertion must be asymmetrically signed with an appropriate algorithm. Alternatively, if the assertion is presented in the front channel, the assertion is required to be encrypted such that the RP is the only party that can decrypt it. -->
 
 **Federation Assurance Level 3** - FAL 3 では, FAL 2 に加え Assertion を暗号化する必要がある.
 暗号化により RP 以外は当該 Assertion を復号できなくなる.
@@ -307,23 +309,39 @@ Assertion には非対称暗号方式の署名に加え暗号化も行う.
 
 ### M-04-04 Levels of Assurance Requirements
 
-以下の表は M-04-04 Level of Assurance を満たす Identity Assurance Level, Authenticator Assurance Level, Federation Assurance Level の組み合わせの厳密な要件を示している.
+[Table 1](#63ES-Table1) は M-04-04 Level of Assurance を満たす Identity Assurance Level, Authenticator Assurance Level, Federation Assurance Level の組み合わせの厳密な要件を示している.
 
-<!-- The following table shows strict adherence to M-04-04 Level of Assurance, mapping corresponding Identity, Authenticator, and Federation Assurance Levels. -->
+<!-- [Table 1](#63ES-Table1) shows strict adherence to M-04-04 Level of Assurance, mapping corresponding Identity, Authenticator, and Federation Assurance Levels. -->
 
-| Level of Assurance (LOA) | Identity Assurance Level (IAL)| Authenticator Assurance Level (AAL) | Federation Assurance Level (FAL)
+<a name="63ES-Table1"></a>
+
+<div class="text-center" markdown="1">
+
+**Table 1.  Legacy M-04-04 Requirements**
+
+</div>
+
+| M-04-04 Level of Assurance (LOA) | Identity Assurance Level (IAL)| Authenticator Assurance Level (AAL) | Federation Assurance Level (FAL)
 |:------------------:|:-----------------------------:|:------------------------:|:------------------------:|
 | 1 | 1 | 1| 1
 | 2 | 2 | 2 or 3 |2
 | 3 | 2 | 2 or 3 |2
 | 4 | 3 | 3 |4
 
-また, 以下の表には, 政府機関のニーズに基づいて新たに M-04-04 Level of Assurance の要件として認められることとなる IAL, AAL, FAL の組み合わせを示す.
+また [Table 2](#63ES-Table2) には, 政府機関のニーズに基づいて新たに M-04-04 Level of Assurance の要件として認められることとなる IAL, AAL, FAL の組み合わせを示す.
 さらなる詳細や基準となる要素については [SP 800-63A](sp800-63a.html), [SP 800-63B](sp800-63b.ja.html), [SP 800-63C](sp800-63c.ja.html) を参照のこと.
 
-<!-- However, the table below shows the new requirements that are allowable for M-04-04 Level of Assurance, by combining IAL, AAL, and FAL based on agency need. Further details and normative requirements are provided in are provided in [SP 800-63A](sp800-63a.html), [SP 800-63B](sp800-63b.html), and [SP 800-63C](sp800-63c.html) respectively. -->
+<!-- However, [Table 2](#63ES-Table2) shows the new requirements that are allowable for M-04-04 Level of Assurance, by combining IAL, AAL, and FAL based on agency need. Further details and normative requirements are provided in are provided in [SP 800-63A](sp800-63a.html), [SP 800-63B](sp800-63b.html), and [SP 800-63C](sp800-63c.html) respectively. -->
 
-| Level of Assurance (LOA) | Identity Assurance Level (IAL)| Authenticator Assurance Level (AAL) | Federation Assurance Level (FAL)
+<a name="63ES-Table2"></a>
+
+<div class="text-center" markdown="1">
+
+**Table 2.  Recommended M-04-04 Requirements**
+
+</div>
+
+| M-04-04 Level of Assurance (LOA) | Identity Assurance Level (IAL)| Authenticator Assurance Level (AAL) | Federation Assurance Level (FAL)
 |:------------------:|:-----------------------------:|:------------------------:|:------------------------:|
 | 1 | 1 | 1, 2 or 3 | 1, 2, 3, or 4
 | 2 | 1 or 2 | 2 or 3 |2, 3, or 4
@@ -361,9 +379,17 @@ AAL2 や AAL3 を満たす MFA Authenticator を利用する場合でも, IAL1 �
 
 ### Acceptable IAL and AAL Combinations
 
-以下の表は, 登録プロセスで確立されうる IAL, AAL の組み合わせを示す.
+[Table 3](#63ES-Table3) は, 登録プロセスで確立されうる IAL, AAL の組み合わせを示す.
 
-<!-- The following table details valid combinations of IAL and AAL that may be established during the enrollment process: -->
+<!-- [Table 3](#63ES-Table3) details valid combinations of IAL and AAL that may be established during the enrollment process: -->
+
+<a name="63ES-Table3"></a>
+
+<div class="text-center" markdown="1">
+
+**Table 3.  Acceptable combinations of IAL and AAL**
+
+</div>
 
 | | IAL 1 | IAL 2 | IAL 3 |
 |:-:|:-:|:-:|:-:|
