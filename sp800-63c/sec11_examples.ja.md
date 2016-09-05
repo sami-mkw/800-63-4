@@ -71,14 +71,14 @@ Kerberos は Assertion を利用するが, 共有ネットワーク上での利�
 
 <!-- The Kerberos Network Authentication Service \[[RFC 4120](#RFC4120)\] was designed to provide strong authentication for client/server applications using symmetric-key cryptography on a local, shared network. Extensions to Kerberos can support the use of public key cryptography for selected steps of the protocol. Kerberos also supports confidentiality and integrity protection of session data between the subscriber and the RP. Even though Kerberos uses assertions, since it is designed for use on shared networks it is not truly a federation protocol. -->
 
-Kerberos は, 信頼できない共有ローカルネットワーク上で, 1つ以上の CSP を利用した Subscriber の認証を可能にする.
-Kerberos では, CSP が Subscriber に対して暗号化した状態で発行したランダムな Session Key を Subscriber が復号することにより, 暗黙的に Subscriber が CSP に対して認証したものとする.
-(Kerberos の派生プロトコルでは, Subscriber が明示的に CSP に対して認証することを要求するものもあるが, そういったパターンは一般的ではない)
-暗号化された Session Key に加え, CSP は Kerberos Ticket と呼ばれる他の暗号化オブジェクトを生成する.
+Kerberos は, 信頼できない共有ローカルネットワーク上で, 1つ以上の IdP を利用した Subscriber の認証を可能にする.
+Kerberos では, IdP が Subscriber に対して暗号化した状態で発行したランダムな Session Key を Subscriber が復号することにより, 暗黙的に Subscriber が IdP に対して認証したものとする.
+(Kerberos の派生プロトコルでは, Subscriber が明示的に IdP に対して認証することを要求するものもあるが, そういったパターンは一般的ではない)
+暗号化された Session Key に加え, IdP は Kerberos Ticket と呼ばれる他の暗号化オブジェクトを生成する.
 Kerberos Ticket は, Session Key および当該 Session Key の発行対象である Subscriber の Identity, Session Key の有効期限を含む.
-チケットは CSP と RP の間での明示的セットアップフェーズで確立された共通鍵を使って Confidentiality と Integrity を保証される.
+チケットは IdP と RP の間での明示的セットアップフェーズで確立された共通鍵を使って Confidentiality と Integrity を保証される.
 
-<!-- Kerberos supports authentication of a subscriber over an untrusted, shared local network using one or more CSPs. The subscriber implicitly authenticates to the CSP by demonstrating the ability to decrypt a random session key encrypted for the subscriber by the CSP. (Some Kerberos variants also require the subscriber to explicitly authenticate to the CSP, but this is not universal.) In addition to the encrypted session key, the CSP also generates another encrypted object called a Kerberos ticket. The ticket contains the same session key, the identity of the subscriber to whom the session key was issued, and an expiration time after which the session key is no longer valid. The ticket is confidentiality and integrity protected by a pre-established that is key shared between the CSP and the RP during an explicit setup phase. -->
+<!-- Kerberos supports authentication of a subscriber over an untrusted, shared local network using one or more IdPs. The subscriber implicitly authenticates to the IdP by demonstrating the ability to decrypt a random session key encrypted for the subscriber by the IdP. (Some Kerberos variants also require the subscriber to explicitly authenticate to the IdP, but this is not universal.) In addition to the encrypted session key, the IdP also generates another encrypted object called a Kerberos ticket. The ticket contains the same session key, the identity of the subscriber to whom the session key was issued, and an expiration time after which the session key is no longer valid. The ticket is confidentiality and integrity protected by a pre-established that is key shared between the IdP and the RP during an explicit setup phase. -->
 
 Session Key を使って認証するにあたり, Subscriber はチケットを RP に送り, それに添えて Subscriber が当該 Kerberos Ticket に含まれる Session Key の所有者であることを証明する暗号化されたデータも一緒に送る.
 Session Key は新しいチケットを生成するのに使われたり, Subscriber と RP の間のコミュニケーションの暗号化および認証のために用いられたりする.
@@ -88,7 +88,7 @@ Session Key は新しいチケットを生成するのに使われたり, Subscr
 一連のプロセスを開始するにあたり, Subscriber は Authentication Server (AS) に Authentication Request を送信する.
 AS は, Subscriber の長期間有効なクレデンシャルを用いて Subscriber に紐づく Session Key を暗号化する.
 長期間有効なクレデンシャルは AS と Subscriber の間の共通鍵でもよいし, Kerberos における PKINIT 相当の派生パターンでは公開鍵証明書を利用することもできる.
-Kerberos 派生プロトコルの多くは, ユーザーが生成したパスワードから導出された Subscriber と CSP の間の共通鍵に依存しているため, 受動的盗聴者によるオフライン辞書攻撃に対して脆弱であることに注意.
+Kerberos 派生プロトコルの多くは, ユーザーが生成したパスワードから導出された Subscriber と IdP の間の共通鍵に依存しているため, 受動的盗聴者によるオフライン辞書攻撃に対して脆弱であることに注意.
 
 <!-- To begin the process, the subscriber sends an authentication request to
 the Authentication Server (AS). The AS encrypts a session key for the
@@ -96,7 +96,7 @@ subscriber using the subscriber’s long term credential. The long term
 credential may either be a secret key shared between the AS and the
 subscriber, or in the PKINIT variant of Kerberos, a public key
 certificate. It should be noted that most variants of Kerberos based on
-a shared secret key between the subscriber and CSP derive this key
+a shared secret key between the subscriber and IdP derive this key
 from a user generated password. As such, they are vulnerable to offline
 dictionary attack by a passive eavesdropper. -->
 
@@ -123,9 +123,9 @@ OpenID Connect は, OAuth 2.0 Authorization Famework および JSON Object Signi
 <!-- OpenID Connect is an internet-scale federated identity and authentication protocol built on top of the OAuth 2.0 authorization framework and the JSON Object Signing and Encryption (JOSE) cryptographic system. As of this writing, the latest specification is version 1.0 with errata, dated November 8, 2014. -->
 
 OpenID Connect は OAuth 2.0 Authorization Protocol の上に定義され, Subscriber が RP に対して Subscriber Identity および Authentication Information にアクセスすることを許可できるようにする.
-OpenID Connect では CSP は Identity Provider (IdP) と呼ばれ, OpenID Connect および OAuth 2.0 では RP を Client と呼ぶ.
+OpenID Connect および OAuth 2.0 では RP を Client と呼ぶ.
 
-<!-- OpenID Connect builds on top of the OAuth 2.0 authorization protocol to enable the subscriber to authorize the RP to access the subscriber's identity and authentication information. The CSP in OpenID Connect is known as the identity provider, or IdP. The RP in both OpenID Connect and OAuth 2.0 is known as the client. -->
+<!-- OpenID Connect builds on top of the OAuth 2.0 authorization protocol to enable the subscriber to authorize the RP to access the subscriber's identity and authentication information. The RP in both OpenID Connect and OAuth 2.0 is known as the client. -->
 
 OpenID Connect のトランザクションでは, IdP は ID Token と呼ばれる JSON Web Token (JWT) 形式の Signed Assertion を発行する.
 Client は ID Token をパースして Subscriber および IdP における Primary Authentication Event についての情報を得る.
