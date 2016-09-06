@@ -11,21 +11,21 @@ Assertion に含まれるコアとなるべき (SHOULD) Claim は以下の通り
 
 <!-- The core set of claims inside an assertion SHOULD include (but is not limited to): -->
 
-- Issuer: Assertion 発行主体 (CSP) の識別子.
-- Subject: 当該 Assertion が指し示す主体 (Subscriber) の識別子, 通常は Issuer (CSP) の管理する Namespace 内で有効である.
+- Issuer: Assertion 発行主体 (IdP) の識別子.
+- Subject: 当該 Assertion が指し示す主体 (Subscriber) の識別子, 通常は Issuer (IdP) の管理する Namespace 内で有効である.
 - Audience: Assertion を受け取る主体 (RP) の識別子.
-- Issuance: Assertion が CSP に発行された日時を示すタイムスタンプ.
+- Issuance: Assertion が IdP に発行された日時を示すタイムスタンプ.
 - Expiration: Assertion の有効期限を示すタイムスタンプ. 有効期限が切れたものは RP に valid な Assertion として受け入れられるべきでない (SHALL).
-- Authentication Time: CSP が Primary Authentication Event を通じて Subscriber を認証した日時を示すタイムスタンプ.
+- Authentication Time: IdP が Primary Authentication Event を通じて Subscriber を認証した日時を示すタイムスタンプ.
 - Identifier: 当該 Assertion 自身を識別するランダムでユニークな値. 攻撃者が不正な Assertion を生成して validity check をパスするのを防ぐ目的で利用される.
 
 <!--
- - Issuer: an identifier for the party that issued the assertion (the CSP)
- - Subject: an identifier for the party that the assertion is about (the subscriber), usually within the namespace control of the issuer (the CSP)
+ - Issuer: an identifier for the party that issued the assertion (the IdP)
+ - Subject: an identifier for the party that the assertion is about (the subscriber), usually within the namespace control of the issuer (the IdP)
  - Audience: an identifier for the party intended to consume the assertion (the RP)
- - Issuance: a timestamp indicating when the assertion was issued by the CSP
+ - Issuance: a timestamp indicating when the assertion was issued by the IdP
  - Expiration: a timestamp indicating when the assertion expires and SHALL no longer be accepted as valid by the RP
- - Authentication Time: a timestamp indicating when the CSP last verified the presence of the subscriber at the CSP through a primary authentication event
+ - Authentication Time: a timestamp indicating when the IdP last verified the presence of the subscriber at the IdP through a primary authentication event
  - Identifier: a random value uniquely identifying this assertion, used to prevent attackers from manufacturing malicious assertions which would pass other validity checks
 -->
 
@@ -34,10 +34,11 @@ Subscriber Attribute は, Assertion 自体の Expiration や Invalidation とは
 
 <!-- These core claims, particularly the issuance and expiration claims, apply to the assertion about the authentication event itself, and not to any additional identity attributes associated with the subscriber, even when those claims are included within the assertion. A subscriber's attributes MAY expire or be otherwise invalidated independently of the expiration or invalidation of the assertion. -->
 
-Assertion は上記以外の Identity Attributes を含んでもよい (MAY) が, 可能な限り Authentication Transaction の処理に必要な情報のみを含めることを推奨する (SHOULD).
-RP は, その他の Identity Attributes を, Assertion と同時に発行された Authorization Credential を用いて別 Trancation で CSP から取得できる (MAY).
+Assertion は上記以外の Identity Attributes を含んでもよい (MAY).
+Attribute を Assertion に含める場合の Privacy 要件については Sec.6 を参照のこと.
+RP は, その他の Identity Attributes を, Assertion と同時に発行された Authorization Credential を用いて別 Trancation で IdP から取得できる (MAY).
 
-<!-- Assertions MAY include other additional identity attributes, but where possible the information contained in the assertion SHOULD be limited to the information required to process the authentication transaction. The RP MAY fetch additional identity attributes from the CSP in a separate transaction using an authorization credential issued along side the assertion. -->
+<!-- Assertions MAY include other additional identity attributes. See sec. 6 for privacy requirements on presenting attributes in assertions. The RP MAY fetch additional identity attributes from the IdP in a separate transaction using an authorization credential issued along side the assertion. -->
 
 詳細は Federation Protocol ごとに異なるが, Assertion は RP での個々のログインイベントのみを表現するべきである (SHOULD).
 ひとたび RP が Assertion を受け取って処理を完了すれば, その後は [session management](sp800-63b.ja.html#sec7) の段階に移り, 当該 Assertion を直接利用することはない.
@@ -91,27 +92,27 @@ Assertion は偽造防止の目的で十分なエントロピーを持つべき�
 
 <!-- Assertions SHALL contain sufficient entropy to prevent an attacker from manufacturing a valid assertion and using it with a target RP. Assertions MAY accomplish this by use of an embedded nonce, timestamp, assertion identifier, or a combination of these or other techniques.  -->
 
-その他の暗号論的保護策がない場合, こういったランダム性を CSP と RP の間で Assertion をユニークに識別するための共有鍵として扱うべきであろう (SHALL).
+その他の暗号論的保護策がない場合, こういったランダム性を IdP と RP の間で Assertion をユニークに識別するための共有鍵として扱うべきであろう (SHALL).
 
-<!-- In the absence of additional cryptographic protections, this source of randomness SHALL function as a shared secret between the CSP and the RP to uniquely identify the assertion in question. -->
+<!-- In the absence of additional cryptographic protections, this source of randomness SHALL function as a shared secret between the IdP and the RP to uniquely identify the assertion in question. -->
 
 #### 5.2.2. Signed Assertion
 
-CSP は Assertion に暗号論的に署名することもできる (MAY).
-RP は CSP の鍵を用いて各 Assertion の署名を検証すべきである (SHALL).
+IdP は Assertion に暗号論的に署名することもできる (MAY).
+RP は IdP の鍵を用いて各 Assertion の署名を検証すべきである (SHALL).
 この署名は, Issuer, Audience, Subject, Expiration, その他の各種識別子等, Assertion に含まれる重要なフィールド全体に対してなされるべきである (SHALL).
 
-<!-- Assertions MAY be cryptographically signed by the CSP, and the RP SHALL validate the signature of each such assertion based on the CSP's key. This signature SHALL cover all vital fields of the assertion, including its issuer, audience, subject, expiration, and any unique identifiers. -->
+<!-- Assertions MAY be cryptographically signed by the IdP, and the RP SHALL validate the signature of each such assertion based on the IdP's key. This signature SHALL cover all vital fields of the assertion, including its issuer, audience, subject, expiration, and any unique identifiers. -->
 
-CSP が公開鍵を公開する鍵ペアによって署名を行うこともでき (MAY), その場合 RP は公開鍵を (CSP がホストする HTTPS URL などから) 動的かつセキュアに取得することができる (MAY).
+IdP が公開鍵を公開する鍵ペアによって署名を行うこともでき (MAY), その場合 RP は公開鍵を (IdP がホストする HTTPS URL などから) 動的かつセキュアに取得することができる (MAY).
 鍵はそれ以外の何らかの方法で RP に提供されてもよい (MAY).
 
-<!-- The signature MAY be asymmetric based on the published public key of the CSP. In such cases, the RP MAY fetch this public key in a secure fashion at runtime (such as through an HTTPS URL hosted by the CSP), or the key MAY be provisioned out of band at the RP. -->
+<!-- The signature MAY be asymmetric based on the published public key of the IdP. In such cases, the RP MAY fetch this public key in a secure fashion at runtime (such as through an HTTPS URL hosted by the IdP), or the key MAY be provisioned out of band at the RP. -->
 
-CSP と RP の間で何らかの方法で共有された共通鍵による署名を用いることもできる (MAY).
-その場合 CSP は RP ごとに異なる鍵を用いるべきである (SHALL).
+IdP と RP の間で何らかの方法で共有された共通鍵による署名を用いることもできる (MAY).
+その場合 IdP は RP ごとに異なる鍵を用いるべきである (SHALL).
 
-<!-- The signature MAY be symmetric based on a key shared out of band between the CSP and the RP. In such circumstances, the CSP SHALL use a different shared key for each RP. -->
+<!-- The signature MAY be symmetric based on a key shared out of band between the IdP and the RP. In such circumstances, the IdP SHALL use a different shared key for each RP. -->
 
 署名には Approved Signing Method のいずれかを利用すべきである (SHALL).
 
@@ -120,11 +121,11 @@ CSP と RP の間で何らかの方法で共有された共通鍵による署名
 #### 5.2.3. Encrypted Assertion
 
 意図された Audience のみが復号できる形で Assertion を暗号化することもできる (MAY).
-CSP は RP の公開鍵で Assertion を暗号化すべきである (SHALL).
-その場合 CSP は RP の公開鍵を (RP がホストする HTTPS URL などから) 動的かつセキュアに取得することができる (MAY).
-鍵はそれ以外の何らかの方法で (RP の登録時などに) CSP に提供されてもよい (MAY).
+IdP は RP の公開鍵で Assertion を暗号化すべきである (SHALL).
+その場合 IdP は RP の公開鍵を (RP がホストする HTTPS URL などから) 動的かつセキュアに取得することができる (MAY).
+鍵はそれ以外の何らかの方法で (RP の登録時などに) IdP に提供されてもよい (MAY).
 
-<!-- Assertions MAY be encrypted in such a fashion as to allow only the intended audience to decrypt the claims therein. The CSP SHALL encrypt the payload of the assertion using the RP's public key. The CSP MAY fetch this public key in a secure fashion at runtime (such as through an HTTPS URL hosted by the RP), or the key MAY be provisioned out of band at the CSP (during registration of the RP). -->
+<!-- Assertions MAY be encrypted in such a fashion as to allow only the intended audience to decrypt the claims therein. The IdP SHALL encrypt the payload of the assertion using the RP's public key. The IdP MAY fetch this public key in a secure fashion at runtime (such as through an HTTPS URL hosted by the RP), or the key MAY be provisioned out of band at the IdP (during registration of the RP). -->
 
 暗号化には Approved Encryption Method のいずれかを利用すべきである (SHALL).
 
@@ -139,27 +140,23 @@ Audience が含まれている場合, RP は Assertion の Audience をチェッ
 
 #### 5.2.5. Pairwise Pseudonymous Identifiers
 
-ある条件下では, CSP 上の Subscriber のアカウントが共通の識別子を通じて複数の RP 間でリンクされることを防ぎたい場合もある.
-そのような場合, CSP は RP に対して Pairwise Pseudonymous Subject Identifier を含んだ Assertion を発行するべきであり (SHALL), CSP は各 RP ごとに異なる識別子を生成するべきである (SHALL).
+ある条件下では, IdP 上の Subscriber のアカウントが共通の識別子を通じて複数の RP 間でリンクされることを防ぎたい場合もある.
+そのような場合, IdP は RP に対して Pairwise Pseudonymous Subject Identifier を含んだ Assertion を発行するべきであり (SHALL), IdP は各 RP ごと, 場合によっては RP とのインテグレーションごとに, 異なる識別子を生成するべきである (SHALL).
 
-<!-- In some circumstances, it is desirable to prevent the subscriber's account at the CSP from being linked through one or more RPs through use of a common identifier. Pairwise pseudonymous subject identifiers SHALL be used within the assertions generated by the CSP for the RP, and the CSP SHALL generate a different identifier for each RP. -->
+<!-- In some circumstances, it is desirable to prevent the subscriber's account at the IdP from being linked through one or more RPs through use of a common identifier. Pairwise pseudonymous subject identifiers SHALL be used within the assertions generated by the IdP for the RP, and the IdP SHALL generate a different identifier for each RP or integration with an RP, as appropriate. -->
 
 RP ごとに固有の Pseudonymous Identifier を用いたとしても, 複数の RP が結託し Subscriber に関するその他の属性を通じて名寄せを行う可能性はある.
-RP ごとに異なる Pseudonymous Identifier を用いたとしても, 名前や Email アドレス, 住所, 電話番号など, その他の属性を用いた名寄せは可能なのである.
-このような条件下では, Pseudonymous Identifier を用いない場合と比較してプライバシーリスクは同等である.
+Privacy Policy でこのような名寄せを禁止する場合においても, Pseudonymous Identifier は属性の名寄せに必要な作業を増加させるため, ポリシー運用を効率的にする.
 
-<!-- When unique pseudonymous identifiers are used with RPs along side of identity attribute bundles, it may still be possible for multiple colluding RPs to fully identify and correlate a subscriber across systems using these attributes. Even though a different pseudonymous identifier was used at each RP, the RPs are still able to compare other identifying attributes such as names, email addresses, physical addresses, and phone numbers, among other common attributes. In such cases, the privacy risk is similar to the subscriber not having used a pseudonymous identifier at all. -->
+<!-- When unique pseudonymous identifiers are used with RPs along side of identity attribute bundles, it may still be possible for multiple colluding RPs to fully identify and correlate a subscriber across systems using these attributes. Privacy policies, therefore, may prohibit such correlation, but pairwise pseudonymous identifiers can increase effectiveness of these policies by increasing the administrative effort in managing the attribute correlation.  -->
 
-ブローカーが介在するタイプの Federation では, CSP は Pseudonymous Identifier を RP ごとに発行できないことに注意すべきである.
-ブローカー介在時には, CSP はどの RP がアクセスしてきているかを検知することはできないため, RP ごとに異なる Pseudonymous Identifier を発行することもできない.
-この場合, Proxy CSP として動作するブローカーが Pseudonymous Identifier を生成し, RP 間でのプライバシーを侵害するような結託行為を防止することとなろう.
-プロトコルによっては, ブローカーはそれらの識別子を CSP が発行する識別子と紐付けて管理する必要もあろう.
+Distributed Federation Model では, Proxy IdP として動作する Distributing Party はプロトコルによっては Pairwise Pseudonymous Identifier を Upstream IdP が発行した Identifier に紐付ける必要がある場合もある.
 
-<!-- Note that in a brokered federation, a CSP cannot issue a pseudonymous identifier for each RP because it is unaware which RP is being accessed. In this case the broker, as a proxy CSP, may wish to generate pseudonymous identifiers to prevent privacy-violating collusion among RPs. Depending on the protocol, the broker may often need to map such identifiers back to the associated identifiers from upstream CSPs in order to allow the identity protocol to function. -->
+<!-- Note that in a distributed federation model, the distributing party that is acting as a proxy IdP may, depending on the protocol, need to map the pairwise pseudonymous identifiers back to the associated identifiers from upstream IdPs in order to allow the identity protocol to function. -->
 
 #### 5.2.6. Pairwise Pseudonymous Identifier Generation
 
-Pairwise Pseudonymous Identifier は opaque で推測不可能であるべきであり (SHALL), 単一の CSP-RP ペア以外に知られることなくそのペア間のみで利用されるべきである (SHALL).
+Pairwise Pseudonymous Identifier は opaque で推測不可能であるべきであり (SHALL), 単一の IdP-RP ペア以外に知られることなくそのペア間のみで利用されるべきである (SHALL).
 
-<!-- Pairwise pseudonymous identifiers SHALL be opaque and unguessable. Additionally, they SHALL only be known and used by one CSP-RP pair. -->
+<!-- Pairwise pseudonymous identifiers SHALL be opaque and unguessable. Additionally, they SHALL only be known and used by one IdP-RP pair. -->
 
