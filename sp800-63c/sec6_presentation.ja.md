@@ -26,8 +26,8 @@ IdP はある RP に送信された Attribute Bundle を記憶し, 同じ RP へ
 
 *Back-Channel* モデルでは, Subscriber は Assertion の参照を渡され, 一般的には Front-Channel を通じてそれを RP に提示することになる.
 Assertion の参照はそれ自身では Subscriber に関する情報は持たず, Attacker による偽造や改ざんに耐えねばならない (MUST).
-RP がその参照を CSP に提示して初めて Assertion が取得できる.
-また RP が CSP に Assertion の参照を提示する際, 通常は RP の認証が行われる.
+RP がその参照を IdP に提示して初めて Assertion が取得できる.
+また RP が IdP に Assertion の参照を提示する際, 通常は RP の認証が行われる.
 
 <!-- In the *back-channel* model, the subscriber is given an assertion reference to present to the RP, generally through the front channel. The assertion reference itself contains no information about the subscriber and MUST be resistant to tampering and fabrication by an attacker. The RP presents the assertion reference to the IdP, usually along with authentication of the RP itself, to fetch the assertion.  -->
 
@@ -128,7 +128,7 @@ IdP と RP の間のコミュニケーションは, 認証され保護された 
 
 IdP は, RP が自身のセキュリティポリシーを適用する際に有用な情報にアクセスできる可能性もある.
 こういった情報としては, Device Identity, Location, System Health Check, Configuration Management 等があげられる.
-CSP がこういった情報を取得できる場合, Subscriber のプライバシーを侵害しない範囲内で, そういった情報を RP に渡すことも可能であろう.
+IdP がこういった情報を取得できる場合, Subscriber のプライバシーを侵害しない範囲内で, そういった情報を RP に渡すことも可能であろう.
 
 <!-- Note that the IdP may have access to information that may be useful to the RP in enforcing security policies, such as device identity, location, system health checks, and configuration management. If so, it may be a good idea to pass this information along to the RP within the bounds of the subscriber's privacy preferences. -->
 
