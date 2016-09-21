@@ -26,8 +26,7 @@ Special Publication 800-63-3 draft の Public Preview 期間中に Contribute �
 Source information, current standards, and public comments received through May 2015 can be found [here](http://csrc.nist.gov/groups/ST/eauthentication/sp800-63-2_call-comments.html).
 
 
-...っていう上記のは英語版の翻訳で, 日本語版へのフィードバック (GitHub Issue or Pull Request) は随時こちらで受け付けてます.
-* [https://github.com/openid-foundation-japan/800-63-3](https://github.com/openid-foundation-japan/800-63-3)
+...っていう上記のは英語版の翻訳で, 日本語版へのフィードバック (GitHub Issue or Pull Request) は [随時こちらで受け付けてます](https://github.com/openid-foundation-japan/800-63-3).
 
 
 <ul class="audiences">
