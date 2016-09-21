@@ -91,9 +91,9 @@ Authenticator Secret は long-term authentication secret の代表的な例で�
 
 Claimant が所有および管理するもので, 典型的な例としては暗号モジュールやパスワード等がある.
 Authenticator は Claimant の Identity を認証するために用いられる.
-本ガイドラインの前リビジョンにおいて *token* と呼ばれていたものと同等である.
+SP 800-63 の前リビジョンにおいて *token* と呼ばれていたものと同等である.
 
-<!-- Something that the claimant possesses and controls (typically a cryptographic module or password) that is used to authenticate the claimant’s identity. In previous versions of this guideline, this was referred to as a *token*. -->
+<!-- Something that the claimant possesses and controls (typically a cryptographic module or password) that is used to authenticate the claimant’s identity. In previous editions of SP 800-63, this was referred to as a *token*. -->
 
 #### Authenticator Assurance Level (AAL)
 
@@ -125,9 +125,9 @@ Authenticator に内含される鍵.
 
 #### Claimant
 
-Authentication Protocol により Identity を検証される主体.
+1つ以上の Authentication Protocol により Identity を検証される主体.
 
-<!-- A party whose identity is to be verified using an authentication protocol. -->
+<!-- A party whose identity is to be verified using one or more authentication protocols. -->
 
 #### Claimed Identity
 
@@ -173,9 +173,9 @@ Cryptographic Key を利用する Authenticator.
 #### Digital Authentication
 
 情報システムに対して, デジタル表現されたユーザーの Identity の確からしさを確立するプロセス.
-本ガイドラインでは以前まで *Electronic Authentication* と呼ばれていたもの.
+SP 800-63 では以前まで *Electronic Authentication* と呼ばれていたもの.
 
-<!-- The process of establishing confidence in user identities digitally presented to an information system. In previous editions of this guideline, this was referred to as *Electronic Authentication*. -->
+<!-- The process of establishing confidence in user identities digitally presented to an information system. In previous editions of SP 800-63, this was referred to as *Electronic Authentication*. -->
 
 #### Digital Signature
 
@@ -236,13 +236,14 @@ CSP および Registration Authority (RA) が, Credential 発行のためにあ�
 
 #### Multi-Factor
 
-2つ以上の Authentication Factor を用いる認証システムや Authenticator の特徴.
+2つ以上の Authentication Factor を要求する認証システムや Authenticator の特徴.
+Multi-Factor Authentication には, 1つ以上の要素を提供する単一の Authenticator を用いてもよいし, 異なる要素となる複数の Authenticator を組み合わせて用いてもよい.
 
-<!-- A characteristic of an authentication system or an authenticator that uses more than one authentication factor. -->
+<!-- A characteristic of an authentication system or an authenticator that requires more than one authentication factor for successful authentication. Multi-factor authentication can be performed using a single authenticator that provides more than one factor or by a combination of authenticators that provide different factors. -->
 
 Authentication Factor としては, Something You Know, Something You Have, Something You Are の3種類がある.
 
-<!-- The three types of authentication factors are something you know, something you have, and something you are. -->
+<!-- The three authentication factors are something you know, something you have, and something you are. -->
 
 #### Network
 
