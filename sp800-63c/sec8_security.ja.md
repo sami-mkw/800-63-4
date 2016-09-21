@@ -48,9 +48,9 @@ exceed their privileges may be considered attackers. This section lists some com
     IdP can claim that it was not generated through the services of
     the IdP. -->
 
--   *Assertion repudiation by the subscriber* - 不正アクセスされたり悪意を持った Subscriber は Assertion を非正規な主体に対して発行することができるため, Subscriber は Bearer Assertion で認証された RP とのあらゆるトランザクションを否認する可能性がある.
+-   *Assertion repudiation by the subscriber* - 不正アクセスされたり悪意を持った IdP は Assertion を非正規な主体に対して発行することができるため, Subscriber は Bearer Assertion で認証された RP とのあらゆるトランザクションを否認する可能性がある.
 <!-- -   *Assertion repudiation by the subscriber* – Since it is possible for
-    a compromised or malicious subscriber to issue assertions to the
+    a compromised or malicious IdP to issue assertions to the
     wrong party, a subscriber can repudiate any transaction with the RP
     that was authenticated using only a bearer assertion. -->
 
@@ -215,7 +215,7 @@ described in the last subsection. -->
 
     1.  Secondary Authenticator に十分なエントロピーを持たせ, IdP の乱数生成機への直接アクセス無しには正規の Secondary Authenticator を推測不可能にする.
     <!-- 1.  The secondary authenticator may contain sufficient entropy that an
-    attacker without direct access to the IdP's random number
+    attacker without direct access to the IdP’s random number
     generator cannot guess the value of a valid secondary authenticator. -->
 
     2.  Secondary Authenticator にタイムリーな Assertion Data を含め, 一定期間のみ有効なものとする.
