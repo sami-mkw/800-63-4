@@ -123,49 +123,53 @@ Whitelist や Blacklist にないものは "Glaylist" にあるものとみな�
 
 <!-- Many federated parties establish whitelists of other federated parties who may dynamically register with some predetermined level of trust. They also establish blacklists of federated parties who may be allowed dynamically register with a low level of trust, or who may not be allowed to dynamically register at all. Everything that is not on a whitelist or a blacklist can be considered to be in a gray area or on a "graylist." Graylisted parties generally start out with a low level of trust until they can be reviewed by a human who can determine an appropriate level of trust. -->
 
-#### 4.1.4 Distributed Federation
+#### 4.1.4 Proxied Federation
 
-Distributed Federation Model では, IdP と RP は, 2者間の直接的コミュニケーションを禁止する形で分断される.
-この実現方法は様々であるが, 一般的には "Broker" やネットワーク上の "node" として動作する第三者が介在することになる.
+Proxied Federation Model では, IdP と RP は, 2者間の直接的コミュニケーションを禁止する形で Proxy される.
+この実現方法は様々であるが, 一般的には "Federation Proxy" (or "Proxy") やネットワーク上の "node" として動作する第三者が介在することになる.
+
+<!-- In a proxied federation model, the communication between the IdP and the RP is proxied in a way that prevents direct communication between the two parties. There may be multiple methods of achieving this effect, but common configurations include a third party that acts as a federation proxy (or "broker") or a network of "nodes" that distribute the communications.  -->
+
 この介在者は片や Federation IdP として動作し, もう片方では Federation RP として動作する.
-よって IdP および RP に適用される Normative / Non-normative Requirements は, 上記介在者にも同様に適用されるべきである (SHALL).
+特に Federation Proxy は全ての Federated RP に対して IdP として動作し, 全ての Federated IdP に対して RP として動作する.
+よって IdP および RP に適用される Normative Requirements は, 上記介在者にも同様に適用されるべきである (SHALL).
 
-<!-- In a distributed federation model, the communication between the IdP and the RP is distributed in a way that prevents direct communication between the two parties. There may be multiple methods of achieving this effect, but common configurations include a third party that acts as a “broker” or a network of “nodes” that distribute the communications. Effectively though, the distributing parties still function in some degree as a federation IdP on one side and a federation RP on the other side. Therefore, all normative and non-normative requirements that apply to IdPs and RPs SHALL apply to the distributing parties in their respective roles. -->
+<!-- Effectively, the parties still function in some degree as a federation IdP on one side and a federation RP on the other side. Notably, a federation proxy acts as an IdP to all federated RPs and as an RP to all federated IdPs. Therefore, all normative requirements that apply to IdPs and RPs SHALL apply to the parties of such a system in their respective roles. -->
 
 ![Figure 2: Broker](sp800-63c/media/broker.png)
 
 **Figure 2: Broker**
 
-Distributed Federation Model は多様な利点を持つ.
-例えば Broker は RP と IdP の間でインテグレーションが必要な箇所を削減することで技術的インテグレーションを単純化することもできる.
+Proxied Federation Model は多様な利点を持つ.
+例えば Federation Proxy は RP と IdP の間でインテグレーションが必要な箇所を削減することで技術的インテグレーションを単純化することもできる.
 これは [Dynamic Registration](#dynamic-registration) をサポートしないプロトコルでは有効たりうる.
-さらに, Distributed Federation Model は RP と IdP の双方を効果的に "blind" するため, Subscriber のリストをお互いに開示したくない組織にとってビジネス上の機密性を高める効果もある.
+さらに, Proxied Federation Model は RP と IdP の双方を効果的に blind するため, Subscriber のリストをお互いに開示したくない組織にとってビジネス上の機密性を高める効果もある.
 また同様に上述の Federation におけるプライバシーリスクを軽減する効果もある.
 
-<!-- A distributed federation model can provide various benefits. For example, brokers can enable simplified technical integrations between the RP and IdP by eliminating the need for multiple point to point integrations, which can be onerous for protocols which do not support [dynamic registration](#dynamic-registration). Additionally, to the extent a distributed federation model effectively “blinds” the RP and IdP from each other, it can provide some business confidentiality for organizations that may not wish to reveal their subscriber lists to each other, as well as mitigate some of the privacy risks of point to point federation described above. -->
+<!-- A proxied federation model can provide various benefits. For example, federation proxies can enable simplified technical integrations between the RP and IdP by eliminating the need for multiple point to point integrations, which can be onerous for protocols which do not support [dynamic registration](#dynamic-registration). Additionally, to the extent a proxied federation model effectively blinds the RP and IdP from each other, it can provide some business confidentiality for organizations that may not wish to reveal their subscriber lists to each other, as well as mitigate some of the privacy risks of point to point federation described above.  -->
 
 追加のプライバシー保護策を提供しない実装もあれば, Blinding Technology によって多様なプライバシーレベルを提供する実装もある.
 (注: Blinding Technology を利用したとしても, Blind された主体が Timestamp や Cookie, Attribute や Attribute Bundle のサイズなどを解析し, Subscriber の行動を推測することは可能である.)
-Privacy Policy で IdP, RP, Distributing Party による適切なデータ利用を宣言していたとしても, Blinding 技術はデータへのアクセス自体を困難にするため, より効率的である.
+Privacy Policy で IdP, RP, Federation Proxy による適切なデータ利用を宣言していたとしても, Blinding 技術はデータへのアクセス自体を困難にするため, より効率的である.
 しかしながらBlinding レベルが上がると, それに比例して技術的・運用上の複雑度は上昇する.
 
-<!-- While some distributed deployments offer no additional privacy protection, others can offer varying levels of privacy to the subscriber through a range of blinding technologies. NOTE: even with the use of blinding technologies, it may still be possible for a blinded party to deduce subscriber behavior patterns through analysis of timestamps, cookies, attributes, or attribute bundle sizes. Privacy policies, therefore, may dictate appropriate use by the IdP, RP, and the distributing party, but blinding technology can increase effectiveness of these policies by making the data more difficult to access. It should also be noted that as the level of blinding increases, so may the technical and operational implementation complexity. -->
+<!-- While some proxied deployments offer no additional privacy protection (such as those that exist as integration points), others can offer varying levels of privacy to the subscriber through a range of blinding technologies. NOTE: even with the use of blinding technologies, it may still be possible for a blinded party to deduce subscriber behavior patterns through analysis of timestamps, cookies, attributes, or attribute bundle sizes. Privacy policies may dictate appropriate use by the IdP, RP, and the federation proxy, but blinding technology can increase effectiveness of these policies by making the data more difficult to access. It should also be noted that as the level of blinding increases, so does the technical and operational implementation complexity. -->
 
 以下に Blinding 実装のパターンを挙げる.
 
 <!-- The following list illustrates a spectrum of blinding implementations: -->
 
-1. Distributing Party は RP と IdP を相互に Blind しない. Distributing Party は Subscriber と RP, IdP の関係性を監視・追跡可能であり, Assertion を通じてやりとりされるすべての属性を見ることができる.
-<!-- 1. The distributing party does not blind the RP and IdP from one another. The distributing party is able to monitor and track all subscriber relationships between the RPs and IdPs, and has visibility into any attributes it is transmitting in the assertion. -->
+1. Federation Proxy は RP と IdP を相互に Blind しない. Federation Proxy は Subscriber と RP, IdP の関係性を監視・追跡可能であり, Assertion を通じてやりとりされるすべての属性を見ることができる.
+<!-- 1. The federation proxy does not blind the RP and IdP from one another. The federation proxy is able to monitor and track all subscriber relationships between the RPs and IdPs, and has visibility into any attributes it is transmitting in the assertion. -->
 
-2. Distributing Party は RP と IdP を相互に Blind しない. Distributing Party は Subscriber と RP, IdP の関係性を監視・追跡可能であるが, Assertion の中身を見ることはできない.
-<!-- 2. The distributing party does not blind the RP and IdP from one another. The distributing party is able to monitor and track all subscriber relationships between the RPs and IdPs, but has no visibility into any attributes it is transmitting in the assertion. -->
+2. Federation Proxy は RP と IdP を相互に Blind しない. Federation Proxy は Subscriber と RP, IdP の関係性を監視・追跡可能であるが, Assertion の中身を見ることはできない.
+<!-- 2. The federation proxy does not blind the RP and IdP from one another. The federation proxy is able to monitor and track all subscriber relationships between the RPs and IdPs, but has no visibility into any attributes it is transmitting in the assertion. -->
 
-3. Distributing Party は RP と IdP を相互に Blind する. Distributing Party は Subscriber と RP, IdP の関係性を監視・追跡可能であり, Assertion を通じてやりとりされるすべての属性を見ることができる.
-<!-- 3. The distributing party blinds the RP and IdP from each other. The distributing party is able to monitor and track all subscriber relationships between the RPs and IdPs, and has visibility into any attributes it is transmitting in the assertion. -->
+3. Federation Proxy は RP と IdP を相互に Blind する. Federation Proxy は Subscriber と RP, IdP の関係性を監視・追跡可能であり, Assertion を通じてやりとりされるすべての属性を見ることができる.
+<!-- 3. The federation proxy blinds the RP and IdP from each other. The federation proxy is able to monitor and track all subscriber relationships between the RPs and IdPs, and has visibility into any attributes it is transmitting in the assertion. -->
 
-4. Distributing Party は RP と IdP を相互に Blind する. Distributing Party は Subscriber と RP, IdP の関係性を監視・追跡可能であるが, Assertion の中身を見ることはできない.
-<!-- 4. The distributing party blinds the RP and IdP from each other. The distributing party is able to monitor and track all subscriber relationships between the RPs and IdPs, but has no visibility into any attributes it is transmitting in the assertion. -->
+4. Federation Proxy は RP と IdP を相互に Blind する. Federation Proxy は Subscriber と RP, IdP の関係性を監視・追跡可能であるが, Assertion の中身を見ることはできない.
+<!-- 4. The federation proxy blinds the RP and IdP from each other. The federation proxy is able to monitor and track all subscriber relationships between the RPs and IdPs, but has no visibility into any attributes it is transmitting in the assertion. -->
 
-5. Distributing Party は RP と CSP および Broker 自身を Blind する. Distributing Party は一切の Subscriber の関係性を監視・追跡することができず, Assertion の中身を見ることもできない.
-<!-- 5. The distributing party blinds the RP, IdP, and itself. The distributing party cannot monitor or track any subscriber relationships, and has no visibility into any attributes it is transmitting in the assertion. -->
+5. Federation Proxy は RP と CSP および Broker 自身を Blind する. Federation Proxy は一切の Subscriber の関係性を監視・追跡することができず, Assertion の中身を見ることもできない.
+<!-- 5. The federation proxy blinds the RP, IdP, and itself. The federation proxy cannot monitor or track any subscriber relationships, and has no visibility into any attributes it is transmitting in the assertion. -->
