@@ -9,7 +9,7 @@ Authentication のエリアでは数多くの用語定義がなされている.
 <!-- There are a variety of definitions used in the area of authentication. While many terms are consistent with earlier revisions version of SP 800-63, some have changed in this revision. Since there is no single, consistent definition of many of these terms, careful attention to how the terms are defined here is warranted. -->
 
 本セクションで定義される用語は, 主に本ドキュメントで参照されるものである.
-その他の定義や略語については, 他の SP 800-63 ドキュメント群を参照のとこ.
+その他の定義や略語については, 他の SP 800-63 ドキュメント群を参照のこと.
 
 <!-- The definitions in this section are primarily those that are referenced in this document. Refer to the other documents in the SP 800-63 document family for additional definitions and abbreviations specific to their content. -->
 
@@ -94,3 +94,10 @@ CSP が特定の RP に対して生成する, opaque で推測不可能な Subsc
 HTTP Request & Response により実現される.
 
 <!-- Communication between two systems that relies on a direct connection (allowing for standard protocol-level proxies), without using redirects through an intermediary such as a browser. This can be accomplished using HTTP requests and responses. -->
+
+#### Federation Proxy
+
+IdP に対して論理的に RP として動作し, RP に対して論理的に IdP として動作する, 2つのシステムを Bridge するコンポーネント.
+"Broker" と呼ばれることもある.
+
+<!-- A component that acts as a logical RP to a set of IdPs and a logical IdP to a set of RPs, bridging the two systems with a single component. These are sometimes referred to as "brokers".  -->
