@@ -10,13 +10,13 @@ Despite widespread frustration with the use of passwords from both a usability a
 
 Complexity of user-chosen passwords has often been characterized using the information theory concept of entropy[ref]. While entropy can be readily calculated for data having deterministic distribution functions, estimating the entropy for user-chosen passwords is difficult and past efforts to do so have not been particularly accurate. For this reason, a different and somewhat simpler approach, based primarily on password length, is presented herein.
 
-It should be noted that there are many attacks associated with the use of passwords that are not affected by password complexity. Keystroke logging, phishing, and social engineering attacks are equally effective on complex passwords as simple ones. Observation, “shoulder-surfing” attacks are only slightly more difficult for complex passwords. These attacks are outside the scope of this Appendix.
+It should be noted that there are many attacks associated with the use of passwords that are not affected by password complexity and length. Keystroke logging, phishing, and social engineering attacks are equally effective on lengthy, complex passwords as simple ones. These attacks are outside the scope of this Appendix.
 
 ### A.2 Length
 
 Password length has been found to be the primary factor in characterizing password strength. Passwords that are too short yield to brute force attacks as well as to dictionary attacks using words and commonly chosen passwords.
 
-The minimum password length that should be required depends to a large extent on the threat model being addressed. Online attacks where the attacker attempts to log in by guessing the password can be readily addressed by throttling the rate of login attempts permitted. In order to prevent an attacker (or a claimant with poor typing skills) from easily inflicting a denial-of-service attack on the subscriber by making many incorrect guesses, passwords need to be complex enough that throttling does not occur after a modest number of erroneous attempts, but does occur before there is a significant chance of a successful guess.
+The minimum password length that should be required depends to a large extent on the threat model being addressed. Online attacks where the attacker attempts to log in by guessing the password can be mitigated by throttling the rate of login attempts permitted. In order to prevent an attacker (or a claimant with poor typing skills) from easily inflicting a denial-of-service attack on the subscriber by making many incorrect guesses, passwords need to be complex enough that throttling does not occur after a modest number of erroneous attempts, but does occur before there is a significant chance of a successful guess.
 
 Offline attacks are sometimes possible when one or more hashed passwords is obtained by the attacker through a database breach. The ability of the attacker to determine one or more users’ passwords depends on the way in which the password is stored. Commonly, passwords are salted with a random value and hashed, preferably using a computationally expensive algorithm. Even with such measures, the current ability of attackers to compute many billions of hashes per second with no throttling requires passwords intended to resist such attacks to be orders of magnitude more complex than those that are expected to resist only online attacks.
 
@@ -30,5 +30,12 @@ Users also express frustration when attempts to create complex passwords are rej
 
 Users’ password choices are very predictable, so attackers are likely to guess passwords that have been successful in the past. These include dictionary words and passwords from previous breaches, such as the “Password1!” example above. For this reason, it is recommended that passwords chosen by users be compared against a “black list” of unacceptable passwords. This list should include passwords from previous breach corpuses, dictionary words, and specific words (such as the name of the service itself) that users are likely to choose. Since user choice of passwords will also be governed by a minimum length requirement, this dictionary need only include entries meeting that requirement.
 
-### A.4 Summary
+### A.5 Randomly-chosen secrets
+
+Another factor that determines the strength of memorized secrets is the process by which they are generated. Secrets that are randomly chosen (in most cases by the verifier or CSP) and are uniformly distributed will be more difficult to guess or brute-force attack than user-chosen secrets meeting the same length and complexity requirements. Accordingly, at LoA 2, SP 800-63-2 permitted the use of randomly generated PINs with 6 or more digits while requiring user-chosen memorized secrets to be a minimum of 8 characters long.
+
+As discussed above, the threat model being addressed with memorized secret length requirements includes rate-limited online attacks, but not offline attacks. With this limitation, 6 digit randomly-generated PINs are still considered adequate for memorized secrets. 
+
+### A.6 Summary
+
 Length and complexity requirements beyond those recommended here significantly increase the difficulty of memorized secrets and increase user frustration. As a result, users often work around these restrictions in a way that is counterproductive. Furthermore, other mitigations such as blacklists, secure hashed storage, and rate throttling are more effective at preventing modern brute-force attacks. Therefore, no additional complexity requirements are imposed.
