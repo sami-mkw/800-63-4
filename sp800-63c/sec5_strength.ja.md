@@ -15,7 +15,7 @@ Assertion に含まれるコアとなるべき (SHOULD) Claim は以下の通り
 - Subject: 当該 Assertion が指し示す主体 (Subscriber) の識別子, 通常は Issuer (IdP) の管理する Namespace 内で有効である.
 - Audience: Assertion を受け取る主体 (RP) の識別子.
 - Issuance: Assertion が IdP に発行された日時を示すタイムスタンプ.
-- Expiration: Assertion の有効期限を示すタイムスタンプ. 有効期限が切れたものは RP に valid な Assertion として受け入れられるべきでない (SHALL).
+- Expiration: Assertion の有効期限を示すタイムスタンプ. 有効期限が切れたものは RP に valid な Assertion として受け入れられるべきでない (SHALL). (注: RP におけるセッション有効期限とは異なる)
 - Authentication Time: IdP が Primary Authentication Event を通じて Subscriber を認証した日時を示すタイムスタンプ.
 - Identifier: 当該 Assertion 自身を識別するランダムでユニークな値. 攻撃者が不正な Assertion を生成して validity check をパスするのを防ぐ目的で利用される.
 
@@ -24,7 +24,7 @@ Assertion に含まれるコアとなるべき (SHOULD) Claim は以下の通り
  - Subject: an identifier for the party that the assertion is about (the subscriber), usually within the namespace control of the issuer (the IdP)
  - Audience: an identifier for the party intended to consume the assertion (the RP)
  - Issuance: a timestamp indicating when the assertion was issued by the IdP
- - Expiration: a timestamp indicating when the assertion expires and SHALL no longer be accepted as valid by the RP
+ - Expiration: a timestamp indicating when the assertion expires and SHALL no longer be accepted as valid by the RP (note that this is not the expiration of the session at the RP)
  - Authentication Time: a timestamp indicating when the IdP last verified the presence of the subscriber at the IdP through a primary authentication event
  - Identifier: a random value uniquely identifying this assertion, used to prevent attackers from manufacturing malicious assertions which would pass other validity checks
 -->
@@ -42,8 +42,9 @@ RP は, その他の Identity Attributes を, Assertion と同時に発行され
 
 詳細は Federation Protocol ごとに異なるが, Assertion は RP での個々のログインイベントのみを表現するべきである (SHOULD).
 ひとたび RP が Assertion を受け取って処理を完了すれば, その後は [session management](sp800-63b.ja.html#sec7) の段階に移り, 当該 Assertion を直接利用することはない.
+Assertion の有効期限は RP におけるセッション有効期限を示すべきではない (SHALL NOT).
 
-<!-- Although details vary based on the exact federation protocol in use, an assertion SHOULD be used only to represent a single log-in event at the RP. After the RP consumes the assertion, [session management](sp800-63b.html#sec7) at the RP comes into play and the assertion is no longer used directly. -->
+<!-- Although details vary based on the exact federation protocol in use, an assertion SHOULD be used only to represent a single log-in event at the RP. After the RP consumes the assertion, [session management](sp800-63b.html#sec7) at the RP comes into play and the assertion is no longer used directly. The expiration of the assertion SHALL NOT represent the expiration of the session at the RP. -->
 
 ### 5.1. Assertion possession category
 
@@ -54,9 +55,16 @@ Assertion は, Assertion を所有している主体が Assertion の Subject �
 #### 5.1.1. Holder-of-Key Assertions
 
 Holder-of-Key Assertion は, Subscriber の持つ共通鍵ないしは (秘密鍵とペアとなる) 公開鍵の参照を含む.
-RP は Subscriber に対して, Assertion 自体とは別に, 当該鍵を所有している証拠を示すよう要求できる.
+RP は, 自身のポリシーに従って, いつ Subscriber に対して当該鍵を所有している証拠を示すべきかを決定することができる.
+しかしながら, RP は Assertion を Holder-of-Key Assertion として受けとる場合, Subscriber に Assertion が参照する鍵の所有を示すよう要求すべきである (SHALL).
+ユーザーが鍵の所有を示さずに鍵の参照を含む Assertion を提示する場合, 当該 Assertion は Bearer Assertion (5.1.2) として扱われる.
 
-<!-- A holder-of-key assertion contains a reference to a symmetric key or a public key (corresponding to a private key) possessed by and representing the subscriber. The RP may require the subscriber to prove possession of the key that is referenced in the assertion in parallel with presentation of the assertion itself. -->
+<!-- A holder-of-key assertion contains a reference to a symmetric key or a public key (corresponding to a private key) possessed by and representing the subscriber. An RP MAY decide when to require the subscriber to prove possession of the key, depending on the policy of the RP. However, the RP SHALL require the subscriber to prove possession of the key that is referenced in the assertion in parallel with presentation of the assertion itself in order for the assertion to be considered holder-of-key. Otherwise, an assertion containing reference to a key which the user has not proved possession of will be considered a bearer assertion (5.1.2). -->
+
+Holder-of-Key Assertion 参照される鍵は, Client ではなく Subscriber を示す.
+この鍵は Subscriber が IdP に対して認証を行う際に利用される鍵とは別のものでも良い (MAY).
+
+<!-- The key referenced in a holder-of-key represents the subscriber, not the client. This key MAY be distinct from any key used by the subscriber to authenticate to the IdP. -->
 
 Subscriber が鍵を所有している証拠を提示できれば, Subscriber は当該 Assertion の正式な Subject であることをある程度の確からしさを持って証明できる.
 攻撃者が Subscriber あてに発行された Holder-of-Key Assertion を盗んだとしても, 攻撃者は Subscriber の鍵も同時に盗まなければならず, 盗んだ Assertion を利用するのは困難となる.
@@ -66,6 +74,10 @@ Subscriber が鍵を所有している証拠を提示できれば, Subscriber �
 鍵の参照は Assertion の Issuer がその他の Claim 同様に Assert するものであるから, その参照もまた当該 Assertion に含まれる他の Claim と同じレベルの信頼度を持った情報として扱うべきである (SHALL).
 
 <!-- Note that the reference to the key material in question is asserted by the issuer of the assertion as are any other claims therein, and reference to a given key SHALL be trusted at the same level as all other claims within the assertion itself. -->
+
+Assertion は Holder-of-Key を表現するために利用する Private / Symmetric Key を暗号化せずに含むべきでない (SHALL NOT).
+
+<!-- The assertion SHALL NOT include an unencrypted private or symmetric key to be used with holder-of-key presentation. -->
 
 #### 5.1.2. Bearer Assertions
 
@@ -105,9 +117,9 @@ RP は IdP の鍵を用いて各 Assertion の署名を検証すべきである 
 <!-- Assertions MAY be cryptographically signed by the IdP, and the RP SHALL validate the signature of each such assertion based on the IdP's key. This signature SHALL cover all vital fields of the assertion, including its issuer, audience, subject, expiration, and any unique identifiers. -->
 
 IdP が公開鍵を公開する鍵ペアによって署名を行うこともでき (MAY), その場合 RP は公開鍵を (IdP がホストする HTTPS URL などから) 動的かつセキュアに取得することができる (MAY).
-鍵はそれ以外の何らかの方法で RP に提供されてもよい (MAY).
+鍵は (RP の設定段階において) out-of-band で RP に提供されてもよい (MAY).
 
-<!-- The signature MAY be asymmetric based on the published public key of the IdP. In such cases, the RP MAY fetch this public key in a secure fashion at runtime (such as through an HTTPS URL hosted by the IdP), or the key MAY be provisioned out of band at the RP. -->
+<!-- The signature MAY be asymmetric based on the published public key of the IdP. In such cases, the RP MAY fetch this public key in a secure fashion at runtime (such as through an HTTPS URL hosted by the IdP), or the key MAY be provisioned out of band at the RP (during configuration of the RP). -->
 
 IdP と RP の間で何らかの方法で共有された共通鍵による署名を用いることもできる (MAY).
 その場合 IdP は RP ごとに異なる鍵を用いるべきである (SHALL).
@@ -141,22 +153,37 @@ Audience が含まれている場合, RP は Assertion の Audience をチェッ
 #### 5.2.5. Pairwise Pseudonymous Identifiers
 
 ある条件下では, IdP 上の Subscriber のアカウントが共通の識別子を通じて複数の RP 間でリンクされることを防ぎたい場合もある.
-そのような場合, IdP は RP に対して Pairwise Pseudonymous Subject Identifier を含んだ Assertion を発行するべきであり (SHALL), IdP は各 RP ごと, 場合によっては RP とのインテグレーションごとに, 異なる識別子を生成するべきである (SHALL).
+そのような場合, IdP は RP に対して Pairwise Pseudonymous Subject Identifier を含んだ Assertion を発行するべきであり (SHALL), IdP は各 RP ごとに異なる識別子を生成するべきである (SHALL).
 
-<!-- In some circumstances, it is desirable to prevent the subscriber's account at the IdP from being linked through one or more RPs through use of a common identifier. Pairwise pseudonymous subject identifiers SHALL be used within the assertions generated by the IdP for the RP, and the IdP SHALL generate a different identifier for each RP or integration with an RP, as appropriate. -->
+<!-- In some circumstances, it is desirable to prevent the subscriber's account at the IdP from being linked through one or more RPs through use of a common identifier. In these circumstances, pairwise pseudonymous subject identifiers SHALL be used within the assertions generated by the IdP for the RP, and the IdP SHALL generate a different identifier for each RP. -->
 
 RP ごとに固有の Pseudonymous Identifier を用いたとしても, 複数の RP が結託し Subscriber に関するその他の属性を通じて名寄せを行う可能性はある.
+例えば2つの独立した RP が同じ Subscriber を異なる Pseudonymous Identifier によって識別したとしても, 両 RP がそれぞれ Pseudonymous Identifier と同時に得た氏名, Email アドレス, 住所, その他の識別可能な属性によって, 当該 Subscriber を同一人物と特定することもできる.
 Privacy Policy でこのような名寄せを禁止する場合においても, Pseudonymous Identifier は属性の名寄せに必要な作業を増加させるため, ポリシー運用を効率的にする.
 
-<!-- When unique pseudonymous identifiers are used with RPs along side of identity attribute bundles, it may still be possible for multiple colluding RPs to fully identify and correlate a subscriber across systems using these attributes. Privacy policies, therefore, may prohibit such correlation, but pairwise pseudonymous identifiers can increase effectiveness of these policies by increasing the administrative effort in managing the attribute correlation.  -->
+<!-- When unique pseudonymous identifiers are used with RPs along side of identity attribute bundles, it may still be possible for multiple colluding RPs to fully identify and correlate a subscriber across systems using these attributes. For example, given that two independent RPs will each see the same subscriber identified with a different pairwise pseudonymous identifier, the RPs could still determine that the subscriber is the same person by comparing their name, email address, physical address, or other identifying attributes carried alongside the pairwise pseudonymous identifier. Privacy policies may prohibit such correlation, but pairwise pseudonymous identifiers can increase effectiveness of these policies by increasing the administrative effort in managing the attribute correlation.  -->
 
-Distributed Federation Model では, Proxy IdP として動作する Distributing Party はプロトコルによっては Pairwise Pseudonymous Identifier を Upstream IdP が発行した Identifier に紐付ける必要がある場合もある.
+Proxied Federation Model では, Proxy IdP として動作する主体はプロトコルによっては Pairwise Pseudonymous Identifier を Upstream IdP が発行した Identifier に紐付ける必要がある場合もある.
 
-<!-- Note that in a distributed federation model, the distributing party that is acting as a proxy IdP may, depending on the protocol, need to map the pairwise pseudonymous identifiers back to the associated identifiers from upstream IdPs in order to allow the identity protocol to function. -->
+<!-- Note that in a proxied federation model, the distributing party that is acting as a proxy IdP may, depending on the protocol, need to map the pairwise pseudonymous identifiers back to the associated identifiers from upstream IdPs in order to allow the identity protocol to function. -->
+
+Proxied Federation Model では, IdP は最終的な RP に対して Pairwise Pseudonymous Identifier の生成を行えないこともある.
+この Proxy は Subscriber がどの RP にアクセスしているかを IdP に知らせないこともありうるからである.
+このようなケースでは, Pairwise Pseudonymous Identifier は IdP と Federation Proxy の間で生成される.
+IdP として動作する Proxy は, 自身が Downstream の RP に対して Pairwise Pseudonymous Identifier を提供することもある.
+プロトコルによっては, Federation Proxy は Pairwise Pseudonymous Identifier を Upstream IdP が発行した Identifier に紐付ける必要がある場合もある.
+そのような場合, 当該 Proxy は同一 Subscriber に紐づく複数の Pairwise Pseudonymous Identifier を名寄せし Track することができる.
+
+<!-- Note that in a proxied federation model, the party that is acting as a proxy IdP may be unable to generate a pairwise pseudonymous identifier for the ultimate RP, since the proxy could blind the IdP from knowing which RP is being accessed by the subscriber. In such situations, the pairwise pseudonymous identifier is usually between the IdP and the federation proxy itself. The proxy, acting as an IdP, can itself provide pairwise pseudonymous identifiers to downstream RPs. Depending on the protocol, the federation proxy may need to map the pairwise pseudonymous identifiers back to the associated identifiers from upstream IdPs in order to allow the identity protocol to function. In such cases, the proxy will be able to track and determine which pairwise pseudonymous identifiers represent the same subscriber at different RPs. -->
 
 #### 5.2.6. Pairwise Pseudonymous Identifier Generation
 
-Pairwise Pseudonymous Identifier は opaque で推測不可能であるべきであり (SHALL), 単一の IdP-RP ペア以外に知られることなくそのペア間のみで利用されるべきである (SHALL).
+Pairwise Pseudonymous Identifier は opaque で推測不可能かつ Subscriber の識別情報を含まないべきであり (SHALL), 単一の IdP-RP ペア以外に知られることなくそのペア間のみで利用されるべきである (SHALL).
 
-<!-- Pairwise pseudonymous identifiers SHALL be opaque and unguessable. Additionally, they SHALL only be known and used by one IdP-RP pair. -->
+<!-- Pairwise pseudonymous identifiers SHALL be opaque and unguessable, containing no identifying information about the subscriber. Additionally, they SHALL only be known and used by one IdP-RP pair. -->
 
+もし複数の RP がSecurity Domain や法的なオーナーシップを共有しているなどの明白かつタイトな関係性を持つ場合, そういった RP は Pairwise Pseudonymous Identifier 生成に際しては論理的に単一の RP としてもよい (MAY).
+IdP は意図された RP のみがそのようなグループに所属していることを保証すべきである (SHALL).
+さもないと不正な RP がグループの一員のふりをして当該グループ向けの Pairwise Pseudonymous Identifier を取得できてしまう.
+
+<!-- If several RPs have an explicit and tight correlation, such as a shared security domain or legal ownership, those RPs MAY be combined into a single logical RP for the purposes of generating a pairwise pseudonymous identifier. The IdP SHALL ensure that only intended RPs are in such a group, otherwise a rogue RP could learn of the pairwise pseudonymous identifier by posing as part of an RP group of which it is not a member. -->
