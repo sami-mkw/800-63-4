@@ -172,13 +172,12 @@ M-04-04 Level of Assurance は, 上記の各要素に対して達成された Id
 
 <!-- The M-04-04 Level of Assurance is determined by considering the identity assurance, authenticator assurance level, and federation assurance level achieved for each of the elements listed above, and determining the Level of Assurance satisfied by all elements. -->
 
-各機関は追加のリスク緩和策によって Level of Assurance を調整してもよい.
+設定された Level of Assurance の範囲内で, 各機関は追加のリスク緩和策を行ってもよい.
 Credential Assurance Level を緩和することで, サービス利用可能顧客を増やすこともできる.
 ただしその場合でも, 各機関はシステムに適した Assurance Level の選択を保証すること.
 また, センシティブな情報を扱わない機能に関しては低い Level of Authentication および Level of Attribute Assurance を許容しつつ, センシティブな情報を扱う時にはより高い Level of Assurance を要求するといったように, Digital Authentication を行うアプリケーションを機能ごとに分割することもできる.
 
-<!-- Agencies may adjust the level of assurance using additional risk
-mitigation measures. Easing credential assurance level requirements may
+<!-- Within a given level of assurance, agencies may employ additional risk mitigation measures. Easing credential assurance level requirements may
 increase the size of the enabled customer pool, but agencies shall
 ensure that this does not corrupt the system’s choice of the appropriate
 assurance level. Alternatively, agencies may consider partitioning the
