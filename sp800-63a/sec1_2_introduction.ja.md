@@ -40,13 +40,13 @@ RP にとっては, トランザクションを実行しているユーザにつ
 
 <!-- Assurance in a subscriber's identity is described using one of three IALs: -->
 
-**身元保証レベル1**
+**身元保証レベル1 (Identity Assurance Level 1) **
 このレベルでは, 申請者の身元証明の確認は必須でない. よって, そのアイデンティティの認証プロセス時に提示されるいかなる属性情報も単に申請者自身が主張している内容でしかない.
 
-**身元保証レベル2**
+**身元保証レベル2 (Identity Assurance Level 2)**
 レベル2におけるアイデンティティでは, Claimed Identity が現実世界で実在すること, そのアイデンティティがどの個人に対応するかの識別, ならびにそれが検証されていることが証明される. レベル2からは, リモートあるいは対面によるの身元確認が必須となる. Attributes は RP に対して仮名化された状態で Verified Attributes とともに CSP によって Assert されてもよい (MAY).
 
-**身元保証レベル3**
+**身元保証レベル3 (Identity Assurance Level 3)**
 レベル3においては, 対面での身元確認が必須である. 識別に用いられる属性は, 認可され訓練された CSP の担当者によって検証されなければならない. レベル2と同様, Attributes は RP に対して仮名化された状態で Verified Attributes とともに CSP によって Assert されてもよい (MAY).
 
 <!--
