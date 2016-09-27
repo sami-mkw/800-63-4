@@ -33,16 +33,32 @@ _This section is informative._
 
 ##### ASSUMPTIONS
 
-In this section, the term “users” means “Applicants” or “Subscribers.”
+本セクションでは "ユーザー" とは "Applicant" または "Subscriber" を意味する.
 
-This section describes guidelines and considerations from the end-users’ perspective, as usability guidelines can only be written from the end-users’ perspective.
+<!-- In this section, the term “users” means “Applicants” or “Subscribers.” -->
 
-Accessibility and usability differ significantly; therefore, accessibility is out of scope for this section. However, organizations should obviously address accessibility in their implementation plans.
+ユーザビリティガイドラインはユーザー視点からのみ記述可能なため, 本セクションはエンドユーザー視点でのガイドラインおよび考慮点について述べる.
+
+<!-- This section describes guidelines and considerations from the end-users’ perspective, as usability guidelines can only be written from the end-users’ perspective. -->
+
+アクセシビリティとユーザビリティは大きく異なるため, アクセシビリティは本セクションの対象外とする.
+しかしながら, アクセシビリティも各組織が実装計画段階で取り組むべき事項であるのは明白である.
+
+<!-- Accessibility and usability differ significantly; therefore, accessibility is out of scope for this section. However, organizations should obviously address accessibility in their implementation plans. -->
 
 ### 9.1. User Experience During Enrollment and Identity Proofing
-The first step for organizations is getting to know the user to promote a smooth and positive enrollment process. Before users begin the enrollment and identity proofing process, organizations should match users with suitable CSPs based on users’ characteristics. From the user perspective, there are three primary stages to enrollment and identity proofing: pre-enrollment preparation, the enrollment and proofing session itself, and post-enrollment actions. Note that these stages may occur within a single session or there could be significant time elapsed between each stage (for example, days or weeks).
 
-Usability considerations for each stage are detailed below. Most of the usability considerations apply to all identity proofing approaches. However, additional considerations are provided for specific proofing methods.
+まず最初に取り組むべきは, スムーズでポジティブな登録プロセスの促進のためにユーザーを知ることである.
+ユーザーが登録・身元確認プロセスを開始する前に, 各組織はユーザーの性質に基づいて適切な CSP を割り当てるべきである.
+ユーザー視点では, 登録・身元確認には, 登録前準備, 登録・身元確認セッション, 登録後アクションという3つの主要ステージが存在する.
+これらの各ステージは単一セッション内で起こることもあれば, ステージごとの間にかなりの時間 (数日, 数週間 etc.) が経過することもある.
+
+<!-- The first step for organizations is getting to know the user to promote a smooth and positive enrollment process. Before users begin the enrollment and identity proofing process, organizations should match users with suitable CSPs based on users’ characteristics. From the user perspective, there are three primary stages to enrollment and identity proofing: pre-enrollment preparation, the enrollment and proofing session itself, and post-enrollment actions. Note that these stages may occur within a single session or there could be significant time elapsed between each stage (for example, days or weeks). -->
+
+以降では, 各ステージごとにユーザビリティの考慮点について述べる.
+ほとんどのユーザビリティ考慮点はすべての身元確認アプローチに適用できるが, いくつかは特定の身元確認方法に特化した考慮点も含まれる.
+
+<!-- Usability considerations for each stage are detailed below. Most of the usability considerations apply to all identity proofing approaches. However, additional considerations are provided for specific proofing methods. -->
 
 #### 9.1.1. Pre-Enrollment Preparation
 
