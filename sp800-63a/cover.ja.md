@@ -2,9 +2,9 @@
 
 # <a name="800-63a"></a> DRAFT NIST Special Publication 800-63A
 
-# Digital Authentication Guideline（翻訳版）
+# Digital Authentication Guideline (翻訳版)
 
-### Enrollment and Identity Proofing Requirements（身元確認と登録時の要件）
+### Enrollment and Identity Proofing Requirements (身元確認と登録時の要件)
 
 Paul A. Grassi  
 Naomi B. Lefkovitz  
@@ -24,9 +24,9 @@ http://dx.doi.org/10.6028/NIST.SP.XXX
 
 # DRAFT NIST Special Publication 800-63A
 
-# Digital Authentication Guideline（翻訳版）
+# Digital Authentication Guideline (翻訳版)
 
-###  Enrollment and Identity Proofing Requirements（身元確認と登録時の要件）
+###  Enrollment and Identity Proofing Requirements (身元確認と登録時の要件)
 
 Paul A. Grassi  
 Naomi B. Lefkovitz  
@@ -124,10 +124,11 @@ outreach efforts in information system security, and its collaborative
 activities with industry, government, and academic organizations.
 
 ### Abstract
-[](
-This document and its companion documents, SP 800-63-3, SP 800-63B, and SP 800-63C, provide technical and procedural guidelines to agencies for the implementation of digital authentication. This document focuses on the enrollment and verification of an identity for for use in digital authentication. Central to this is a process known as *identity proofing* in which an applicant provides evidence to a credential service provider (CSP) reliably identifying themselves, thereby allowing the CSP to assert that identification at a useful identity assurance level. This document defines technical requirements for each of three identity assurance levels. This publication supersedes corresponding sections of NIST SP 800-63-1 and SP 800-63-2.
-)
-本書ならびに，SP 800-63-3，SP 800-63B そして SP 800-63C は，電子認証を実装するにあたっての，技術的そして手続き的なガイドラインである．本書では電子認証におけるアイデンティティの検証と登録に焦点を当てている．本書の中心は，*身元確認*として知られているプロセスであり，身元確認プロセスにおいては，申請者が自分自身を確実に特定可能な証拠をクレデンシャルサービスプロバイダ（CSP）に提示することで，CSPは適切な身元保証レベルにおける当人の同一性を保証することが可能となる．本書は，3つの身元保証レベルにおいて，それぞれに必要な技術的な要件を定義する．NIST SP 800-63-1とSP 800-63-2の対応する章は，本書の内容で置き換えられる．
+
+本書ならびに, SP 800-63-3, SP 800-63B そして SP 800-63C は, 電子認証を実装するにあたっての, 技術的そして手続き的なガイドラインである. 本書では電子認証におけるアイデンティティの検証と登録に焦点を当てている. 本書の中心は, *Identity Proofing* (身元確認) として知られているプロセスであり, 身元確認プロセスにおいては, 申請者が自分自身を確実に特定可能な証拠をクレデンシャルサービスプロバイダ (CSP) に提示することで, CSPは適切な身元保証レベルにおける当人の同一性を保証することが可能となる. 本書は, 3つの身元保証レベルにおいて, それぞれに必要な技術的な要件を定義する. NIST SP 800-63-1とSP 800-63-2の対応する章は, 本書の内容で置き換えられる.
+
+<!-- This document and its companion documents, SP 800-63-3, SP 800-63B, and SP 800-63C, provide technical and procedural guidelines to agencies for the implementation of digital authentication. This document focuses on the enrollment and verification of an identity for for use in digital authentication. Central to this is a process known as *identity proofing* in which an applicant provides evidence to a credential service provider (CSP) reliably identifying themselves, thereby allowing the CSP to assert that identification at a useful identity assurance level. This document defines technical requirements for each of three identity assurance levels. This publication supersedes corresponding sections of NIST SP 800-63-1 and SP 800-63-2. -->
+
 
 ### Keywords
 
@@ -135,7 +136,7 @@ authentication; credential service provider; electronic authentication; digital 
 
 ### Acknowledgements
 
-The authors would like to acknowledge the contributions and guidance of our international peers, including Adam Cooper, Alastair Treharne, and Julian White from the Cabinet Office, United Kingdom, and Tim Bouma from the Treasury Board of Canada Secretariat, Government of Canada. 
+The authors would like to acknowledge the contributions and guidance of our international peers, including Adam Cooper, Alastair Treharne, and Julian White from the Cabinet Office, United Kingdom, and Tim Bouma from the Treasury Board of Canada Secretariat, Government of Canada.
 
 The authors would also like to acknowledge the thought leadership and innovation of the original authors: Donna F. Dodson, Elaine M. Newton, Ray A. Perlner, W. Timothy Polk, Sarbari Gupta, and Emad A. Nabbus.  Without their tireless efforts, we would not have had the incredible baseline from which to evolve 800-63 to the document it is today.
 
@@ -169,39 +170,29 @@ The terms “CAN” and “CANNOT” indicate a possibility and capability, whet
 
 ## Executive Summary
 
-[](
-This guideline deals with how an individual, known as an applicant, can prove their identity to a Credential Service Provider (CSP) and become enrolled as a valid identity.
-)
-本ガイドラインは，申請者である個人を，クレデンシャルサービスプロバイダ（CSP）に対してどのように証明し，有効なアイデンティティとして登録するかといった内容を扱っている．
+本ガイドラインは, 申請者である個人を, クレデンシャルサービスプロバイダ (CSP) に対してどのように証明し, 有効なアイデンティティとして登録するかといった内容を扱っている.
 
-[](
-Identity Assurance Level (IAL) refers to the robustness of the identity proofing process and the binding between an authenticator and a specific individual. The separation of IAL from Authenticator Assurance Level (AAL) better supports applications requiring strong authentication that may be pseudonymous, and the separation of authenticator issuance from the establishment of credentials binding those authenticators to individuals.
-)
-身元保証レベル（IAL）は，身元確認のプロセスおよび特定個人と”認証するために必要な識別子”を紐付ける際の堅牢性を示す．身元保証レベル（IAL）と認証保証レベル（AAL）を分離することによって，匿名でも構わないものの強力な認証を必要するアプリケーションや，”認証するために必要な識別子”を発行する部分と，クレデンシャルを確立する部分（個々人とそれらを”認証するために必要な識別子”を紐付ける部分）を分離したいアプリケーションなどにも，広く対応している．
+<!-- This guideline deals with how an individual, known as an applicant, can prove their identity to a Credential Service Provider (CSP) and become enrolled as a valid identity. -->
 
-[](
-The three (3) IALs reflect the options agencies may select based on their risk profile and the potential harm caused by an invalid or fraudulent identity accessing their systems.  The IALs are as follows:
-)
+身元保証レベル (IAL) は, 身元確認のプロセスおよび特定個人と”認証するために必要な識別子”を紐付ける際の堅牢性を示す. 身元保証レベル (IAL) と認証保証レベル (AAL) を分離することによって, 匿名でも構わないものの強力な認証を必要するアプリケーションや, ”認証するために必要な識別子”を発行する部分と, クレデンシャルを確立する部分 (個々人とそれらを”認証するために必要な識別子”を紐付ける部分) を分離したいアプリケーションなどにも, 広く対応している.
 
-IALは３つのレベルに分かれており，リスクプロファイル並びに，無効なアイデンティティや不正なアイデンティティによるアクセスで損害が発生する可能性に基づいていずれのレベルに該当するかを選択する．各IALについては以下に示す通り．
+<!-- Identity Assurance Level (IAL) refers to the robustness of the identity proofing process and the binding between an authenticator and a specific individual. The separation of IAL from Authenticator Assurance Level (AAL) better supports applications requiring strong authentication that may be pseudonymous, and the separation of authenticator issuance from the establishment of credentials binding those authenticators to individuals. -->
+
+IALは３つのレベルに分かれており, リスクプロファイル並びに, 無効なアイデンティティや不正なアイデンティティによるアクセスで損害が発生する可能性に基づいていずれのレベルに該当するかを選択する. 各IALについては以下に示す通り.
+
+<!-- The three (3) IALs reflect the options agencies may select based on their risk profile and the potential harm caused by an invalid or fraudulent identity accessing their systems.  The IALs are as follows: -->
 
 **IAL 1**:
-[](
-At this level, there is no requirement for an applicant's identity to be proven.  Any attributes provided in conjunction with the authentication process are self-asserted. 
-)
-このレベルでは，申請者の身元証明の確認は必須でない．よって，そのアイデンティティの認証プロセス時に提示されるいかなる属性情報も単に申請者自身が主張している内容でしかない．
+このレベルでは, 申請者の身元証明の確認は必須でない. よって, そのアイデンティティの認証プロセス時に提示されるいかなる属性情報も単に申請者自身が主張している内容でしかない.
+<!-- At this level, there is no requirement for an applicant's identity to be proven.  Any attributes provided in conjunction with the authentication process are self-asserted. -->
 
 **IAL 2**:
-[](
-At IAL 2, the claimed identity is proven with evidence that supports the real world existence of the claimed identity and identifies and verifies the person to whom the claimed identity belongs.  IAL 2 introduces the need for either remote or in-person identity proofing.  Attributes MAY be asserted by CSPs to RPs in support of pseudonymous identity with verified attributes. 
-)
-レベル2におけるアイデンティティでは，現実世界で実在すること，そのアイデンティティがどの個人に対応するかの識別，ならびにそれが検証されていることが証明される．レベル2からは，リモートあるいは対面によるの身元確認が必須となる．CSPからRPに渡される属性情報は，CSPにより検証し証明されているものであり(MAY)，匿名化にも対応している．
+レベル2におけるアイデンティティでは, 現実世界で実在すること, そのアイデンティティがどの個人に対応するかの識別, ならびにそれが検証されていることが証明される. レベル2からは, リモートあるいは対面によるの身元確認が必須となる. CSPからRPに渡される属性情報は, CSPにより検証し証明されているものでもよく (MAY), 匿名化にも対応している.
+<!-- At IAL 2, the claimed identity is proven with evidence that supports the real world existence of the claimed identity and identifies and verifies the person to whom the claimed identity belongs.  IAL 2 introduces the need for either remote or in-person identity proofing.  Attributes MAY be asserted by CSPs to RPs in support of pseudonymous identity with verified attributes. -->
 
 **IAL 3**:
-[](
-At Identity Assurance Level 3, in-person identity proofing is required. Identifying attributes must be verified by an authorized and trained representative of the CSP. As with IAL 2, attributes MAY be asserted by CSPs to RPs in support of pseudonymous identity with verified attributes. 
-)
-レベル3においては，対面での身元確認が必須である．属性情報の確認は，認定されているCSPによって証明される内容で行わなければならない．レベル2と同様，CSPからRPに渡される属性情報は，CSPにより検証し証明されているものであり(MAY)，匿名化にも対応している．
+レベル3においては, 対面での身元確認が必須である. 属性情報の確認は, 認定されているCSPによって証明される内容で行わなければならない. レベル2と同様, CSPからRPに渡される属性情報は, CSPにより検証し証明されているものであり(MAY), 匿名化にも対応している.
+<!-- At Identity Assurance Level 3, in-person identity proofing is required. Identifying attributes must be verified by an authorized and trained representative of the CSP. As with IAL 2, attributes MAY be asserted by CSPs to RPs in support of pseudonymous identity with verified attributes. -->
 
 
 ## Table of Contents
@@ -216,8 +207,7 @@ At Identity Assurance Level 3, in-person identity proofing is required. Identify
 
 [5. Identity Resolution, Validation and Verification](#sec5)
 
-[6. Leveraging Antecedent Proofing Events
-](#sec6)
+[6. Leveraging Antecedent Proofing Events](#sec6)
 
 [7. Threats and Security Considerations](#sec7)
 
@@ -227,4 +217,4 @@ At Identity Assurance Level 3, in-person identity proofing is required. Identify
 
 [10. References](#references)
 
- 
+
