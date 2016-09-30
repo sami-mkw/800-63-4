@@ -43,9 +43,25 @@ TLS [[BCP 195]](#bcp195) がその例としてあげられ, TLS では Recipient
 
 #### Attribute
 
-ある主体に関する生来の性質や特徴などの Claim. ([[ICAM]](#ICAM) 参照)
+人や物に関する生来の性質や特徴.
 
-<!-- A claim of a named quality or characteristic inherent in or ascribed to someone or something. (See term in [[ICAM]](#ICAM) for more information.) -->
+<!-- A quality or characteristic ascribed to someone or something. -->
+
+#### Attribute Claim
+
+Subscriber のプロパティをアサートする Statement.
+Identity Information を含まなくても良く, フォーマットは問わない.
+例えば "birthday" という属性に対して, "18歳以上" とか "12月生まれ" などが Attribute Claim となりうる.
+
+<!-- A statement asserting a property of a subscriber without necessarily containing identity information, independent of format. For example, for the attribute 'birthday', a claim could be 'older than 18' or 'born in December'. -->
+
+#### Attribute Value
+
+Subscriber のプロパティをアサートする完全な Statement.
+フォーマットは問わない.
+例えば "birthday" という属性に対して, "12/1/1980" や "December 1, 1980" などが Attribute Value となりうる.
+
+<!-- A complete statement asserting a property of a subscriber, independent of format. For example, for the attribute 'birthday', a value could be '12/1/1980' or 'December 1, 1980'. -->
 
 #### Assertion
 

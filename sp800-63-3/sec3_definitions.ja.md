@@ -42,7 +42,7 @@ Assertion は検証済属性情報を含むこともある.
 公開鍵と秘密鍵からなる鍵ペア.
 暗号化と復号, 署名生成と署名検証など, 対となるオペレーションに用いられる.
 
-<!-- Two related keys, a public key and a private key that are used to perform complementary operations, such as encryption and decryption or signature generation and signature verification. -->
+<!-- Two related keys, consisting of a public key and a private key, that are used to perform complementary operations such as encryption and decryption or signature verification and generation. -->
 
 #### Attack
 
@@ -58,9 +58,9 @@ Assertion は検証済属性情報を含むこともある.
 
 #### Attribute
 
-人や物に関する生来の性質や特徴. (詳しくは [\[ICAM\]](#ICAM) を参照のこと)
+人や物に関する生来の性質や特徴.
 
-<!-- A claim of a named quality or characteristic inherent in or ascribed to someone or something. (See term in [\[ICAM\]](#ICAM) for more information.) -->
+<!-- A quality or characteristic ascribed to someone or something. -->
 
 #### Authentication
 
@@ -180,9 +180,9 @@ SP 800-63 では以前まで *Electronic Authentication* と呼ばれていた�
 #### Digital Signature
 
 秘密鍵を用いてデータに電子署名を行い, 公開鍵を用いて署名検証を行う, Asymmetric Key を用いたオペレーション.
-Digital Signature は Authenticity Protection (真正性), Integrity Protection (完全性), Non-Repudication (否認防止) を提供する.
+Digital Signature は Authenticity Protection (真正性), Integrity Protection (完全性), Non-Repudication (否認防止) を提供するが, Confidentiality Protection (機密性) は提供しない.
 
-<!-- An asymmetric key operation where the private key is used to digitally sign data and the public key is used to verify the signature. Digital signatures provide authenticity protection, integrity protection, and non-repudiation. -->
+<!-- An asymmetric key operation where the private key is used to digitally sign data and the public key is used to verify the signature. Digital signatures provide authenticity protection, integrity protection, and non-repudiation but not confidentiality protection. -->
 
 #### Electronic Authentication (E-Authentication)
 
@@ -281,7 +281,7 @@ Asymmetric Key ペアの秘密鍵.
 
 <!-- The secret part of an asymmetric key pair that is used to digitally sign or decrypt data. -->
 
-#### Pseudonymous Identifer
+#### Pseudonymous Identifier
 
 RP による Subscriber の推測を許さず, かつ RP が複数のインタラクションに渡って Subscriber の Claimed Identity を紐づけられるような, 意味のないユニークな識別子.
 

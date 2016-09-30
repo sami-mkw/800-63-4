@@ -30,9 +30,10 @@ Proxy 経由の Federation においては, Proxy された Transaction にお�
 例えば, FAL 1 は OpenID Connect Implicit Client Profile や SAML Web SSO Profile 等に相当する.
 FAL 2 は OpenID Connect Basic Client Profile, SAML Artifact Binding Profile 等に相当する.
 FAL 3 では, FAL 2 に加えて, OpenID Connect ID Token や SAML Assertion を当該 RP の公開鍵で暗号化することといった要件が加わる.
-FAL 4 では, FAL 3 に加えて, Assertion に紐付いた鍵 (FIDO Token 等) の提示が要求される.
+FAL 4 では, FAL 3 に加えて, Assertion に紐付いた鍵 (Cryptographic Authenticator 等) の提示が要求される.
+FAL 4 で提示される追加の鍵は, Subscriber が IdP に対して認証する際に利用するものと同じである必要はない.
 
-<!-- For example, FAL 1 maps to the OpenID Connect Implicit Client profile or the SAML Web SSO profile, with no additional features. FAL 2 maps to the OpenID Connect Basic Client profile or the SAML Artifact Binding profile, with no additional features. FAL 3 additionally requires that the OpenID Connect ID Token or SAML Assertion be encrypted to a public key representing the RP in question. FAL 4 requires the presentation of an additional key bound to the assertion (for example, a FIDO token) along with all requirements of FAL3. -->
+<!-- For example, FAL 1 maps to the OpenID Connect Implicit Client profile or the SAML Web SSO profile, with no additional features. FAL 2 maps to the OpenID Connect Basic Client profile or the SAML Artifact Binding profile, with no additional features. FAL 3 additionally requires that the OpenID Connect ID Token or SAML Assertion be encrypted to a public key representing the RP in question. FAL 4 requires the presentation of an additional key bound to the assertion (for example, the use of a cryptographic authenticator) along with all requirements of FAL3. Note that the additional key presented at FAL 4 need not be the same key used by the subscriber to authenticate to the IdP. -->
 
 どんなプロトコルであれど, Federation Protocol の一部として Assertion の性質に着目すれば, RP はそれがどの FAL レベルに相当するかを簡単に特定できる.
 したがって, 当該認証トランザクションで要求すべき FAL の決定や, 実際にそのトランザクションが当該 FAL に適合しているかの検証は, RP の責務である.
