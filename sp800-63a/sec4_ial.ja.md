@@ -2,13 +2,13 @@
 
 # <a name="ial-section"></a> 4. Identity Assurance Level Requirements
 
-本書で扱うパラダイムは, 個人 (この段階では申請者) が, 身元確認を行われて登録されるプロセスである. この段階において, 申請者の身元証明となる書類と属性情報が集められ, 一意に特定されるようなレコードとして登録され, 検証され, 有効になる. これらの属性情報は次に, [SP 800-63B](#800-63b) に記載されているオーセンティケータに紐づけられる.
+本書で扱うパラダイムは, 個人 (この段階では申請者) が, 身元確認を行われて登録されるプロセスである. この段階において, 申請者の身元証明となる書類と属性情報が集められ, 一意に特定されるようなレコードとして登録され, 検証され, 有効になる. これらの属性情報は次に, [SP 800-63B](#800-63b) に記載されている Authenticator に紐づけられる.
 
-<!-- The paradigm of this document is that individuals ,referred to as applicants at this stage, undergo an identity proofing and enrollment process, in which their identity evidence and attributes are collected, uniquely resolved to a single identity record, then validated and verified. These attributes are then bound to an authenticator ,described in [SP 800-63B]. -->
+<!-- The paradigm of this document is that individuals (referred to as applicants at this stage) undergo an identity proofing and enrollment process, in which their identity evidence and attributes are collected, uniquely resolved to a single identity record, then validated and verified. These attributes are then bound to an authenticator (described in [SP 800-63B](#800-63b)). -->
 
 身元確認が必要な唯一の理由は, 身元確認をを行うことで, 申請者が彼/彼女自身が主張する通りの人物であることを確実にするということである. これには身元確認を達成するのに必要となる最低限の属性情報についての, 証明情報の提示, 妥当性の確認, そして検証が含まれている. このような核となる属性情報はこれらを含む (最低限必要な場合はその他の情報も含む):
 
-<!-- The only outcome of identity proofing is to ensure that the applicant is who he/she claims to be. This includes presentation, validation and verification of the minimum attributes necessary to accomplish identity proofing.  Such core attributes, to the extent they are the minimum necessary, could include:   -->
+<!-- The only outcome of identity proofing is to ensure that the applicant is who he/she claims to be. This includes presentation, validation and verification of the minimum attributes necessary to accomplish identity proofing.  Such core attributes, to the extent they are the minimum necessary, could include:  -->
 
 1. フルネーム
 2. 生年月日
@@ -22,42 +22,58 @@
 
 本書に明記される要件に従い妥当性確認および検証が行われ, かつ, そのCSPがその属性情報を収集し保存することに対して, 個々に対して明示的な同意を得た場合については, 身元確認の段階で, 個別にその他の追加情報を集めることも可能である.
 
-<!-- It is possible that additional information could be collected in the process of identity proofing an individual, provided validation and verification follow the requirements contained herein, and the individual explicitly consents to the CSP collecting and storing the attributes.   -->
+<!-- It is possible that additional information could be collected in the process of identity proofing an individual, provided validation and verification follow the requirements contained herein, and the individual explicitly consents to the CSP collecting and storing the attributes. -->
 
 ## 4.1. Process Flow
 
-下図は「身元証明」と「登録」についての流れの概要を, 基本的な要件に対応するように記したものである.
+[Figure 4-1](#63aSec4-Figure1) は「身元証明」と「登録」についての流れの概要を, 基本的な要件に対応するように記したものである.
 
-<!-- The following diagram outlines the basic flow for Identity Proofing and Enrollment, to include the corresponding sections with normative requirements. -->
+<!-- [Figure 4-1](#63aSec4-Figure1) outlines the basic flow for Identity Proofing and Enrollment, to include the corresponding sections with normative requirements. -->
 
-<a name="figure1"></a>
+<a name="63aSec4-Figure1"></a>
 
 <div class="text-center" markdown="1">
 
 ![](sp800-63a/media/ProofingProcess.png)
 
-**Figure 1.  The Identity Proofing Process**
+**Figure 4-1.  The Identity Proofing Process**
 
 </div>
 
 ## 4.2. General Requirements
 
-下表は, M-04-04の保証レベル (LOA) を忠実に厳守した場合, 身元保証レベル (IAL) のどのレベルに対応するかを記している.
+[Table 4-1](#63aSec4-Table1) は, M-04-04 の保証レベル (LOA) を忠実に厳守した場合, 身元保証レベル (IAL) のどのレベルに対応するかを記している.
 
-<!-- The following table lists strict adherence to M-04-04 Level of Assurance, mapping the corresponding Identity Assurance Levels. -->
+<!-- [Table 4-1](#63aSec4-Table1) lists strict adherence to M-04-04 Level of Assurance, mapping the corresponding Identity Assurance Levels.  -->
 
-| Level of Assurance (LOA) | Identity Assurance Level (IAL)|
+<a name="63aSec4-Table1"></a>
+
+<div class="text-center" markdown="1">
+
+**Table 4-1.  Legacy M-04-04 IAL Requirements**
+
+</div>
+
+| M-04-04 Level of Assurance (LOA) | Identity Assurance Level (IAL)|
 |:------------------:|:-----------------------------:|
 | 1 | 1 |
 | 2 | 2 |
 | 3 | 2 |
 | 4 | 3 |
 
-下表は, M-04-04の保証レベル (LOA) を満たすことが許容されている身元保証レベル (IAL) の拡張セットを記している. 各機関は、M-04-04の保証レベル (LOA) に基づいて、対応するIALを選択する必要がある (SHALL). また, 各機関は, より強固な身元確認を行うことにおけるプライバシーリスクを考慮するべきであり (SHOULD), 事業目的を敏感に考慮して必要以上に高いIALを選択してはならない (SHOULD NOT).
+[Table 4-2](#63aSec4-Table2) は, M-04-04 の保証レベル (LOA) を満たすことが許容されている身元保証レベル (IAL) の拡張セットを記している. 各機関は, M-04-04の保証レベル (LOA) に基づいて, 対応するIALを選択する必要がある (SHALL). また, 各機関は, より強固な身元確認を行うことにおけるプライバシーリスクを考慮するべきであり (SHOULD), 事業目的を敏感に考慮して必要以上に高いIALを選択してはならない (SHOULD NOT).
 
-<!-- However, the table below shows the expanded set of IAL's that are allowable to meet M-04-04 Level of Assurance. Agencies SHALL select the corresponding IAL based on the assessed M-04-04 LOA. Agencies SHOULD consider the privacy risks of stronger identity proofing and SHOULD NOT select an IAL that is higher than necessary considering the sensitivity of the business purpose. -->
+<!-- However, [Table 4-2](#63aSec4-Table2) shows the expanded set of IAL's that are allowable to meet M-04-04 Level of Assurance. Agencies SHALL select the corresponding IAL based on the assessed M-04-04 LOA. Agencies SHOULD consider the privacy risks of stronger identity proofing and SHOULD NOT select an IAL that is higher than necessary considering the sensitivity of the business purpose. -->
 
-| Level of Assurance | Identity Assurance Level
+<a name="63aSec4-Table2"></a>
+
+<div class="text-center" markdown="1">
+
+**Table 4-2.  Recommended M-04-04 IAL Requirements**
+
+</div>
+
+| M-04-04 Level of Assurance | Identity Assurance Level
 |:------------------:|:-----------------------------:
 | 1 | 1
 | 2 | 1 or 2
@@ -65,54 +81,69 @@
 | 4 | 1, 2 or 3
 
 
-以下は, いかなるCSPにおいても, IAL2 もしくは 3の身元確認を行う場合に必要な要件である.
+以下は, いかなるCSPにおいても, IAL2 もしくは IAL3 の身元確認を行う場合に必要な要件である.
 
 <!-- The following requirements apply to any CSP performing identity proofing at IAL 2 or 3. -->
 
-1. 身元確認は, サービスや利益を享受するのに適切である/権利があるか否かの決定ために行うのは好ましくない (SHALL NOT).   
-2. CSPは, 他のいかなる属性情報をもってしても, ユーザを一意に特定することができない場合を除き, をSSN※を集めるべきではない (SHALL NOT). ※SSN (Social Security Number) とは, 米国で社会保障制度で使われる納税者番号のことで, 日本のマイナンバーのようなものである.   
-2. 個人を特定できる情報 (PII) の収集は, 申請者の主張する内容が実在して有効であることを確認するため, また, 最善策に基づいて, ユーザを適切に一意に特定し, 検証し, 有効性確認を行うために必要な最低限に限定されるべきである (SHALL).   
-3. 身元確認のために必要な属性情報を収集し, 記録・維持する目的について, CSPは, 申請者に対して情報を収集する際に明示的に通知を行わなければならない (SHALL). その属性情報が任意な情報の場合はもちろん, 身元確認を行うために必須な場合でも, また, その結果属性情報を提示しないという結果に至ったとしても, 通知を行う必要がある (SHALL).   
-5. CSPは, いかなる目的でも次にあげる目的以外に身元確認時に収集し保存した属性情報を利用する際は, ユーザの明示的な同意を得なければならない (SHALL NOT): 身元確認, 認証, 認可, 属性情報の証明, その他法律または法的手続きを遵守するもの.   
-6. CSPは, 申請者の公平を保つ補償や身元確認で発生する問題に対応するための効果的な手段を提供しなければならない (SHALL). これれの手段は, 申請者からアクセスしやすく見つけやすいところに配置しなければならない (SHALL).   
-7.身元確認ならびに登録のプロセスは, 適切に記述されたポリシー, あるいは, ID発行時の一般的な段階が仕様化された *practice statement* に従って行われるべきである (SHALL).     
-3. CSPは申請者へのID発行時に行った全ての手順の記録を維持しなければならない (SHALL). また, 身元確認時に提示された身分証の種類についても記録しておく必要がある (SHALL). CSPは次のことを決定するために, プライバシーのリスク評価を実施しなければならない (SHALL) :  
-a) 申請者のIDを発行するために, 本仕様に記載されている必須要件を超える手順を必要とするか否か. b)CSPが, PII (身分証の画像やスキャンデータ, その他のコピー情報を含む) を身元確認時に登録し維持する必要があるか否か. 注) 特定の国家要件が適用される場合もある. c) それらの記録の維持期間. 注) 特定の国立公文書記録管理局 (NARA) の記録はその維持期間が適用される.   
+1. 身元確認は, サービスや利益を享受するのに適切である/権利があるか否かの決定ために行うのは好ましくない (SHALL NOT).
+<!-- 1. Identity proofing SHALL NOT be performed to determine suitability/entitlement to gain access to services or benefits. -->
+
+2. CSP は, 他のいかなる属性情報をもってしても, ユーザを一意に特定することができない場合を除き, を SSN を集めるべきではない (SHALL NOT).
+<!-- 2. The CSP SHALL NOT collect the SSN unless it is necessary for performing identity resolution and cannot be accomplished by collection of another attribute or combination of attributes. -->
+
+2. 個人を特定できる情報 (PII) の収集は, 申請者の主張する内容が実在して有効であることを確認するため, また, 最善策に基づいて, ユーザを適切に一意に特定し, 検証し, 有効性確認を行うために必要な最低限に限定されるべきである (SHALL).
+<!-- 2. Collection of personally identifiable information (PII) SHALL be limited to the minimum necessary to validate the existence of the claimed identity and associate the claimed identity to the applicant providing identity evidence based on best available practices for appropriate identity resolution, validation, and verification. -->
+
+3. 身元確認のために必要な属性情報を収集し, 記録・維持する目的について, CSP は, 申請者に対して情報を収集する際に明示的に通知を行わなければならない (SHALL). その属性情報が任意な情報の場合はもちろん, 身元確認を行うために必須な場合でも, また, その結果属性情報を提示しないという結果に至ったとしても, 通知を行う必要がある (SHALL).
+<!-- 3. The CSP SHALL provide explicit notice at the time of collection to the applicant regarding the purpose for collecting and maintaining a record of the attributes necessary for identity proofing, including whether the such attributes are voluntary or mandatory in order to complete the identity proofing transactions and the consequences for not providing the attributes. -->
+
+5. CSP は, いかなる目的でも次にあげる目的以外に身元確認時に収集し保存した属性情報を利用する際は, ユーザの明示的な同意を得なければならない (SHALL NOT): 身元確認, 認証, 認可, 属性情報の証明, その他法律または法的手続きを遵守するもの.   
+<!-- 5.	 The CSP SHALL NOT use attributes collected and maintained in the identity proofing process for any purpose other than identity proofing, authentication, authorization or attribute assertions, or to comply with law or legal process unless the CSP provides clear notice and obtains consent from the subscriber for additional uses. -->
+
+6. CSP は, 申請者の公平を保つ補償や身元確認で発生する問題に対応するための効果的な手段を提供しなければならない (SHALL). これれの手段は, 申請者からアクセスしやすく見つけやすいところに配置しなければならない (SHALL).
+<!-- 6.	The CSP SHALL provide effective mechanisms for redress of applicant complaints or problems arising from the identity proofing. These mechanisms SHALL be easy for applicants to find and access. -->
+
+7. 身元確認ならびに登録のプロセスは, 適切に記述されたポリシー, あるいは, ID 発行時の一般的な段階が仕様化された *practice statement* に従って行われるべきである (SHALL).
+<!-- 7. The identity proofing and enrollment processes SHALL be performed according to an applicable written policy or *practice statement* that specifies the particular steps taken to verify identities. -->
+
+3. CSP は申請者への ID 発行時に行った全ての手順の記録を維持しなければならない (SHALL). また, 身元確認時に提示された身分証の種類についても記録しておく必要がある (SHALL). CSP は次のことを決定するために, プライバシーのリスク評価を実施しなければならない (SHALL):  
+<!-- 3. The CSP SHALL maintain a record of all steps taken to verify the identity of the applicant and SHALL record the types of identity evidence presented in the proofing process. The CSP SHALL conduct a privacy risk assessment to determine: -->
+
+    a) 申請者の ID を発行するために, 本仕様に記載されている必須要件を超える手順を必要とするか否か.
+    <!-- a) Any steps that it will take to verify the identity of the applicant beyond any mandatory requirements specified herein; -->
+
+    b) CSP が, PII (身分証の画像やスキャンデータ, その他のコピー情報を含む) を身元確認時に登録し維持する必要があるか否か. 注) 特定の国家要件が適用される場合もある.
+    <!-- b) the PII, including any images, scans, or other copies of the identity evidence that the CSP will maintain as a record of identity proofing. Note: Specific federal requirements may apply; and -->
+
+    c) それらの記録の維持期間. 注) 特定の国立公文書記録管理局 (NARA: Specific National Archives and Records Administration) の記録はその維持期間が適用される.
+    <!-- c) the schedule of retention for these records. Note: Specific National Archives and Records Administration (NARA) records retention schedules may apply. -->
 
 6. 登録プロセスにて収集された全ての個人を特定できる情報 (PII) は, 機密性, 完全性, 情報源の帰属を確実にするため, 保護されるべきである (SHALL).   
-13. 全ての身元確認のトランザクション (第三者とのトランザクションも含む) は, 認証済みで保護されたチャンネル上 (Authenticated Protected Channel) で行われるべきである (SHALL).   
-13. <a name="gr13"></a>CSPは, 本書に記載されている必須要件の代わりとして追対策を利用しない限り,
-詐称に対する対策を適用することで, CSPはリモートでの身元確認に対して追加の信頼情報を得ることができる (MAY). 例えば, geolocationの調査, 申請者のデバイス特性の調査, 行動特性の評価, あるいは[Death Master File](http://www.ntis.gov/products/ssa-dmf/#)などの重要な統計リポジトリをチェックするなど. そして, それらの対策はプライバシーリスク評価を実施されなければならない (SHALL).   
-12. CSPは, 身元確認および登録プロセス実施しなくなった場合には, CSPはPIIを含む機微データの完全な破棄, および, 保管期間中の認められていない不正アクセスからの保護について責任を負わなければならない (SHALL).   
-13. CSPが公的機関であるか民間機関であるかにかかわらず, 身元認証サービスとして提供され利用される機関は次に挙げる要件が適用される:  
- a) プライバシー保護法や個人情報保護法に基づいて, 身元確認を行うためにPIIの取得が必要であるか否かを決定するため, 公的高等機関に相談するべきである (SHALL).   
- b) その結果PIIの取得が必要である場合, 収集し保存する目的についてを公表するべきである (SHALL).   
- c) 2002年施行の電子政府法 (the E-Government Act of 2002) に基づいて, 身元確認を行うためにPIIの取得が必要であるか否かを決定するため, 公的高等機関に相談するべきである (SHALL).   
- d) その結果PIIの取得が必要である場合, プライバシーインパクトの評価結果を公表するべきである (SHALL).   
+<!-- 6. All personally identifiable information (PII) collected as part of the enrollment process SHALL be protected to ensure confidentiality, integrity, and attribution of the information source. -->
 
-<!--
- 1. Identity proofing SHALL NOT be performed to determine suitability/entitlement to gain access to services or benefits.
- 2. The CSP SHALL NOT collect the SSN unless it is necessary for performing identity resolution and cannot be accomplished by collection of another attribute or combination of attributes.
- 2. Collection of personally identifiable information (PII) SHALL be limited to the minimum necessary to validate the existence of the claimed identity and associate the claimed identity to the applicant providing identity evidence based on best available practices for appropriate identity resolution, validation, and verification.
- 3. The CSP SHALL provide explicit notice at the time of collection to the applicant regarding the purpose for collecting and maintaining a record of the attributes necessary for identity proofing, including whether the such attributes are voluntary or mandatory in order to complete the identity proofing transactions and the consequences for not providing the attributes.
- 5.	 The CSP SHALL NOT use attributes collected and maintained in the identity proofing process for any purpose other than identity proofing, authentication, authorization or attribute assertions, or to comply with law or legal process unless the CSP provides clear notice and obtains consent from the subscriber for additional uses.  
- 6.	The CSP SHALL provide effective mechanisms for redress of applicant complaints or problems arising from the identity proofing. These mechanisms SHALL be easy for applicants to find and access.
- 7. The identity proofing and enrollment processes SHALL be performed according to an applicable written policy or *practice statement* that specifies the particular steps taken to verify identities.
- 3. The CSP SHALL maintain a record of all steps taken to verify the identity of the applicant and SHALL record the types of identity evidence presented in the proofing process. The CSP SHALL conduct a privacy risk assessment to determine:
-a Any steps that it will take to verify the identity of the applicant beyond any mandatory requirements specified herein;
-b the PII, including any images, scans, or other copies of the identity evidence that the CSP will maintain as a record of identity proofing. Note: Specific federal requirements may apply; and
-c the schedule of retention for these records. Note: Specific National Archives and Records Administration ,NARA, records retention schedules may apply.
- 6. All personally identifiable information ,PII, collected as part of the enrollment process SHALL be protected to ensure confidentiality, integrity, and attribution of the information source.
- 13. The entire proofing transaction, including transactions that involve a third party, SHALL occur over an Authenticated Protected Channel.
- 13. <a name="gr13"></a>The CSP MAY obtain additional confidence in remote identity proofing using fraud mitigation measures, for example inspecting geolocation, examining the device characteristics of the applicant, evaluating behavioral characteristics, or checking vital statistic repositories such as the [Death Master File](http://www.ntis.gov/products/ssa-dmf/#), so long as any additional mitigations do not substitute for the mandatory requirements contained herein and the CSP SHALL conduct a privacy risk assessment of these mitigation measures. Such assessments SHOULD include any privacy risk mitigations (e.g., limited retention, use limitations, notice, etc.) or other technological mitigations (e.g.,cryptography).
- 12. In the event a CSP ceases to conduct identity proofing and enrollment processes, the CSP SHALL be responsible for fully disposing of or destroying any sensitive data including PII, or its protection from unauthorized access for the duration of retention.
- 13. Regardless of whether the CSP is an agency or private sector provider, the following requirements apply to the agency offering or using the proofing service:
+13. 全ての身元確認のトランザクション (第三者とのトランザクションも含む) は, 認証済みで保護されたチャンネル上 (Authenticated Protected Channel) で行われるべきである (SHALL).
+<!-- 13. The entire proofing transaction, including transactions that involve a third party, SHALL occur over an Authenticated Protected Channel. -->
 
-  a) The agency SHALL consult with their Senior Agency Official for Privacy to conduct an analysis to determine whether the collection of PII to conduct identity proofing triggers the requirements of the Privacy Act.
-  b) The agency SHALL publish a System of Records Notice to cover such collections, as applicable.
-  c) The agency SHALL consult with their Senior Agency Official for Privacy to conduct an analysis to determine whether the collection of PII to conduct identity proofing triggers the requirements of the E-Government Act of 2002.
-  d) The agency SHALL publish a Privacy Impact Assessment to cover such collections, as applicable.
--->
+13. <a name="gr13"></a>CSP は, 本書に記載されている必須要件の代わりとして追対策を利用しない限り, 詐称に対する対策を適用することで, CSP はリモートでの身元確認に対して追加の信頼情報を得ることができる (MAY). 例えば, geolocation の調査, 申請者のデバイス特性の調査, 行動特性の評価, あるいは [Death Master File](http://www.ntis.gov/products/ssa-dmf/#) などの重要な統計リポジトリをチェックするなど. そして, それらの対策はプライバシーリスク評価を実施されなければならない (SHALL).
+<!-- 13. <a name="gr13"></a>The CSP MAY obtain additional confidence in remote identity proofing using fraud mitigation measures, for example inspecting geolocation, examining the device characteristics of the applicant, evaluating behavioral characteristics, or checking vital statistic repositories such as the [Death Master File](http://www.ntis.gov/products/ssa-dmf/#), so long as any additional mitigations do not substitute for the mandatory requirements contained herein and the CSP SHALL conduct a privacy risk assessment of these mitigation measures. Such assessments SHOULD include any privacy risk mitigations (e.g., limited retention, use limitations, notice, etc.) or other technological mitigations (e.g.,cryptography). -->
+
+12. CSP は, 身元確認および登録プロセス実施しなくなった場合には, CSP は PII を含む機微データの完全な破棄, および, 保管期間中の認められていない不正アクセスからの保護について責任を負わなければならない (SHALL).
+<!-- 12. In the event a CSP ceases to conduct identity proofing and enrollment processes, the CSP SHALL be responsible for fully disposing of or destroying any sensitive data including PII, or its protection from unauthorized access for the duration of retention. -->
+
+13. CSP が公的機関であるか民間機関であるかにかかわらず, 身元認証サービスとして提供され利用される機関は次に挙げる要件が適用される:
+<!-- 13. Regardless of whether the CSP is an agency or private sector provider, the following requirements apply to the agency offering or using the proofing service: -->
+
+    a) プライバシー保護法や個人情報保護法に基づいて, 身元確認を行うためにPIIの取得が必要であるか否かを決定するため, 公的高等機関に相談するべきである (SHALL).
+    <!-- a) The agency SHALL consult with their Senior Agency Official for Privacy to conduct an analysis to determine whether the collection of PII to conduct identity proofing triggers the requirements of the Privacy Act. -->
+
+    b) その結果PIIの取得が必要である場合, 収集し保存する目的についてを公表するべきである (SHALL).
+    <!-- b) The agency SHALL publish a System of Records Notice to cover such collections, as applicable. -->
+
+    c) 2002年施行の電子政府法 (the E-Government Act of 2002) に基づいて, 身元確認を行うためにPIIの取得が必要であるか否かを決定するため, 公的高等機関に相談するべきである (SHALL).
+    <!-- c) The agency SHALL consult with their Senior Agency Official for Privacy to conduct an analysis to determine whether the collection of PII to conduct identity proofing triggers the requirements of the E-Government Act of 2002. -->
+
+    d) その結果PIIの取得が必要である場合, プライバシーインパクトの評価結果を公表するべきである (SHALL).
+    <!-- d) The agency SHALL publish a Privacy Impact Assessment to cover such collections, as applicable. -->
 
 ## 4.4. Identity Assurance Level 1
 
@@ -122,47 +153,50 @@ CSPは申請者の身元確認を行ってはならない (SHALL NOT). 申請者
 
 ## 4.5. Identity Assurance Level 2
 
-IAL2では, 対面での他リモートでの身元確認も許容されている. このレベルでは, より多くのユーザが対象となるように, 正常な申請者が身元確認を完遂できないといった偽陰性 (false negative) を減らすように, そして悪意のある申請者による不正な身分証の提示は可能な限り検出できるように, 広範囲の身分証ならびに検証方法に対応する. CSPはこれらの要件を満たしているべきである (MAY).
+IAL2 では, 対面での他リモートでの身元確認も許容されている. このレベルでは, より多くのユーザが対象となるように, 正常な申請者が身元確認を完遂できないといった偽陰性 (false negative) を減らすように, そして悪意のある申請者による不正な身分証の提示は可能な限り検出できるように, 幅広い身元確認方法に対応する. CSP はこれらの要件以上の要件を設定してもよい (MAY).
 
-<!-- IAL 2 allows for remote or in-person identity proofing.  IAL supports a wide range of acceptable identity evidence and validation techniques in order to increase user adoption, decrease false negatives (legitimate applicants that cannot successfully complete identity proofing), and detect to the best extent possible the presentation of fraudulent identities by a malicious applicant. A CSP MAY exceed these requirements. -->
+<!-- IAL 2 allows for remote or in-person identity proofing.  IAL supports a wide range of acceptable identity proofing techniques in order to increase user adoption, decrease false negatives (legitimate applicants that cannot successfully complete identity proofing), and detect to the best extent possible the presentation of fraudulent identities by a malicious applicant. A CSP MAY exceed these requirements. -->
 
-### 4.5.1. Resolution Requirements
+CSP は [Section 4.5.1](#normal) にしたがって身元確認を実装すべきである (SHOULD).
+CSP がサービスを提供する対象によっては, CSP は [Section 4.5.2](#antecedent) や [Section 4.5.3](#referee) にしたがった身元確認を実装しても良い (MAY).
 
-PIIの取得は, ユーザを一意に識別するために必要な最低限に限定されるべきである (SHALL). 一般的な要件は[Section 5.2](#resolve)を参照のこと.
+<!-- A CSP SHOULD implement identity proofing in accordance with [Section 4.5.1](#normal). Depending on the population the CSP serves, the CSP MAY implement identity proofing in accordance with [Section 4.5.2](#antecedent) or [Section 4.5.3](#referee). -->
+
+### <a name="normal"></a>4.5.1. IAL2 Conventional Proofing Requirements
+
+#### 4.5.1.1. Resolution Requirements
+
+PII の取得は, ユーザを一意に識別するために必要な最低限に限定されるべきである (SHALL). 一般的な要件は [Section 5.2](#resolve) を参照のこと.
 
 <!-- Collection of PII SHALL be limited to the minimum necessary to resolve to a unique identity record.  See [Section 5.2](#resolve) for general resolution requirements. -->
 
-### 4.5.2. Evidence Requirements
-
-利用可能な身分証について, 詳細の情報は[Section 5.3, Identity Evidence Validation](#validate)を参照のこと.
-
-- 上級 (SUPERIOR) 証明書あるいは強力な (STRONG) 証明書を1つ. **その証明証の発行元が身元確認を行う場合** , 申請者の自己申告が正しいか確認を行うため, 上級 (SUPERIOR) 証明書あるいは強力な (STRONG) 証明書を2つ以上必要とする **あるいは**  
-- 強力な (STRONG) 証明書を2つ **あるいは**  
-- 強力な (STRONG) 証明書1つに加えて, 適切な (ADEQUATE) 証明書2つ
-
-<!--
-See [Section 5.3, Identity Evidence Validation](#validate) for more information on acceptable identity evidence.
-
-- One (1) piece of SUPERIOR or STRONG evidence **if** the issuing source of the evidence, during its identity proofing event, confirmed the claimed identity by collecting two (2) or more forms of SUPERIOR or STRONG evidence; **OR**
-- Two (2) pieces of STRONG evidence; **OR**
-- One (1) piece of STRONG evidence plus two (2) pieces of ADEQUATE evidence.
--->
-
-### 4.5.3. Validation Requirements
+#### 4.5.1.2. Evidence Requirements
 
 利用可能な身分証について, 詳細の情報は [Section 5.3, Identity Evidence Validation](#validate) を参照のこと.
 
+<!-- See [Section 5.3, Identity Evidence Validation](#validate) for more information on acceptable identity evidence. -->
+
+- 上級 (SUPERIOR) 証明書あるいは強力な (STRONG) 証明書を1つ. **その証明証の発行元が身元確認を行う場合**, 申請者の自己申告が正しいか確認を行うため, 上級 (SUPERIOR) 証明書あるいは強力な (STRONG) 証明書を2つ以上必要とする **あるいは**
+<!-- - One (1) piece of SUPERIOR or STRONG evidence **if** the issuing source of the evidence, during its identity proofing event, confirmed the claimed identity by collecting two (2) or more forms of SUPERIOR or STRONG evidence; **OR** -->
+
+- 強力な (STRONG) 証明書を2つ **あるいは**
+<!-- - Two (2) pieces of STRONG evidence; **OR** -->
+
+- 強力な (STRONG) 証明書1つに加えて, 適切な (ADEQUATE) 証明書2つ
+<!-- - One (1) piece of STRONG evidence plus two (2) pieces of ADEQUATE evidence. -->
+
+#### 4.5.1.3. Validation Requirements
+
+利用可能な身分証について, 詳細の情報は [Section 5.3, Identity Evidence Validation](#validate) を参照のこと.
+<!-- See [Section 5.3, Identity Evidence Validation](#validate) for more information on acceptable identity evidence. -->
+
 - 各身分証の項目は, 提示されている身分証と同じ強度になるような手順で検証されなければならない. 例えば, 2つの強力な (STRONG) 身分証が提示された場合, それぞれ強力な (STRONG) 強度における検証がなされる.   
-- 第三者のデータサービスに対しての検証は, 提示された身分証のうちの片方のみが利用される (SHALL).   
+<!-- - Each piece of evidence must be validated with a process that is able to achieve the same strength as the evidence presented; For example, if two forms of STRONG identity evidence are presented, each evidence will be validated at a strength of STRONG. -->
 
-<!--
-See [Section 5.3, Identity Evidence Validation](#validate) for more information on acceptable identity evidence.
+- 第三者のデータサービスに対しての検証は, 提示された身分証のうちの片方のみが利用される (SHALL).
+<!-- - Validation against a third party data service SHALL only be used for one piece of presented identity evidence. -->
 
-- Each piece of evidence must be validated with a process that is able to achieve the same strength as the evidence presented; For example, if two forms of STRONG identity evidence are presented, each evidence will be validated at a strength of STRONG.
-- Validation against a third party data service SHALL only be used for one piece of presented identity evidence.
--->
-
-### 4.5.4. Verification Requirements
+#### 4.5.1.4. Verification Requirements
 
 利用可能な身分証について, 詳細の情報は [Section 5.4, Identity Verification](#verify) を参照のこと.
 
@@ -172,13 +206,15 @@ See [Section 5.3, Identity Evidence Validation](#validate) for more information 
 
 <!-- At a minimum, the applicant must be verified by a process that is able to achieve a strength of STRONG. -->
 
-### 4.5.5. Presence Requirements
+#### 4.5.1.5. Presence Requirements
 
 CSPは対面での身元確認を行うべきである (SHOULD) が, リモートで行ってもよい (MAY). 対面とリモートの両方での身元確認を勧めるすべきである (SHOULD).
 
 <!-- The CSP SHOULD perform identity proofing in-person. The CSP MAY perform remote identity proofing. The CSP SHOULD offer both in-person and remote proofing. -->
 
-### 4.5.6. Address Confirmation
+#### 4.5.1.6. Address Confirmation
+
+[TODO: これ以降最新版に追随]
 
 - CSPは登録コードを, 申請者の連絡先に送付する (SHALL).   
 - 申請者は身元確認プロセスを完遂するため, 有効な登録コードを提示する (SHALL).   
