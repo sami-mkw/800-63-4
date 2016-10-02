@@ -98,10 +98,10 @@
 <!-- 3. The CSP SHALL provide explicit notice at the time of collection to the applicant regarding the purpose for collecting and maintaining a record of the attributes necessary for identity proofing, including whether the such attributes are voluntary or mandatory in order to complete the identity proofing transactions and the consequences for not providing the attributes. -->
 
 5. CSP は, いかなる目的でも次にあげる目的以外に身元確認時に収集し保存した属性情報を利用する際は, ユーザの明示的な同意を得なければならない (SHALL NOT): 身元確認, 認証, 認可, 属性情報の証明, その他法律または法的手続きを遵守するもの.   
-<!-- 5.	 The CSP SHALL NOT use attributes collected and maintained in the identity proofing process for any purpose other than identity proofing, authentication, authorization or attribute assertions, or to comply with law or legal process unless the CSP provides clear notice and obtains consent from the subscriber for additional uses. -->
+<!-- 5.     The CSP SHALL NOT use attributes collected and maintained in the identity proofing process for any purpose other than identity proofing, authentication, authorization or attribute assertions, or to comply with law or legal process unless the CSP provides clear notice and obtains consent from the subscriber for additional uses. -->
 
 6. CSP は, 申請者の公平を保つ補償や身元確認で発生する問題に対応するための効果的な手段を提供しなければならない (SHALL). これれの手段は, 申請者からアクセスしやすく見つけやすいところに配置しなければならない (SHALL).
-<!-- 6.	The CSP SHALL provide effective mechanisms for redress of applicant complaints or problems arising from the identity proofing. These mechanisms SHALL be easy for applicants to find and access. -->
+<!-- 6.    The CSP SHALL provide effective mechanisms for redress of applicant complaints or problems arising from the identity proofing. These mechanisms SHALL be easy for applicants to find and access. -->
 
 7. 身元確認ならびに登録のプロセスは, 適切に記述されたポリシー, あるいは, ID 発行時の一般的な段階が仕様化された *practice statement* に従って行われるべきである (SHALL).
 <!-- 7. The identity proofing and enrollment processes SHALL be performed according to an applicable written policy or *practice statement* that specifies the particular steps taken to verify identities. -->
@@ -214,27 +214,43 @@ CSPは対面での身元確認を行うべきである (SHOULD) が, リモー�
 
 #### 4.5.1.6. Address Confirmation
 
-[TODO: これ以降最新版に追随]
-
-- CSPは登録コードを, 申請者の連絡先に送付する (SHALL).   
-- 申請者は身元確認プロセスを完遂するため, 有効な登録コードを提示する (SHALL).   
-- 申請者による自己申告である未確認の連絡先は, 確認のために使うべきではない (SHALL NOT).   
-- CSPは登録コードを携帯電話 (SMSや音声) や固定電話, e-mail, 移住している現住所(検証済みのもの)に送付しても良い (MAY).   
-- 登録コードが認証の要素として利用される場合, 初回利用時にリセットされる (SHALL).   
-- 物理的ではない方法で登録コードを送る場合, 有効期間は最大でも10分とする (SHALL). 郵送での送付の場合は, 最大7日とする (SHALL). ただし, 例外として, 米国の郵便サービスが直接配送できる範囲外への郵送により確認する場合, 21日まで有効期間を延ばしてもよい (MAY).   
-- 身元確認完了の通知は, 登録コードを送付した先と異なる連絡先に対して行うべきである (SHALL). 連絡先は検証済みの身分証から取得した住所を含んでもよい (MAY). 例えば, 携帯電話あてに登録コードを送付した場合, 完了通知は運転免許証などの有効な身分証から取得した住所に送付するなど.   
+- CSP は提示された何らかの正規の身分証に含まれる住所を検証することで, 住所レコードの確認を行うべきである (SHALL).
+- Self-asserted な住所データは住所確認のために用いるべきではない (SHALL NOT).
 
 <!--
-- A CSP SHALL send an enrollment code to an address of record of the applicant.
-- The applicant SHALL present a valid enrollment code to complete the identity proofing process.
+- The CSP SHALL confirm address of record through validation of the address contained on any supplied, valid piece of identity evidence.
 - Self-asserted address data that has not been confirmed in records SHALL NOT be used for confirmation.
-- The CSP MAY send the enrollment code to a mobile telephone (SMS or voice), landline telephone, email, or physical mailing address that has been verified in records
-- If the enrollment code is also intended to be an authentication factor, it SHALL be reset upon first use.
-- Enrollment codes sent by means other than physical mail SHALL be valid for a maximum of 10 minutes; those sent to a postal address of record SHALL be valid for a maximum of 7 days but MAY be made valid up to 21 days via an exception process to accommodate addresses outside the direct reach of the U.S. postal service.  
-- A notification of proofing SHALL be sent to different address of record than the destination of the enrollment code. The address of record MAY include the postal address obtained from validated identity evidence.  For example, if the CSP sends an enrollment code to a mobile phone of record, a notification of proofing will be sent to the postal address in records or obtained from validated evidence, like a drivers license.
 -->
 
-### 4.5.7. Biometric Collection
+- **CSP が対面での Proofing を行う場合**
+<!-- - **If CSP performed in-person proofing:**   -->
+
+    - CSP は確認された住所レコードに対して Proofing 通知を送付すること (SHALL).
+    <!-- - The CSP SHALL send a notification of proofing to the confirmed address of record. -->
+    - Authenticator への紐づけが後日起こりうる場合, CSP は Subscriber に登録コード (Enrollment Code) を直接提供しても良い (MAY).
+    <!-- - The CSP MAY provide an enrollment code directly to the subscriber if binding to an authenticator will occur at a later time. -->
+    - 登録コードの有効期限は最大7日間とする (SHALL).
+    <!-- - The enrollment code SHALL be valid for a maximum of 7 days -->
+
+- **CSP がリモートでの Proofing を行う場合**
+<!-- - **If the CSP performed remote proofing:**   -->
+
+    - CSP は登録コードを, 申請者の連絡先に送付すること (SHALL).
+    <!-- - A CSP SHALL send an enrollment code to an address of record of the applicant. -->
+    - 申請者は身元確認プロセスを完遂するため, 有効な登録コードを提示すること (SHALL).
+    <!-- - The applicant SHALL present a valid enrollment code to complete the identity proofing process.     -->
+    - CSP は登録コードを検証済みの住所に送るべきである (SHOULD). CSP は登録コードの送信に, 検証済みの携帯電話 (SMS / 音声), 固定電話, Email アドレスなどを利用しても良い (MAY).
+    <!-- - The CSP SHOULD send the enrollment code to the physical mailing address that has been verified in records.  The CSP MAY send the enrollment code to a mobile telephone (SMS or voice), landline telephone, or email that has been verified in records. -->
+    - 登録コードが認証の要素として利用される場合, 初回利用時にリセットすること (SHALL).
+    <!-- - If the enrollment code is also intended to be an authentication factor, it SHALL be reset upon first use. -->
+    - 物理的ではない方法で登録コードを送る場合, 有効期間は最大でも10分とする (SHALL). 郵送での送付の場合は, 最大7日とする (SHALL). ただし, 例外として, 米国の郵便サービスが直接配送できる範囲外への郵送により確認する場合, 21日まで有効期間を延ばしてもよい (MAY).
+    <!-- - Enrollment codes sent by means other than physical mail SHALL be valid for a maximum of 10 minutes; those sent to a postal address of record SHALL be valid for a maximum of 7 days but MAY be made valid up to 21 days via an exception process to accommodate addresses outside the direct reach of the U.S. postal service.   -->
+    - 登録コードが住所に郵送されない場合, CSP は登録コード送付先とは別の宛先に Proofing 通知を送ること (SHALL). 例えば登録コードを携帯電話に送付した場合, Proofing 通知は免許書の住所に送付するなどが考えられる.
+    <!-- - If delivery of the enrollment code was sent to an address of record that is not physical mail, the CSP SHALL send notification of proofing to a different address of record than the destination of the enrollment code. For example, if the CSP sends an enrollment code to a mobile phone of record, a notification of proofing will be sent to the postal address in records or obtained from validated and verified evidence, like a drivers license. -->
+
+#### 4.5.1.7. Biometric Collection
+
+[TODO: これ以降最新追随]
 
 CSPはいかなる理由においても, 生体情報を取得するべきではない (SHALL NOT).
 
