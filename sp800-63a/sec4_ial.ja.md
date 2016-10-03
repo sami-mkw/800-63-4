@@ -250,21 +250,41 @@ CSPは対面での身元確認を行うべきである (SHOULD) が, リモー�
 
 #### 4.5.1.7. Biometric Collection
 
-[TODO: これ以降最新追随]
+CSP は否認防止や Re-Proofing の目的で Biometrics 情報を収集してもよい (MAY).
+Biometrics 収集についての詳細は SP 800-63B [Section 5.2.3](#biometric_use) を参照のこと.
 
-CSPはいかなる理由においても, 生体情報を取得するべきではない (SHALL NOT).
+<!-- The CSP MAY collect biometrics for the purposes of non-repudiation and re-proofing. See [Section 5.2.3](#biometric_use) of SP 800-63B for more detail on biometric collection. -->
 
-<!-- The CSP SHALL NOT collect biometrics for any reason. -->
+#### 4.5.1.8. Security Controls
+
+CSP は [[SP 800-53]](#SP800-53) やそれと等価の業界標準が定める Security Control の "moderate" レベルをベースとして, 適切に自身のユースケースに適合した対策を行うべきである (SHOULD).
+また *moderate* 基準が求める最低限の Assurance 要件を満たすべきである (SHOULD).
+
+<!-- The CSP SHOULD employ appropriately tailored security controls from the moderate baseline of security controls defined in [[SP 800-53]](#SP800-53) or equivalent industry standard and SHOULD ensure that the minimum assurance requirements associated with the *moderate* baseline are satisfied. -->
+
+### <a name="antecedent"></a>4.5.2. IAL2 Antecedent Proofing Requirements
+
+[Section 4.5.1.](#normal) で定義するプロセスに相当する Proofing Transaction によって Proof されたものであれば, 既存 (Antecedent) の対面での身元確認結果を利用してもよい (MAY).
+詳細については [The Federal Bridge Certification Authority (FBCA) Certificate Policy (CP)](#fbcacp) の Section 3.2.3.1 Authentication of Human Subscribers for Medium Assurance _および_ [FBCA Supplementary Antecedent, In-Person Definition](#fbcasup) を参照のこと.
+
+<!-- Antecedent in-person identity proofing MAY be used provided the prior proofing transaction is determined to be comparable to the process defined in [Section 4.5.1.](#normal).  See also [The Federal Bridge Certification Authority (FBCA) Certificate Policy (CP)](#fbcacp), Section 3.2.3.1 Authentication of Human Subscribers for Medium Assurance _and_ [FBCA Supplementary Antecedent, In-Person Definition](#fbcasup) for more details. -->
+
+### <a name="referee"></a>4.5.3. IAL2 Trusted Referee Proofing Requirements
+
+[Section 4.5.1.](#normal) の要件を満たす身分証での登録ができない場合, 当該機関は Trusted Referee に身元確認の手助けを求めても良い (MAY).
+詳細は [Section 5.4.4.](#trustref) を参照のこと.
+
+<!-- In instances where the individual enrolling cannot meet the identity evidence requirements specified in [Section 4.5.1.](#normal), the agency MAY use a trusted referee to assist in identity proofing the enrollee.  See [Section 5.4.4.](#trustref) for more details. -->
 
 ## <a name="ial3-requirements"></a> 4.6. Identity Assurance Level 3
 
-IAL3では, IAL2で必須なものに加えて, より強度の高い身分証の提示を必要とするなど, さらに厳しい要件が課せられる. 偽装や詐欺, その他影響の大きい損害からRPを守るため, 生体認証の利用を含む特定の追加プロセスが必要となる. 加えて, IAL3における身元確認では対面での確認, あるいは仮想的な対面での確認が必須となる. 詳細は [Section 5.4.3](#vip) を参照のこと. CSPはこれらの要件を満たしているべきである (MAY).
+IAL3 では, IAL2 で必須なものに加えて, より強度の高い身分証の提示を必要とするなど, さらに厳しい要件が課せられる. 偽装や詐欺, その他影響の大きい損害からRPを守るため, 生体認証の利用を含む特定の追加プロセスが必要となる. 加えて, IAL3における身元確認では対面での確認, あるいは仮想的な対面での確認が必須となる. 詳細は [Section 5.4.3](#vip) を参照のこと. CSP はこれらの要件を満たしているべきである (MAY).
 
 <!-- IAL 3 adds additional rigor to the steps required at IAL 2, to include providing further evidence of superior strength, and is subjected to additional and specific processes, including the use of biometrics, to further protect the identity and RP from impersonation, fraud, or other significantly harmful damages.  In addition, identity proofing at IAL 3 is either performed in-person or via a valid virtual in-person proofing process. See [Section 5.4.3](#vip) for more details. A CSP MAY exceed these requirements. -->
 
 ### 4.6.1. Resolution Requirements
 
-PIIの取得は, ユーザを一意に識別するために必要な最低限に限定されるべきである (SHALL). 一般的な要件は [Section 5.2](#resolve) を参照のこと.
+PII の取得は, ユーザを一意に識別するために必要な最低限に限定されるべきである (SHALL). 一般的な要件は [Section 5.2](#resolve) を参照のこと.
 
 <!-- Collection of PII SHALL be limited to the minimum necessary to resolve to a unique identity record.  See [Section 5.2](#resolve) for general resolution requirements. -->
 
@@ -276,7 +296,7 @@ PIIの取得は, ユーザを一意に識別するために必要な最低限に
 
 - 上級 (SUPERIOR) 証明書2つ以上.  **あるいは**  
 - 上級 (SUPERIOR) 証明書1つと強力な (STROG) 証明書1つ. **その証明証の発行元が身元確認を行う場合**, 申請者の自己申告が正しいか確認を行うため, 上級 (SUPERIOR) 証明書あるいは強力な (STRONG) 証明書を2つ以上必要とする **あるいは**  
-- 強力な (STRONG) 証明書2つと, 適切な(ADEQUATE)証明書1つ.
+- 強力な (STRONG) 証明書2つと, 適切な (ADEQUATE) 証明書1つ.
 
 <!--
 - Two (2) or more pieces of SUPERIOR evidence; **OR**
@@ -324,7 +344,7 @@ PIIの取得は, ユーザを一意に識別するために必要な最低限に
 
 ### 4.6.6 Address Confirmation
 
-- CSPは身分証 (任意提示のもの含む) から取得した有効な連絡先に対して, 連絡先の確認を行うべきである (SHALL).
+- CSP は身分証 (任意提示のもの含む) から取得した有効な連絡先に対して, 連絡先の確認を行うべきである (SHALL).
 - 申請者による自己申告である連絡先は, 確認のために使うべきではない (SHALL NOT).   
 - 身元確認完了の通知は, 確認済みの連絡先に対して行うべきである (SHALL).
 
@@ -336,9 +356,17 @@ PIIの取得は, ユーザを一意に識別するために必要な最低限に
 
 ### 4.6.7. Biometric Collection
 
-CSPは身元確認時, 申請者が登録したことを否認しることを避けるため, 証明写真データや指紋など生体情報を取得する (SHALL). 生体情報の取得についての詳細は, SP 800-63Bの [Section 5.2.3](#biometric_use) を参照のこと.
+CSP は身元確認時, 申請者による登録の否認および Re-Proofing の防止のため, 顔写真や指紋などの生体情報を取得すべきである (SHALL).
+生体情報の取得についての詳細は, SP 800-63Bの [Section 5.2.3](#biometric_use) を参照のこと.
 
-<!-- The CSP SHALL collect and record a biometric sample at the time of proofing (e.g., facial image or fingerprints) to ensure that the applicant cannot repudiate application.  See [Section 5.2.3](#biometric_use) of SP 800-63B for more detail on biometric collection. -->
+<!-- The CSP SHALL collect and record a biometric sample at the time of proofing (e.g., facial image or fingerprints) the purposes of non-repudiation and re-proofing.  See [Section 5.2.3](#biometric_use) of SP 800-63B for more detail on biometric collection. -->
+
+### 4.6.8. Security  Controls
+
+CSP は [[SP 800-53]](#SP800-53) やそれと等価の業界標準が定める Security Control の "high" レベルをベースとして, 適切に自身のユースケースに適合した対策を行うべきである (SHOULD).
+また *high* 基準が求める最低限の Assurance 要件を満たすべきである (SHOULD).
+
+<!-- The CSP SHOULD employ appropriately tailored security controls from the high baseline of security controls defined in [[SP 800-53]](#SP800-53) or an equivalent industry standard and SHOULD ensure that the minimum assurance requirements associated with the *high* baseline are satisfied. -->
 
 ## 4.7. Enrollment Code
 
