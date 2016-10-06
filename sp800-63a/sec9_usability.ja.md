@@ -62,9 +62,21 @@ _This section is informative._
 
 #### 9.1.1. Pre-Enrollment Preparation
 
-Since a successful enrollment session is challenging and frustrating without sufficient user preparation, this section is devoted to describing the necessary approach to help ensure sufficient pre-enrollment preparation. Ensuring that users are sufficiently prepared for their enrollment sessions is critical to the overall success and usability of the enrollment and identity proofing process. Such preparation can only be realized if users receive the necessary information (i.e., proofing and enrollment requirements) in a usable format, provided at an appropriate time. Users must be fully informed regarding exactly what identity evidence they need to bring to an enrollment session, regardless of whether it is in-person, virtual in-person, or remote. Such information must be conveyed from the users’ perspectives, not from the implementers’ perspectives. For example, while organizations need to know in advance what type of IAL is required for access to a particular information system, users do not need to know anything about IALs or whether the identity evidence required is scored as ‘adequate’, ‘strong’, or ‘superior’; users simply need to know exactly what materials are required, and how and where to provide them.
+ユーザーの十分な準備なしに登録セッションを成功させるのはチェレンジングかつフラストレーションがたまるものであるため, 本セクションでは登録前に必要な準備に焦点を当てる.
+ユーザーが登録セッションに際して十分な準備を行うことは, 登録および身元確認プロセス全体の成功およびユーザビリティに大きく影響する.
+また十分な準備を行うには, 適切なフォーマットかつ適切なタイミングでユーザーに必要な情報 (登録および身元確認の要件等) を届ける必要もある.
+ユーザーは, 登録セッションが対面かバーチャルな対面 (virtually in-person) かリモートかにかかわらず, 登録時にどのような身分証が必要かを知っておく必要がある.
+その様な情報は, 実証者視点ではなくユーザー視点で提供すること.
+例えば, 組織は特定の情報システムにアクセスする際にどの IAL が求められるかを事前に知る必要がある一方で, ユーザーは必要とされている IAL や利用される身分証が "adequate", "strong", "superior" のいずれに分類されているかなどは知る必要がない.
+ユーザーが知るべきは, 実際に何が必要で, それをどこでどのように提供すべきかである.
 
-Provide users the information necessary to ensure they are fully prepared for their enrollment session. Such information allows users to make an informed decision regarding whether they wish to proceed with the enrollment process. Usability considerations associated with preparing users for their enrollment session include:   
+<!-- Since a successful enrollment session is challenging and frustrating without sufficient user preparation, this section is devoted to describing the necessary approach to help ensure sufficient pre-enrollment preparation. Ensuring that users are sufficiently prepared for their enrollment sessions is critical to the overall success and usability of the enrollment and identity proofing process. Such preparation can only be realized if users receive the necessary information (i.e., proofing and enrollment requirements) in a usable format, provided at an appropriate time. Users must be fully informed regarding exactly what identity evidence they need to bring to an enrollment session, regardless of whether it is in-person, virtual in-person, or remote. Such information must be conveyed from the users’ perspectives, not from the implementers’ perspectives. For example, while organizations need to know in advance what type of IAL is required for access to a particular information system, users do not need to know anything about IALs or whether the identity evidence required is scored as ‘adequate’, ‘strong’, or ‘superior’; users simply need to know exactly what materials are required, and how and where to provide them. -->
+
+ユーザーが登録セッションに際して十分な準備ができるよう, ユーザーに必要な情報を提供すること.
+その様な情報により, ユーザーは登録プロセスに進みたいかどうか, 詳細な情報を得た上での決断 (informed decision) を行える.
+ユーザーによる登録セッションへの準備に関するユーザビリティの考慮点としては, 以下の様なものが挙げられる.
+
+<!-- Provide users the information necessary to ensure they are fully prepared for their enrollment session. Such information allows users to make an informed decision regarding whether they wish to proceed with the enrollment process. Usability considerations associated with preparing users for their enrollment session include:    -->
 
 * Inform users of the entire enrollment process. Users need to know what to expect throughout the enrollment process, including what they will experience at each individual step of the process.   
     * It is especially important to clearly explain expected timeframes to users. Users need to understand how long the enrollment process will take, so they can plan accordingly.
@@ -166,6 +178,3 @@ Usability considerations for post-enrollment include:
 *   Along with the authenticator, users should be given information relevant to the use and maintenance of the authenticator. For example, instructions for use (especially if there are different requirements for first-time use or initialization), information on authenticator expiration, what to do if the authenticator is lost or stolen.
 *   Provisions for technical assistance.
     * Information on how and where to acquire technical assistance should be clearly communicated to users. For example, provide users information such as a link to online self-service feature, chat sessions, and a phone number for help desk support. Ideally, sufficient information should be provided to enable users to answer their own authenticator questions without outside intervention.
-
-
-
