@@ -54,15 +54,12 @@ Unless otherwise specified, the term "CSP" referenced below pertains to the CSP 
 ### 6.2.2. IAL 2 Requirements
 
 - IAL2に対する追加の要件はない．
-
 <!-- - No additional requirements for IAL 2. -->
 
 ### 6.2.3. IAL 3 Requirements
 
 1. [Section 6.1.3.](#dc-ial3) に挙げられている全ての要件に加えて,
-2. 申請者が登録したことを否認できないようにするため, 身元確認を行った時点での生体情報 (顔の画像データや指紋など) のサンプルを取得する (SHALL)．
+<!-- 1. All of the requirements of [Section 6.1.3.](#dc-ial3), in addition; -->
 
-<!--
-1. All of the requirements of [Section 6.1.3.](#dc-ial3), in addition;
-2. The CSP SHALL collect and record a biometric sample at the time of proofing (e.g., facial image or fingerprints) to ensure that the applicant cannot repudiate application.  See [Section 5.2.3](#biometric_use) of SP 800-63B for more detail on biometric collection.
--->
+2. 申請者が登録したことを否認できないようにするため, 身元確認を行った時点での生体情報 (顔の画像データや指紋など) のサンプルを取得する (SHALL).
+<!-- 2. The CSP SHALL collect and record a biometric sample at the time of proofing (e.g., facial image or fingerprints) to ensure that the applicant cannot repudiate application.  See [Section 5.2.3](#biometric_use) of SP 800-63B for more detail on biometric collection. -->
