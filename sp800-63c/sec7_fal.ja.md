@@ -20,6 +20,15 @@ Proxy 経由の Federation においては, Proxy された Transaction にお�
 
 <!-- This table presents different requirements depending on whether the assertion is presented through either the front channel or the back channel (via an assertion reference). Each successive level subsumes and fulfills all requirements of lower levels. Federations presented through a proxy SHALL be represented by the lowest level used during the proxied transaction. -->
 
+<a name="63cSec7-Table1"></a>
+
+<div class="text-center" markdown="1">
+
+
+**Tbale 7-1: Federation Assertion Levels**
+
+</div>
+
 |FAL|Back-channel Presentation Requirement|Front-channel Presentation Requirement|
 |:--:|----|----|
 |1|Bearer assertion, asymmetrically signed by IdP|Bearer assertion, asymmetrically signed by IdP|
@@ -40,9 +49,17 @@ FAL 4 で提示される追加の鍵は, Subscriber が IdP に対して認証�
 
 <!-- Regardless of what is requested or required by the protocol, the applicable FAL is easily detected by the RP by observing the nature of the assertion as it is presented as part of the federation protocol. Therefore, the RP is responsible for determining which FALs it is willing to accept for a given authentication transaction and ensuring that the transaction meets the requirements of that FAL. -->
 
-以下に M-04-04 Level of Assurance に厳格に準拠する場合に必要となる Federation Assurance Level のマッピングを示す.
+[Table 7-2](#63cSec7-Table2) に M-04-04 Level of Assurance に厳格に準拠する場合に必要となる Federation Assurance Level のマッピングを示す.
 
-<!-- The following table lists strict adherence to M-04-04 Level of Assurance, mapping the corresponding Federation Assurance Levels.  -->
+<!-- [Table 7-2](#63cSec7-Table2) lists strict adherence to M-04-04 Level of Assurance, mapping the corresponding Federation Assurance Levels. -->
+
+<a name="63cSec7-Table2"></a>
+
+<div class="text-center" markdown="1">
+
+**Table 7-2: Legacy M-04-04 FAL Requirements**
+
+</div>
 
 | M-04-04 Level of Assurance (LOA) |  Federation Assurance Level (FAL)
 |:------------------:|:-----------------------------:
@@ -51,10 +68,18 @@ FAL 4 で提示される追加の鍵は, Subscriber が IdP に対して認証�
 | 3 | 2
 | 4 | 4
 
-しかしながら M-04-04 Level of Assurance では以下のようなマッピングを採用することも可能である.
+しかしながら M-04-04 Level of Assurance では [Table 7-3](#63cSec7-Table3) のようなマッピングを採用することも可能である.
 各機関は算定した M-04-04 LOA に対応した適切な FAL を選択すべきである (SHALL).
 
-<!-- However, the table below shows the expanded set of FAL's that are allowable to meet M-04-04 Level of Assurance. Agencies SHALL select the corresponding FAL based on the assessed M-04-04 LOA. -->
+<!-- However, [Table 7-3](#63cSec7-Table3) shows the expanded set of FAL's that are allowable to meet M-04-04 Level of Assurance. Agencies SHALL select the corresponding FAL based on the assessed M-04-04 LOA. -->
+
+<a name="63cSec7-Table3"></a>
+
+<div class="text-center" markdown="1">
+
+**Table 7-3: Recommended M-04-04 FAL Requirements**
+
+</div>
 
 | M-04-04 Level of Assurance | Federation Assurance Level
 |:------------------:|:-----------------------------:

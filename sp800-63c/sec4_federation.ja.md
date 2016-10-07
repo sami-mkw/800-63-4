@@ -3,20 +3,25 @@
 ## 4. Federation
 
 Identity / Authentication Information を一連のネットワークシステム間でやりとりするためのプロセス.
-Federation シナリオでは, Verifier / CSP は Identity Provider や IdP と呼ばれる. また本ドキュメントでは Relying Party や RP は Federated Identity を受け取る主体である.
+Federation シナリオでは, Verifier / CSP は *Identity Provider* や IdP と呼ばれる. また本ドキュメントでは *Relying Party* や RP は Federated Identity を受け取る主体である.
 
 <!-- Federation is a process that allows for the conveyance of identity and authentication information across a set of networked systems. In a federation scenario, the verifier or CSP is known as the *identity provider*, or IdP. In this document, the *relying party*, or RP, is the party that receives the federated identity. -->
 
+<a name="63cSec4-Figure1"></a>
+
+<div class="text-center" markdown="1">
 ![Figure 1: Federation](sp800-63c/media/federation.png)
 
-**Figure 1: Federation**
+**Figure 4-1: Federation**
 
-Federation Protocol では, Subscriber, IdP, RP の3者間で三角形の関係がなりたつ.
+</div>
+
+Federation Protocol では, Subscriber, IdP, RP の3者間で三角形の関係がなりたつ (([Figure 4-1](#63cSec4-Figure1)).
 プロトコルによっては, 異なるタイミングで異なる情報が各辺を流れることもある.
 Subscriber は, 通常は Web Browser を通じて IdP, RP 双方とやり取りを行う.
 RP と IdP の間のやりとりは, (Subscriber が関与するリダイレクト経由で) Front Channel で行われることもあれば, Back-channel で (Direct Connection を通じて) 行われることもあり, (暗号論的に保護された Self-contained Assertion などのように) パッケージ化された情報を通じて行われることもある.
 
-<!-- In a federation protocol, a triangle is formed between the subscriber, the IdP, and the RP (Figure 1). Depending on the specifics of the protocol, different information passes across each leg of the triangle at different times. The subscriber communicates with both the IdP and the RP, usually through a web browser. The RP and the IdP communicate with each other, though this communication can happen over the front channel (through redirects involving the subscriber), over the back channel (through a direct connection), or via a packaged information bundle (such as a cryptographically protected and self-contained assertion). -->
+<!-- In a federation protocol, a triangle is formed between the subscriber, the IdP, and the RP ([Figure 4-1](#63cSec4-Figure1). Depending on the specifics of the protocol, different information passes across each leg of the triangle at different times. The subscriber communicates with both the IdP and the RP, usually through a web browser. The RP and the IdP communicate with each other, though this communication can happen over the front channel (through redirects involving the subscriber), over the back channel (through a direct connection), or via a packaged information bundle (such as a cryptographically protected and self-contained assertion). -->
 
 Subscriber は IdP に対して何らかの Primary Credential を使って自身を認証し, その Authentication Event はネットワーク経由で RP に対して Assert される.
 IdP はこのプロセスを通じて Subscriber に関する Attribute Statement を生成することも可能である.
@@ -139,9 +144,13 @@ Proxied Federation Model では, IdP と RP は, 2者間の直接的コミュニ
 
 <!-- Effectively, the parties still function in some degree as a federation IdP on one side and a federation RP on the other side. Notably, a federation proxy acts as an IdP to all federated RPs and as an RP to all federated IdPs. Therefore, all normative requirements that apply to IdPs and RPs SHALL apply to the parties of such a system in their respective roles. -->
 
-![Figure 2: Broker](sp800-63c/media/broker.png)
+<a name="63cSec4-Figure1"></a>
 
-**Figure 2: Broker**
+<div class="text-center" markdown="1">
+![Figure 2: Federation Proxy](sp800-63c/media/broker.png)
+
+**Figure 4-2: Federation Proxy**
+</div>
 
 Proxied Federation Model は多様な利点を持つ.
 例えば Federation Proxy は RP と IdP の間でインテグレーションが必要な箇所を削減することで技術的インテグレーションを単純化することもできる.

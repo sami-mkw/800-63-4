@@ -117,3 +117,17 @@ IdP に対して論理的に RP として動作し, RP に対して論理的に 
 "Broker" と呼ばれることもある.
 
 <!-- A component that acts as a logical RP to a set of IdPs and a logical IdP to a set of RPs, bridging the two systems with a single component. These are sometimes referred to as "brokers".  -->
+
+#### Asymmetric Signature
+
+Asymmetric Keys (Public Key と Private Key のペア) を利用して Digital Signature を付与することで Data Integrity を保護する方法.
+RSA 署名や Elliptic Curve 署名などが例としてあげられる.
+
+<!-- A means of protecting data integrity by use of a digital signature that utilizes asymmetric keys (a public and private key pair). Examples include RSA and Elliptic Curve signatures. -->
+
+#### Symmetric Signature
+
+Shared Key を利用して Hash や Digest を付与することで Data Integrity を保護する方法.
+HMAC や KMAC などが例としてあげられる.
+
+<!-- A means of protecting data integrity by use of a hash or digest mechanism that utilizes a shared key. Examples include HMAC and KMAC. -->

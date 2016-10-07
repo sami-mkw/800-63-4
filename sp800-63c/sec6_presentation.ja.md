@@ -29,11 +29,16 @@ Assertion の参照はそれ自身では Subscriber に関する情報は持た�
 RP がその参照を IdP に提示して初めて Assertion が取得できる.
 また RP が IdP に Assertion の参照を提示する際, 通常は RP の認証が行われる.
 
-<!-- In the *back-channel* model, the subscriber is given an assertion reference to present to the RP, generally through the front channel. The assertion reference itself contains no information about the subscriber and MUST be resistant to tampering and fabrication by an attacker. The RP presents the assertion reference to the IdP, usually along with authentication of the RP itself, to fetch the assertion.  -->
+<!-- In the *back-channel* model, the subscriber is given an assertion reference to present to the RP, generally through the front channel. The assertion reference itself contains no information about the subscriber and MUST be resistant to tampering and fabrication by an attacker. The RP presents the assertion reference to the IdP, usually along with authentication of the RP itself, to fetch the assertion. -->
 
+<a name="63cSec6-Figure1"></a>
+
+<div class="text-center" markdown="1">
 ![Figure 1: Back-channel presentation](sp800-63c/media/indirect.png)
 
-**Figure 1: Back-channel presentation**
+**Figure 6-1: Back-channel presentation**
+
+</div>
 
 このモデルでは, Assertion 自体は IdP から RP に直接渡されるため, (Subscriber 自身を含む) 3rd-party にインターセプトされたり改ざんされるリスクを最小化できる.
 
@@ -87,9 +92,15 @@ Subscriber は渡された Assertion を利用して RP に自身を認証する
 
 <!-- In the *front-channel* model, the IdP creates an assertion and sends it to the subscriber after successful authentication. The assertion is used by the subscriber to authenticate to the RP. This is often handled by mechanisms within the subscriber’s browser.) -->
 
+<a name="63cSec6-Figure2"></a>
+
+<div class="text-center" markdown="1">
 ![Figure 2: Front-channel presentation](sp800-63c/media/direct.png)
 
-**Figure 2: Front-channel presentation**
+
+**Figure 6-2: Front-channel presentation**
+
+</div>
 
 このモードでは, Assertion は Subscriber に閲覧可能である.
 これは Assertion に含まれるシステム情報などの漏洩につながる可能性もある.
