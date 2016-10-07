@@ -137,7 +137,7 @@ Subscriber が Authenticator および Credential の期限切れないし無効
 
 ### 4.2. Enrollment and Identity Proofing
 
-基準となる要件は [Special Publication 800-63A, Enrollment and Identity Proofing](sp800-63a.html) を参照のこと.
+基準となる要件は [Special Publication 800-63A, Enrollment and Identity Proofing](sp800-63a.ja.html) を参照のこと.
 
 <!-- Normative requirements can be found in [Special Publication 800-63A, Enrollment and Identity Proofing](sp800-63a.html). -->
 
@@ -227,7 +227,7 @@ Biometrics とともに利用する場合, Cryptographic Key の出力が Claima
 上述のように, Biometrics は単一の認証要素として用いる場合には Digital Authentication で利用可能な鍵とはみなされないが, 特定の使い方をすれば本仕様の枠組みのなかで利用することもできる.
 Biometrics は, Verification の時点で物理的にその場にいた人間の Identity 検証に用いることができる, ユニークに個人を特定する属性である.
 顔認証, 指紋認証, 虹彩認証, 声紋認証などが Biometrics に含まれる.
-[Special Publication 800-63A, Enrollment and Identity Proofing](sp800-63a.html) では, 登録プロセスにおける Biometrics の利用を推奨している.
+[Special Publication 800-63A, Enrollment and Identity Proofing](sp800-63a.ja.html) では, 登録プロセスにおける Biometrics の利用を推奨している.
 登録時に Biometrics を利用することで, Subscriber による登録の否認を防止する一助となったり, 登録において詐欺行為を行った人物を特定したりすることもできるし, Authenticator を Unlock することもできる.
 これらにより各 Assurance Level を向上することもできる.
 
@@ -371,7 +371,7 @@ RP は, IAL, AAL, FAL に関係なく, Verifier が提示した Assertion が RP
 | 4 | 3 | 3 |4
 
 一方で, [Table 4-2](#63ES-Table2) は各機関のニーズに合わせて IAL, AAL, FAL のコンビネーションを決定することが許容された, M-04-04 Level of Assurance の新たな要件を示す.
-詳細は [SP 800-63A](sp800-63a.html), [SP 800-63B](sp800-63b.html), [SP 800-63C](sp800-63c.html) を参照のこと.
+詳細は [SP 800-63A](sp800-63a.ja.html), [SP 800-63B](sp800-63b.ja.html), [SP 800-63C](sp800-63c.ja.html) を参照のこと.
 
 <!-- However, [Table 4-2](#63ES-Table2) shows the new requirements that are allowable for M-04-04 Level of Assurance, by combining IAL, AAL, and FAL based on agency need. Further details and normative requirements are provided in are provided in [SP 800-63A](sp800-63a.html), [SP 800-63B](sp800-63b.html), and [SP 800-63C](sp800-63c.html) respectively. -->
 
@@ -424,7 +424,7 @@ HSPD-12 および Personal Identity Verification (PIV) Smart Card が必要な�
 例えば, Federated トランザクションにおいて, 当該アプリケーションが IAL2 を要件とする場合であっても, 政府機関は IAL3 Identity を受け入れることもできる.
 これは Authenticator についても同様であり, RP は必要とされるレベルより高いレベルの Authenticator を利用することもできる.
 しかしながら RP は, 上記のようなシナリオが CSP が適切にプライバシーを保護している Federated シナリオにおいてのみ発生し, RP が要求した属性のみが提供され, Authenticator や Assertion からパーソナルインフォメーションが漏洩しないことを保証すること.
-詳細は [privacy requirements](./sp800-63c.html#sec9) を参照のこと.
+詳細は [privacy requirements](./sp800-63c.ja.html#sec9) を参照のこと.
 
 <!-- >Important Note: An agency can accept a higher assurance level than those required in the table above.  For example, in a federated transaction, an agency can accept an IAL3 identity if their application is assessed at IAL2.  The same holds true for authenticators; stronger authenticators can be used at RP's that have lower authenticator requirements.  However, RPs will ensure that these scenarios only occur in federated scenarios with appropriate privacy protections by the CSP to ensure that only the requested attributes are provided to the RP and that no personal information leaks from the authenticator or the assertion.  See [privacy requirements](./sp800-63c.html#sec9) in SP 800-63C for more details. -->
 
