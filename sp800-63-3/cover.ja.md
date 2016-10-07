@@ -233,7 +233,7 @@ third component, *Federation Assurance Level (FAL)*, is required. -->
 - SP 800-63-3 *Digital Authentication Guideline* - 一般的な Authentication に関する問題に対するガイドライン, および情報システムにおいて Authenticator, Credential, Assertion を利用する際のガイドラインを提供する.
 <!-- - SP 800-63-3 *Digital Authentication Guideline* - Provides guidelines on general authentication issues and for using authenticators, credentials, and assertions together in an information system. -->
 
-- SP 800-63A *Enrollment and Identity Proofing* - Cretential および当該 Credential に紐付けられた Authenticator(s) を特定の個人と紐付けるプロセスを扱う. このプロセスは, Identity Proofing プロセスを経て個人を Identity System に登録する際に利用される.
+- SP 800-63A *Enrollment and Identity Proofing* - Credential および当該 Credential に紐付けられた Authenticator(s) を特定の個人と紐付けるプロセスを扱う. このプロセスは, Identity Proofing プロセスを経て個人を Identity System に登録する際に利用される.
 <!-- - SP 800-63A *Enrollment and Identity Proofing* - Deals with the processes by which a credential, and authenticator(s) associated with that credential, can be bound to a specific individual. This typically happens when that individual is enrolled in an identity system, through the identity proofing process. -->
 
 - SP 800-63B *Authentication and Lifecycle Management* - Remote Subscriber を特定の Authenticator Assurance Level で認証する際の, (以前は *token* と呼ばれていた) Authenticator の選択, 利用, 管理についてのガイドラインを提供する.
