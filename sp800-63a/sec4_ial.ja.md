@@ -112,8 +112,8 @@
     a) 申請者の ID を発行するために, 本仕様に記載されている必須要件を超える手順を必要とするか否か.
     <!-- a) Any steps that it will take to verify the identity of the applicant beyond any mandatory requirements specified herein; -->
 
-    b) CSP が, PII (身分証の画像やスキャンデータ, その他のコピー情報を含む) を身元確認時に登録し維持する必要があるか否か. 注) 特定の国家要件が適用される場合もある.
-    <!-- b) the PII, including any images, scans, or other copies of the identity evidence that the CSP will maintain as a record of identity proofing. Note: Specific federal requirements may apply; and -->
+    b) CSP が, PII (生体認証や身分証の画像やスキャンデータ, その他のコピー情報を含む) を身元確認時に登録し維持する必要があるか否か. 注) 特定の国家要件が適用される場合もある.
+    <!-- b) the PII, including any biometrics, images, scans, or other copies of the identity evidence that the CSP will maintain as a record of identity proofing. Note: Specific federal requirements may apply; and -->
 
     c) それらの記録の維持期間. 注) 特定の国立公文書記録管理局 (NARA: Specific National Archives and Records Administration) の記録はその維持期間が適用される.
     <!-- c) the schedule of retention for these records. Note: Specific National Archives and Records Administration (NARA) records retention schedules may apply. -->
@@ -124,8 +124,8 @@
 13. 全ての身元確認のトランザクション (第三者とのトランザクションも含む) は, 認証済みで保護されたチャンネル上 (Authenticated Protected Channel) で行われるべきである (SHALL).
 <!-- 13. The entire proofing transaction, including transactions that involve a third party, SHALL occur over an Authenticated Protected Channel. -->
 
-13. <a name="gr13"></a>CSP は, 本書に記載されている必須要件の代わりとして追対策を利用しない限り, 詐称に対する対策を適用することで, CSP はリモートでの身元確認に対して追加の信頼情報を得ることができる (MAY). 例えば, geolocation の調査, 申請者のデバイス特性の調査, 行動特性の評価, あるいは [Death Master File](http://www.ntis.gov/products/ssa-dmf/#) などの重要な統計リポジトリをチェックするなど. そして, それらの対策はプライバシーリスク評価を実施されなければならない (SHALL).
-<!-- 13. <a name="gr13"></a>The CSP MAY obtain additional confidence in remote identity proofing using fraud mitigation measures, for example inspecting geolocation, examining the device characteristics of the applicant, evaluating behavioral characteristics, or checking vital statistic repositories such as the [Death Master File](http://www.ntis.gov/products/ssa-dmf/#), so long as any additional mitigations do not substitute for the mandatory requirements contained herein and the CSP SHALL conduct a privacy risk assessment of these mitigation measures. Such assessments SHOULD include any privacy risk mitigations (e.g., limited retention, use limitations, notice, etc.) or other technological mitigations (e.g.,cryptography). -->
+13. <a name="gr13"></a>CSP は, 本書に記載されている必須要件の代わりとして追対策を利用しない限り, 詐称に対する対策を適用することで, CSP はリモートでの身元確認に対して追加の信頼情報を得るべきである (SHOULD). 例えば, geolocation の調査, 申請者のデバイス特性の調査, 行動特性の評価, あるいは [Death Master File](http://www.ntis.gov/products/ssa-dmf/#) などの重要な統計リポジトリをチェックするなど. そして, それらの対策はプライバシーリスク評価を実施されなければならない (SHALL).
+<!-- 13. <a name="gr13"></a>The CSP SHOULD obtain additional confidence in remote identity proofing using fraud mitigation measures, for example inspecting geolocation, examining the device characteristics of the applicant, evaluating behavioral characteristics, or checking vital statistic repositories such as the [Death Master File](http://www.ntis.gov/products/ssa-dmf/#), so long as any additional mitigations do not substitute for the mandatory requirements contained herein and the CSP SHALL conduct a privacy risk assessment of these mitigation measures. Such assessments SHOULD include any privacy risk mitigations (e.g., limited retention, use limitations, notice, etc.) or other technological mitigations (e.g.,cryptography). -->
 
 12. CSP は, 身元確認および登録プロセス実施しなくなった場合には, CSP は PII を含む機微データの完全な破棄, および, 保管期間中の認められていない不正アクセスからの保護について責任を負わなければならない (SHALL).
 <!-- 12. In the event a CSP ceases to conduct identity proofing and enrollment processes, the CSP SHALL be responsible for fully disposing of or destroying any sensitive data including PII, or its protection from unauthorized access for the duration of retention. -->
@@ -166,15 +166,15 @@ CSP がサービスを提供する対象によっては, CSP は [Section 4.5.2]
 
 #### 4.5.1.1. Resolution Requirements
 
-PII の取得は, ユーザを一意に識別するために必要な最低限に限定されるべきである (SHALL). 一般的な要件は [Section 5.2](#resolve) を参照のこと.
+PII の取得は, ユーザを一意に識別するために必要な最低限に限定されるべきである (SHALL). 一般的な要件は [Section 5.1](#resolve) を参照のこと.
 
-<!-- Collection of PII SHALL be limited to the minimum necessary to resolve to a unique identity record.  See [Section 5.2](#resolve) for general resolution requirements. -->
+<!-- Collection of PII SHALL be limited to the minimum necessary to resolve to a unique identity record.  See [Section 5.1](#resolve) for general resolution requirements. -->
 
 #### 4.5.1.2. Evidence Requirements
 
-利用可能な身分証について, 詳細の情報は [Section 5.3, Identity Evidence Validation](#validate) を参照のこと.
+利用可能な身分証について, 詳細の情報は [Section 5.2, Identity Evidence Validation](#validate) を参照のこと.
 
-<!-- See [Section 5.3, Identity Evidence Validation](#validate) for more information on acceptable identity evidence. -->
+<!-- See [Section 5.2, Identity Evidence Validation](#validate) for more information on acceptable identity evidence. -->
 
 - 上級 (SUPERIOR) 証明書あるいは強力な (STRONG) 証明書を1つ. **その証明証の発行元が身元確認を行う場合**, 申請者の自己申告が正しいか確認を行うため, 上級 (SUPERIOR) 証明書あるいは強力な (STRONG) 証明書を2つ以上必要とする **あるいは**
 <!-- - One (1) piece of SUPERIOR or STRONG evidence **if** the issuing source of the evidence, during its identity proofing event, confirmed the claimed identity by collecting two (2) or more forms of SUPERIOR or STRONG evidence; **OR** -->
@@ -187,8 +187,8 @@ PII の取得は, ユーザを一意に識別するために必要な最低限�
 
 #### 4.5.1.3. Validation Requirements
 
-利用可能な身分証について, 詳細の情報は [Section 5.3, Identity Evidence Validation](#validate) を参照のこと.
-<!-- See [Section 5.3, Identity Evidence Validation](#validate) for more information on acceptable identity evidence. -->
+利用可能な身分証について, 詳細の情報は [Section 5.2, Identity Evidence Validation](#validate) を参照のこと.
+<!-- See [Section 5.2, Identity Evidence Validation](#validate) for more information on acceptable identity evidence. -->
 
 - 各身分証の項目は, 提示されている身分証と同じ強度になるような手順で検証されなければならない. 例えば, 2つの強力な (STRONG) 身分証が提示された場合, それぞれ強力な (STRONG) 強度における検証がなされる.   
 <!-- - Each piece of evidence must be validated with a process that is able to achieve the same strength as the evidence presented; For example, if two forms of STRONG identity evidence are presented, each evidence will be validated at a strength of STRONG. -->
@@ -198,9 +198,9 @@ PII の取得は, ユーザを一意に識別するために必要な最低限�
 
 #### 4.5.1.4. Verification Requirements
 
-利用可能な身分証について, 詳細の情報は [Section 5.4, Identity Verification](#verify) を参照のこと.
+利用可能な身分証について, 詳細の情報は [Section 5.3, Identity Verification](#verify) を参照のこと.
 
-<!-- See [Section 5.4, Identity Verification](#verify) for more information on acceptable identity evidence. -->
+<!-- See [Section 5.3, Identity Verification](#verify) for more information on acceptable identity evidence. -->
 
 最低限, 強力な (STRONG) 強度を達成するプロセスにて申請者は証明されなければならない.
 
@@ -272,27 +272,27 @@ CSP は [[SP 800-53]](#SP800-53) やそれと等価の業界標準が定める S
 ### <a name="referee"></a>4.5.3. IAL2 Trusted Referee Proofing Requirements
 
 [Section 4.5.1.](#normal) の要件を満たす身分証での登録ができない場合, 当該機関は Trusted Referee に身元確認の手助けを求めても良い (MAY).
-詳細は [Section 5.4.4.](#trustref) を参照のこと.
+詳細は [Section 5.3.4.](#trustref) を参照のこと.
 
-<!-- In instances where the individual enrolling cannot meet the identity evidence requirements specified in [Section 4.5.1.](#normal), the agency MAY use a trusted referee to assist in identity proofing the enrollee.  See [Section 5.4.4.](#trustref) for more details. -->
+<!-- In instances where the individual enrolling cannot meet the identity evidence requirements specified in [Section 4.5.1.](#normal), the agency MAY use a trusted referee to assist in identity proofing the enrollee.  See [Section 5.3.4.](#trustref) for more details. -->
 
 ## <a name="ial3-requirements"></a> 4.6. Identity Assurance Level 3
 
-IAL3 では, IAL2 で必須なものに加えて, より強度の高い身分証の提示を必要とするなど, さらに厳しい要件が課せられる. 偽装や詐欺, その他影響の大きい損害からRPを守るため, 生体認証の利用を含む特定の追加プロセスが必要となる. 加えて, IAL3における身元確認では対面での確認, あるいは仮想的な対面での確認が必須となる. 詳細は [Section 5.4.3](#vip) を参照のこと. CSP はこれらの要件を満たしているべきである (MAY).
+IAL3 では, IAL2 で必須なものに加えて, より強度の高い身分証の提示を必要とするなど, さらに厳しい要件が課せられる. 偽装や詐欺, その他影響の大きい損害からRPを守るため, 生体認証の利用を含む特定の追加プロセスが必要となる. 加えて, IAL3における身元確認では対面での確認が必須となる. 詳細は [Section 5.3.3](#vip) を参照のこと. CSP はこれらの要件を満たしているべきである (MAY).
 
-<!-- IAL 3 adds additional rigor to the steps required at IAL 2, to include providing further evidence of superior strength, and is subjected to additional and specific processes, including the use of biometrics, to further protect the identity and RP from impersonation, fraud, or other significantly harmful damages.  In addition, identity proofing at IAL 3 is either performed in-person or via a valid virtual in-person proofing process. See [Section 5.4.3](#vip) for more details. A CSP MAY exceed these requirements. -->
+<!-- IAL 3 adds additional rigor to the steps required at IAL 2, to include providing further evidence of superior strength, and is subjected to additional and specific processes, including the use of biometrics, to further protect the identity and RP from impersonation, fraud, or other significantly harmful damages.  In addition, identity proofing at IAL 3 is performed in-person. See [Section 5.3.3](#vip) for more details. A CSP MAY exceed these requirements. -->
 
 ### 4.6.1. Resolution Requirements
 
-PII の取得は, ユーザを一意に識別するために必要な最低限に限定されるべきである (SHALL). 一般的な要件は [Section 5.2](#resolve) を参照のこと.
+PII の取得は, ユーザを一意に識別するために必要な最低限に限定されるべきである (SHALL). 一般的な要件は [Section 5.1](#resolve) を参照のこと.
 
-<!-- Collection of PII SHALL be limited to the minimum necessary to resolve to a unique identity record.  See [Section 5.2](#resolve) for general resolution requirements. -->
+<!-- Collection of PII SHALL be limited to the minimum necessary to resolve to a unique identity record.  See [Section 5.1](#resolve) for general resolution requirements. -->
 
 ### 4.6.2. Evidence Requirements
 
-利用可能な身分証について, 詳細の情報は [Section 5.3, Identity Evidence Validation](#validate) を参照のこと.   
+利用可能な身分証について, 詳細の情報は [Section 5.2, Identity Evidence Validation](#validate) を参照のこと.   
 
-<!-- See [Section 5.3, Identity Evidence Validation](#validate) for more information on acceptable identity evidence. -->
+<!-- See [Section 5.2, Identity Evidence Validation](#validate) for more information on acceptable identity evidence. -->
 
 - 上級 (SUPERIOR) 証明書2つ以上.  **あるいは**  
 - 上級 (SUPERIOR) 証明書1つと強力な (STROG) 証明書1つ. **その証明証の発行元が身元確認を行う場合**, 申請者の自己申告が正しいか確認を行うため, 上級 (SUPERIOR) 証明書あるいは強力な (STRONG) 証明書を2つ以上必要とする **あるいは**  
@@ -306,9 +306,9 @@ PII の取得は, ユーザを一意に識別するために必要な最低限�
 
 ### 4.6.3. Validation Requirements  
 
-利用可能な身分証について, 詳細の情報は [Section 5.3, Identity Evidence Validation](#validate) を参照のこと.
+利用可能な身分証について, 詳細の情報は [Section 5.2, Identity Evidence Validation](#validate) を参照のこと.
 
-<!-- See [Section 5.3, Identity Evidence Validation](#validate) for more information on acceptable identity evidence. -->
+<!-- See [Section 5.2, Identity Evidence Validation](#validate) for more information on acceptable identity evidence. -->
 
 - 各身分証の項目は, 提示されている身分証と同じ強度になるような手順で検証されなければならない. 例えば, 2つの強力な (STRONG) 身分証が提示された場合, それぞれ強力な (STRONG) 強度における検証がなされる.   
 - 第三者のデータサービスに対しての検証は, 提示された身分証のうちの片方のみが利用される (SHALL).   
@@ -320,9 +320,9 @@ PII の取得は, ユーザを一意に識別するために必要な最低限�
 
 ### 4.6.4. Verification Requirements
 
-利用可能な身分証について, 詳細の情報は [Section 5.4, Identity Verification](#verify) を参照のこと.
+利用可能な身分証について, 詳細の情報は [Section 5.3, Identity Verification](#verify) を参照のこと.
 
-<!-- See [Section 5.4, Identity Verification](#verify) for more information on acceptable identity evidence. -->
+<!-- See [Section 5.3, Identity Verification](#verify) for more information on acceptable identity evidence. -->
 
 最低限, 上級 (SUPERIOR) 強度を達成するプロセスにて申請者は証明されなければならない.
 
@@ -330,13 +330,10 @@ PII の取得は, ユーザを一意に識別するために必要な最低限�
 
 ### 4.6.5. Presence Requirements
 
-全ての身元確認は対面で行われるべきである (SHOULD).
+全ての身元確認は対面で行うこと (SHALL).
+詳細は [Section 5.3.3](#vip) を参照.
 
-<!-- All identity proofing steps SHOULD be performed in person. -->
-
-[Section 5.4.3](#vip) で示される対面での身元確認の全ての要件と同等な要件を満たせる場合に限り, 仮想的な対面での身元確認を行ってもよい (MAY).
-
-<!-- Virtual in-person identity proofing MAY be employed by a CSP as an equivalent process to in-person identity proofing provided all requirements specified in [Section 5.4.3](#vip) are met. -->
+<!-- All identity proofing steps SHALL be performed in person. See [Section 5.3.3](#vip) for more details. -->
 
 リモートでの身元確認は許容されていない (SHALL NOT).
 
@@ -393,7 +390,7 @@ The following table summarizes the requirements for each of the authenticator as
 
 Requirement | IAL 1 | IAL 2 | IAL 3
 ------------|-------|-------|-------
-Presence|No requirements|In-person and remote|In-person or virtual in-person
+Presence|No requirements|In-person and remote|In-person
 Resolution|No requirements|The minimum attributes necessary to accomplish identity resolution. KBV may be used for added confidence.||
 Evidence|Identity evidence is not required|Two (2) pieces of STRONG evidence<br>**OR**<br>One (1) piece of STRONG evidence plus two (2) pieces of ADEQUATE evidence|One (1) piece of SUPERIOR evidence plus one (1) piece of STRONG evidence<br>**OR**<br>Two (2) pieces of STRONG evidence plus one (1) piece of ADEQUATE evidence
 Validation|No validation of evidence is required|- Each piece of evidence must be validated with a process that is able to achieve the same strength as the evidence presented; For example, if two forms of STRONG identity evidence are presented, each evidence will be validated at a strength of STRONG.<br><br>- Validation against a third party data service SHALL only be used for one piece of presented identity evidence.|Same as IAL 2.
