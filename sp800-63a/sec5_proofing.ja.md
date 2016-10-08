@@ -118,6 +118,15 @@ CSPが情報を収集際には, 下記のことが決定できる証明書が提
 </div>
 
 
+|強度|方法|
+|:---:|:------------------------------|
+|受入不可(UNACCEPTABLE)|検証が失敗するもの．|
+|弱い(WEAK)|身分証から取得できるすべての個人情報は，信頼できる発行元が発行したあるいは保持している情報と比較して有効であることが確認できるもの．|
+|適切(ADEQUATE)|- 身分証から取得できるすべての個人情報は，信頼できる発行元が発行したあるいは保持している情報と比較して有効であることが確認できるもの．<br>**あるいは**<br> - 物理的なセキュリティ機能および不正な改変がないことを適切な機能を利用して検証されたもの<br> **あるいは** <br> - 熟練した担当者により確認されたもの <br> **あるいは** <br> - 暗号化セキュリティ機能の完全性を確認することによって本物であると確認されたもの．|
+|強力(STRONG)|- 物理的なセキュリティ機能および不正な改変がないことを適切な機能を利用して検証されたもの*あるいは** 熟練した担当者により確認されたもの and appropriate equipment, confirming the integrity of the physical security features  and lack of fraudulent modification **あるいは** 暗号化セキュリティ機能の完全性を確認することによって本物であると確認されたもの．<br>**かつ**<br>- 身分証から取得できるすべての個人情報は，信頼できる発行元が発行したあるいは保持している情報と比較して有効であることが確認できるもの．**あるいは** 発行元の発行/保持している情報と突合することで詳細情報が確認されたもの|
+|上級(SUPERIOR)|- 熟練した担当者により確認されたもの and appropriate equipment including the integrity of any physical and cryptographic security features.<br>**かつ**<br>- 身分証から取得できるすべての個人情報は，信頼できる発行元が発行したあるいは保持している情報と比較して有効であることが確認できるもの．|
+
+<!--
 |Strength|Method (s) |
 |:---:|:------------------------------|
 |Unacceptable|Validation of the evidence failed.|
@@ -125,6 +134,7 @@ CSPが情報を収集際には, 下記のことが決定できる証明書が提
 |Adequate|- All personal and evidence details have been confirmed as valid by comparison with information held/published by the issuing source.<br>**OR**<br> - The evidence has been confirmed as genuine using appropriate equipment, confirming the integrity of physical security features and lack of fraudulent modification.<br> **OR** <br>- The evidence has been confirmed as genuine by trained personnel. <br> **OR** <br>- The issued evidence has been confirmed as genuine by confirmation of the integrity of cryptographic security features.|
 |Strong|- The evidence has been confirmed as genuine using appropriate equipment, confirming the integrity of physical security features and lack of fraudulent modification. **OR** The evidence has been confirmed as genuine by trained personnel and appropriate equipment, confirming the integrity of the physical security features  and lack of fraudulent modification **OR** The evidence has been confirmed as genuine by confirmation of the integrity of cryptographic security features.<br>**AND**<br> - All personal details and evidence details have been confirmed as valid by comparison with information held/published by the issuing source **OR** evidence details have been confirmed as valid by comparison with information held/published by the issuing source.|
 |Superior|- The evidence has been confirmed as genuine by trained personnel and appropriate equipment including the integrity of any physical and cryptographic security features.<br>**AND**<br>- All personal details and evidence details from the evidence have been confirmed as valid by comparison with information held/published by the issuing source.|
+-->
 
 ## 5.3. <a name="verify"></a> Identity Verification
 
