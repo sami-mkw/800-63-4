@@ -24,11 +24,18 @@ Authenticator を制御できる攻撃者は Authenticator の所有者のよう
 <!-- - *Out of band* secrets may be intercepted. An attacker may receive a challenge or response by eavesdropping on the primary or secondary communications channel. The attacker might then authenticate their own channel or save the message for later replay. -->
 - *Out of band* のシークレットは傍受されるかもしれない。 攻撃者は、プライマリまたはセカンダリの通信チャネルで、盗聴によってチャレンジまたはレスポンスを受信するかもしれない。 攻撃者は、独自のチャネルを認証させたり、後でリプレイするためにメッセージを保存したりするかもしれない。
 
-<!-- This document assumes that the subscriber is not colluding with the attacker who is attempting to falsely authenticate to the verifier. With this assumption in mind, the threats to the authenticator(s) used for e-authentication are listed in Table 4, along with some examples. -->
-このドキュメントは、サブスクライバーが検証者に対して虚偽の認証を行おうとしている攻撃者と共謀してないことを前提としている。 この前提に立って、電子認証用の Authenticator への脅威は表 4 について、いくつかの例とともにリストする。
+<!-- This document assumes that the subscriber is not colluding with the attacker who is attempting to falsely authenticate to the verifier. With this assumption in mind, the threats to the authenticator(s) used for e-authentication are listed in [Table 8-1](#63bSec8-Table1), along with some examples. -->
+このドキュメントは、サブスクライバーが検証者に対して虚偽の認証を行おうとしている攻撃者と共謀してないことを前提としている。 この前提に立って、電子認証用の Authenticator への脅威は [Table 8-1](#63bSec8-Table1) について、いくつかの例とともにリストする。
 
-<!-- **Table 4 – Authenticator Threats** -->
-**表 4 - Authenticator に対する脅威**
+
+<a name="63bSec8-Table1"></a>
+
+<div class="text-center" markdown="1">
+
+**Table 8-1.  Authenticator に対する脅威**
+<!-- **Table 8-1.  Authenticator Threats** -->
+
+</div>
 
 <!--
 | **Authenticator Threats/Attacks**  | **Description**  | **Examples** |
@@ -44,6 +51,7 @@ Authenticator を制御できる攻撃者は Authenticator の所有者のよう
 | Eavesdropping | The authenticator secret or authenticator output is revealed to the attacker as the subscriber is authenticating. | Memorized secrets are obtained by watching keyboard entry. |
 | | | Memorized secrets or authenticator outputs are intercepted by keystroke logging software. |
 | | | A PIN is captured from PIN pad device. |
+| | | A hashed password is obtained and used by an attacker for another authentication (*pass-the-hash attack*) |
 | | An out of band secret is intercepted by the attacker by compromising the communication channel. | An out of band secret is transmitted via unencrypted wifi and received by the attacker. |
 | Offline cracking | The authenticator is exposed using analytical methods outside the authentication mechanism. | A software PKI authenticator is subjected to dictionary attack to identify the correct password to use to decrypt the private key. |
 | Side channel attack | The authenticator secret is exposed using physical characteristics of the authenticator. | A key is extracted by differential power analysis on a hardware cryptographic authenticator. |
@@ -75,6 +83,7 @@ Authenticator を制御できる攻撃者は Authenticator の所有者のよう
 | 盗聴 | サブスクライバーが認証を行ったときに、 Authenticator シークレットまたは Authenticator の出力が攻撃者に暴露される。 | キーボードエントリーを監視して記憶されたシークレットを取得する。 |
 | | | キーストロークをロギングするソフトウェアによって、記憶されたシークレットまたは Authenticator の出力を横取りする。 |
 | | | PIN パッド デバイスからPINをキャプチャする。 |
+| | | ハッシュ化されたパスワードが攻撃者の手に渡り, それを他の認証に使われる。(*pass-the-hash attack*) |
 | | Out of band シークレットが、通信チャネルの危殆化によって攻撃者に横取りされる。 | Out of band シークレットが暗号化されていないWi-Fiで送信され、攻撃者に受信される。 |
 | オフライン クラッキング | Authenticator が、認証メカニズムの外で、解析メソッドによって明らかにされる。 | Software PKI authenticator が、秘密鍵の復号に使用する正しいパスワードを識別するために辞書攻撃を受ける。 |
 | サイドチャネル攻撃 | Authenticator シークレットが、 Authenticator の物理的特性によって明らかにされる。 | キーが hardware cryptographic authenticator の差分電力解析によって明らかにされる。 |
@@ -95,11 +104,17 @@ Authenticator を制御できる攻撃者は Authenticator の所有者のよう
 <!-- ### 8.2. Threat Mitigation Strategies -->
 ### 8.2. 脅威を軽減するストラテジー
 
-<!-- Related mechanisms that assist in mitigating the threats identified above are summarized in Table 5. -->
-表 5 は、上記で説明された脅威の軽減を支援するメカニズムをまとめたものである。
+<!-- Related mechanisms that assist in mitigating the threats identified above are summarized in [Table 8-2](#63bSec8-Table2). -->
+[Table 8-2](#63bSec8-Table2) は、上記で説明された脅威の軽減を支援するメカニズムをまとめたものである。
 
-<!-- **Table 5 - Mitigating Authenticator Threats** -->
-**表 5 - Authenticator に対する脅威の軽減**
+<a name="63bSec8-Table2"></a>
+
+<div class="text-center" markdown="1">
+
+**Table 8-1 - Authenticator に対する脅威の軽減**
+<!-- **Table 8-1 - Mitigating Authenticator Threats** -->
+
+</div>
 
 <!--
 | **Authenticator Threat/Attack** | **Threat Mitigation Mechanisms** |
