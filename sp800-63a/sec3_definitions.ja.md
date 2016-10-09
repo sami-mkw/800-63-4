@@ -2,9 +2,15 @@
 
 # 3. Definitions and Abbreviations
 
-There is a wide variety of terms used in the area of authentication. While the definitions of many terms are consistent with earlier versions of SP 800-63, some have changed in this revision. Since there is no single, consistent definition of many of these terms, careful attention to how the terms are defined here is warranted.
+Authentication 分野で使われる用語は幅広く, 多くの用語は SP 800-63 との整合性を保っているものの, いくつかは本リビジョンから定義が変更になっている.
+多くの用語に複数の定義がありうるため, 本ドキュメントにおける定義を明確にする必要がある.
 
-The definitions in this section are primarily those that are referenced in this document. Refer to the other documents in the SP 800-63 document family for additional definitions and abbreviations specific to their content.
+<!-- There is a wide variety of terms used in the area of authentication. While the definitions of many terms are consistent with earlier versions of SP 800-63, some have changed in this revision. Since there is no single, consistent definition of many of these terms, careful attention to how the terms are defined here is warranted. -->
+
+本セクションでは, 本ドキュメントで利用される用語の定義を行う.
+SP 800-63 ドキュメント群のその他のドキュメントで利用される定義や略語は, それぞれのドキュメントにて定義する.
+
+<!-- The definitions in this section are primarily those that are referenced in this document. Refer to the other documents in the SP 800-63 document family for additional definitions and abbreviations specific to their content. -->
 
 #### Address of Record
 
@@ -94,7 +100,11 @@ SP 800-63 の前リビジョンにおいて *token* と呼ばれていたもの�
 <!-- The property that data originated from its purported source. -->
 
 #### Authoritative Source
-An authority that has access to sufficient information from an issuing source that they are able to confirm the validity of a piece of identity evidence. An issuing source may also be an authoritative source.
+
+身分証 (Identity Evidence) に記載された情報の正当性を, その発行元 (Issuing Source) から十分な情報を得て確認することができる機関 (Authority).
+Issuing Source 自身が Authoritative Source であることもありうる.
+
+<!-- An authority that has access to sufficient information from an issuing source that they are able to confirm the validity of a piece of identity evidence. An issuing source may also be an authoritative source. -->
 
 #### Biometrics
 
@@ -113,9 +123,16 @@ An authority that has access to sufficient information from an issuing source th
 <!-- A party whose identity is to be verified using one or more authentication protocols. -->
 
 #### Claimed Address
-The physical location asserted by an individual (e.g. an applicant) where he/she can be reached. It includes the residential street address of an individual and may also include the mailing address of the individual.
 
-For example, a person with a foreign passport, living in the U.S., will need to give an address when going through the identity proofing process. This address would not be an “address of record” but a “claimed address.”
+ある個人 (Applicant 等) が, 自分に到達可能だと主張する物理的位置.
+居住地の住所や郵便の届く住所などを含む.
+
+<!-- The physical location asserted by an individual (e.g. an applicant) where he/she can be reached. It includes the residential street address of an individual and may also include the mailing address of the individual. -->
+
+例えば, 外国籍のパスポートを所持している状態で米国に在住する人物であれば, Identity Proofing プロセスにおいて住所を要求されることになる.
+そう言った場合の住所は, "address of record" ではなく "claimed address" となろう.
+
+<!-- For example, a person with a foreign passport, living in the U.S., will need to give an address when going through the identity proofing process. This address would not be an “address of record” but a “claimed address.” -->
 
 #### Credential
 
@@ -136,7 +153,11 @@ CSP は独立した第三者となることもあれば, 自身で発行した C
 <!-- A trusted entity that issues or registers subscriber authenticators and issues electronic credentials to subscribers. The CSP may encompass verifiers that it operates. A CSP may be an independent third party, or may issue credentials for its own use. -->
 
 #### Derived Credential
-A credential issued based on proof of possession and control of an authenticator associated with a previously issued credential, so as not to duplicate the identity proofing process.
+
+事前に発行済の Credential に紐づいた Authenticator を所有・管理していることを証明することで発行される Credential.
+このような Credential を発行することで, 再び Identity Proofing プロセスを繰り返す必要がなくなる.
+
+<!-- A credential issued based on proof of possession and control of an authenticator associated with a previously issued credential, so as not to duplicate the identity proofing process. -->
 
 #### Digital Authentication
 
@@ -159,7 +180,10 @@ Digital Signature は Authenticity Protection (真正性), Integrity Protection 
 <!-- See *Digital Authentication*. -->
 
 #### Enrollment
-The process through which an applicant applies to become a subscriber of a CSP and an RA validates the identity of the applicant on behalf of the CSP.
+
+Applicant が CSP の Subscriber となるべく申し込み, RA が CSP の代理として Applicant の Identity を確認するプロセス.
+
+<!-- The process through which an applicant applies to become a subscriber of a CSP and an RA validates the identity of the applicant on behalf of the CSP. -->
 
 #### Identity
 
@@ -174,10 +198,17 @@ CSP が Credential 発行のためにある人物に関する情報を収集お�
 <!-- The process by which a CSP collects and verifies information about a person for the purpose of issuing credentials to that person. -->
 
 #### Issuing Source
-An authority that is responsible for the generation of data and/or documents that can be used as identity evidence.
+
+身分証 (Identity Evidence) として利用可能なデータやドキュメントを責任を持って生成する Authority.
+
+<!-- An authority that is responsible for the generation of data and/or documents that can be used as identity evidence. -->
 
 #### Knowledge Based Verification
-Identity proofing of an individual based on knowledge of information associated with his or her claimed identity in private databases. This is often referred to as knowledge based authentication (KBA) or knowledge based proofing (KBP).
+
+Private Database 内で当該個人の Claimed Identity と関連づけられている情報を知っていることを根拠とした Identity Proofing.
+Knowledge Based Authentication (KBA) や Knowledge Based Proofing (KBP) とも呼ばれる.
+
+<!-- Identity proofing of an individual based on knowledge of information associated with his or her claimed identity in private databases. This is often referred to as knowledge based authentication (KBA) or knowledge based proofing (KBP). -->
 
 #### Network
 
@@ -196,15 +227,28 @@ OMB Circular A-130 で定義されているように, Personally Identifiable In
 <!-- As defined by OMB Circular A-130, Personally Identifiable Information means information that can be used to distinguish or trace an individual's identity, either alone or when combined with other information that is linked or linkable to a specific individual. -->
 
 #### Practice Statement
-A formal statement of the practices followed by the parties to an authentication process (i.e., CSP or verifier). It usually describes the policies and practices of the parties and can become legally binding.
+
+Authentication プロセスに関わる主体 (CSP, Verifier etc.) がプロセス実施の規範とする公式の規定.
+通常, 各主体のポリシーや実施手法などが記載され, 法的拘束力を持つこともある.
+
+<!-- A formal statement of the practices followed by the parties to an authentication process (i.e., CSP or verifier). It usually describes the policies and practices of the parties and can become legally binding. -->
 
 #### Protected Session
-A session wherein messages between two participants are encrypted and integrity is protected using a set of shared secrets called session keys.
 
-A participant is said to be *authenticated* if, during the session, he, she or it proves possession of one or more authenticators in addition to the session keys, and if the other party can verify the identity associated with the authenticator(s). If both participants are authenticated, the protected session is said to be *mutually authenticated*.
+2者間でやりとりされるメッセージを, Session Key と呼ばれる Shared Secret を用いて暗号化し, Integrity を保護するセッション.
+
+<!-- A session wherein messages between two participants are encrypted and integrity is protected using a set of shared secrets called session keys. -->
+
+当該セッション内で, ある主体が Session Key に加えて1つ以上の Authenticator を所有していることを証明し, もう一方の主体が当該 Authenticator に紐づく Identity を検証できる場合, 当該主体は *Authenticated* であると言う.
+もし両主体が共に Authenticated となる場合, この Protected Session は *Mutually Authenticated* であると言える.
+
+<!-- A participant is said to be *authenticated* if, during the session, he, she or it proves possession of one or more authenticators in addition to the session keys, and if the other party can verify the identity associated with the authenticator(s). If both participants are authenticated, the protected session is said to be *mutually authenticated*. -->
 
 #### Pseudonym
-A name other than a legal name.
+
+実名 (Legal Name) 以外の名前.
+
+<!-- A name other than a legal name. -->
 
 #### Public Key
 
@@ -248,7 +292,11 @@ CSP によって自身の Credential をある Authenticator に紐づけられ�
 <!-- See *Authenticator Secret*. -->
 
 #### Trust Anchor
-A public or symmetric key that is trusted because it is directly built into hardware or software, or securely provisioned via out-of-band means, rather than because it is vouched for by another trusted entity (e.g. in a public key certificate).
+
+ハードウェアやソフトウェエアに直接埋め込まれていたり, Out-of-band な手法によりセキュアに提供されたりすることで Trust される, Public Key もしくは Symmetric Key.
+他の Trusted Entity の保証を受けて Trust を得るものは Trust Anchor とは呼ばない (Public Key Certificate 等).
+
+<!-- A public or symmetric key that is trusted because it is directly built into hardware or software, or securely provisioned via out-of-band means, rather than because it is vouched for by another trusted entity (e.g. in a public key certificate). -->
 
 #### Valid
 
@@ -257,4 +305,7 @@ A public or symmetric key that is trusted because it is directly built into hard
 <!-- In reference to an ID, the quality of not being expired or revoked. -->
 
 #### Virtual In-Person Proofing
-A remote identity person proofing process that employs physical, technical and procedural measures that provide sufficient confidence that the remote session can be considered equivalent to a physical, in-person identity proofing encounter.
+
+Remote の Identity Proofing プロセスのうち, 物理的・技術的・手続き上の手段により Remote Session であっても物理的に対面 (In-person) の Identity Proofing と同等であると考えられるもの.
+
+<!-- A remote identity person proofing process that employs physical, technical and procedural measures that provide sufficient confidence that the remote session can be considered equivalent to a physical, in-person identity proofing encounter. -->
