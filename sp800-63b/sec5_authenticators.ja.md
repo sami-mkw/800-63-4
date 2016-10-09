@@ -1,26 +1,58 @@
 <a name="sec5"></a>
 
-## 5. <a name="AAL_SEC5"></a>Authenticator and Verifier Requirements
+## 5. <a name="AAL_SEC5"></a>認証器及び検証主体の要求事項
+<!--## 5. <a name="AAL_SEC5"></a>Authenticator and Verifier Requirements-->
 
+本章では、各認証器タイプごとの要求仕様詳細について明らかにする。4章で指定されたバリデーション要求事項の例外とともに、各認証器タイプごとの技術的要求事項が、それが利用されるAALとは関係なく、同じである。
+
+<!--
 This section provides the detailed requirements specific for each of the authenticator types. With the exception of validation requirements specified in Section 4, the technical requirements for each of the authenticator types is the same regardless of the AAL at which it is used.
+-->
 
-### 5.1. Requirements by Authenticator Type
+### 5.1. 認証器タイプ毎の要求事項
+<!--### 5.1. Requirements by Authenticator Type-->
 
-#### 5.1.1. Memorized Secrets
+#### 5.1.1. 記憶シークレット
+<!--#### 5.1.1. Memorized Secrets-->
 
+記憶シークレット認証器(一般的にはパスワードや、数字ならばPinとして表されているもの) は、ユーザによって決められ、記憶されるシークレットである。
+記憶シークレットは攻撃者が正しい値を推測したり特定できないように、十分な複雑さを有し、秘密にしておく必要がある。
+
+<!--
 A Memorized Secret authenticator (commonly referred to as a *password* or *PIN* if it is numeric) is a secret value that is intended to be chosen and memorizable by the user. Memorized secrets need to be of sufficient complexity and secrecy that it would be impractical for an attacker to guess or otherwise discover the correct secret value.
+-->
 
-##### 5.1.1.1. Memorized Secret Authenticators
+##### 5.1.1.1. 記憶シークレット認証器
+<!--##### 5.1.1.1. Memorized Secret Authenticators-->
 
+記憶シークレットは、加入者が指定する場合少なくとも8文字とするものとする(SHALL)。記憶シークレットがCSPまたは検証主体によってランダムに選択されたものである場合は、少なくとも6文字であるものとし(SHALL)、全て数字でもよい(MAY)。ユーザが指定した記憶シークレットの値のなかには、セキュリティ侵害を受けたブラックリストに出現するため拒否されるかもしれない。その他、記憶シークレットに課される複雑さに関する要求事項はない。このことについての根拠は[Appendix A](#appA)に記載がある。
+
+<!--
 Memorized secrets SHALL be at least 8 characters in length if chosen by the subscriber; memorized secrets chosen randomly by the CSP or verifier SHALL be at least 6 characters in length and MAY be entirely numeric.  Some values for user-chosen memorized secrets may be disallowed based on their appearance on a blacklist of compromised values. No other complexity requirements for memorized secrets are imposed; a rationale for this is presented in [Appendix A](#appA).
+-->
 
-##### 5.1.1.2. Memorized Secret Verifiers
 
+##### 5.1.1.2. 記憶シークレット検証主体
+<!--##### 5.1.1.2. Memorized Secret Verifiers-->
+
+検証主体は加入者が指定した、最低8文字の記憶シークレットを要求するものとする(SHALL)。検証主体はユーザが決定した記憶シークレットの場合は最低でも64文字であるものとする(SHALL)。すべての印字可能なASCII [[RFC 20]](#RFC20) 文字(スペースも同様)は記憶シークレットとして許容されるものとする(SHALL)。Unicode[[ISO/ISC 10646:2014]](#ISOIEC10646)文字も同様に許容されるものとする(SHALL)。検証主体は検証の際、事前にスペースを除去してもよい(MAY)。
+
+<!--
 Verifiers SHALL require subscriber-chosen memorized secrets to be at least 8 characters in length. Verifiers SHALL permit user-chosen memorized secrets to be at least 64 characters in length. All printing ASCII [[RFC 20]](#RFC20) characters as well as the space character SHALL be acceptable in memorized secrets; Unicode [[ISO/ISC 10646:2014]](#ISOIEC10646) characters SHOULD be accepted as well. Verifiers MAY remove space characters prior to verification; all other characters SHALL be considered significant. Truncation of the secret SHALL NOT be performed. For purposes of the above length requirements, each Unicode code point SHALL be counted as a single character.
+-->
 
+記憶シークレットは、CSP(例えばエンロールメント時など)また検証主体(ユーザが新しいPINを要求した時など)によりランダムに決定されるもので、最低6文字であるものとし(SHALL)、承認された(approved)乱数生成器を利用して生成されるものとする(SHALL)。
+
+<!--
 Memorized secrets that are randomly chosen by the CSP (e.g., at enrollment) or by the verifier (e.g., when a user requests a new PIN) SHALL be at least 6 characters in length and SHALL be generated using an approved random number generator.
+-->
 
+記憶シークレット検証主体は、加入者に対して、未認証の申請者が簡単に手に入れることができる「ヒント」を記録しないものとする(SHALL NOT)。
+記憶シークレットを選択する際、検証主体は加入者に対して特別なタイプの情報（例えば、あなたの最初のペットの名前はなんですか？といったもの）の入力を求めないものとする(SHALL)。
+
+<!--
 Memorized secret verifiers SHALL NOT permit the subscriber to store a "hint" that is accessible to an unauthenticated claimant. Verifiers also SHALL NOT prompt subscribers to use specific types of information (e.g., "What was the name of your first pet?") when choosing memorized secrets.
+-->
 
 When processing requests to establish and change memorized secrets, verifiers SHOULD compare the prospective secrets against a dictionary of known commonly-used and/or compromised values. This list SHOULD include passwords from previous breach corpuses, as well as dictionary words and specific words (such as the name of the service itself) that users are likely to choose. If the chosen secret is found in the dictionary, the subscriber SHOULD be required to choose a different value. The subscriber SHOULD be advised that they need to select a different secret because their previous choice was commonly used.
 
