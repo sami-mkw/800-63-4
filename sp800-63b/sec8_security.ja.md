@@ -111,27 +111,30 @@ Authenticator を制御できる攻撃者は Authenticator の所有者のよう
 
 <div class="text-center" markdown="1">
 
-**Table 8-1 - Authenticator に対する脅威の軽減**
-<!-- **Table 8-1 - Mitigating Authenticator Threats** -->
+**Table 8-2 - Authenticator に対する脅威の軽減**
+<!-- **Table 8-2 - Mitigating Authenticator Threats** -->
 
 </div>
 
 <!--
 | **Authenticator Threat/Attack** | **Threat Mitigation Mechanisms** |
 |---------------------------------|----------------------------------|
-| Theft | Use multi-factor authenticators which need to be activated through a PIN or biometric.|
-| Duplication |  Use authenticators that are difficult to duplicate, such as hardware cryptographic authenticators. |
-| Discovery | Use methods in which the responses to prompts cannot be easily discovered.
-| Eavesdropping | Use authenticators with dynamic outputs where knowledge of one authenticator does not assist in deriving a subsequent authenticator.
-| | Use authenticators whose output is based on an input value or challenge.
-| | Establish authenticators through a separate channel.
+| Theft | Use multi-factor authenticators which need to be activated through a memorized secret or biometric.|
+| Duplication |  Use authenticators from which it is difficult to extract and duplicate long-term authentication secrets. |
+| Eavesdropping | Ensure the security of the endpoint, especially with respect to freedom from malware such as key loggers, prior to use.
+| | Maintain situational awareness when entering memorized secrets and one-time passwords to ensure that they cannot be observed by others.
+| | Authenticate over authenticated protected channels (observe lock icon in browser window, for example)
+| | Use authentication protocols that are resistant to replay attacks such as *pass-the-hash*
 | Offline cracking | Use an authenticator with a high entropy authenticator secret.
-| | Use an authenticator that locks up after a number of repeated failed activation attempts.
 | | Store memorized secrets in a salted, hashed form to raise the cost of dictionary attacks; use a keyed hash.
 | Side channel attack | Use authenticator algorithms that are designed to maintain constant power consumption and timing regardless of secret values.
-| Phishing or pharming | Use authenticators with dynamic outputs where knowledge of one output does not assist in deriving a subsequent output.
-| Social engineering | Use authenticators with dynamic outputs where knowledge of one output does not assist in deriving a subsequent output.
+| Phishing or pharming | Use authenticators that provide verifier impersonation resistance.
+| | Be alert for unexpected hostnames in URLs.
+| | Do not click on links in email messages; instead, enter the URL manually or through a trusted bookmark.
+| Social engineering | Do not reveal authentication secrets to others, regardless of their story.
+| | Avoid use of authenticators that present a risk of social engineering of third parties such as customer service agents.
 | Online guessing | Use authenticators that generate high entropy output.
+| | Use an authenticator that locks up after a number of repeated failed activation attempts.
 | Endpoint compromise | Use hardware authenticators that require physical action by the subscriber.
 | | Provide secure display of identity of verifier and relying party.
 | | Maintain software-based keys in restricted-access storage.
@@ -139,19 +142,22 @@ Authenticator を制御できる攻撃者は Authenticator の所有者のよう
 
 | **Authenticator に対する脅威/攻撃** | **脅威を軽減するメカニズム** |
 |---------------------------------|----------------------------------|
-| 盗難 | PIN または生体認証をアクティブにするときには、多要素認証を使用する。 |
-| 複製 | Hardware cryptographic authenticator のような、複製しにくい Authenticator を使用する。 |
-| 発見 | レスポンスを容易に見られないようにするためのメソッドを使用する。 |
-| 盗聴 | 一度得たナレッジを続けて利用できないような、動的な出力を備えた Authenticator を使用する。 |
-| | 入力値またはチャレンジに基づいて生成される Authenticator を使用する。 |
-| | 別のチャネルを通じて Authenticator を確立する。 |
+| 盗難 | 記憶されたシークレットまたは生体認証をアクティブにするときには、多要素認証を使用する。 |
+| 複製 | 認証シークレットの複製や抽出が長期的に困難な Authenticator を使用する。 |
+| 盗聴 | 特にキーロガーなどのマルウェアに感染していないか、使用する前にエンドポイントがセキュリティを確保できているか確かめる。 |
+| | 記憶されたシークレットやワンタイムパスワードを入力するときは、他の人がそれを観察できない環境であるか、常に気を配る。 |
+| | 認証され、保護されたチャネル経由で認証を行う。 (たとえば、ブラウザーウィンドウにあるロック アイコンを確認する。) |
+| | _pass-the-hash_ のようなリプレイ攻撃に耐性のある認証プロトコルを使用する。 |
 | オフライン クラッキング | 高エントロピーの Authenticator シークレットを使用する。 |
-| | アクティベーションの試行に繰り返し失敗した後は Authenticator をロックアップする。 |
 | | 辞書攻撃のコストを高めるために、記憶されたシークレットをソルトを用いたハッシュ形式で保存する。鍵付きハッシュを使用する。 |
 | サイドチャネル攻撃 | シークレットの値に関係なく消費電力とタイミングが一定に保たれるように設計された Authenticator アルゴリズムを使用する。 |
-| フィッシングやファーミング | 一度得た Authenticator についてのナレッジを続けて利用できないような、動的な出力を備えた Authenticator を使用する。 |
-| ソーシャルエンジニア リング | 一度得たナレッジを続けて利用できないような、動的な出力を備えた Authenticator を使用する。 |
+| フィッシングやファーミング | なりすましの検証を行うことができる Authenticator を使用する。 |
+| | 意図しないホストネームがURLの中にあれば警告する。 |
+| | 電子メールメッセージ内のリンクをクリックしない。代わりに、URLを手動で入力するか、信頼するブックマークからアクセスする。 |
+| ソーシャルエンジニア リング | 誰に何を言われても、他人に対して認証シークレットを明らかにしない。 |
+| | カスタマーサービスエージェントなどの第三者によるソーシャルエンジニアリングの危険性がある Authenticator の使用を避ける。 |
 | オンラインでの推測 | 高エントロピーの出力を生成する Authenticator を使用する。 |
+| | アクティベーションの試行に繰り返し失敗した後は Authenticator をロックアップする。 |
 | エンドポイントの危殆化 | サブスクライバーの物理的なアクションを必要とするハードウェア Authenticator を使用する。 |
 | | 検証者と RP のセキュリティで保護された ID 表示を提供する。 |
 | | ソフトウェアベースの鍵はアクセス制限つきストレージで管理する。 |
