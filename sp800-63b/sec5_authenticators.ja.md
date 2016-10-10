@@ -16,32 +16,40 @@ This section provides the detailed requirements specific for each of the authent
 <!--#### 5.1.1. Memorized Secrets-->
 
 記憶シークレット認証器(一般的にはパスワードや、数字ならばPinとして表されているもの) は、ユーザによって決められ、記憶されるシークレットである。
-記憶シークレットは攻撃者が正しい値を推測したり特定できないように、十分な複雑さを有し、秘密にしておく必要がある。
+記憶シークレットは攻撃者が正しい値を推測したり特定できないように、十分な複雑かつ秘密の状態にしておく必要がある。
 
 <!--
-A Memorized Secret authenticator (commonly referred to as a *password* or *PIN* if it is numeric) is a secret value that is intended to be chosen and memorizable by the user. Memorized secrets need to be of sufficient complexity and secrecy that it would be impractical for an attacker to guess or otherwise discover the correct secret value.
+<div class="text-left" markdown="1">
+<table style="width:100%">
+  <tr>
+    <td><img src="sp800-63b/media/Memorized-secret.png" alt="authenticator" style="width: 100px;height: 100px"/></td>
+    <td>A Memorized Secret authenticator (commonly referred to as a <i>password</i> or <i>PIN</i> if it is numeric) is a secret value that is intended to be chosen and memorizable by the user. Memorized secrets need to be of sufficient complexity and secrecy that it would be impractical for an attacker to guess or otherwise discover the correct secret value.</td> 
+  </tr>
+  </table>
+  </div>
 -->
 
 ##### 5.1.1.1. 記憶シークレット認証器
 <!--##### 5.1.1.1. Memorized Secret Authenticators-->
 
-記憶シークレットは、加入者が指定する場合少なくとも8文字とするものとする(SHALL)。記憶シークレットがCSPまたは検証主体によってランダムに選択されたものである場合は、少なくとも6文字であるものとし(SHALL)、全て数字でもよい(MAY)。ユーザが指定した記憶シークレットの値のなかには、セキュリティ侵害を受けたブラックリストに出現するため拒否されるかもしれない。その他、記憶シークレットに課される複雑さに関する要求事項はない。このことについての根拠は[Appendix A](#appA)に記載がある。
+記憶シークレットは、加入者が指定する場合少なくとも8文字とするものとする(SHALL)。記憶シークレットがCSPまたは検証主体によってランダムに選択されたものである場合は、少なくとも6文字であるものとし(SHALL)、全て数字でもよい(MAY)。
+CSPや検証主体は、指定された記憶シークレットがセキュリティ侵害を受けたブラックリストに出現するかどうかに基づいて拒否するかもしれず、そのような場合に加入者は、別の記憶シークレット値を選ぶものとする(SHALL)。
+その他、記憶シークレットに課される複雑さに関する要求事項はあるべきではない(SHOULD)。このことについての根拠は[Appendix A](#appA)に記載されている。
 
 <!--
-Memorized secrets SHALL be at least 8 characters in length if chosen by the subscriber; memorized secrets chosen randomly by the CSP or verifier SHALL be at least 6 characters in length and MAY be entirely numeric.  Some values for user-chosen memorized secrets may be disallowed based on their appearance on a blacklist of compromised values. No other complexity requirements for memorized secrets are imposed; a rationale for this is presented in [Appendix A](#appA).
+Memorized secrets SHALL be at least 8 characters in length if chosen by the subscriber; memorized secrets chosen randomly by the CSP or verifier SHALL be at least 6 characters in length and MAY be entirely numeric. Since the CSP or verifier may disallow some choices of memorized secrets based on their appearance on a blacklist of compromised values, the subscriber SHALL choose a different memorized secret if a choice is rejected. No other complexity requirements for memorized secrets SHOULD be imposed; a rationale for this is presented in [Appendix A](#appA).
 -->
-
 
 ##### 5.1.1.2. 記憶シークレット検証主体
 <!--##### 5.1.1.2. Memorized Secret Verifiers-->
 
-検証主体は加入者が指定した、最低8文字の記憶シークレットを要求するものとする(SHALL)。検証主体はユーザが決定した記憶シークレットの場合は最低でも64文字であるものとする(SHALL)。すべての印字可能なASCII [[RFC 20]](#RFC20) 文字(スペースも同様)は記憶シークレットとして許容されるものとする(SHALL)。Unicode[[ISO/ISC 10646:2014]](#ISOIEC10646)文字も同様に許容されるものとする(SHALL)。検証主体は検証の際、事前にスペースを除去してもよい(MAY)。
+検証主体は加入者が指定した、最低8文字の記憶シークレットを要求するものとする(SHALL)。検証主体はユーザが決定した記憶シークレットの場合は最低でも64文字とすべきである(SHOULD)。すべての印字可能なASCII [[RFC 20]](#RFC20) 文字(スペースも同様)は記憶シークレットとして許容されるべきである(SHOULD)。Unicode[[ISO/ISC 10646:2014]](#ISOIEC10646)文字も同様に許容されるべきである(SHOULD)。検証主体は、最低8文字以上であることの検証に先立って、連続した複数のスペースまたは全てのスペースを除去してもよい(MAY)。シークレット文字列の前後の切り詰めについては実施しないものとする(SHALL NOT)。前述の長さ要求を満たす目的で、それぞれのUnicode符号位置は単一文字としてカウントされるものとする(SHALL)。
 
 <!--
-Verifiers SHALL require subscriber-chosen memorized secrets to be at least 8 characters in length. Verifiers SHALL permit user-chosen memorized secrets to be at least 64 characters in length. All printing ASCII [[RFC 20]](#RFC20) characters as well as the space character SHALL be acceptable in memorized secrets; Unicode [[ISO/ISC 10646:2014]](#ISOIEC10646) characters SHOULD be accepted as well. Verifiers MAY remove space characters prior to verification; all other characters SHALL be considered significant. Truncation of the secret SHALL NOT be performed. For purposes of the above length requirements, each Unicode code point SHALL be counted as a single character.
+Verifiers SHALL require subscriber-chosen memorized secrets to be at least 8 characters in length. Verifiers SHOULD permit user-chosen memorized secrets to be at least 64 characters in length. All printing ASCII [[RFC 20]](#RFC20) characters as well as the space character SHOULD be acceptable in memorized secrets; Unicode [[ISO/ISC 10646:2014]](#ISOIEC10646) characters SHOULD be accepted as well. Verifiers MAY remove multiple consecutive space characters, or all space characters, prior to verification provided that the result is at least 8 characters in length. Truncation of the secret SHALL NOT be performed. For purposes of the above length requirements, each Unicode code point SHALL be counted as a single character.
 -->
 
-記憶シークレットは、CSP(例えばエンロールメント時など)また検証主体(ユーザが新しいPINを要求した時など)によりランダムに決定されるもので、最低6文字であるものとし(SHALL)、承認された(approved)乱数生成器を利用して生成されるものとする(SHALL)。
+記憶シークレットは、CSP(例えばエンロールメント時など)また検証主体(ユーザが新しいPINを要求した時など)によりランダムに決定されるもので、最低6文字であるものとし(SHALL)、承認済み(approved)乱数生成器を利用して生成されるものとする(SHALL)。
 
 <!--
 Memorized secrets that are randomly chosen by the CSP (e.g., at enrollment) or by the verifier (e.g., when a user requests a new PIN) SHALL be at least 6 characters in length and SHALL be generated using an approved random number generator.
@@ -54,21 +62,67 @@ Memorized secrets that are randomly chosen by the CSP (e.g., at enrollment) or b
 Memorized secret verifiers SHALL NOT permit the subscriber to store a "hint" that is accessible to an unauthenticated claimant. Verifiers also SHALL NOT prompt subscribers to use specific types of information (e.g., "What was the name of your first pet?") when choosing memorized secrets.
 -->
 
-When processing requests to establish and change memorized secrets, verifiers SHOULD compare the prospective secrets against a dictionary of known commonly-used and/or compromised values. This list SHOULD include passwords from previous breach corpuses, as well as dictionary words and specific words (such as the name of the service itself) that users are likely to choose. If the chosen secret is found in the dictionary, the subscriber SHOULD be required to choose a different value. The subscriber SHOULD be advised that they need to select a different secret because their previous choice was commonly used.
+記憶シークレットの設定、変更の要求を処理する際、検証主体はシークレットの値を、一般的に利用されている値、予想できる値、セキュリティ侵害を受けた値と比較するものとする(SHALL)。例えば、以下のリスト(に限定するものではない)が含んでいるものでよい(MAY):
 
+* 過去にセキュリティ侵害にあったパスワード集
+* 辞書に含まれる言葉
+* サービス名や、ユーザ名、そこから派生するようなものなど、文脈によって特定可能な単語
+
+<!--
+When processing requests to establish and change memorized secrets, verifiers SHALL compare the prospective secrets against a list of known commonly-used, expected, and/or compromised values. For example, the list MAY include (but is not limited to):
+
+* Passwords obtained from previous breach corpuses
+* Dictionary words
+* Context specific words, such as the name of the service, the username, and derivates thereof
+-->
+
+もし選択したシークレットがリスト中に存在したら、加入者は、それが一般的に使われているため異なるシークレット値を選び直す必要があるということを知らされ、異なる値の選択を求められるものとする(SHALL)。
+
+<!--
+If the chosen secret is found in the list, the subscriber SHALL be advised that they need to select a different secret because their previous choice was commonly used, and be required to choose a different value.
+-->
+
+検証主体は、攻撃者が加入者のアカウント乗っ取りのために試みた認証失敗の回数を効率的に制限するスロットリングメカニズム[Section 5.2.2](#throttle)を実装するものとする(SHALL)。
+
+<!--
 Verifiers SHALL implement a throttling mechanism that effectively limits the number of failed authentication attempts an attacker can make on the subscriber’s account as described in [Section 5.2.2](#throttle).
+-->
 
+検証主体は他の構成ルール(例えば、異なる文字種の組み合わせ)を記憶シークレットに課すべきではない(SHOULD NOT)。検証主体は、認証器が侵害されている、または加入者が変更要求を行った証拠がない限りは、記憶シークレットを任意で(例えば、定期的に)変更するよう要求すべきではない(SHOULD NOT)。
+
+<!--
 Verifiers SHOULD NOT impose other composition rules (mixtures of different character types, for example) on memorized secrets. Verifiers SHOULD NOT require memorized secrets to be changed arbitrarily (e.g., periodically) unless there is evidence of compromise of the authenticator or a subscriber requests a change.
+-->
 
+申請者が記憶シークレットを正しく入力することを支援するために、検証主体は(典型的なドットやアスタリスク表示ではなく)シークレットを表示するオプションを提供すべき(SHOULD)である。検証主体は、申告者が入力文字を確認するのに十分な時間表示したあとは、文字を非表示にするものとする(SHALL)。これにより、申請者は彼らのスクリーンが盗み見られている可能性が高くない場所にいるとき、自身で入力を検証することができる。
+
+<!--
 In order to assist the claimant in entering a memorized secret successfully, the verifier SHOULD offer an option to display the secret (rather than a series of dots or asterisks, typically) as it is typed. The verifier SHALL hide the character after it is displayed for a time sufficient for the claimant to see the character. This allows the claimant to verify their entry if they are in a location where their screen is unlikely to be observed.
+-->
 
+検証者は承認済み(approved)暗号化を利用するものとし(SHALL)、記憶シークレットを要求する際には、盗聴やフィッシングを防止する目的で、記憶シークレットを要求する自身の申請者に対して(例えば、申請者が受け入れ可能な、承認された暗号化を用いたX.509証明書の利用を通して)自身の真正性を証明するものとする(SHALL)。
+
+<!--
 Verifiers SHALL use approved encryption and SHALL authenticate themselves to the claimant (e.g., through the use of a X.509 certificate using approved encryption that is acceptable to the claimant) when requesting memorized secrets in order to provide resistance to eavesdropping and phishing attacks.
+-->
 
+検証主体は、オフライン攻撃へ対策するため、フォームに記憶シークレットを保存しないものとする(SHALL)。シークレットは、 *ソルト*値と一緒に、例えば[[SP800-132]](#SP800-132)で記載されているPBKDF2のような承認済み(approved)のハッシュを用いてハッシュ化されるものとする(SHALL)。
+ソルト値は32ビット以上のランダム値で、承認済み(approved)の乱数生成器を用いて生成され、ハッシュ結果とともに記録される。少なくとも繰り返し10000回のハッシュ関数を適用すべきである(SHOULD)。ハッシュ認証器から分離されて記録される鍵(例:HSM中)を用いる鍵付ハッシュ関数(例:HMAC)は、ストアドハッシュ認証器に対する辞書攻撃に対する更なる対抗方法として利用されるべきである(SHOULD)。
+
+<!--
 Verifiers SHALL store memorized secrets in a form that is resistant to offline attacks. Secrets SHALL be hashed with a *salt* value using an approved hash function such as PBKDF2 as described in [[SP800-132]](#SP800-132). The salt value SHALL be a 32 bit (or longer) random value generated by an approved random number generator and is stored along with the hash result. At least 10,000 iterations of the hash function SHOULD be performed. A keyed hash function (e.g., HMAC), with the key stored separately from the hashed authenticators (e.g., in a hardware security module) SHOULD be used to further resist dictionary attacks against the stored hashed authenticators.
+-->
 
 #### 5.1.2. Look-up Secrets
 
-A look-up secret authenticator is a physical or electronic record that stores a set of secrets shared between the claimant and the CSP. The claimant uses the authenticator to look up the appropriate secret(s) needed to respond to a prompt from the verifier. For example, a claimant may be asked by the verifier to provide a specific subset of the numeric or character strings printed on a card in table format.
+<div class="text-left" markdown="1">
+<table style="width:100%">
+  <tr>
+    <td><img src="sp800-63b/media/Look-up-secrets.png" alt="authenticator" style="width: 100px;height: 100px"/></td>
+    <td>A look-up secret authenticator is a physical or electronic record that stores a set of secrets shared between the claimant and the CSP. The claimant uses the authenticator to look up the appropriate secret(s) needed to respond to a prompt from the verifier. For example, a claimant may be asked by the verifier to provide a specific subset of the numeric or character strings printed on a card in table format.</td> 
+  </tr>
+  </table>
+  </div>
 
 ##### 5.1.2.1 Look-up Secret Authenticators
 CSPs creating look-up secret authenticators SHALL use an approved random number generator to generate the list of secrets, and SHALL deliver the authenticator securely to the subscriber. Look-up secrets SHALL have at least 64 bits of entropy, or SHALL have at least 20 bits of entropy if the number of failed authentication attempts is limited as described in [Section 5.2.2](#throttle).
@@ -85,60 +139,75 @@ Look-up secrets SHALL be generated using an approved random number generator and
 
 Verifiers SHALL use approved encryption and SHALL authenticate themselves to the claimant (e.g., through the use of a X.509 certificate using approved encryption that is acceptable to the claimant) when requesting look-up secrets in order to provide resistance to eavesdropping and phishing attacks.
 
-#### <a name="out-of-band"></a>5.1.3. Out of Band
+#### <a name="out-of-band"></a>5.1.3. Out-of-Band Devices
 
-An Out of Band authenticator is a physical device that is uniquely addressable and can receive a verifier-selected secret for one-time use. The device is possessed and controlled by the claimant and supports private communication over a secondary channel that is separate from the primary channel for e-authentication. The out-of-band authenticator can operate in one of two ways:
+<div class="text-left" markdown="1">
+<table style="width:100%">
+  <tr>
+    <td><img src="sp800-63b/media/Out-of-band-OOB.png" alt="authenticator" style="width: 100px;height: 100px"/></td>
+    <td>An out-of-band authenticator is a physical device that is uniquely addressable and can communicate securely with the verifier over a distinct communications channel, referred to as the secondary channel. The device is possessed and controlled by the claimant and supports private communication over this secondary channel that is separate from the primary channel for e-authentication. The out-of-band authenticator can operate in one of the following ways:<br><br>
 
--  The claimant presents the secret that was received by the out-of-band authenticator to the verifier using the primary channel for e-authentication.
+- The claimant transfers a secret received by the out-of-band device via the secondary channel to the verifier using the primary channel. For example, the claimant may receive the secret on their mobile device and type it (typically a 6 digit code) into their authentication session.<br><br>
 
-- The claimant sends a response to the verifier from the out-of-band authenticator via the secondary communications channel.
+- The claimant transfers a secret received via the primary channel to the out-of-band device for transmission to the verifier via the secondary channel. For example, the claimant may view the secret on their authentication session and either type it into an app on their mobile device or use a technology such as a barcode or QR code to effect the transfer.<br><br>
 
-Two key requirements are that the device be uniquely addressable and that communication over the secondary channel be private. Some voice-over-IP telephone services can deliver text messages and voice calls without the need for possession of a physical device; these SHALL NOT be used for out of band authentication. Mechanisms such as smartphone applications employing secure communications protocols are preferred for out-of-band authentication.
+- The claimant compares secrets received from the primary channel and the secondary channel and confirms the authentication via the secondary channel.<br><br>
 
-If the authenticator responds directly to the verifier via the secondary communications channel, the verifier SHALL send and the authenticator SHALL display information, such as a transaction ID or description, allowing the claimant to uniquely associate the authentication operation on the primary channel with the request on the secondary channel.
+The purpose of the secret is to securely bind the authentication operation on the primary and secondary channel. When the response is via the primary communication channel, the secret also establishes the claimant's control of the out-of-band device.</td> 
+  </tr>
+  </table>
+  </div>
 
-Ability to receive email messages or other types of instant message does not generally prove the possession of a specific device, so they SHALL NOT be used as out of band authentication methods.
+##### 5.1.3.1. Out-of-Band Authenticators
 
-##### 5.1.3.1. Out of Band Authenticators
+The out-of-band authenticator SHALL establish a separate channel with the verifier in order to retrieve the out-of-band secret or authentication request. This channel is considered to be out-of-band with respect to the primary communication channel, even if it terminates on the same device, provided the device does not leak information from one to the other without the authorization of the claimant.
 
-The out of band authenticator SHALL establish an authenticated protected channel in order to retrieve the out of band secret or authentication request. This channel is considered to be out of band with respect to the primary communication channel, even if it terminates on the same device, provided the device does not leak information from one to the other.
+The out-of-band device SHALL be uniquely addressable and communication over the secondary channel SHALL be private. Some voice-over-IP telephone services can deliver text messages and voice calls without the need for possession of a physical device; these SHALL NOT be used for out-of-band authentication. Ability to receive email messages or other types of instant message does not generally prove the possession of a specific device, and therefore SHALL NOT be used as out-of-band authentication methods. Mechanisms such as smartphone applications that employ secure communications protocols and uniquely identify the out-of-band device SHOULD be used for out-of-band authentication.
 
-The out of band authenticator SHALL uniquely authenticate itself in one of the following ways in order to receive the authentication secret:
+The out-of-band authenticator SHALL uniquely authenticate itself in one of the following ways in communicating with the verifier:
 
-- Authentication to the verifier using approved cryptography. The key SHOULD be stored in the most secure storage available on the device (e.g., keychain storage, trusted platform module, or trusted execution environment if available).
+- Establish an authenticated protected channel to the verifier using approved cryptography. The key used SHALL be stored in the most secure storage available on the device (e.g., keychain storage, trusted platform module, or trusted execution environment if available).
 
-- Authentication to a public mobile telephone network using a SIM card or equivalent that uniquely identifies the device
+- Authenticate to a public mobile telephone network using a SIM card or equivalent that uniquely identifies the device. This method SHALL only be used if a secret is being sent from the verifier to the out-of-band device via the telephone network (SMS or voice).
 
-Out of band authenticators SHOULD NOT display the authentication secret on a device that is locked by the owner (i.e., requires an entry of a PIN or passcode). However, authenticators MAY indicate the receipt of an authentication secret on a locked device.
+If a secret is sent by the verifier to the out-of-band device, the device SHOULD NOT display the authentication secret on a device while it is locked by the owner (i.e., requires an entry of a PIN or passcode). However, authenticators MAY indicate the receipt of an authentication secret on a locked device.
 
-If the out of band authenticator sends an approval message over the secondary communication channel (rather than by the claimant transferring a received secret to the primary communication channel):
+If the out-of-band authenticator sends an approval message over the secondary communication channel (rather than by the claimant transferring a received secret to the primary communication channel), it SHALL do one of the following:
 
-* The authenticator SHALL display identifying information about the authentication transaction to the claimant prior to their approval.
+* The authenticator SHALL accept transfer of the secret from the primary channel which it SHALL send to the verifier over the secondary channel to associate the approval with the authentication transaction. The claimant MAY perform the transfer manually or use a technology such as a barcode or QR code to effect the transfer.
 
-* The secondary communication channel SHALL be an authenticated protected channel.
+* The authenticator SHALL present a secret received via the secondary channel from the verifier and prompt the claimant to verify the consistency of that secret with the primary channel, prior to accepting a yes/no response from the claimant. It SHALL then send that response to the verifier.
 
-##### 5.1.3.2. Out of Band Verifiers
+##### 5.1.3.2. Out-of-Band Verifiers
 
-Out of band verifiers SHALL generate a random authentication secret with at least 20 bits of entropy using an approved random number generator. They then optionally signal the device containing the subscriber's authenticator to indicate readiness to authenticate.
+Due to the risk that SMS messages or voice calls may be intercepted or redirected, implementers of new systems SHOULD carefully consider alternative authenticators. If the out-of-band verification is to be made using the public switched telephone network (PSTN), the verifier SHALL verify that the pre-registered telephone number being used is not associated with a VoIP (or other software-based) service. It then sends the SMS or voice message to the pre-registered telephone number. Changing the pre-registered telephone number SHALL NOT be possible without two-factor authentication at the time of the change.  **OOB using the PSTN (SMS or voice) is deprecated**, and may no longer be allowed in future releases of this guidance.
 
-If the out of band verification is to be made using a SMS message on a public mobile telephone network, the verifier SHALL verify that the pre-registered telephone number being used is actually associated with a mobile network and not with a VoIP (or other software-based) service. It then sends the SMS message to the pre-registered telephone number. Changing the pre-registered telephone number SHALL NOT be possible without two-factor authentication at the time of the change.  **OOB using SMS is deprecated**, and will no longer be allowed in future releases of this guidance.
+If out-of-band verification is to be made using a secure application (e.g., on a smart phone), the verifier MAY send a push notification to that device. The verifier then waits for a establishment of an authenticated protected channel and verifies the authenticator's identifying key. The verifier SHALL NOT store the identifying key itself, but SHALL use a verification method such as hashing (using an approved hash function) or proof of possession of the identifying key to uniquely identify the authenticator. Once authenticated, the verifier transmits the authentication secret to the authenticator.
 
-If out of band verification is to be made using a secure application (e.g., on a smart phone), the verifier MAY send a push notification to that device. The verifier then waits for a establishment of an authenticated protected channel and verifies the authenticator's identifying key. The verifier SHALL NOT store the identifying key itself, but SHALL use a verification method such as hashing (using an approved hash function) or proof of possession of the identifying key to uniquely identify the authenticator. Once authenticated, the verifier transmits the authentication secret to the authenticator. Depending on the type of out-of-band authenticator, either:
-* The verifier waits for the secret to be returned on the primary communication channel.
+Depending on the type of out-of-band authenticator, one of the following SHALL take place:
 
-* The verifier waits for the secret, or some type of approval message, to be returned over the secondary communication channel.
+* Transfer of secret to primary channel: The verifier MAY signal the device containing the subscriber's authenticator to indicate readiness to authenticate. It SHALL then transmit a random secret to the out-of-band authenticator. The verifier SHALL then wait for the secret to be returned on the primary communication channel.
 
-If approval is made over the secondary communication channel, the request to the verifier SHALL include a transaction identifier, such as a transaction ID or description, for display by the verifier.
+* Transfer of secret to secondary channel: The verifier SHALL display a random authentication secret to the claimant via the primary channel. It SHALL then wait for the secret to be returned on the secondary channel from the claimant's out-of-band authenticator.
 
-In collecting the authentication secret from the claimant, the verifier SHALL use approved encryption and SHALL authenticate itself to the claimant. The authentication secret SHALL be considered invalid if not received within 5 minutes.
+* Verification of secrets by claimant: The verifier SHALL display a random authentication secret to the claimant via the primary channel, and SHALL send the same secret to the out-of-band authenticator via the secondary channel for presentation to the claimant. It SHALL then wait for an approval (or disapproval) message via the secondary channel.
 
-If the authentication secret has less than 64 bits of entropy, the verifier SHALL implement a throttling mechanism that effectively limits the number of failed authentication attempts an attacker can make on the subscriber’s account as described in [Section 5.2.2](#throttle).
+In all cases, the authentication SHALL be considered invalid if not completed within 5 minutes.
+
+The verifier SHALL generate random authentication secrets with at least 20 bits of entropy using an approved random number generator. If the authentication secret has less than 64 bits of entropy, the verifier SHALL implement a throttling mechanism that effectively limits the number of failed authentication attempts an attacker can make on the subscriber’s account as described in [Section 5.2.2](#throttle).
 
 #### 5.1.4. Single Factor OTP Device
 
-A single factor OTP device is a hardware device that supports the time-based generation of one-time passwords. This includes software-based OTP generators installed on devices such as mobile phones. This device has an embedded secret that is used as the seed for generation of one-time passwords and does not require activation through a second factor. Authentication is accomplished by using the authenticator output (i.e., the one-time password) in an authentication protocol, thereby proving possession and control of the device. A one-time password device may, for example, display 6 characters at a time.
+<div class="text-left" markdown="1">
+<table style="width:100%">
+  <tr>
+    <td><img src="sp800-63b/media/Single-factor-otp-device.png" alt="authenticator" style="width: 100px;height: 100px"/></td>
+    <td>A single factor OTP device is a hardware device that supports the time-based generation of one-time passwords. This includes software-based OTP generators installed on devices such as mobile phones. This device has an embedded secret that is used as the seed for generation of one-time passwords and does not require activation through a second factor. Authentication is accomplished by using the authenticator output (i.e., the one-time password) in an authentication protocol, thereby proving possession and control of the device. A one-time password device may, for example, display 6 characters at a time.<br><br>
 
-Single factor OTP devices are similar to look-up secret authenticators with the exception that the secrets are cryptographically generated by the authenticator and verifier and compared by the verifier. The secret is computed based on a nonce that may be time-based or from a counter on the authenticator and verifier.
+Single factor OTP devices are similar to look-up secret authenticators with the exception that the secrets are cryptographically generated by the authenticator and verifier and compared by the verifier. The secret is computed based on a nonce that may be time-based or from a counter on the authenticator and verifier.</td> 
+  </tr>
+  </table>
+  </div>
 
 ##### <a name="sfotpa"></a>5.1.4.1. Single Factor OTP Authenticators
 
@@ -162,7 +231,15 @@ If the authenticator output has less than 64 bits of entropy, the verifier SHALL
 
 #### 5.1.5. Multi-Factor OTP Devices
 
-A multi-factor (MF) OTP device hardware device generates one-time passwords for use in authentication and requires activation through a second factor of authentication. The second factor of authentication may be achieved through some kind of integral entry pad, an integral biometric (e.g., fingerprint) reader or a direct computer interface (e.g., USB port). The one-time password is typically displayed on the device and manually input to the verifier, although direct electronic output from the device as input to a computer is also allowed. For example, a one-time password device may display 6 characters at a time. The MF OTP device is *something you have*, and it may be activated by either *something you know* or *something you are*.
+<div class="text-left" markdown="1">
+<table style="width:100%">
+  <tr>
+    <td><img src="sp800-63b/media/Multi-factor-otp-device.png" alt="authenticator" style="width: 100px;height: 100px"/></td>
+    <td>A multi-factor (MF) OTP device hardware device generates one-time passwords for use in authentication and requires activation through a second factor of authentication. The second factor of authentication may be achieved through some kind of integral entry pad, an integral biometric (e.g., fingerprint) reader or a direct computer interface (e.g., USB port). The one-time password is typically displayed on the device and manually input to the verifier, although direct electronic output from the device as input to a computer is also allowed. For example, a one-time password device may display 6 characters at a time. The MF OTP device is <i>something you have</i>, and it SHALL be activated by either <i>something you know</i> or <i>something you are</i>.</td> 
+  </tr>
+  </table>
+  </div>
+
 
 ##### 5.1.5.1. Multi-Factor OTP Authenticators
 
@@ -184,7 +261,14 @@ If the authenticator output or activation secret has less than 64 bits of entrop
     
 #### 5.1.6. Single Factor Cryptographic Devices
 
-A single-factor cryptographic device is a hardware device that performs cryptographic operations on input provided to the device. This device does not require activation through a second factor of authentication. This device uses embedded symmetric or asymmetric cryptographic keys. Authentication is accomplished by proving possession of the device. The authenticator output is highly dependent on the specific cryptographic device and protocol, but it is generally some type of signed message.
+<div class="text-left" markdown="1">
+<table style="width:100%">
+  <tr>
+    <td><img src="sp800-63b/media/Single-factor-crypto.png" alt="authenticator" style="width: 100px;height: 100px"/></td>
+    <td>A single-factor cryptographic device is a hardware device that performs cryptographic operations on input provided to the device. This device does not require activation through a second factor of authentication. This device uses embedded symmetric or asymmetric cryptographic keys. Authentication is accomplished by proving possession of the device. The authenticator output is highly dependent on the specific cryptographic device and protocol, but it is generally some type of signed message.</td> 
+  </tr>
+  </table>
+  </div>
 
 ##### 5.1.6.1. Single Factor Cryptographic Device Authenticators
 
@@ -204,7 +288,16 @@ The challenge nonce SHALL be at least 64 bits in length, and SHALL either be uni
     
 #### 5.1.7. Multi-Factor Cryptographic Software
 
-A multi-factor software cryptographic authenticator is a cryptographic key is stored on disk or some other “soft” media that requires activation through a second factor of authentication. Authentication is accomplished by proving possession and control of the key. The authenticator output is highly dependent on the specific cryptographic protocol, but it is generally some type of signed message. The MF software cryptographic authenticator is *something you have*, and it may be activated by either *something you know* or *something you are*.
+<div class="text-left" markdown="1">
+<table style="width:100%">
+  <tr>
+    <td><img src="sp800-63b/media/Multi-factor-software-crypto.png" alt="authenticator" style="width: 100px;height: 100px"/></td>
+    <td>A multi-factor software cryptographic authenticator is a cryptographic key is stored on disk or some other “soft” media that requires activation through a second factor of authentication. Authentication is accomplished by proving possession and control of the key. The authenticator output is highly dependent on the specific cryptographic protocol, but it is generally some type of signed message. The MF software cryptographic authenticator is <i>something you have</i>, and it SHALL be activated by either <i>something you know</i> or <i>something you are</i>.</td> 
+  </tr>
+  </table>
+  </div>
+
+
 
 ##### 5.1.7.1. Multi-Factor Cryptographic Software Authenticators
 
@@ -222,7 +315,15 @@ The requirements for a multi-factor cryptographic software verifier are identica
 
 #### 5.1.8. Multi-Factor Cryptographic Devices
 
-A multi-factor cryptographic device is a hardware device that contains a protected cryptographic key that requires activation through a second authentication factor. Authentication is accomplished by proving possession of the device and control of the key. The authenticator output is highly dependent on the specific cryptographic device and protocol, but it is generally some type of signed message. The MF Cryptographic device is *something you have*, and it may be activated by either *something you know* or *something you are*.
+<div class="text-left" markdown="1">
+<table style="width:100%">
+  <tr>
+    <td><img src="sp800-63b/media/Multi-factor-crypto-device.png" alt="authenticator" style="width: 100px;height: 100px"/></td>
+    <td>A multi-factor cryptographic device is a hardware device that contains a protected cryptographic key that requires activation through a second authentication factor. Authentication is accomplished by proving possession of the device and control of the key. The authenticator output is highly dependent on the specific cryptographic device and protocol, but it is generally some type of signed message. The MF Cryptographic device is <i>something you have</i>, and it SHALL be activated by either <i>something you know</i> or <i>something you are</i>.</td> 
+  </tr>
+  </table>
+  </div>
+
 
 ##### 5.1.8.1. Multi-Factor Cryptographic Device Authenticators
 
@@ -281,7 +382,7 @@ Therefore, the use of biometrics for authentication is supported, with the follo
 
 Biometrics SHALL be used with another authentication factor (something you know or something you have).
 
-Testing of the biometric system to be deployed SHALL demonstrate an equal error rate of **1 in 1000** or better with respect to matching performance. The biometric system SHALL operate with a false match rate of **1 in 1000** or better.
+Empirical testing of the biometric system to be deployed SHALL demonstrate an equal error rate of **1 in 1000** or better with respect to matching performance. The biometric system SHALL operate with a false match rate of **1 in 1000** or better.
 
 When the biometric sensor and subsequent processing are not part of an integral unit that resists replacement of the sensor, the sensor SHALL demonstrate that it is a certified or qualified sensor meeting these requirements by authenticating itself to the processing element.
 
