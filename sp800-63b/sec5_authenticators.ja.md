@@ -22,7 +22,7 @@ This section provides the detailed requirements specific for each of the authent
     <td>記憶シークレット認証器(一般的にはパスワードや、数字ならばPinとして表されているもの) は、ユーザによって決められ、記憶されるシークレットである。記憶シークレットは攻撃者が正しい値を推測したり特定できないように、十分な複雑かつ秘密の状態にしておく必要がある。   
     </td>
     <!--
-    <td>A Memorized Secret authenticator (commonly referred to as a <i>password</i> or <i>PIN</i> if it is numeric) is a secret value that is intended to be chosen and memorizable by the user. Memorized secrets need to be of sufficient complexity and secrecy that it would be impractical for an attacker to guess or otherwise discover the correct secret value.</td> 
+    <td>A Memorized Secret authenticator (commonly referred to as a <i>password</i> or <i>PIN</i> if it is numeric) is a secret value that is intended to be chosen and memorizable by the user. Memorized secrets need to be of sufficient complexity and secrecy that it would be impractical for an attacker to guess or otherwise discover the correct secret value.</td>
     -->
   </tr>
   </table>
@@ -125,7 +125,7 @@ Verifiers SHALL store memorized secrets in a form that is resistant to offline a
     <td>ルックアップシークレット認証器は物理的または電子的なレコードであり、申請者とCSPとの間で共有されているシークレット一式を記録するものである。申請者は、検証主体からの入力要求に答えるために必要とされる適切なシークレットを検索するために認証器を利用する。例えば、申請者は検証主体によって、カード上に印字された表形式の数字または文字列のうち特定の一部を提示するよう求められるかもしれない。
     </td>
     <!--
-    <td>A look-up secret authenticator is a physical or electronic record that stores a set of secrets shared between the claimant and the CSP. The claimant uses the authenticator to look up the appropriate secret(s) needed to respond to a prompt from the verifier. For example, a claimant may be asked by the verifier to provide a specific subset of the numeric or character strings printed on a card in table format.</td> 
+    <td>A look-up secret authenticator is a physical or electronic record that stores a set of secrets shared between the claimant and the CSP. The claimant uses the authenticator to look up the appropriate secret(s) needed to respond to a prompt from the verifier. For example, a claimant may be asked by the verifier to provide a specific subset of the numeric or character strings printed on a card in table format.</td>
     -->
   </tr>
   </table>
@@ -160,7 +160,7 @@ If the authenticator uses look-up secrets sequentially from a list, the subscrib
 Verifiers of look-up secrets SHALL prompt the claimant for the next secret from their authenticator or for a specific (i.e., numbered) secret. A given secret from an authenticator SHALL be used successfully only once; therefore, a given authenticator can only be used for a finite number of successful authentications. If the look-up secret is derived from a grid card, each cell of the grid SHALL be used only once.
 -->
 
-検証主体は、オフライン攻撃へ対策するため、フォームにルックアップシークレットを保存するものとする(SHALL)。シークレットは、*ソルト*値と一緒に、[[SP800-132]](#SP800-132)で記載されている承認済み(approved)のハッシュ関数を用いてハッシュ化されるものとする(SHALL)。
+検証主体は、オフライン攻撃へ対策するため、フォームにルックアップシークレットを保存するものとする(SHALL)。シークレットは、*ソルト* 値と一緒に、[[SP800-132]](#SP800-132)で記載されている承認済み(approved)のハッシュ関数を用いてハッシュ化されるものとする(SHALL)。
 ソルト値は32ビット以上のランダム値で、承認済み(approved)の乱数生成器を用いて生成され、ハッシュ結果とともに記録される。ハッシュ認証器から分離されて記録される鍵(例:ハードウェアセキュリティモジュール中)を用いる鍵付ハッシュ関数(例:HMAC [[FIPS198-1]](#FIPS198-1))は、記録済みハッシュ化認証器に対する辞書攻撃に対する更なる対抗方法として利用されるべきである(SHOULD)。
 
 <!--
@@ -190,14 +190,14 @@ Verifiers SHALL use approved encryption and SHALL authenticate themselves to the
   <tr>
     <td><img src="sp800-63b/media/Out-of-band-OOB.png" alt="authenticator" style="width: 100px;height: 100px"/></td>
     <td>経路外認証器は、一意にアドレス可能、かつセカンダリチャネルと呼ばれる異なる通信チャネルを介して検証主体と安全に通信することができる物理デバイスである。デバイスは申請者によって所有と制御されており、電子的認証のためのプライマリチャネルと分離されたセカンダリチャネルを介したプライベートな通信をサポートしている。経路外認証器は以下の方法の1つで動作することができる。<br><br>
-    
+
 - 申請者は経路外デバイスによってセカンダリチャネルを介して受け取ったシークレットを、プライマリチャネルを使って検証主体に送信する。例えば、申請者は自身のモバイルデバイス上でシークレットを受信し、それ(典型的には数字6桁のコード)を自身の認証セッションに対して打ち込むかもしれない。<br><br>
 
 - 申請者はプライマリチャネルを介して受け取ったシークレットを、経路外デバイスに対して送信し、セカンダリチャネルを介して検証主体に対して送信する。例えば、申請者は自身の認証セッション上で確認したシークレットを、モバイルデバイス上のアプリケーション対して入力したり、バーコード・QRコードといった技術を利用して送信を達成する。<br><br>
 
 - 申請者はプライマリチャネルとセカンダリチャネルから得たシークレットを比較し、セカンダリチャネルを介した認証の裏付け行う。<br><br>
 
-シークレットの目的は安全に認証操作をプライマリとセカンダリのチャネルに結びつけることである。プライマリ通信チャネルを介してレスポンスをする場合、シークレットは経路外デバイスを申請者が制御していることもまた証明していることになる。</td> 
+シークレットの目的は安全に認証操作をプライマリとセカンダリのチャネルに結びつけることである。プライマリ通信チャネルを介してレスポンスをする場合、シークレットは経路外デバイスを申請者が制御していることもまた証明していることになる。</td>
   </tr>
   </table>
   </div>
@@ -223,7 +223,7 @@ Verifiers SHALL use approved encryption and SHALL authenticate themselves to the
 -->
 
 <!--
-The purpose of the secret is to securely bind the authentication operation on the primary and secondary channel. When the response is via the primary communication channel, the secret also establishes the claimant's control of the out-of-band device.</td> 
+The purpose of the secret is to securely bind the authentication operation on the primary and secondary channel. When the response is via the primary communication channel, the secret also establishes the claimant's control of the out-of-band device.</td>
   </tr>
   </table>
   </div>
@@ -350,7 +350,7 @@ The verifier SHALL generate random authentication secrets with at least 20 bits 
     <td><img src="sp800-63b/media/Single-factor-otp-device.png" alt="authenticator" style="width: 100px;height: 100px"/></td>
     <td>A single factor OTP device is a hardware device that supports the time-based generation of one-time passwords. This includes software-based OTP generators installed on devices such as mobile phones. This device has an embedded secret that is used as the seed for generation of one-time passwords and does not require activation through a second factor. Authentication is accomplished by using the authenticator output (i.e., the one-time password) in an authentication protocol, thereby proving possession and control of the device. A one-time password device may, for example, display 6 characters at a time.<br><br>
 
-Single factor OTP devices are similar to look-up secret authenticators with the exception that the secrets are cryptographically generated by the authenticator and verifier and compared by the verifier. The secret is computed based on a nonce that may be time-based or from a counter on the authenticator and verifier.</td> 
+Single factor OTP devices are similar to look-up secret authenticators with the exception that the secrets are cryptographically generated by the authenticator and verifier and compared by the verifier. The secret is computed based on a nonce that may be time-based or from a counter on the authenticator and verifier.</td>
   </tr>
   </table>
   </div>
@@ -371,7 +371,7 @@ If the authenticator supplies its output via an electronic interface such as USB
 
 Single factor OTP verifiers effectively duplicate the process of generating the OTP used by the authenticator. As such, the symmetric keys used by authenticators are also present in the verifier, and SHALL be strongly protected against compromise.
 
-In collecting the OTP from the claimant, the verifier SHALL use approved encryption and SHALL authenticate itself to the claimant. 
+In collecting the OTP from the claimant, the verifier SHALL use approved encryption and SHALL authenticate itself to the claimant.
 
 If the authenticator output has less than 64 bits of entropy, the verifier SHALL implement a throttling mechanism that effectively limits the number of failed authentication attempts an attacker can make on the subscriber’s account as described in [Section 5.2.2](#throttle).
 
@@ -381,7 +381,7 @@ If the authenticator output has less than 64 bits of entropy, the verifier SHALL
 <table style="width:100%">
   <tr>
     <td><img src="sp800-63b/media/Multi-factor-otp-device.png" alt="authenticator" style="width: 100px;height: 100px"/></td>
-    <td>A multi-factor (MF) OTP device hardware device generates one-time passwords for use in authentication and requires activation through a second factor of authentication. The second factor of authentication may be achieved through some kind of integral entry pad, an integral biometric (e.g., fingerprint) reader or a direct computer interface (e.g., USB port). The one-time password is typically displayed on the device and manually input to the verifier, although direct electronic output from the device as input to a computer is also allowed. For example, a one-time password device may display 6 characters at a time. The MF OTP device is <i>something you have</i>, and it SHALL be activated by either <i>something you know</i> or <i>something you are</i>.</td> 
+    <td>A multi-factor (MF) OTP device hardware device generates one-time passwords for use in authentication and requires activation through a second factor of authentication. The second factor of authentication may be achieved through some kind of integral entry pad, an integral biometric (e.g., fingerprint) reader or a direct computer interface (e.g., USB port). The one-time password is typically displayed on the device and manually input to the verifier, although direct electronic output from the device as input to a computer is also allowed. For example, a one-time password device may display 6 characters at a time. The MF OTP device is <i>something you have</i>, and it SHALL be activated by either <i>something you know</i> or <i>something you are</i>.</td>
   </tr>
   </table>
   </div>
@@ -391,7 +391,7 @@ If the authenticator output has less than 64 bits of entropy, the verifier SHALL
 
 Multi-factor OTP authenticators operate in a similar manner to single-factor OTP authenticators (see [Section 5.1.4.1](#sfotpa)), except that they require the entry of either a memorized secret or use of a biometric to obtain a password from the authenticator. Each use of the authenticator SHALL require the input of the additional factor.
 
-The authenticator output SHALL have at least 6 decimal digits (approximately 20 bits) of entropy. The output SHALL be generated by using an approved block cipher or hash function to combine a symmetric key stored on a personal hardware device with a nonce to generate a one-time password. The nonce MAY be based on the date and time or on a counter generated on the device. 
+The authenticator output SHALL have at least 6 decimal digits (approximately 20 bits) of entropy. The output SHALL be generated by using an approved block cipher or hash function to combine a symmetric key stored on a personal hardware device with a nonce to generate a one-time password. The nonce MAY be based on the date and time or on a counter generated on the device.
 
 Any memorized secret used by the authenticator for activation SHALL be at least 6 decimal digits (approximately 20 bits) in length or of equivalent complexity. A biometric activation factor SHALL meet the requirements of [Section 5.2.3](#biometric_use), including limits on number of successive authentication failures.
 
@@ -404,14 +404,14 @@ Multi-factor OTP verifiers effectively duplicate the process of generating the O
 In collecting the OTP from the claimant, the verifier SHALL use approved encryption and SHALL authenticate itself to the claimant. Time-based one-time passwords SHALL have a lifetime of less than 2 minutes.
 
 If the authenticator output or activation secret has less than 64 bits of entropy, the verifier SHALL implement a throttling mechanism that effectively limits the number of failed authentication attempts an attacker can make on the subscriber’s account as described in [Section 5.2.2](#throttle). A biometric activation factor SHALL meet the requirements of [Section 5.2.3](#biometric_use), including limits on number of successive authentication failures.
-    
+
 #### 5.1.6. Single Factor Cryptographic Devices
 
 <div class="text-left" markdown="1">
 <table style="width:100%">
   <tr>
     <td><img src="sp800-63b/media/Single-factor-crypto.png" alt="authenticator" style="width: 100px;height: 100px"/></td>
-    <td>A single-factor cryptographic device is a hardware device that performs cryptographic operations on input provided to the device. This device does not require activation through a second factor of authentication. This device uses embedded symmetric or asymmetric cryptographic keys. Authentication is accomplished by proving possession of the device. The authenticator output is highly dependent on the specific cryptographic device and protocol, but it is generally some type of signed message.</td> 
+    <td>A single-factor cryptographic device is a hardware device that performs cryptographic operations on input provided to the device. This device does not require activation through a second factor of authentication. This device uses embedded symmetric or asymmetric cryptographic keys. Authentication is accomplished by proving possession of the device. The authenticator output is highly dependent on the specific cryptographic device and protocol, but it is generally some type of signed message.</td>
   </tr>
   </table>
   </div>
@@ -431,14 +431,14 @@ Single-factor cryptographic device verifiers generate a challenge nonce, send it
 The verifier contains either symmetric or asymmetric public keys corresponding to each authenticator. While both types of keys SHALL be protected against modification, symmetric keys SHALL additionally be strongly protected against unauthorized disclosure.
 
 The challenge nonce SHALL be at least 64 bits in length, and SHALL either be unique over the lifetime of the authenticator or statistically unique (generated using an approved random number generator).
-    
+
 #### 5.1.7. Multi-Factor Cryptographic Software
 
 <div class="text-left" markdown="1">
 <table style="width:100%">
   <tr>
     <td><img src="sp800-63b/media/Multi-factor-software-crypto.png" alt="authenticator" style="width: 100px;height: 100px"/></td>
-    <td>A multi-factor software cryptographic authenticator is a cryptographic key is stored on disk or some other “soft” media that requires activation through a second factor of authentication. Authentication is accomplished by proving possession and control of the key. The authenticator output is highly dependent on the specific cryptographic protocol, but it is generally some type of signed message. The MF software cryptographic authenticator is <i>something you have</i>, and it SHALL be activated by either <i>something you know</i> or <i>something you are</i>.</td> 
+    <td>A multi-factor software cryptographic authenticator is a cryptographic key is stored on disk or some other “soft” media that requires activation through a second factor of authentication. Authentication is accomplished by proving possession and control of the key. The authenticator output is highly dependent on the specific cryptographic protocol, but it is generally some type of signed message. The MF software cryptographic authenticator is <i>something you have</i>, and it SHALL be activated by either <i>something you know</i> or <i>something you are</i>.</td>
   </tr>
   </table>
   </div>
@@ -465,7 +465,7 @@ The requirements for a multi-factor cryptographic software verifier are identica
 <table style="width:100%">
   <tr>
     <td><img src="sp800-63b/media/Multi-factor-crypto-device.png" alt="authenticator" style="width: 100px;height: 100px"/></td>
-    <td>A multi-factor cryptographic device is a hardware device that contains a protected cryptographic key that requires activation through a second authentication factor. Authentication is accomplished by proving possession of the device and control of the key. The authenticator output is highly dependent on the specific cryptographic device and protocol, but it is generally some type of signed message. The MF Cryptographic device is <i>something you have</i>, and it SHALL be activated by either <i>something you know</i> or <i>something you are</i>.</td> 
+    <td>A multi-factor cryptographic device is a hardware device that contains a protected cryptographic key that requires activation through a second authentication factor. Authentication is accomplished by proving possession of the device and control of the key. The authenticator output is highly dependent on the specific cryptographic device and protocol, but it is generally some type of signed message. The MF Cryptographic device is <i>something you have</i>, and it SHALL be activated by either <i>something you know</i> or <i>something you are</i>.</td>
   </tr>
   </table>
   </div>
@@ -511,7 +511,7 @@ Additional techniques MAY be used to prioritize authentication attempts that are
 
 - Leveraging other risk-based or adaptive authentication techniques to identify user behavior that falls within, or out of, typical norms.
 
-Since these measures often create user inconvenience, the verifier SHOULD allow a certain number of failed authentication attempts before employing the above techniques. 
+Since these measures often create user inconvenience, the verifier SHOULD allow a certain number of failed authentication attempts before employing the above techniques.
 
 When the subscriber successfully authenticates, the verifier SHOULD disregard any previous failed attempts from the same IP address.
 
@@ -536,7 +536,7 @@ Testing of the biometric system to be deployed SHALL demonstrate at least 90% re
 
 The biometric system SHALL allow no more than 10 consecutive failed authentication attempts. Once that limit has been reached, the claimant SHALL be required to use a different authenticator or to activate their authenticator with a different factor such as a memorized secret.
 
-Biometric matching SHOULD be performed locally on claimant's device or MAY be performed at a central verifier. 
+Biometric matching SHOULD be performed locally on claimant's device or MAY be performed at a central verifier.
 
 If matching is performed centrally:
 
