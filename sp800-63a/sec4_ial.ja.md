@@ -20,7 +20,7 @@
 3. Home address
 -->
 
-本書に明記される要件に従い妥当性確認および検証が行われ, かつ, そのCSPがその属性情報を収集し保存することに対して, 個々に対して明示的な同意を得た場合については, 身元確認の段階で, 個別にその他の追加情報を集めることも可能である.
+本書に明記される要件に従い妥当性確認および検証が行われ, かつ, その CSP がその属性情報を収集し保存することに対して, 個々に対して明示的な同意を得た場合については, 身元確認の段階で, 個別にその他の追加情報を集めることも可能である.
 
 <!-- It is possible that additional information could be collected in the process of identity proofing an individual, provided validation and verification follow the requirements contained herein, and the individual explicitly consents to the CSP collecting and storing the attributes. -->
 
@@ -81,14 +81,14 @@
 | 4 | 1, 2 or 3
 
 
-以下は, いかなるCSPにおいても, IAL2 もしくは IAL3 の身元確認を行う場合に必要な要件である.
+以下は, いかなる CSP においても, IAL2 もしくは IAL3 の身元確認を行う場合に必要な要件である.
 
 <!-- The following requirements apply to any CSP performing identity proofing at IAL 2 or 3. -->
 
 1. 身元確認は, サービスや利益を享受するのに適切である/権利があるか否かの決定ために行うのは好ましくない (SHALL NOT).
 <!-- 1. Identity proofing SHALL NOT be performed to determine suitability/entitlement to gain access to services or benefits. -->
 
-2. CSP は, 他のいかなる属性情報をもってしても, ユーザを一意に特定することができない場合を除き, を SSN を集めるべきではない (SHALL NOT).
+2. CSP は, 他のいかなる属性情報をもってしても, ユーザを一意に特定することができない場合を除き, SSN を集めるべきではない (SHALL NOT).
 <!-- 2. The CSP SHALL NOT collect the SSN unless it is necessary for performing identity resolution and cannot be accomplished by collection of another attribute or combination of attributes. -->
 
 2. 個人を特定できる情報 (PII) の収集は, 申請者の主張する内容が実在して有効であることを確認するため, また, 最善策に基づいて, ユーザを適切に一意に特定し, 検証し, 有効性確認を行うために必要な最低限に限定されるべきである (SHALL).
@@ -103,7 +103,7 @@
 6. CSP は, 申請者の公平を保つ補償や身元確認で発生する問題に対応するための効果的な手段を提供しなければならない (SHALL). これれの手段は, 申請者からアクセスしやすく見つけやすいところに配置しなければならない (SHALL).
 <!-- 6.    The CSP SHALL provide effective mechanisms for redress of applicant complaints or problems arising from the identity proofing. These mechanisms SHALL be easy for applicants to find and access. -->
 
-7. 身元確認ならびに登録のプロセスは, 適切に記述されたポリシー, あるいは, ID 発行時の一般的な段階が仕様化された *practice statement* に従って行われるべきである (SHALL).
+7. 身元確認ならびに登録のプロセスは, 適切な文書化されたポリシー, あるいは Identity 検証時に実施すべき具体的な手順が指定された *practice statement* に従って行われるべきである (SHALL).
 <!-- 7. The identity proofing and enrollment processes SHALL be performed according to an applicable written policy or *practice statement* that specifies the particular steps taken to verify identities. -->
 
 3. CSP は申請者への ID 発行時に行った全ての手順の記録を維持しなければならない (SHALL). また, 身元確認時に提示された身分証の種類についても記録しておく必要がある (SHALL). CSP は次のことを決定するために, プライバシーのリスク評価を実施しなければならない (SHALL):  
@@ -133,21 +133,21 @@
 13. CSP が公的機関であるか民間機関であるかにかかわらず, 身元認証サービスとして提供され利用される機関は次に挙げる要件が適用される:
 <!-- 13. Regardless of whether the CSP is an agency or private sector provider, the following requirements apply to the agency offering or using the proofing service: -->
 
-    a) プライバシー保護法や個人情報保護法に基づいて, 身元確認を行うためにPIIの取得が必要であるか否かを決定するため, 公的高等機関に相談するべきである (SHALL).
+    a) プライバシー保護法や個人情報保護法に基づいて, 身元確認を行うために PII の取得が必要であるか否かを決定するため, 公的高等機関に相談するべきである (SHALL).
     <!-- a) The agency SHALL consult with their Senior Agency Official for Privacy to conduct an analysis to determine whether the collection of PII to conduct identity proofing triggers the requirements of the Privacy Act. -->
 
-    b) その結果PIIの取得が必要である場合, 収集し保存する目的についてを公表するべきである (SHALL).
+    b) その結果 PII の取得が必要である場合, 収集し保存する目的についてを公表するべきである (SHALL).
     <!-- b) The agency SHALL publish a System of Records Notice to cover such collections, as applicable. -->
 
-    c) 2002年施行の電子政府法 (the E-Government Act of 2002) に基づいて, 身元確認を行うためにPIIの取得が必要であるか否かを決定するため, 公的高等機関に相談するべきである (SHALL).
+    c) 2002年施行の電子政府法 (the E-Government Act of 2002) に基づいて, 身元確認を行うために PII の取得が必要であるか否かを決定するため, 公的高等機関に相談するべきである (SHALL).
     <!-- c) The agency SHALL consult with their Senior Agency Official for Privacy to conduct an analysis to determine whether the collection of PII to conduct identity proofing triggers the requirements of the E-Government Act of 2002. -->
 
-    d) その結果PIIの取得が必要である場合, プライバシーインパクトの評価結果を公表するべきである (SHALL).
+    d) その結果 PII の取得が必要である場合, プライバシーインパクトの評価結果を公表するべきである (SHALL).
     <!-- d) The agency SHALL publish a Privacy Impact Assessment to cover such collections, as applicable. -->
 
 ## 4.4. Identity Assurance Level 1
 
-CSPは申請者の身元確認を行ってはならない (SHALL NOT). 申請者がCSPに申請する属性情報の内容は自己申告でよい (MAY).
+CSP は申請者の身元確認を行ってはならない (SHALL NOT). 申請者が CSP に申請する属性情報の内容は自己申告でよい (MAY).
 
 <!-- The CSP SHALL NOT proof applicants.  Applicants MAY self-assert zero or more attributes to the CSP. -->
 
@@ -166,7 +166,7 @@ CSP がサービスを提供する対象によっては, CSP は [Section 4.5.2]
 
 #### 4.5.1.1. Resolution Requirements
 
-PII の取得は, ユーザを一意に識別するために必要な最低限に限定されるべきである (SHALL). 一般的な要件は [Section 5.1](#resolve) を参照のこと.
+PII の取得は, ユーザを一意に識別するために必要最低限な範囲に限定されるべきである (SHALL). 一般的な要件は [Section 5.1](#resolve) を参照のこと.
 
 <!-- Collection of PII SHALL be limited to the minimum necessary to resolve to a unique identity record.  See [Section 5.1](#resolve) for general resolution requirements. -->
 
@@ -176,13 +176,13 @@ PII の取得は, ユーザを一意に識別するために必要な最低限�
 
 <!-- See [Section 5.2, Identity Evidence Validation](#validate) for more information on acceptable identity evidence. -->
 
-- 上級 (SUPERIOR) 証明書あるいは強力な (STRONG) 証明書を1つ. **その証明証の発行元が身元確認を行う場合**, 申請者の自己申告が正しいか確認を行うため, 上級 (SUPERIOR) 証明書あるいは強力な (STRONG) 証明書を2つ以上必要とする **あるいは**
+- **もし** 証明書発行元が発行時の身元確認プロセスにおいて, 上級 (SUPERIOR) 証明書あるいは強力な (STRONG) 証明書を2つ以上用いて Claimed Identity の確認を行っていた **ならば**, そのようなプロセスを経て発行された上級 (SUPERIOR) 証明書あるいは強力な (STRONG) 証明書を1つ. **あるいは**
 <!-- - One (1) piece of SUPERIOR or STRONG evidence **if** the issuing source of the evidence, during its identity proofing event, confirmed the claimed identity by collecting two (2) or more forms of SUPERIOR or STRONG evidence; **OR** -->
 
-- 強力な (STRONG) 証明書を2つ **あるいは**
+- 強力な (STRONG) 証明書を2つ. **あるいは**
 <!-- - Two (2) pieces of STRONG evidence; **OR** -->
 
-- 強力な (STRONG) 証明書1つに加えて, 適切な (ADEQUATE) 証明書2つ
+- 強力な (STRONG) 証明書1つに加えて, 適切な (ADEQUATE) 証明書2つ.
 <!-- - One (1) piece of STRONG evidence plus two (2) pieces of ADEQUATE evidence. -->
 
 #### 4.5.1.3. Validation Requirements
@@ -190,25 +190,25 @@ PII の取得は, ユーザを一意に識別するために必要な最低限�
 利用可能な身分証について, 詳細の情報は [Section 5.2, Identity Evidence Validation](#validate) を参照のこと.
 <!-- See [Section 5.2, Identity Evidence Validation](#validate) for more information on acceptable identity evidence. -->
 
-- 各身分証の項目は, 提示されている身分証と同じ強度になるような手順で検証されなければならない. 例えば, 2つの強力な (STRONG) 身分証が提示された場合, それぞれ強力な (STRONG) 強度における検証がなされる.   
+- 各身分証は, 提示されている身分証と同じ強度になるような手順で検証されなければならない. 例えば, 2つの強力な (STRONG) 身分証が提示された場合, それぞれ検証方法にも強力な (STRONG) 強度が要求される.
 <!-- - Each piece of evidence must be validated with a process that is able to achieve the same strength as the evidence presented; For example, if two forms of STRONG identity evidence are presented, each evidence will be validated at a strength of STRONG. -->
 
-- 第三者のデータサービスに対しての検証は, 提示された身分証のうちの片方のみが利用される (SHALL).
+- 第三者のデータサービスを利用した検証は, 提示された身分証のうちの1つのみに限定する (SHALL).
 <!-- - Validation against a third party data service SHALL only be used for one piece of presented identity evidence. -->
 
 #### 4.5.1.4. Verification Requirements
 
-利用可能な身分証について, 詳細の情報は [Section 5.3, Identity Verification](#verify) を参照のこと.
+利用可能な身分証についての詳細は [Section 5.3, Identity Verification](#verify) を参照のこと.
 
 <!-- See [Section 5.3, Identity Verification](#verify) for more information on acceptable identity evidence. -->
 
-最低限, 強力な (STRONG) 強度を達成するプロセスにて申請者は証明されなければならない.
+最低限, 強力な (STRONG) 強度を達成するプロセスにて申請者を検証すること.
 
 <!-- At a minimum, the applicant must be verified by a process that is able to achieve a strength of STRONG. -->
 
 #### 4.5.1.5. Presence Requirements
 
-CSPは対面での身元確認を行うべきである (SHOULD) が, リモートで行ってもよい (MAY). 対面とリモートの両方での身元確認を勧めるすべきである (SHOULD).
+CSP は対面での身元確認を行うべきである (SHOULD) が, リモートで行ってもよい (MAY). CSP は両方の方式での確認手段を提供すべきである (SHOULD).
 
 <!-- The CSP SHOULD perform identity proofing in-person. The CSP MAY perform remote identity proofing. The CSP SHOULD offer both in-person and remote proofing. -->
 
@@ -225,7 +225,7 @@ CSPは対面での身元確認を行うべきである (SHOULD) が, リモー�
 - **CSP が対面での Proofing を行う場合**
 <!-- - **If CSP performed in-person proofing:**   -->
 
-    - CSP は確認された住所レコードに対して Proofing 通知を送付すること (SHALL).
+    - CSP は確認済の連絡先 (Address of Record) に対して Proofing 通知を送付すること (SHALL).
     <!-- - The CSP SHALL send a notification of proofing to the confirmed address of record. -->
     - Authenticator への紐づけが後日起こりうる場合, CSP は Subscriber に登録コード (Enrollment Code) を直接提供しても良い (MAY).
     <!-- - The CSP MAY provide an enrollment code directly to the subscriber if binding to an authenticator will occur at a later time. -->
@@ -235,17 +235,17 @@ CSPは対面での身元確認を行うべきである (SHOULD) が, リモー�
 - **CSP がリモートでの Proofing を行う場合**
 <!-- - **If the CSP performed remote proofing:**   -->
 
-    - CSP は登録コードを, 申請者の連絡先に送付すること (SHALL).
+    - CSP は登録コードを, 申請者の連絡先 (Address of Record) に送付すること (SHALL).
     <!-- - A CSP SHALL send an enrollment code to an address of record of the applicant. -->
     - 申請者は身元確認プロセスを完遂するため, 有効な登録コードを提示すること (SHALL).
     <!-- - The applicant SHALL present a valid enrollment code to complete the identity proofing process.     -->
-    - CSP は登録コードを検証済みの住所に送るべきである (SHOULD). CSP は登録コードの送信に, 検証済みの携帯電話 (SMS / 音声), 固定電話, Email アドレスなどを利用しても良い (MAY).
+    - CSP は登録コードを検証済みの住所 (Physical Mailing Address) に送るべきである (SHOULD). CSP は登録コードの送信に, 検証済みの携帯電話 (SMS / 音声), 固定電話, Email アドレスなどを利用しても良い (MAY).
     <!-- - The CSP SHOULD send the enrollment code to the physical mailing address that has been verified in records.  The CSP MAY send the enrollment code to a mobile telephone (SMS or voice), landline telephone, or email that has been verified in records. -->
     - 登録コードが認証の要素として利用される場合, 初回利用時にリセットすること (SHALL).
     <!-- - If the enrollment code is also intended to be an authentication factor, it SHALL be reset upon first use. -->
     - 物理的ではない方法で登録コードを送る場合, 有効期間は最大でも10分とする (SHALL). 郵送での送付の場合は, 最大7日とする (SHALL). ただし, 例外として, 米国の郵便サービスが直接配送できる範囲外への郵送により確認する場合, 21日まで有効期間を延ばしてもよい (MAY).
     <!-- - Enrollment codes sent by means other than physical mail SHALL be valid for a maximum of 10 minutes; those sent to a postal address of record SHALL be valid for a maximum of 7 days but MAY be made valid up to 21 days via an exception process to accommodate addresses outside the direct reach of the U.S. postal service.   -->
-    - 登録コードが住所に郵送されない場合, CSP は登録コード送付先とは別の宛先に Proofing 通知を送ること (SHALL). 例えば登録コードを携帯電話に送付した場合, Proofing 通知は免許書の住所に送付するなどが考えられる.
+    - 登録コードを住所 (Physical Mailing Address) 以外の連絡先 (Address of Record) に送付する場合, CSP は登録コード送付先とは別の連絡先 (Address of Record) に Proofing 通知を送ること (SHALL). 例えば登録コードを携帯電話に送付した場合, Proofing 通知は免許書の住所に送付するなどが考えられる.
     <!-- - If delivery of the enrollment code was sent to an address of record that is not physical mail, the CSP SHALL send notification of proofing to a different address of record than the destination of the enrollment code. For example, if the CSP sends an enrollment code to a mobile phone of record, a notification of proofing will be sent to the postal address in records or obtained from validated and verified evidence, like a drivers license. -->
 
 #### 4.5.1.7. Biometric Collection
@@ -278,13 +278,13 @@ CSP は [[SP 800-53]](#SP800-53) やそれと等価の業界標準が定める S
 
 ## <a name="ial3-requirements"></a> 4.6. Identity Assurance Level 3
 
-IAL3 では, IAL2 で必須なものに加えて, より強度の高い身分証の提示を必要とするなど, さらに厳しい要件が課せられる. 偽装や詐欺, その他影響の大きい損害からRPを守るため, 生体認証の利用を含む特定の追加プロセスが必要となる. 加えて, IAL3における身元確認では対面での確認が必須となる. 詳細は [Section 5.3.3](#vip) を参照のこと. CSP はこれらの要件を満たしているべきである (MAY).
+IAL3 では, IAL2 で必須なものに加えて, より強度の高い身分証の提示を必要とするなど, さらに厳しい要件が課せられる. 偽装や詐欺, その他影響の大きい損害から RP を守るため, 生体認証の利用を含む特定の追加プロセスが必要となる. 加えて, IAL3 における身元確認では対面での確認が必須となる. 詳細は [Section 5.3.3](#vip) を参照のこと. CSP はこれらの要件を満たしているべきである (MAY).
 
 <!-- IAL 3 adds additional rigor to the steps required at IAL 2, to include providing further evidence of superior strength, and is subjected to additional and specific processes, including the use of biometrics, to further protect the identity and RP from impersonation, fraud, or other significantly harmful damages.  In addition, identity proofing at IAL 3 is performed in-person. See [Section 5.3.3](#vip) for more details. A CSP MAY exceed these requirements. -->
 
 ### 4.6.1. Resolution Requirements
 
-PII の取得は, ユーザを一意に識別するために必要な最低限に限定されるべきである (SHALL). 一般的な要件は [Section 5.1](#resolve) を参照のこと.
+PII の取得は, ユーザを一意に識別するために必要最低限な範囲に限定されるべきである (SHALL). 一般的な要件は [Section 5.1](#resolve) を参照のこと.
 
 <!-- Collection of PII SHALL be limited to the minimum necessary to resolve to a unique identity record.  See [Section 5.1](#resolve) for general resolution requirements. -->
 
@@ -295,7 +295,7 @@ PII の取得は, ユーザを一意に識別するために必要な最低限�
 <!-- See [Section 5.2, Identity Evidence Validation](#validate) for more information on acceptable identity evidence. -->
 
 - 上級 (SUPERIOR) 証明書2つ以上.  **あるいは**  
-- 上級 (SUPERIOR) 証明書1つと強力な (STROG) 証明書1つ. **その証明証の発行元が身元確認を行う場合**, 申請者の自己申告が正しいか確認を行うため, 上級 (SUPERIOR) 証明書あるいは強力な (STRONG) 証明書を2つ以上必要とする **あるいは**  
+- **もし** 証明書発行元が発行時の身元確認プロセスにおいて, 上級 (SUPERIOR) 証明書あるいは強力な (STRONG) 証明書を2つ以上用いて Claimed Identity の確認を行っていた **ならば**, そのようなプロセスを経て発行された上級 (SUPERIOR) 証明書および強力な (STRONG) 証明書を1つずつ. **あるいは**
 - 強力な (STRONG) 証明書2つと, 適切な (ADEQUATE) 証明書1つ.
 
 <!--
@@ -306,12 +306,12 @@ PII の取得は, ユーザを一意に識別するために必要な最低限�
 
 ### 4.6.3. Validation Requirements  
 
-利用可能な身分証について, 詳細の情報は [Section 5.2, Identity Evidence Validation](#validate) を参照のこと.
+利用可能な身分証についての詳細は [Section 5.2, Identity Evidence Validation](#validate) を参照のこと.
 
 <!-- See [Section 5.2, Identity Evidence Validation](#validate) for more information on acceptable identity evidence. -->
 
-- 各身分証の項目は, 提示されている身分証と同じ強度になるような手順で検証されなければならない. 例えば, 2つの強力な (STRONG) 身分証が提示された場合, それぞれ強力な (STRONG) 強度における検証がなされる.   
-- 第三者のデータサービスに対しての検証は, 提示された身分証のうちの片方のみが利用される (SHALL).   
+- 各身分証は, 提示されている身分証と同じ強度になるような手順で検証されなければならない. 例えば, 2つの強力な (STRONG) 身分証が提示された場合, それぞれ検証方法にも強力な (STRONG) 強度が要求される.
+- 第三者のデータサービスを利用した検証は, 提示された身分証のうちの1つのみに限定する (SHALL).
 
 <!--
 - Each piece of evidence must be validated with a process that is able to achieve the same strength as the evidence presented; For example, if two forms of STRONG identity evidence are presented, each evidence will be validated at a strength of STRONG.
@@ -320,11 +320,11 @@ PII の取得は, ユーザを一意に識別するために必要な最低限�
 
 ### 4.6.4. Verification Requirements
 
-利用可能な身分証について, 詳細の情報は [Section 5.3, Identity Verification](#verify) を参照のこと.
+利用可能な身分証についての詳細は [Section 5.3, Identity Verification](#verify) を参照のこと.
 
 <!-- See [Section 5.3, Identity Verification](#verify) for more information on acceptable identity evidence. -->
 
-最低限, 上級 (SUPERIOR) 強度を達成するプロセスにて申請者は証明されなければならない.
+最低限, 上級 (SUPERIOR) 強度を達成するプロセスにて申請者を検証すること.
 
 <!-- - At a minimum, the applicant must be verified by a process that is able to achieve a strength of SUPERIOR. -->
 
@@ -341,9 +341,9 @@ PII の取得は, ユーザを一意に識別するために必要な最低限�
 
 ### 4.6.6 Address Confirmation
 
-- CSP は身分証 (任意提示のもの含む) から取得した有効な連絡先に対して, 連絡先の確認を行うべきである (SHALL).
-- 申請者による自己申告である連絡先は, 確認のために使うべきではない (SHALL NOT).   
-- 身元確認完了の通知は, 確認済みの連絡先に対して行うべきである (SHALL).
+- CSP は身分証 (任意提示のもの含む) から取得した有効な連絡先 (Address of Record) に対して, 連絡先の確認を行うべきである (SHALL).
+- 申請者による自己申告である連絡先情報は, 確認のために使うべきではない (SHALL NOT).   
+- 身元確認完了の通知は, 確認済みの連絡先 (Address of Record) に対して行うべきである (SHALL).
 
 <!--
 - The CSP SHALL confirm address of record through validation of the address contained on any supplied, valid piece of identity evidence.
@@ -354,7 +354,7 @@ PII の取得は, ユーザを一意に識別するために必要な最低限�
 ### 4.6.7. Biometric Collection
 
 CSP は身元確認時, 申請者による登録の否認および Re-Proofing の防止のため, 顔写真や指紋などの生体情報を取得すべきである (SHALL).
-生体情報の取得についての詳細は, SP 800-63Bの [Section 5.2.3](#biometric_use) を参照のこと.
+生体情報の取得についての詳細は, SP 800-63B の [Section 5.2.3](#biometric_use) を参照のこと.
 
 <!-- The CSP SHALL collect and record a biometric sample at the time of proofing (e.g., facial image or fingerprints) the purposes of non-repudiation and re-proofing.  See [Section 5.2.3](#biometric_use) of SP 800-63B for more detail on biometric collection. -->
 
@@ -367,7 +367,7 @@ CSP は [[SP 800-53]](#SP800-53) やそれと等価の業界標準が定める S
 
 ## 4.7. Enrollment Code
 
-登録コードにより, CSPはその連絡先が申請者の所有するものであることを確実にすることができる. また, 登録レコードによって, 申請者は登録済みの情報との紐付けをリフレッシュする権限を得られる. 登録レコードとの紐付けは, 身元確認のトランザクションと同じセッションで完遂されるとは限らない.   
+登録コードにより, CSP はその連絡先 (Address of Record) が申請者の管理下にあることを確認できる. また, 登録レコードによって, 申請者は登録済みの情報 (Enrollment Record) との紐付けを再度確立できる状態になる. 登録レコードとの紐付けは, 身元確認のトランザクションと同じセッションで完遂されるとは限らない.   
 
 <!-- An enrollment code allows the CSP to confirm that the applicant controls an address of record, as well as offers the applicant the ability to reestablish binding to their enrollment record.  Binding is not always completed in the same session as the original identity proofing transaction.   -->
 
@@ -376,7 +376,7 @@ CSP は [[SP 800-53]](#SP800-53) やそれと等価の業界標準が定める S
 <!-- An enrollment code SHALL be comprised of one of the following: -->
 
 * 最低でも, 6文字以上のランダムな英数字により構成  
-* 6文字以上のランダム英数字と同様のエントロピーが確保可能な, 機械が読み取り可能なラベル (QRコードなど).
+* 6文字以上のランダム英数字と同様のエントロピーが確保可能な, 機械が読み取り可能なラベル (QR コードなど).
 
 <!--
 * Minimually, a random six (6) character alphanumeric.

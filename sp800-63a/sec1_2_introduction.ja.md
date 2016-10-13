@@ -27,6 +27,7 @@ RP にとっては, トランザクションを実行しているユーザにつ
 * 提示された全ての証明書類が有効であり (正しく), 本物である (偽造や不正流用されていない) ことを検証すること.
 * 主張されたアイデンティティは, 現実世界に存在する旨を検証すること.
 * 主張されたアイデンティティが, 提示されたアイデンティティの証明書類を提示している現実世界の人物と紐付けられている旨を確認すること.
+
 <!--
 * Resolve a claimed identity to a single, unique identity within the context of the population of users the CSP serves.
 * Validate that all evidence that is supplied is valid (correct) and genuine (not counterfeit or misappropriated).
@@ -40,7 +41,7 @@ RP にとっては, トランザクションを実行しているユーザにつ
 
 <!-- Assurance in a subscriber's identity is described using one of three IALs: -->
 
-**身元保証レベル1 (Identity Assurance Level 1) **
+**身元保証レベル1 (Identity Assurance Level 1)**
 このレベルでは, 申請者の身元証明の確認は必須でない. よって, そのアイデンティティの認証プロセス時に提示されるいかなる属性情報も単に申請者自身が主張している内容でしかない.
 
 **身元保証レベル2 (Identity Assurance Level 2)**
@@ -68,6 +69,6 @@ At Identity Assurance Level 3, in-person identity proofing is required. Identify
 
 <!-- Since the individual will have undergone an identity proofing process at enrollment and likely associated with one or more authenticators, transactions are not pseudonymous with respect to individual interactions with the CSP. -->
 
-それぞれの身元保証レベル(IAL)に必要な要件の詳細は, [Section 4](#ial-section) と [Section 5](#ipv-section) を参照のこと.
+それぞれの身元保証レベル (IAL) に必要な要件の詳細は, [Section 4](#ial-section) と [Section 5](#ipv-section) を参照のこと.
 
 <!-- Detailed requirements for each of the IALs is given in [Section 4](#ial-section) and [Section 5](#ipv-section). -->
