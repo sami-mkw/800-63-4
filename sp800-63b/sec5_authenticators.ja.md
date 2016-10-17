@@ -466,7 +466,7 @@ If the authenticator output has less than 64 bits of entropy, the verifier SHALL
 <table style="width:100%">
   <tr>
     <td><img src="sp800-63b/media/Multi-factor-otp-device.png" alt="authenticator" style="width: 100px;height: 100px"/></td>
-    <td>多要素(MF: multi-factor) OTPハードウェアデバイスは、追加の認証要素によりアクティベートされた後に認証で使われるワンタイムパスワードを生成する。認証の2要素目は組み込みの入力パッド、組み込みの生体認証(例: 指紋)リーダ、USBポートなどのコンピュータに対するダイレクトなインタフェースといった方法により実現される。ワンタイムパスワードはデバイス上で表示、手動で検証主体に対して入力され、そのことによりデバイスの所持と制御を証明する。ワンタイムパスワードデバイスは例えば一度に6文字の表示を行うことがある。多要素OTPデバイスは<i>something you have</i>である。また、<i>something you know</i>または<i>something you know</i>のどちらかによってアクティベートされるものとする(SHALL)。</td>
+    <td>多要素(MF: multi-factor) OTPハードウェアデバイスは、追加の認証要素によりアクティベートされた後に認証で使われるワンタイムパスワードを生成する。認証の2要素目は組み込みの入力パッド、組み込みの生体認証(例: 指紋)リーダ、USBポートなどのコンピュータに対するダイレクトなインタフェースといった方法により実現される。ワンタイムパスワードはデバイス上で表示、手動で検証主体に対して入力され、そのことによりデバイスの所持と制御を証明する。ワンタイムパスワードデバイスは例えば一度に6文字の表示を行うことがある。多要素OTPデバイスは<i>something you have</i>である。また、<i>something you know</i>または<i>something you are</i>のどちらかによってアクティベートされるものとする(SHALL)。</td>
     
 <!--
     <td>A multi-factor (MF) OTP hardware device generates one-time passwords for use in authentication after activation through an additional authentication factor. The second factor of authentication may be achieved through some kind of integral entry pad, an integral biometric (e.g., fingerprint) reader or a direct computer interface (e.g., USB port). The one-time password is displayed on the device and manually input to the verifier. For example, a one-time password device may display 6 characters at a time, thereby proving possession and control of the device. The MF OTP device is <i>something you have</i>, and it SHALL be activated by either <i>something you know</i> or <i>something you are</i>.</td> 
@@ -500,7 +500,7 @@ The authenticator output SHALL have at least 6 decimal digits (approximately 20 
 Any memorized secret used by the authenticator for activation SHALL be at least 6 decimal digits (approximately 20 bits) in length or of equivalent complexity and SHALL be rate limited as specified in [Section 5.2.2](#throttle). A biometric activation factor SHALL meet the requirements of [Section 5.2.3](#biometric_use), including limits on number of successive authentication failures.
 -->
 
-暗号化されていない鍵とアクティベーションシークレット、生体サンプル(及び信号処理によって提供されたプローブのような、生体サンプル由来の任意の生体データ)はパスワード生成後、直ちにメモリから消去するものとする(SHALL)。
+暗号化されていない鍵とアクティベーションシークレット、生体サンプル(及び信号処理結果のプローブのような、生体サンプル由来の任意の生体データ)はパスワード生成後、直ちにメモリから消去するものとする(SHALL)。
 
 <!--
 The unencrypted key and activation secret or biometric sample (and any biometric data derived from the biometric sample such as a probe produced through signal processing) SHALL be erased from memory immediately after a password has been generated.
@@ -544,7 +544,7 @@ If the authenticator output or activation secret has less than 64 bits of entrop
 <table style="width:100%">
   <tr>
     <td><img src="sp800-63b/media/Single-factor-crypto.png" alt="authenticator" style="width: 100px;height: 100px"/></td>
-    <td>単一要素暗号デバイスは、保護された暗号鍵を用いた暗号法の操作、及びユーザエンドポイントに対する直接コネクションを介して認証器出力を提供するハードウェアデバイスである。デバイスは組み込みの対象暗号鍵、非対称暗号鍵を利用し、認証の2要素目を用いたアクティベーションを要求しない。認証は認証プロトコルを介してデバイスの所持証明を行うことにより達成される。認証器出力は特定の暗号デバイスとプロトコルに強く依存し、典型的にはある種の署名付メッセージになっている。単一要素暗号デバイスは<i>something you have</i>である。</td>
+    <td>単一要素暗号デバイスは、保護された暗号鍵を用いた暗号操作、及びユーザエンドポイントに対する直接コネクションを介して認証器出力を提供するハードウェアデバイスである。デバイスは組み込みの対象暗号鍵、非対称暗号鍵を利用し、認証の2要素目を用いたアクティベーションを要求しない。認証は認証プロトコルを介してデバイスの所持証明を行うことにより達成される。認証器出力は特定の暗号デバイスとプロトコルに強く依存し、典型的にはある種の署名付メッセージになっている。単一要素暗号デバイスは<i>something you have</i>である。</td>
 <!--
     <td>A single factor cryptographic device is a hardware device that performs cryptographic operations using protected cryptographic key(s) and provides the authenticator output via direct connection to the user endpoint. The device uses embedded symmetric or asymmetric cryptographic keys, and does not require activation through a second factor of authentication. Authentication is accomplished by proving possession of the device via the authentication protocol. The authenticator output is highly dependent on the specific cryptographic device and protocol, but it is typically some type of signed message. A single factor cryptographic device is <i>something you have</i>.</td> 
 -->
@@ -587,7 +587,7 @@ Single-factor cryptographic device authenticators SHOULD require a physical inpu
 Single-factor cryptographic device verifiers generate a challenge nonce, send it to the corresponding authenticator, and use the authenticator output to verify possession of the device. The authenticator output is highly dependent on the specific cryptographic device and protocol, but it is generally some type of signed message.
 -->
 
-検証主体は、各認証器に対応する対象・非対称暗号鍵を保持している。鍵の両タイプともに改変に対する保護がなされているものとし(SHALL)、対象鍵については更に、許可なく開示されることに対する強力な保護がなされているものとする(SHALL)。
+検証主体は、各認証器に対応する対象・非対称暗号鍵を保持している。鍵の両タイプともに改変に対する保護がなされているものとし(SHALL)、対象鍵については更に、許可のない暴露から強力に保護されているものとする(SHALL)。
 
 <!--
 The verifier has either symmetric or asymmetric cryptographic keys corresponding to each authenticator. While both types of keys SHALL be protected against modification, symmetric keys SHALL additionally be strongly protected against unauthorized disclosure.
@@ -599,64 +599,141 @@ The verifier has either symmetric or asymmetric cryptographic keys corresponding
 The challenge nonce SHALL be at least 64 bits in length, and SHALL either be unique over the lifetime of the authenticator or statistically unique (generated using an approved random bit generator).
 -->
     
+#### 5.1.7. 多要素暗号ソフトウェア
+<!--
 #### 5.1.7. Multi-Factor Cryptographic Software
+-->
 
 <div class="text-left" markdown="1">
 <table style="width:100%">
   <tr>
     <td><img src="sp800-63b/media/Multi-factor-software-crypto.png" alt="authenticator" style="width: 100px;height: 100px"/></td>
+    <td>多要素ソフトウェア暗号認証器は、認証の2要素目を用いたアクティベーションを必要とする、ディスクあるいは"ソフト"媒体にに記録された暗号鍵である。認証は鍵の所有と制御を証明することで行われる。認認証器出力は特定の暗号プロトコルに強く依存し、一般的にはある種の署名付メッセージになっている。多要素ソフトウェア暗号認証器は<i>something you have</i>であり、<i>something you know</i>または<i>something you are</i>のどちらかによってアクティベートされるものとする(SHALL)。</td>
+
+<!--
     <td>A multi-factor software cryptographic authenticator is a cryptographic key is stored on disk or some other “soft” media that requires activation through a second factor of authentication. Authentication is accomplished by proving possession and control of the key. The authenticator output is highly dependent on the specific cryptographic protocol, but it is generally some type of signed message. The MF software cryptographic authenticator is <i>something you have</i>, and it SHALL be activated by either <i>something you know</i> or <i>something you are</i>.</td> 
+    -->
   </tr>
   </table>
   </div>
 
 
 
+##### 5.1.7.1. 多要素暗号ソフトウェア認証器
+<!--
 ##### 5.1.7.1. Multi-Factor Cryptographic Software Authenticators
+-->
 
+多要素暗号ソフトウェア認証器は、認証器で一意かつ、記憶シークレットや生体情報などの追加の要素の入力なしではアクセスすることができない秘密鍵を保持している。利用する鍵はデバイス上で最もセキュアなストレージ(例:キーチェーン、Trusted Platform Module、可能ならばTrusted Execution Environment)に記録されるべきである(SHOULD)。
+
+<!--
 Multi-factor software cryptographic authenticators encapsulate a secret key that is unique to the authenticator and is accessible only through the input of an additional factor, either a memorized secret or a biometric. The key SHOULD be stored in the most secure storage available on the device (e.g., keychain storage, trusted platform module, or trusted execution environment if available).
+-->
 
+認証器を用いた各認証操作は追加の要素の入力を要求するものとする(SHALL)。
+
+<!--
 Each authentication operation using the authenticator SHALL require the input of the additional factor.
+-->
 
+アクティベーションのために認証器が用いる記憶シークレットは、少なくとも(約20ビットのエントロピーの)6桁の数字またはそれと等しい複雑さであるものとし(SHALL)、[Section 5.2.2](#throttle)で指定されるようにレート制限をおこなうものとする(SHALL)。生体アクティベーション要素は、連続する認証失敗回数の制限を含む[Section 5.2.3](#biometric_use)の要件に合致することとする(SHALL)。
+
+<!--
 Any memorized secret used by the authenticator for activation SHALL be at least 6 decimal digits (approximately 20 bits) in length or of equivalent complexity and SHALL be rate limited as specified in [Section 5.2.2](#throttle). A biometric activation factor SHALL meet the requirements of [Section 5.2.3](#biometric_use), and SHALL include limits on number of successive authentication failures.
+-->
 
+暗号化されていない鍵とアクティベーションシークレット、生体サンプル(及び信号処理結果のプローブのような、生体サンプル由来の任意の生体データ)は認証トランザクションの実施後、直ちにメモリから消去するものとする(SHALL)。
+
+<!--
 The unencrypted key and activation secret or biometric sample (and any biometric data derived from the biometric sample such as a probe produced through signal processing) SHALL be erased from memory immediately after an authentication transaction has taken place.
+-->
 
+##### 5.1.7.2. 多要素暗号ソフトウェア検証主体
+<!--
 ##### 5.1.7.2. Multi-Factor Cryptographic Software Verifiers
+-->
 
+多要素暗号ソフトウェア検証主体に対する要求事項は、[Section 5.1.8.2](#mfcdv)に記載されている多要素暗号デバイス検証主体に対する要求事項と同一である。
+
+<!--
 The requirements for a multi-factor cryptographic software verifier are identical to those for a multi-factor cryptographic device verifier, described in [Section 5.1.8.2](#mfcdv).
+-->
 
+#### 5.1.8. 多要素暗号デバイス
+<!--
 #### 5.1.8. Multi-Factor Cryptographic Devices
+-->
 
 <div class="text-left" markdown="1">
 <table style="width:100%">
   <tr>
     <td><img src="sp800-63b/media/Multi-factor-crypto-device.png" alt="authenticator" style="width: 100px;height: 100px"/></td>
+    <td>多要素暗号デバイスは、保護された暗号鍵を用いた暗号操作を行うハードウェアデバイスであり、2要素目を用いたアクティベーションを要求する。認証はデバイスの所持と鍵の制御を証明することで実現される。認証器出力はユーザエンドポイントに対する直接コネクションを介して提供され、特定の暗号デバイスとプロトコルに強く依存し、典型的にはある種の署名付メッセージになっている。多要素暗号デバイスは<i>something you have</i>であり、<i>something you know</i>または<i>something you are</i>のどちらかによってアクティベートされるものとする(SHALL)。</td>
+<!--
     <td>A multi-factor cryptographic device is a hardware device that performs cryptographic operations using protected cryptographic key(s) that require activation through a second authentication factor. Authentication is accomplished by proving possession of the device and control of the key. The authenticator output is provided by direct connection to the user endpoint and is highly dependent on the specific cryptographic device and protocol, but it is typically some type of signed message. The MF Cryptographic device is <i>something you have</i>, and it SHALL be activated by either <i>something you know</i> or <i>something you are</i>.</td> 
+    -->
   </tr>
   </table>
   </div>
 
 
+##### 5.1.8.1. 多要素暗号デバイス認証器
+<!--
 ##### 5.1.8.1. Multi-Factor Cryptographic Device Authenticators
+-->
 
+多要素暗号デバイス認証器は、認証器で一意かつ、記憶シークレットや生体情報などの追加要素の入力がある場合のみアクセス可能な秘密鍵を保持する目的で、耐タンパ性を持ったハードウェアを利用する。シークレットとそのアルゴリズムは最低でも[[SP 800-131A]](#SP800-131A)の最新版で定義されたセキュリティ強度(現在は112ビット)であるものとする(SHALL)。承認済み(Approved)暗号法が用いられるものとする(SHALL)。
+
+<!--
 Multi-factor cryptographic device authenticators use tamper-resistant hardware to encapsulate a secret key that is unique to the authenticator and is accessible only through the input of an additional factor, either a memorized secret or a biometric. The secret key and its algorithm SHALL provide at least the minimum security length specified in the latest revision of [[SP 800-131A]](#SP800-131A) (currently 112 bits). Approved cryptography SHALL be used.
+-->
 
+認認証器出力は特定の暗号デバイスとプロトコルに強く依存し、一般的にはある種の署名付メッセージになっている。
+
+<!--
 The authenticator output is highly dependent on the specific cryptographic device and protocol, but it is generally some type of signed message.
+-->
 
+認証器を用いた各認証操作は追加の要素の入力を要求すべきである(SHOULD)。追加要素の入力はデバイス上での直接入力またはハードウェア接続(例: USBやスマートカード)を介して行われてもよい(MAY)。
+
+<!--
 Each authentication operation using the authenticator SHOULD require the input of the additional factor. Input of the additional factor MAY be accomplished via either direct input on the device or via a hardware connection (e.g., USB or smartcard).
+-->
 
+アクティベーションのために認証器が用いる記憶シークレットは、少なくとも(約20ビットのエントロピーの)6桁の数字またはそれと等しい複雑さであるものとし(SHALL)、[Section 5.2.2](#throttle)で指定されるようにレート制限をおこなうものとする(SHALL)。生体アクティベーション要素は、連続する認証失敗回数の制限を含む[Section 5.2.3](#biometric_use)の要件に合致することとする(SHALL)。
+
+<!--
 Any memorized secret used by the authenticator for activation SHALL be at least 6 decimal digits (approximately 20 bits) in length or of equivalent complexity and SHALL be rate limited as specified in [Section 5.2.2](#throttle). A biometric activation factor SHALL meet the requirements of [Section 5.2.3](#biometric_use), and SHALL include limits on number of successive authentication failures.
+-->
 
+暗号化されていない鍵とアクティベーションシークレット、生体サンプル(及び信号処理結果のプローブのような、生体サンプル由来の任意の生体データ)は認証トランザクションの実施後、直ちにメモリから消去するものとする(SHALL)。
+
+<!--
 The unencrypted key and activation secret or biometric sample (and any biometric data derived from the biometric sample such as a probe produced through signal processing) SHALL be erased from memory immediately after an authentication transaction has taken place.
+-->
 
+##### <a name="mfcdv"></a>5.1.8.2 多要素暗号デバイス検証主体
+<!--
 ##### <a name="mfcdv"></a>5.1.8.2 Multi-Factor Cryptographic Device Verifiers
+-->
 
+多要素暗号デバイス検証主体はチャレンジノンスを生成し、対応する認証器に送信する。また、認証器出力をデバイスとアクティベーション要素の所有を検証するために利用する。
+
+<!--
 Multi-factor cryptographic device verifiers generate a challenge nonce, send it to the corresponding authenticator, and use the authenticator output to verify possession of the device and activation factor.
+-->
 
+検証主体は、各認証器に対応する対象・非対称暗号鍵を保持している。鍵の両タイプともに改変に対する保護がなされているものとし(SHALL)、対象鍵については更に、許可のない暴露から強力に保護されているものとする(SHALL)。
+
+<!--
 The verifier has either symmetric or asymmetric cryptographic keys corresponding to each authenticator. While both types of keys SHALL be protected against modification, symmetric keys SHALL additionally be strongly protected against unauthorized disclosure.
+-->
 
+チャレンジノンスは少なくとも64ビット長であるとし(SHALL)、認証器の生存期間を通して一意、または(承認済み乱数生成器を用いて生成され)統計上一意であるものとする(SHALL)。検証操作は承認済み(approved)暗号法を用いることとする(SHALL)。
+
+<!--
 The challenge nonce SHALL be at least 64 bits in length, and SHALL either be unique over the lifetime of the authenticator or statistically unique (generated using an approved random bit generator). The verification operation SHALL use approved cryptography.
+-->
 
 #### 5.2. General Authenticator Requirements
 
