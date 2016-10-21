@@ -10,7 +10,7 @@ Authentication 分野で使われる用語は幅広く, 多くの用語は SP 80
 本セクションでは, 本ドキュメントで利用される用語の定義を行う.
 SP 800-63 ドキュメント群のその他のドキュメントで利用される定義や略語は, それぞれのドキュメントにて定義する.
 
-<!-- The definitions in this section are primarily those that are referenced in this document. Refer to the other documents in the SP 800-63 document family for additional definitions and abbreviations specific to their content. -->
+<!-- The definitions in this section are primarily those that are referenced in this document. Refer to the other documents in the SP 800-63 document suite for additional definitions and abbreviations specific to their content. -->
 
 #### Address of Record
 
@@ -137,9 +137,9 @@ Applicant により申告された現在の Personal Name, 誕生日, 住所. ([
 
 #### Credential
 
-ある Identity (および付加的属性) を Subscriber が所有ないしは管理する Authenticator に紐付ける信頼の置けるオブジェクトもしくはデータ構造.
+ある Identity (および付加的属性) を (Identifier を通じて) Subscriber が所有ないしは管理する Authenticator に紐付ける信頼の置けるオブジェクトもしくはデータ構造.
 
-<!-- An object or data structure that authoritatively binds an identity (and optionally, additional attributes) to an authenticator possessed and controlled by a subscriber. -->
+<!-- An object or data structure that authoritatively binds an identity (via an identifier) (and optionally, additional attributes) to an authenticator possessed and controlled by a subscriber. -->
 
 一般的に Credential は Subscriber に管理されることが想定されるが, 本ドキュメントでは Subscriber の Authenticator と Identity の紐付けを確立する CSP 管理下の電子レコードを指すこともある.
 
@@ -216,6 +216,12 @@ FISP ドキュメントは FISP ホームページからオンラインで閲覧
 
 <!-- A process that allows for the conveyance of identity and authentication information across a set of networked systems. -->
 
+#### Federation Assurance Level
+
+Federation において, 認証情報および属性情報を Relying Party に送る際に用いられる Assertion Protocol の頑健性を示す指標.
+
+<!-- A metric describing the robustness of the assertion protocol utilized by the federation to communicate authentication and attribute information (if applicable) to a relying party. -->
+
 #### Identity
 
 特定のコンテキストにおいてある人物を他と区別できるかたちで表現する属性の集合.
@@ -226,13 +232,20 @@ FISP ドキュメントは FISP ホームページからオンラインで閲覧
 
 Applicant の Claimed Identity が本人の本物の Identity であることの確からしさの度合いをあらわす指標.
 
-<!-- A metric describing degree of confidence that the applicant’s claimed identity is their real identity. -->
+<!-- An ordinal that conveys the degree of confidence that the applicant’s claimed identity is their real identity. -->
 
 #### Identity Proofing
 
 CSP および Registration Authority (RA) が, Credential 発行のためにある人物に関する情報を収集および検証するプロセス.
 
 <!-- The process by which a CSP and a Registration Authority (RA) collect and verify information about a person for the purpose of issuing credentials to that person. -->
+
+#### Memorized Secret
+
+Subscriber に記憶されることを前提とした, 文字列からなる Authenticator.
+Subscriber が Authentication Process において *something they know* を立証するために利用できる.
+
+<!-- A type of authenticator consisting of a character string that is intended to be memorized or memorizable by the subscriber, permitting the subscriber to demonstrate *something they know* as part of an authentication process. -->
 
 #### Multi-Factor
 
@@ -256,23 +269,23 @@ Network は Claimant とその他の主体の間でメッセージを伝達す�
 
 #### Password
 
-Claimant が記憶し自身の Identity の認証に用いる鍵.
-Password は一般的に文字列である.
+Memoized Secret の一種.
+場合によっては文字列長や文字種に制限があることもある.
 
-<!-- A secret that a claimant memorizes and uses to authenticate his or her identity. Passwords are typically character strings. -->
+<!-- A memorized secret. In some contexts, passwords are restricted in length and composition. -->
 
 #### Personal Identification Number (PIN)
 
-10進数の数値のみで構成された Password.
+10進数の数値のみで構成された Memoized Secret.
 
-<!-- A password consisting only of decimal digits. -->
+<!-- A memorized secret typically consisting only of decimal digits. -->
 
 #### Personally Identifiable Information (PII)
 
-OMB Circular A-130 で定義されているように, Personally Identifiable Information とは個人の Identity を識別したり追跡するために用いられる情報である.
+OMB Circular [[A-130]](#A-130) で定義されているように, Personally Identifiable Information とは個人の Identity を識別したり追跡するために用いられる情報である.
 単体の情報で個人を識別・追跡可能なものもあれば, 特定の個人に紐付け済もしくは紐付け可能なその他の情報と組み合わせることで識別・追跡可能となるものもある.
 
-<!-- As defined by OMB Circular A-130, Personally Identifiable Information means information that can be used to distinguish or trace an individual's identity, either alone or when combined with other information that is linked or linkable to a specific individual. -->
+<!-- As defined by OMB Circular [[A-130]](#A-130), Personally Identifiable Information means information that can be used to distinguish or trace an individual's identity, either alone or when combined with other information that is linked or linkable to a specific individual. -->
 
 #### Private Key
 
@@ -297,11 +310,11 @@ Asymmetric Key ペアの公開鍵.
 #### Public Key Certificate
 
 Certificate Authority によって発行され, Certificate Authority の秘密鍵でデジタル署名された電子文書.
-Public Key Certificate により Subscriber の名前が Public Key と紐づけられる.
+Public Key Certificate により Subscriber の Identifier が Public Key と紐づけられる.
 当該 Certificate により識別される Subscriber のみが Private Key の管理およびアクセス権限を持っていることが暗示される.
 [[RFC 5280]](#RFC5280) も参照のこと.
 
-<!-- A digital document issued and digitally signed by the private key of a Certificate authority that binds the name of a subscriber to a public key. The certificate indicates that the subscriber identified in the certificate has sole control and access to the private key. See also [[RFC 5280]](#RFC5280). -->
+<!-- A digital document issued and digitally signed by the private key of a Certificate authority that binds an identifier to a subscriber to a public key. The certificate indicates that the subscriber identified in the certificate has sole control and access to the private key. See also [[RFC 5280]](#RFC5280). -->
 
 #### Public Key Infrastructure (PKI)
 
@@ -312,16 +325,9 @@ Public Key Certificate の発行, 管理, 失効を行う能力を備える.
 
 #### Registration
 
-Applicant が CSP の Subscriber となるべく申請し, RA が CSP に代わって Applicant の Identity を確認する一連のプロセス.
+Applicant が CSP の Subscriber となるべく申請し, CSP が Applicant の Identity を確認する一連のプロセス.
 
-<!-- The process through which an applicant applies to become a subscriber of a CSP and an RA validates the identity of the applicant on behalf of the CSP. -->
-
-#### Registration Authority (RA)
-
-CSP に対して Subscriber の Identity および Attribute を発行および保証する信頼された主体.
-RA は, CSP の一部であることもあれば, CSP から独立した主体であることもあるが, CSP と何らかの結び付きを持つ.
-
-<!-- A trusted entity that establishes and vouches for the identity or attributes of a subscriber to a CSP. The RA may be an integral part of a CSP, or it may be independent of a CSP, but it has a relationship to the CSP(s). -->
+<!-- The process through which an applicant applies to become a subscriber of a CSP and has their identity validated by the CSP. -->
 
 #### Relying Party (RP)
 
@@ -348,9 +354,9 @@ Risk Assessment は Risk Management の一部であり, Risk Analysis と同義�
 
 #### Shared Secret
 
-Claimant と Verifier が知っている, Authentication で使われる鍵.
+Subscriber と Verifier が知っている, Authentication で使われる鍵.
 
-<!-- A secret used in authentication that is known to the claimant and the verifier. -->
+<!-- A secret used in authentication that is known to the subscriber and the verifier. -->
 
 #### Special Publication (SP)
 
@@ -377,28 +383,16 @@ CSP から Credential や Authenticator を受け取る主体.
 
 <!-- See *Authenticator*. -->
 
-#### Unverified Name
-
-Identity Proofing により検証されていない Subscriber の名前.
-
-<!-- A subscriber name that is not verified as meaningful by identity proofing. -->
-
 #### Valid
 
 ある ID (身分証明書) について, それが期限切れや失効していないこと.
 
 <!-- In reference to an ID, the quality of not being expired or revoked. -->
 
-#### Verified Name
-
-Identity Proofing により検証された Subscriber の名前.
-
-<!-- A subscriber name that has been verified by identity proofing. -->
-
 #### Verifier
 
 Claimant の Identity を検証する主体.
 Claimant Identity の検証は, Authentication Protocol により Claimant が1つ以上の Authenticator を所持・管理していることを検証することで行われる.
-Verifier は Authenticator と Identity を紐付ける Credential を確認し, それらの状態を確認する必要があることもある.
+Verifier は Authenticator と Subscriber の Identifier を紐付ける Credential を確認し, それらの状態を確認する必要があることもある.
 
-<!-- An entity that verifies the claimant’s identity by verifying the claimant’s possession and control of one or two authenticators using an authentication protocol. To do this, the verifier may also need to validate credentials that link the authenticator(s) and identity and check their status. -->
+<!-- An entity that verifies the claimant’s identity by verifying the claimant’s possession and control of one or two authenticators using an authentication protocol. To do this, the verifier may also need to validate credentials that link the authenticator(s) to the subscriber's identifier and check their status. -->
