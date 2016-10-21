@@ -39,9 +39,9 @@ RP は彼らが必要とする IAL を2ないし3とした上で, 特定の属�
 こういったケースでは必要な属性のみを要求することでプライバシーを高めることができるが, これは Proofing Process の強度を Authentication Process の強度と分離して定義したことで得られたメリットの1つである.
 RP は Identity Proofing, Attribute Collection, Attribute Storage をすべて CSP にゆだねる Federated Identity というアプローチをとることもできる.
 
-<!-- The process used to verify an applicants association with their real world identity is calld *identity proofing*. The strength of identity proofing is described by a categorization called the identity assurance level (IAL). At IAL 1, identity proofing is not required, therefore any attribute information provided by the subscriber is self-asserted and not verified. At IAL 2 and 3, identity proofing is required, but the CSP may assert verified attribute values, verified attribute claims, pseudonymous identifiers, or nothing. This information assists Relying Parties (RPs) in making access control or authorization decisions. RPs may decide that their required IAL is 2 or 3, but may only need specific attributes, and perhaps attributes that retain an individual's pseudonymity. This privacy enhancing approach is one of the benefits of separating the strength of the proofing process from that of the authentication process. A relying party may also employ a federated identity approach where the RP outsources all identity proofing, attribute collection, and attribute storage to a CSP. -->
+<!-- The process used to verify an applicant's association with their real world identity is called *identity proofing*. The strength of identity proofing is described by a categorization called the identity assurance level (IAL). At IAL 1, identity proofing is not required, therefore any attribute information provided by the subscriber is self-asserted and not verified. At IAL 2 and 3, identity proofing is required, but the CSP may assert verified attribute values, verified attribute claims, pseudonymous identifiers, or nothing. This information assists Relying Parties (RPs) in making access control or authorization decisions. RPs may decide that their required IAL is 2 or 3, but may only need specific attributes, and perhaps attributes that retain an individual's pseudonymity. This privacy enhancing approach is one of the benefits of separating the strength of the proofing process from that of the authentication process. A relying party may also employ a federated identity approach where the RP outsources all identity proofing, attribute collection, and attribute storage to a CSP. -->
 
-本ドキュメントでは, 認証される主体を Claimant, Identity を検証する主体を Verifier と呼ぶ.
+本ドキュメント群では, 認証される主体を *Claimant*, Identity を検証する主体を *Verifier* と呼ぶ.
 Authentication Protocol を通じて Claimant が1つ以上の Authenticator を所有および管理していることを Verifier に示すことで, Verifier は Claimant が正規の Subscriber であることを検証できる.
 その後 Verifier は Subscriber に関する Assertion を RP に送る.
 Subscriber は仮名 (Pseudonymous) な場合もあれば仮名でない場合もある.
@@ -50,7 +50,7 @@ Subscriber は仮名 (Pseudonymous) な場合もあれば仮名でない場合�
 Verifier が RP をかねる場合, Assertion は Implicit なこともある.
 RP は Verifier が提供した Authenticated Information をもとに, Access Control や Authorization Decision を行うことができる.
 
-<!-- In this document, the party to be authenticated is called a claimant and the party verifying that identity is called a verifier. When a claimant successfully demonstrates possession and control of one or more authenticators to a verifier through an authentication protocol, the verifier can verify that the claimant is a valid subscriber. The verifier passes on an assertion about the subscriber, who may be either pseudonymous or non-pseudonymous, to the RP. That assertion includes an identifier, and may include identity information about the subscriber, such as the name, or other attributes that were verified in the enrollment process (subject to the policies of the CSP and the needs of the application). Where the verifier is also the RP, the assertion may be implicit. The RP can use the authenticated information provided by the verifier to make access control or authorization decisions. -->
+<!-- In this document suite, the party to be authenticated is called a *claimant* and the party verifying that identity is called a *verifier*. When a claimant successfully demonstrates possession and control of one or more authenticators to a verifier through an authentication protocol, the verifier can verify that the claimant is a valid subscriber. The verifier passes on an assertion about the subscriber, who may be either pseudonymous or non-pseudonymous, to the RP. That assertion includes an identifier, and may include identity information about the subscriber, such as the name, or other attributes that were verified in the enrollment process (subject to the policies of the CSP and the needs of the application). Where the verifier is also the RP, the assertion may be implicit. The RP can use the authenticated information provided by the verifier to make access control or authorization decisions. -->
 
 Authentication は Claimant Identity の確からしさを確立し, 場合によっては Claimant Attributes に関しても確からしさを確立する.
 (例えば, Subscriber が US Citizen であるとか, 特定の大学の学生であるとか, ある機関や組織から特定の番号やコードを割り振られているなど)
@@ -71,7 +71,7 @@ Authentication の一環として, Device Identity や Geo-location などのメ
 これらのメカニズムは Authenticator Assurance Level を直接引き上げるものではないが, Security Policy やリスク逓減策として利用できる.
 多くの場合, Authentication Process および Authentication Service は多くのアプリケーションや機関に共有されることになるが, 特定のアプリケーションの要件に基づいてアクセス許可やトランザクション実施の判断を行うのは, RP となる個々の機関やアプリケーションである.
 
-<!-- As part of authentication, mechanisms such as device identity or geo-location may be used to identify or prevent possible authentication false positives. While these mechanisms do not directly increase the authenticator assurance level, they can enforce security policies and mitigate risks. In many cases, the authentication process and services will be shared by many applications and agencies. However, it is the individual agency or application acting as the RP that shall make the decision to grant access or process a transaction based on the specific application requirements. -->
+<!-- As part of authentication, mechanisms such as device identity or geo-location may be used to identify or prevent possible authentication false positives. While these mechanisms do not directly increase the authenticator assurance level, they can aid in enforcing security policies and mitigate risks. In many cases, the authentication process and services will be shared by many applications and agencies. However, it is the individual agency or application acting as the RP that shall make the decision to grant access or process a transaction based on the specific application requirements. -->
 
 [Figure 4-1](#63Sec4-Figure1) は, Digital Authentication Model に関与する多様な主体およびそれらの間のインタラクションを描いている.
 左側は登録, Credential 発行, Lifecycle Management, 個人が Identity Proofing および Authentication の各フェーズで取りうるステータスを示している.
@@ -147,9 +147,9 @@ Subscriber が Authenticator および Credential の期限切れないし無効
 <!-- The previous section introduced the different participants in the conceptual digital authentication model. This section provides additional details regarding the relationships and responsibilities of the participants involved with enrollment and identity proofing. -->
 
 個人はこのステージでは Applicant と呼ばれ, CSP に対して Credential 発行を要求する.
-Applicant が Identity Proofing に成功すると, CSP は Authenticator を発行し, 当該個人は CSP の Subscriber となる.
+Applicant が Identity Proofing に成功すると, CSP は Credential を発行し, Authenticator を当該 Credential に紐づけ, それをもって当該個人は CSP の Subscriber となる.
 
-<!-- An individual, referred to as an applicant at this stage, requests credentials from a CSP. If the applicant is successfully proofed and authenticators are issued by a CSP, the individual is then termed a subscriber of that CSP. -->
+<!-- An individual, referred to as an applicant at this stage, requests credentials from a CSP. If the applicant is successfully proofed and a credential is created by a CSP and authenticator(s) are bound to it, the individual is then termed a subscriber of that CSP. -->
 
 CSP は各 Subscriber をユニークに識別するメカニズムを確立し, Subscriber の Credential を登録し, Subscriber に発行された Authenticator を監視する.
 Subscriber が登録時に Authenticator を受け取ることもあれば, Subscriber がすでに所有している Authenticator を CSP が紐付けることもあり, あとで必要になった段階で Authenticator を生成することもある.
@@ -182,7 +182,7 @@ Authentication System の強度は大枠としてそのシステムに組み込�
 Digital Authentication において, Claimant は CSP に登録された1つ以上の Authenticator を所有・管理し, 自身の Identity を証明する.
 Authenticator は Claimant が自身を正規の Subscriber であることを証明するための鍵を含み, Claimant はネットワーク越しに Authenticator を所有・管理していることを示すことで認証を行う.
 
-<!-- In digital authentication the claimant possesses and controls one or more authenticators that have been registered with the CSP and are used to prove the claimant’s identity. The authenticator(s) contains secrets the claimant can use to prove that he or she is a valid subscriber, the claimant authenticates to a system or application over a network by proving that he or she has possession and control of a authenticator. -->
+<!-- In digital authentication the claimant possesses and controls one or more authenticators that have been registered with the CSP and are used to prove the claimant’s identity. The authenticator(s) contains secrets the claimant can use to prove that he or she is a valid subscriber, the claimant authenticates to a system or application over a network by proving that he or she has possession and control of one or more authenticators. -->
 
 Authenticator に含まれる鍵は公開鍵ペア (Asymmetric Keys) ないしは共通鍵 (Symmetric Keys) に基づいている.
 公開鍵ペアは公開鍵 (Public Key) およびそれと関連付けられた秘密鍵 (Private Key) から構成され, Private Key は Authenticator 内に保存され Claimant が Authenticator を所有・管理していることを示すために用いられる.
@@ -194,12 +194,11 @@ Authenticator に共通鍵を保存する場合には, その共通鍵は Symmet
 (上述の Asymmetric Secret の例と異なり, Subscriber は共通鍵を認証者と共有する必要がある)
 Symmetric Key も Password もどちらも類似プロトコルで利用することができるが, 両者はそれらがどのように Subscriber と関連付けられるかという点で異なる.
 Symmetric Key は一般的には Subscriber が管理するハードウェアないしソフトウェア内に保存されるが, Password は Subscriber に記憶されることが想定される.
-Symmetric Key は Subscriber の代理として保存される鍵であり, Password は Subscriber が自身の記憶に保存する鍵である.
 多くのユーザーは記憶および入力を容易にするため短い Password を選ぶため, Password は Cryptographic Key よりも短い文字列となる.
 さらにいえば, システムは Symmetric Key をランダムに生成する一方, ユーザーは記憶できる Password を可能な文字列のごく小さなサブセット内から選択し, その多くが似た値となる傾向がある.
 したがって, Cryptographic Key がネットワーク越しの推測攻撃に対して強固な一方で, ユーザーが選択した Password は (特にその他の防御策がない場合) 脆弱になりやすい.
 
-<!-- Shared secrets stored on authenticators may be either symmetric keys or passwords (as opposed to the asymmetric secrets described above, which subscribers need not share with the authenticator). While both keys and passwords can be used in similar protocols, one important difference between the two is how they relate to the subscriber. While symmetric keys are generally stored in hardware or software that the subscriber controls, passwords are intended to be memorized by the subscriber. As such, a key is a secret stored on behalf of the subscriber, whereas subscribers are expected to store passwords within their mind. Since most users choose short passwords to facilitate memorization and ease of entry, passwords typically have fewer characters than cryptographic keys. Further, whereas systems choose keys at random, users attempting to choose memorable passwords will often select from a very small subset of the possible passwords of a given length, and many will choose very similar values. As such, whereas cryptographic keys are typically long enough to make network-based guessing attacks untenable, user-chosen passwords may be vulnerable—especially if no defenses are in place. -->
+<!-- Shared secrets stored on authenticators may be either symmetric keys or passwords (as opposed to the asymmetric secrets described above, which subscribers need not share with the authenticator). While both keys and passwords can be used in similar protocols, one important difference between the two is how they relate to the subscriber. While symmetric keys are generally stored in hardware or software that the subscriber controls, passwords are intended to be memorized by the subscriber. Since most users choose short passwords to facilitate memorization and ease of entry, passwords typically have fewer characters than cryptographic keys. Further, whereas systems choose keys at random, users attempting to choose memorable passwords will often select from a very small subset of the possible passwords of a given length, and many will choose very similar values. As such, whereas cryptographic keys are typically long enough to make network-based guessing attacks untenable, user-chosen passwords may be vulnerable—especially if no defenses are in place. -->
 
 本ドキュメントでは, Authenticator は常に鍵を含む.
 古典的認証要素の中には Digital Authentication に直接適用できないものもある.
@@ -235,13 +234,13 @@ Biometrics は, Verification の時点で物理的にその場にいた人間の
 
 #### 4.3.2. Credentials
 
-前述のように, Credential はその発行プロセスにおいて Authenticator を Subscriber に紐付けるものとなる.
+前述のように, Credential はその発行プロセスにおいて Authenticator を Identifier を通じて Subscriber に紐付けるものとなる.
 Credential は CSP に保管・管理される.
 Claimant は Authenticator を所有するが, 必ずしも電子的な Credential を所有する必要はない.
 例えばユーザー属性を含む Database Entry は本ドキュメントが目的とするケースにおいては Credential とみなされるが, これは Verifier に所有されるものである.
 X.509 Public Key Certificate は Claimant が所有する Credential としての古典的な例である.
 
-<!-- As described in the preceding sections, credentials bind an authenticator to the subscriber as part of the issuance process. Credentials are stored and maintained by the CSP. The claimant possesses a authenticator, but is not necessarily in possession of the electronic credentials. For example, database entries containing the user attributes are considered to be credentials for the purpose of this document but are possessed by the verifier. X.509 public key certificates are a classic example of credentials the claimant can (and often does) possess. -->
+<!-- As described in the preceding sections, credentials bind an authenticator to the subscriber, via an identifier, as part of the issuance process. Credentials are stored and maintained by the CSP. The claimant possesses a authenticator, but is not necessarily in possession of the electronic credentials. For example, database entries containing the user attributes are considered to be credentials for the purpose of this document but are possessed by the verifier. X.509 public key certificates are a classic example of credentials the claimant can (and often does) possess. -->
 
 #### 4.3.3. Authentication Process
 
@@ -330,11 +329,11 @@ Assertion の例としては以下のようなものがあげられる.
 <!-- Examples of assertions include: -->
 
 * SAML Assertions - SAML Assertion は Mark-up Language を用いて定義されており, Security Assertion の記述を目的とする. 当該 Assertion は Verifier が RP に対して Claimant の Identity に関する Statement を生成する際に利用できる. SAML Assertion はオプションで電子署名がされる.
-* OpenID Connect Claims - OpenID Connect は JavaScript Object Notation (JSON) を用いて Security に関する情報およびオプションで User Claims を記述するよう定義されている. JSON 形式のユーザー情報 Claims はオプションで電子署名がされる.
+* OpenID Connect Claims - OpenID Connect Claims は JavaScript Object Notation (JSON) を用いて Security に関する情報およびオプションで User Claims を記述するよう定義されている. JSON 形式のユーザー情報 Claims はオプションで電子署名がされる.
 * Kerberos Tickets - Kerberos Ticket は, Ticket Granting Authority が2つの認証された主体に対してセッションキーを発行する仕組みである. Kerberos では Symmetric Key ベースの秘匿化方式 (Encapsulation Scheme)を用いる.
 
 <!-- * SAML Assertions – SAML assertions are specified using a mark-up language intended for describing security assertions. They can be used by a verifier to make a statement to an RP about the identity of a claimant. SAML assertions may optionally be digitally signed.
-* OpenID Connect Claims - OpenID Connect are specified using JavaScript Object Notation (JSON) for describing security, and optionally, user claims.  JSON user info claims may optionally be digitally signed.
+* OpenID Connect Claims - OpenID Connect claims are specified using JavaScript Object Notation (JSON) for describing security, and optionally, user claims.  JSON user info claims may optionally be digitally signed.
 * Kerberos Tickets – Kerberos Tickets allow a ticket granting authority to issue session keys to two authenticated parties using symmetric key based encapsulation schemes. -->
 
 #### 4.4.2. Relying Parties
