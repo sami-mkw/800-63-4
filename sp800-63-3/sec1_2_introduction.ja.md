@@ -31,7 +31,7 @@ recommendation also provides guidelines for credential service providers
 Guidance for Federal Agencies* \[[OMB M-04-04](#M-04-04)\] を補完し, NIST SP 800-63-1 および SP 800-63-2 を置き換えるものである.
 OMB M-04-04 は, 誤った認証結果や Credential の誤用などによりもたらされる結果といった観点から, Level1 から Level4 まで4つの Level of Assurance を定義している.
 なお Level1 が最低で Level4 が最高の Assurance Level となる.
-この OMB のガイダンスでは, 誤った認証結果によりもたらされるであろう結果という観点から, 必要となる Assurance Level を定義している.
+この OMB のガイダンスでは, 誤った認証結果によりもたらされるであろう結果という観点から, 必要となる Level of Assurance を定義している.
 より深刻な影響が想定されるほど, 必要となる Level of Assurance も高くなる.
 OMB ガイダンスは, 政府機関に対して, 特定のデジタルトランザクションおよびシステムにおいて必要となる Level of Assurance を定めるための基準を提供している.
 必要となる Level of Assurance は, リスクやその発生確率に基づいて求められる.
@@ -45,7 +45,7 @@ supersede NIST SP 800-63-1 and SP 800-63-2. OMB M-04-04 defines four levels of
 assurance, Levels 1 to 4, in terms of the consequences of authentication
 errors and misuse of credentials. Level 1 is the lowest assurance level
 and Level 4 is the highest. The guidance defines the required level of
-identity assurance in terms of the likely consequences of an
+assurance in terms of the likely consequences of an
 authentication error. As the consequences of an authentication error
 become more serious, the required level of assurance increases. The OMB
 guidance provides agencies with criteria for determining the level of
@@ -54,7 +54,7 @@ and systems, based on the risks and their likelihood of occurrence. -->
 
 SP 800-63 は以下のドキュメント群からなる.
 
-<!-- SP 800-63 is organized as a family of documents as follows: -->
+<!-- SP 800-63 is organized as a suite of documents as follows: -->
 
 - SP 800-63A *Enrollment and Identity Proofing* - Credential, および Credential に関連付けられた Authenticator を, 特定の個人に紐付けるプロセスを扱う. このプロセスは一般的に Identity システムに個人が登録される際に, Identity Proofing プロセスを通じて行われる.
 
@@ -135,8 +135,8 @@ their authentication assurance requirements: -->
 特に本ドキュメントは OMB M-04-04 が定義する4段階の Level of Assurance を対応する Authenticator Assurance Level および Identity Assurance Level にマッピングしている.
 また本ドキュメント群の他のドキュメントは, 下記のようなエリアに関する Identity Assurance および Authenticator Assurance 固有の技術要件に関して言及している.
 
-<!-- This family of documents provides guidelines for implementing the third step of the
-above process. In particular, this document maps the four (4) Levels of Assurance defined in OMB M-04-04 into corresponding authenticator assurance and identity assurance levels. Other documents in the family state specific technical
+<!-- This suite of documents provides guidelines for implementing the third step of the
+above process. In particular, this document maps the four (4) Levels of Assurance defined in OMB M-04-04 into corresponding authenticator assurance and identity assurance levels. Other documents in the suite state specific technical
 requirements for identity assurance and authenticator assurance in the following
 areas: -->
 
@@ -170,7 +170,7 @@ areas: -->
 
 M-04-04 Level of Assurance は, 上記の各要素に対して達成された Identity Assurance Level, Authenticator Assurance Level, Federation Assurance Level を考慮した上で, 全要素を満たすものとして決定される.
 
-<!-- The M-04-04 Level of Assurance is determined by considering the identity assurance, authenticator assurance level, and federation assurance level achieved for each of the elements listed above, and determining the Level of Assurance satisfied by all elements. -->
+<!-- The M-04-04 Level of Assurance is determined by considering the identity assurance level, authenticator assurance level, and federation assurance level achieved for each of the elements listed above, and determining the Level of Assurance satisfied by all elements. -->
 
 設定された Level of Assurance の範囲内で, 各機関は追加のリスク緩和策と補完コントロール (補完統制) を行ってもよい.
 Credential Assurance Level を緩和することで, サービス利用可能顧客を増やすこともできる.
@@ -426,10 +426,10 @@ clarifications. -->
 #### 2.2.3. SP 800-63-3
 
 NIST SP 800-63-3 では, Special Publication 800-63-2 に対して大幅な改定と再構成を行っている.
-本リビジョンでは Authenticator Assurance Level および Identity Assurance Level という概念を導入し, 認証強度と Claimant の Identity に関する確度を分離して扱いたいというニーズ (例えば仮名を使った強固な認証等) の高まりに答えている.
+本リビジョンでは Authenticator Assurance Level, Identity Assurance Level および Federation Assurance Level という概念を導入し, 認証強度と Claimant の Identity に関する確度を分離して扱いたいというニーズ (例えば仮名を使った強固な認証等) の高まりに答えている.
 また同時に単一のドキュメントであったものを, SP 800-63-3 を最上位とした4つのドキュメント群に分割している.
 
-<!-- NIST SP 800-63-3 is a substantial update and restructuring of Special Publication 800-63-2. It introduces the concepts of authenticator assurance level and identity assurance level to support the growing need for independent treatment of authentication strength and confidence in the claimant's identity (for example, in strong pseudonymous authentication). It also moves from a single document describing authentication to a family of four documents, of which SP 800-63-3 is the top-level document. -->
+<!-- NIST SP 800-63-3 is a substantial update and restructuring of Special Publication 800-63-2. It introduces the concepts of authenticator assurance level, identity assurance level, and federation assurance level to support the growing need for independent treatment of authentication strength and confidence in the claimant's identity (for example, in strong pseudonymous authentication). It also moves from a single document describing authentication to a suite of four documents, of which SP 800-63-3 is the top-level document. -->
 
 SP 800-63-2 からのその他の変更は以下の通りである.
 
