@@ -292,18 +292,6 @@ CSP によって自身の Credential をある Authenticator に紐づけられ�
 
 <!-- See *Authenticator*. -->
 
-#### Token Authenticator
-
-*Authenticator Output* 参照.
-
-<!-- See *Authenticator Output*. -->
-
-#### Token Secret
-
-*Authenticator Secret* 参照.
-
-<!-- See *Authenticator Secret*. -->
-
 #### Trust Anchor
 
 ハードウェアやソフトウェエアに直接埋め込まれていたり, Out-of-band な手法によりセキュアに提供されたりすることで Trust される, Public Key もしくは Symmetric Key.
