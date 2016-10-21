@@ -67,7 +67,7 @@ exceed their privileges may be considered attackers. This section lists some com
 Holder-of-Key Assertion を使う場合は, この鍵は Assertion Protocol を開始する前に事前に IdP との間で確立されていることもある.
 また IdP がテンポラリな鍵を生成し, 認証済の Subscriber にその鍵を送付することもある.
 テンポラリな鍵を RP への認証に用いる場合は, そういった鍵は Secondary Authenticator と呼ばれる.
-Direct Mode での Assertion, Kerberos の Session Key, Indirect Mode での Assertion の参照, 認証 Cookie なども, Secondary Authenticator の一種である.
+Front-channel Model での Assertion, Kerberos の Session Key, Back-channel Model での Assertion の参照, 認証 Cookie なども, Secondary Authenticator の一種である.
 Secondary Authenticator に対する脅威としては, 以下のようなものがあげられる.
 
 <!-- In
@@ -78,8 +78,8 @@ case of holder-of-key assertions, this secret could already have been
 established with the IdP prior to the initiation of the assertion
 protocol. In other cases, the IdP will generate a temporary secret
 and transmit it to the authenticated subscriber for this purpose. When this secret is used to authenticate to the RP, this temporary secret will be referred to as a secondary
-authenticator. Secondary authenticators include assertions in the direct
-model, session keys in Kerberos, assertion references in the indirect
+authenticator. Secondary authenticators include assertions in the front-channel
+model, session keys in Kerberos, assertion references in the back-channel
 model, and cookies used for authentication. The threats to the secondary
 authenticator are as follows: -->
 
@@ -90,14 +90,14 @@ authenticator are as follows: -->
 
 -   *Secondary authenticator capture* - 攻撃者は, Session ハイジャック攻撃等により, Primary Authentication 完了後に IdP から Subscriber に伝送される Secondary Authenticator をキャプチャーしようとすることもある.
     また Man-in-the-Middle 等により Subscriber から RP に送られる Secondary Authenticator を搾取することも考えらえる.
-    Indirect Mode のように, RP が Secondary Authenticator を IdP に送ってその正当性をチェックしたり Secondary Authenticator に紐づく Assertion データを取得したりする必要がある場合, 攻撃者は IdP と RP の間の通信プロトコルに対する攻撃等により Secondary Authenticator をキャプチャーすることもありうる.
+    Back-channel Model のように, RP が Secondary Authenticator を IdP に送ってその正当性をチェックしたり Secondary Authenticator に紐づく Assertion データを取得したりする必要がある場合, 攻撃者は IdP と RP の間の通信プロトコルに対する攻撃等により Secondary Authenticator をキャプチャーすることもありうる.
     このようなケースでは, Secondary Authenticator は Subscriber になりすますために利用されるであろう.
 <!-- -   *Secondary authenticator capture* – An attacker may use a session
     hijacking attack to capture the secondary authenticator when the
     IdP transmits it to the subscriber after the primary
     authentication step, or the attacker may use a man-in-the-middle
     attack to obtain the secondary authenticator as it is being used by
-    the subscriber to authenticate to the RP. If, as in the indirect
+    the subscriber to authenticate to the RP. If, as in the back-channel
     model, the RP needs to send the secondary authenticator back to the
     IdP in order to check its validity or obtain the corresponding
     assertion data, an attacker may similarly subvert the communication

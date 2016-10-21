@@ -20,7 +20,7 @@ SAML の構成要素は以下の通りである.
 <!-- The building blocks of SAML include: -->
 
 - Assertion の構造を定義する Assertion XML Scheme
-- Assertion および Artifact (Section 6.1 で述べた Indirect モードで利用される Assertion の参照) を要求するための SAML Protocol
+- Assertion および Artifact (Section 6.1 で述べた Indirect Model で利用される Assertion の参照) を要求するための SAML Protocol
 - SAML の下のレイヤーで利用するコミュニケーションプロトコル (HTTP や SOAP 等) を定義し, SAML Assertion の伝送のために利用される Bindings
 
 <!-- -   the Assertions XML schema which defines the structure of the assertion

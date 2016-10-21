@@ -25,16 +25,16 @@ Proxy 経由の Federation においては, Proxy された Transaction にお�
 <div class="text-center" markdown="1">
 
 
-**Tbale 7-1: Federation Assertion Levels**
+**Table 7-1: Federation Assertion Levels**
 
 </div>
 
 |FAL|Back-channel Presentation Requirement|Front-channel Presentation Requirement|
 |:--:|----|----|
-|1|Bearer assertion, asymmetrically signed by IdP|Bearer assertion, asymmetrically signed by IdP|
-|2|Bearer assertion, asymmetrically signed by IdP|Bearer assertion, asymmetrically signed by IdP and encrypted to RP|
-|3|Bearer assertion, asymmetrically signed by IdP and encrypted to RP|Bearer assertion, asymmetrically signed by IdP and encrypted to RP|
-|4|Holder of key assertion, asymmetrically signed by IdP and encrypted to RP|Holder of key assertion, asymmetrically signed by IdP and encrypted to RP|
+|1|Bearer assertion, signed by IdP|Bearer assertion, signed by IdP|
+|2|Bearer assertion, signed by IdP|Bearer assertion, signed by IdP and encrypted to RP|
+|3|Bearer assertion, signed by IdP and encrypted to RP|Bearer assertion, signed by IdP and encrypted to RP|
+|4|Holder of key assertion, signed by IdP and encrypted to RP|Holder of key assertion, signed by IdP and encrypted to RP|
 
 例えば, FAL 1 は OpenID Connect Implicit Client Profile や SAML Web SSO Profile 等に相当する.
 FAL 2 は OpenID Connect Basic Client Profile, SAML Artifact Binding Profile 等に相当する.
@@ -63,7 +63,7 @@ FAL 4 で提示される追加の鍵は, Subscriber が IdP に対して認証�
 
 | M-04-04 Level of Assurance (LOA) |  Federation Assurance Level (FAL)
 |:------------------:|:-----------------------------:
-| 1 |  1
+| 1 | 1
 | 2 | 2
 | 3 | 2
 | 4 | 4
@@ -87,3 +87,12 @@ FAL 4 で提示される追加の鍵は, Subscriber が IdP に対して認証�
 | 2 | 2, 3, or 4
 | 3 | 2, 3, or 4
 | 4 | 3 or 4
+
+### 7.1 Key Management
+
+どの FAL においても, IdP は Assertion を Approved Cryptography を用いた署名や鍵によって保護し, RP が他の RP に対して IdP になりすますことができないようにすること (SHALL).
+Assertion を Asymmetric Signature により保護する場合, IdP は複数の RP に対して同じ Public & Private Key Pair を利用して署名を行ってもよい (MAY).
+IdP は, well-known location の HTTPS-protected URL に Public Key を配置するなど, 検証可能な形で自身の Public Key を公開してもよい (MAY).
+Assertion を Symmetric Signature により保護する場合, IdP は RP 毎に異なる Shared Key を利用すること (SHALL).
+
+<!-- At any FAL, the IdP SHALL ensure that an RP is unable to impersonate the IdP at another RP by protecting the assertion with a signature and key using approved cryptography. If the assertion is protected by an asymmetric signature, the IdP MAY use the same public and private key pair to sign assertions to multiple RPs. The IdP MAY publish its public key in a verifiable fashion, such as at an HTTPS-protected URL at a well-known location. If the assertion is protected by a symmetric signature, the IdP SHALL use a different shared key for each RP. -->
