@@ -23,9 +23,12 @@
 |登録 | 偽装された身分証 | 偽装した運転免許章を利用して不正な申請が行われる. |
 | | 他者の証明書の不正利用 | 他人のパスポートを利用して不正な申請が行われる. |
 | | 登録の否認| 登録済のユーザが, CSPに対して登録していないと主張し, 登録を否認する. |
+||Social engineering|A malicious applicant manipulates an individual responsible for identity proofing in order to be enrolled as another individual.
 |発行 |漏えい | CSPにより, 登録済みユーザに発行されたキーが攻撃者によってコピーされ, オーセンティケーターを発行する際にCSPからユーザにそれが渡されてしまう. |
 | |改ざん | ユーザによって作成された新しいパスワードが攻撃者によって変更され, CSPでのクレデンシャル発行フェーズで登録されてしまう. |
 | |不正発行 | 実際にはそのユーザではないにもかかわらずそうであると主張する攻撃者に対して, そのユーザのクレデンシャルを発行してしまう. |
+||Social engineering|A malicious person manipulates an individual responsible for issuance in order to obtain a credential bound to another, valid subscriber.
+|||If social engineering was successful at enrollment, obtaining a credential requires no extra effort.
 
 <!--
 |**Activity**   |     **Threat/Attack**  | **Example** |
@@ -33,9 +36,12 @@
 |Enrollment | Falsified identity proofing evidence | An applicant claims an incorrect identity by using a forged driver's license.|
 | | Fraudulent use of another's identity | An applicant uses a passport associated with a different individual
 | | Repudiation of enrollment | A subscriber denies enrollment, claiming that he or she did not enroll with the CSP.|
+||Social engineering|A malicious applicant manipulates an individual responsible for identity proofing in order to be enrolled as another individual.
 |Issuance|Disclosure | A key created by the CSP for a Subscriber is copied by an attacker as it is transported from the CSP to the subscriber during authenticator issuance.|
 | |Tampering | A new password created by the subscriber is modified by an attacker as it is being submitted to the CSP during the credential issuance phase.
 | |Unauthorized issuance | A person claiming to be the subscriber (but in reality is not the subscriber) is issued credentials for that subscriber.
+||Social engineering|A malicious person manipulates an individual responsible for issuance in order to obtain a credential bound to another, valid subscriber.
+|||If social engineering was successful at enrollment, obtaining a credential requires no extra effort.
 -->
 
 ## 7.1. Threat Mitigation Strategies
@@ -61,11 +67,12 @@ to the enrollment and issuance processes. -->
 | | 他者の証明書の不正利用 | 他の発行元あるいは信頼できるソースから得られた情報と突合して申請者の提示する身分証を検証する, あるいは生体情報を検証する. |
 | | | Verify Applicant-provided non-government issued documentation  (e.g. electricity bills in the name of the Applicant with the current address of the Applicant printed on the bill, or a credit card bill)  to help in achieving a higher level of confidence in the identity of the applicant. |
 | | 登録の否認 | Have the applicant sign a form acknowledging participation in the enrollment activity. |
+||Social engineering|Duplicate records check.
 | | |
 | 発行 | 漏えい | Issue the authenticator in person, physically mail it in a sealed envelope to a secure location, or use a protected session to send the authenticator electronically.|
 | | 改ざん | Issue credentials in person, physically mailing storage media in a sealed envelope, or through the use of a communication protocol that protects the integrity of the session data.|
 | | | Establish a procedure that allows the Subscriber to authenticate the CSP as the source of any authenticator and credential data that he or she may receive.|
-| | 不正発行 | Establish procedures to ensure that the individual who receives the authenticator is the same individual who participated in the enrollment procedure.|
+| | 不正発行 / Social engineering | Establish procedures to ensure that the individual who receives the authenticator is the same individual who participated in the enrollment procedure.|
 | | | Implement a dual-control issuance process that ensures two independent individuals shall cooperate in order to issue an authenticator.|
 
 <!--
@@ -76,10 +83,11 @@ to the enrollment and issuance processes. -->
 | | Fraudulent use of another's identity | CSP verifies identity evidence or biometric of applicant against information on evidence or obtained from issuer or other authoritative source.
 | | | Verify Applicant-provided non-government issued documentation (e.g. electricity bills in the name of the Applicant with the current address of the Applicant printed on the bill, or a credit card bill) to help in achieving a higher level of confidence in the identity of the applicant. |
 | | Repudiation of enrollment | Have the applicant sign a form acknowledging participation in the enrollment activity. |
+||Social engineering|Duplicate records check.
 | |
 | Issuance | Disclosure | Issue the authenticator in person, physically mail it in a sealed envelope to a secure location, or use a protected session to send the authenticator electronically.
 | | Tampering | Issue credentials in person, physically mailing storage media in a sealed envelope, or through the use of a communication protocol that protects the integrity of the session data.
 | | | Establish a procedure that allows the Subscriber to authenticate the CSP as the source of any authenticator and credential data that he or she may receive.
-| | Unauthorized issuance | Establish procedures to ensure that the individual who receives the authenticator is the same individual who participated in the enrollment procedure.
+| | Unauthorized issuance/Social engineering | Establish procedures to ensure that the individual who receives the authenticator is the same individual who participated in the enrollment procedure.
 | | | Implement a dual-control issuance process that ensures two independent individuals shall cooperate in order to issue an authenticator.
 -->
