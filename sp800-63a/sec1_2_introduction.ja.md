@@ -4,7 +4,7 @@
 
 本書は, それぞれの身元保証レベル (IAL: Identity Assurance Level) に応じて, オンライン上にあるリソースへのアクセスを希望する申請者 (Subscriber) の登録と身元確認 (Identity Proofing) のための要件を提示している. この要件は, 個々人が自身の Identity を主張できるように, 提示される本人確認証明書類によるの正当性, 許容性, 有効性についてそれぞれ詳細化されている. また, クレデンシャルサービスプロバイダ (CSP: Credential Service Provider) が登録レコードを確立・管理し, Authenticator (CSP が発行したものあるいは申請者から提供されたもの) と登録レコードを紐付けることに関する CSP の責任についても記述している.
 
-<!-- This document provides requirements for enrollment and identity proofing of subscribers that wish to gain access to online resources for each Identity Assurance Level (IAL).  The requirements detail the acceptability, validation, and verification of identity evidence that will be presented by an individual to support their claim of identity. This document also details the responsibilities of Credential Service Providers (CSPs) with respect to establishing and maintaining enrollment records, and binding of authenticators (either CSP issued or subscriber-provided) to the enrollment record. -->
+<!-- This document provides requirements for enrollment and identity proofing of subscribers that wish to gain access to online resources at each Identity Assurance Level (IAL).  The requirements detail the acceptability, validation, and verification of identity evidence that will be presented by an individual to support their claim of identity. This document also details the responsibilities of Credential Service Providers (CSPs) with respect to establishing and maintaining enrollment records, and binding of authenticators (either CSP issued or subscriber-provided) to the enrollment record. -->
 
 <a name="sec2"></a>
 
@@ -12,7 +12,7 @@
 
 人々を認証するにあたっての課題の１つは, 物理的な存在である特定人物と彼らのオンライン上での行動を関連付けることである. これは, 必要ではなかったり望ましいくない場合もある一方で (例えば匿名や仮名の利用が必要なケース), 物理的な人物との紐付けを確実に確立することが重要である場合もある. 例えば, 医療関連情報を取得したり, 金融関連の取引を行ったりする場合である. その他, 規定上の理由から紐付けが必要な場合や (金融界における Know Your Customer 要件など), ハイリスクな行動に対する責任の所在を明確にするために必要な場合もある (水力発電ダムからの水の放出など).
 
-<!-- One of the challenges associated with authenticating people is the association of their online activities with a specific physical person. While there are situations where this is not required or is even undesirable (i.e., use cases where anonymity or pseudonymity are required), there are others where it is important to reliably establish the association with a physical person. Examples include obtaining health care and executing financial transactions. There are also situations where the association is required for regulatory reasons (e.g., Know Your Customer requirements in the financial community) or to establish accountability for high-risk actions (e.g., the release of water from a hydroelectric dam). -->
+<!-- One of the challenges associated with authenticating people is the association of their online activities with a specific physical person. While there are situations where this is not required or is even undesirable (i.e., use cases where anonymity or pseudonymity are required), there are others where it is important to reliably establish an association with a physical person. Examples include obtaining health care and executing financial transactions. There are also situations where the association is required for regulatory reasons (e.g., Know Your Customer requirements in the financial community) or to establish accountability for high-risk actions (e.g., the release of water from a hydroelectric dam). -->
 
 RP にとっては, トランザクションを実行しているユーザについてなんらか知ることが望ましい一方, 現実世界での人物のアイデンティティは必要でないようなような場合もある. 例えば, サービスの質を維持するため, 国税調査や公務員からの嘆願でユーザの郵便番号を知る必要が出てきた場合, それぞれのユーザが物理的にどの人物に紐づくかといった情報まで知ることは必要ではないし, 望ましくもない.
 
@@ -63,7 +63,7 @@ At Identity Assurance Level 3, in-person identity proofing is required. Identify
 
 身元保証レベル2と3では, CSP から RP に送る属性情報の数に制限をかけるたり, 属性提供方法を工夫することで, 仮名性を確保することもできる. 例えば, RP が正確な誕生日を必要としているけれども他の詳細な個人情報を必要としていない場合, RP は CSP に要求するのは利用者 (Subscriber) の誕生日だけにとどめるべきである. RP は CSP に Attribute Claim を要求するのが望ましい. 例えば, 利用者が18歳より年上か否かを知流必要がある場合, RP は boolean の値として要求するべきであり, 年齢を確認するためといって生年月日全てを要求するべきではない.
 
-<!-- At IAL 2 and IAL 3, pseudonymity is enabled by CSP limiting the number of attributes sent, or the way they are presented, to the RP. For example, if an RP needs a valid birthdate but no other personal details, the RP should leverage a CSP to request just the birthdate of the subscriber. It is preferred for the RP to ask the CSP for an attribute claim. For example, if an RP needs to know if a claimant is older than 18 they should request a boolean value, not the entire birthdate for them to evaluate age. -->
+<!-- At IAL 2 and IAL 3, pseudonymity is enabled by CSP limiting the number of attributes sent, or the way they are presented, to the RP. For example, if an RP needs a valid birthdate but no other personal details, the RP should leverage a CSP to request just the birthdate of the subscriber. It is preferred for the RP to ask the CSP for an attribute claim. For example, if an RP needs to know if a claimant is older than 18 they should request a boolean value, not the entire birthdate in order to evaluate age. -->
 
 なお, 多くの場合, 各個人は登録時に身元確認プロセスを経て1つ以上の Authenticator と紐づけられることになるため, CSP とのインタラクションに関してはトランザクションが仮名とはならない.
 
