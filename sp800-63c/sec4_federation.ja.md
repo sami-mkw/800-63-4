@@ -167,24 +167,23 @@ Privacy Policy で IdP, RP, Federation Proxy による適切なデータ利用�
 
 <!-- While some proxied deployments offer no additional privacy protection (such as those that exist as integration points), others can offer varying levels of privacy to the subscriber through a range of blinding technologies. NOTE: even with the use of blinding technologies, it may still be possible for a blinded party to deduce subscriber behavior patterns through analysis of timestamps, cookies, attributes, or attribute bundle sizes. Privacy policies may dictate appropriate use by the IdP, RP, and the federation proxy, but blinding technology can increase effectiveness of these policies by making the data more difficult to access. It should also be noted that as the level of blinding increases, so does the technical and operational implementation complexity. -->
 
-以下に Blinding 実装のパターンを挙げる.
+以下に Blinding 実装のパターンを挙げる. この表は説明用のものであり, 網羅性を持つものでもある技術固有のものではない.
 
-<!-- The following list illustrates a spectrum of blinding implementations: -->
+<!-- The following table illustrates a spectrum of blinding implementations. This table is intended to be illustrative, and is neither comprehensive nor technology-specific. -->
 
-1. Federation Proxy は RP と IdP を相互に Blind しない. Federation Proxy は Subscriber と RP, IdP の関係性を監視・追跡可能であり, Assertion を通じてやりとりされるすべての属性を見ることができる.
-<!-- 1. The federation proxy does not blind the RP and IdP from one another. The federation proxy is able to monitor and track all subscriber relationships between the RPs and IdPs, and has visibility into any attributes it is transmitting in the assertion. -->
+<div class="text-center" markdown="1">
 
-2. Federation Proxy は RP と IdP を相互に Blind しない. Federation Proxy は Subscriber と RP, IdP の関係性を監視・追跡可能であるが, Assertion の中身を見ることはできない.
-<!-- 2. The federation proxy does not blind the RP and IdP from one another. The federation proxy is able to monitor and track all subscriber relationships between the RPs and IdPs, but has no visibility into any attributes it is transmitting in the assertion. -->
+**Table 4-1: Federation Proxies**
 
-3. Federation Proxy は RP と IdP を相互に Blind する. Federation Proxy は Subscriber と RP, IdP の関係性を監視・追跡可能であり, Assertion を通じてやりとりされるすべての属性を見ることができる.
-<!-- 3. The federation proxy blinds the RP and IdP from each other. The federation proxy is able to monitor and track all subscriber relationships between the RPs and IdPs, and has visibility into any attributes it is transmitting in the assertion. -->
+</div>
 
-4. Federation Proxy は RP と IdP を相互に Blind する. Federation Proxy は Subscriber と RP, IdP の関係性を監視・追跡可能であるが, Assertion の中身を見ることはできない.
-<!-- 4. The federation proxy blinds the RP and IdP from each other. The federation proxy is able to monitor and track all subscriber relationships between the RPs and IdPs, but has no visibility into any attributes it is transmitting in the assertion. -->
-
-5. Federation Proxy は RP と CSP および Broker 自身を Blind する. Federation Proxy は一切の Subscriber の関係性を監視・追跡することができず, Assertion の中身を見ることもできない.
-<!-- 5. The federation proxy blinds the RP, IdP, and itself. The federation proxy cannot monitor or track any subscriber relationships, and has no visibility into any attributes it is transmitting in the assertion. -->
+|Proxy Type|RP knows IdP|IdP knows RP|Proxy can track subscriptions between RP and IdP|Proxy can see attributes of Subscriber|
+|---|---|---|---|---|
+|Non-blinding Proxy with Attributes|Yes|Yes|Yes|Yes|
+|Non-blinding Proxy|Yes|Yes|Yes|No|
+|Double Blind Proxy with Attributes|No|No|Yes|Yes|
+|Double Blind Proxy|No|No|Yes|No|
+|Triple Blind Proxy|No|No|No|No|
 
 #### 4.1.5 <a name="runtime-decisions"></a>Runtime Decisions
 
