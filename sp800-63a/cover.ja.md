@@ -177,9 +177,9 @@ The terms “CAN” and “CANNOT” indicate a possibility and capability, whet
 
 ## Executive Summary
 
-本ガイドラインは, 申請者である個人を, クレデンシャルサービスプロバイダ (CSP) に対してどのように証明し, 有効なアイデンティティとして登録するかといった内容を扱っている.
+本ガイドラインは, 申請者である個人を, クレデンシャルサービスプロバイダ (CSP) に対してどのように証明し, 有効な Subscriber として登録するかといった内容を扱っている.
 
-<!-- This guideline deals with how an individual, known as an applicant, can prove their identity to a Credential Service Provider (CSP) and become enrolled as a valid identity. -->
+<!-- This guideline deals with how an individual, known as an applicant, can prove their identity to a Credential Service Provider (CSP) and become enrolled as a valid subscriber. -->
 
 身元保証レベル (IAL: Identity Assurance Level) は, 身元確認のプロセスおよび特定個人と "認証するために必要な識別子" を紐付ける際の堅牢性を示す. 身元保証レベル (IAL) と認証保証レベル (AAL: Authenticator Assurance Level) を分離することによって, 仮名でも構わないものの強力な認証を必要するアプリケーションや, "認証するために必要な識別子" を発行する部分と, クレデンシャルを確立する部分 (個々人とそれらを "認証するために必要な識別子" を紐付ける部分) を分離したいアプリケーションなどにも, 広く対応している.
 
@@ -187,7 +187,7 @@ The terms “CAN” and “CANNOT” indicate a possibility and capability, whet
 
 IAL は3つのレベルに分かれており, リスクプロファイル並びに, 無効なアイデンティティや不正なアイデンティティによるアクセスで損害が発生する可能性に基づいていずれのレベルに該当するかを選択する. 各IALについては以下に示す通り.
 
-<!-- The three (3) IALs reflect the options agencies may select based on their risk profile and the potential harm caused by an invalid or fraudulent identity accessing their systems.  The IALs are as follows: -->
+<!-- The three IALs reflect the options agencies may select based on their risk profile and the potential harm caused by an invalid or fraudulent identity accessing their systems.  The IALs are as follows: -->
 
 **IAL 1**:
 このレベルでは, 申請者の身元証明の確認は必須でない. よって, そのアイデンティティの認証プロセス時に提示されるいかなる属性情報も単に申請者自身が主張している内容でしかない.
