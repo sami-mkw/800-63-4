@@ -24,12 +24,12 @@ IdP はある RP に送信された Attribute Bundle を記憶し, 同じ RP へ
 
 ### 6.1. Back-channel presentation
 
-*Back-Channel* モデルでは, Subscriber は Assertion の参照を渡され, 一般的には Front-Channel を通じてそれを RP に提示することになる.
-Assertion の参照はそれ自身では Subscriber に関する情報は持たず, Attacker による偽造や改ざんに耐えねばならない (MUST).
+*Back-Channel* Model では, Subscriber は Assertion の参照を渡され, 一般的には Front-Channel を通じてそれを RP に提示することになる.
+Assertion の参照はそれ自身では Subscriber に関する情報は持たず, Attacker による偽造や改ざんに耐えねばならない (SHALL).
 RP がその参照を IdP に提示して初めて Assertion が取得できる.
 また RP が IdP に Assertion の参照を提示する際, 通常は RP の認証が行われる.
 
-<!-- In the *back-channel* model, the subscriber is given an assertion reference to present to the RP, generally through the front channel. The assertion reference itself contains no information about the subscriber and MUST be resistant to tampering and fabrication by an attacker. The RP presents the assertion reference to the IdP, usually along with authentication of the RP itself, to fetch the assertion. -->
+<!-- In the *back-channel* model, the subscriber is given an assertion reference to present to the RP, generally through the front channel. The assertion reference itself contains no information about the subscriber and SHALL be resistant to tampering and fabrication by an attacker. The RP presents the assertion reference to the IdP, usually along with authentication of the RP itself, to fetch the assertion. -->
 
 <a name="63cSec6-Figure1"></a>
 
@@ -44,11 +44,11 @@ RP がその参照を IdP に提示して初めて Assertion が取得できる.
 
 <!-- In this model, the assertion itself is requested directly from the IdP to the RP, minimizing chances of interception and manipulation by a third party (including the subscriber themselves). -->
 
-またこの手法では, 最初の Authentication Transaction の後にさらに Back-Channel Communication を継続することもできるため, RP は Assertion に含まれない追加の Attribute を IdP に問い合わせることもできる.
+またこの方式では, 最初の Authentication Transaction の後にさらに Back-Channel Communication を継続することもできるため, RP は Assertion に含まれない追加の Attribute を IdP に問い合わせることもできる.
 
 <!-- This method also allows the RP to query the CSP for additional attributes about the subscriber not included in the assertion itself, since back-channel communication can continue to occur after the initial authentication transaction has completed. -->
 
-Back-Channel モードでは, ネットワークトランザクションがより多く必要となる一方, やり取りされる情報はそれを必要としている主体以外に渡されることはない.
+Back-Channel 方式では, ネットワークトランザクションがより多く必要となる一方, やり取りされる情報はそれを必要としている主体以外に渡されることはない.
 RP が IdP から直接 Assertion を受け取るため, 攻撃箇所は限定される.
 
 <!-- In the back-channel method, there are more network transactions required, but the information is limited to the parties that need it. Since an RP is expecting to get an assertion only from the IdP directly, the attack surface is reduced. -->
@@ -86,7 +86,7 @@ Assertion の参照の提示を受ける際には, IdP は Assertion 発行前�
 
 ### 6.2. Front-channel Presentation
 
-*front-channel* モードでは, IdP は認証成功後 Assertion を生成し Subscriber に渡す.
+*front-channel* Model では, IdP は認証成功後 Assertion を生成し Subscriber に渡す.
 Subscriber は渡された Assertion を利用して RP に自身を認証する.
 これはしばしば Subscriber のブラウザの機能を用いて実現される.
 
@@ -102,7 +102,7 @@ Subscriber は渡された Assertion を利用して RP に自身を認証する
 
 </div>
 
-このモードでは, Assertion は Subscriber に閲覧可能である.
+この方式では, Assertion は Subscriber に閲覧可能である.
 これは Assertion に含まれるシステム情報などの漏洩につながる可能性もある.
 
 <!-- In the front-channel method, an assertion is visible to the subscriber, which could potentially cause leakage of system information included in the assertion. -->
