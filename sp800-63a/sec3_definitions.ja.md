@@ -101,10 +101,11 @@ SP 800-63 の前リビジョンにおいて *token* と呼ばれていたもの�
 
 #### Authoritative Source
 
-身分証 (Identity Evidence) に記載された情報の正当性を, その発行元 (Issuing Source) から十分な情報を得て確認することができる機関 (Authority).
+CSP が Identity Proofing 実施時に Applicant が提出した身分証の有効性を確認できるように, 身分証 (Identity Evidence) 発行元 (Issuing Source) のもつ十分な量の正確な情報にアクセスできる, もしくは検証済みコピーを所有している主体.
 Issuing Source 自身が Authoritative Source であることもありうる.
+Authoritative Source は, Identity Proofing の検証フェーズで用いられる前に, 機関や CSP のポリシーによって決定されることも多い.
 
-<!-- An authority that has access to sufficient information from an issuing source that they are able to confirm the validity of a piece of identity evidence. An issuing source may also be an authoritative source. -->
+<!-- An entity that has access to, or verified copies of, a sufficient amount of accurate information from an issuing source such that a CSP can confirm the validity of the identity evidence supplied by an applicant during identity proofing. An issuing source may also be an authoritative source. Often, authoritative sources are determined by a policy decision of the agency or CSP before they can be used in the validation phase of identity proofing. -->
 
 #### Biometrics
 
@@ -191,6 +192,12 @@ Applicant が CSP の Subscriber となるべく申し込み, RA が CSP の代�
 
 <!-- A set of attributes that uniquely describe a person within a given context. -->
 
+#### Identity Assurance Level (IAL)
+
+Applicant の Claimed Identity が本人の本物の Identity であることの確からしさの度合いをあらわす指標.
+
+<!-- A category that conveys the degree of confidence that the applicant’s claimed identity is their real identity. -->
+
 #### Identity Proofing
 
 CSP が Credential 発行のためにある人物に関する情報を収集および検証するプロセス.
@@ -221,10 +228,10 @@ Network は Claimant とその他の主体の間でメッセージを伝達す�
 
 #### Personally Identifiable Information (PII)
 
-OMB Circular A-130 で定義されているように, Personally Identifiable Information とは個人の Identity を識別したり追跡するために用いられる情報である.
+OMB Circular [[A-130]](#A-130) で定義されているように, Personally Identifiable Information とは個人の Identity を識別したり追跡するために用いられる情報である.
 単体の情報で個人を識別・追跡可能なものもあれば, 特定の個人に紐付け済もしくは紐付け可能なその他の情報と組み合わせることで識別・追跡可能となるものもある.
 
-<!-- As defined by OMB Circular A-130, Personally Identifiable Information means information that can be used to distinguish or trace an individual's identity, either alone or when combined with other information that is linked or linkable to a specific individual. -->
+<!-- As defined by OMB Circular [[A-130]](#A-130), Personally Identifiable Information is information that can be used to distinguish or trace an individual's identity, either alone or when combined with other information that is linked or linkable to a specific individual. -->
 
 #### Practice Statement
 
@@ -266,6 +273,12 @@ Asymmetric Key ペアの公開鍵.
 注) Internet を介した情報交換はすべて Remote とみなされる.
 
 <!-- Note: Any information exchange across the Internet is considered remote. -->
+
+#### Social Engineering
+
+人を欺いてセンシティブな情報を露呈させたり, Unauthorized Access を得たり, 人と付き合いながら信頼を獲得した上で詐欺を行う活動.
+
+<!-- The act of deceiving an individual into revealing sensitive information, obtaining unauthorized access, or committing fraud by associating with the individual to gain confidence and trust. -->
 
 #### Subscriber
 
