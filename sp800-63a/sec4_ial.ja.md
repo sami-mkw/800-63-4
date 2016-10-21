@@ -4,7 +4,7 @@
 
 本書で扱うパラダイムは, 個人 (この段階では申請者) が, 身元確認を行われて登録されるプロセスである. この段階において, 申請者の身元証明となる書類と属性情報が集められ, 一意に特定されるようなレコードとして登録され, 検証され, 有効になる. これらの属性情報は次に, [SP 800-63B](#800-63b) に記載されている Authenticator に紐づけられる.
 
-<!-- The paradigm of this document is that individuals (referred to as applicants at this stage) undergo an identity proofing and enrollment process, in which their identity evidence and attributes are collected, uniquely resolved to a single identity record, then validated and verified. These attributes are then bound to an authenticator (described in [SP 800-63B](#800-63b)). -->
+<!-- The paradigm of this document is that individuals (referred to as applicants at this stage) undergo an identity proofing and enrollment process in which their identity evidence and attributes are collected, uniquely resolved to a single identity record, then validated and verified. These attributes are then bound to an authenticator (described in [SP 800-63B](#800-63b)). -->
 
 身元確認が必要な唯一の理由は, 身元確認をを行うことで, 申請者が彼/彼女自身が主張する通りの人物であることを確実にするということである. これには身元確認を達成するのに必要となる最低限の属性情報についての, 証明情報の提示, 妥当性の確認, そして検証が含まれている. このような核となる属性情報はこれらを含む (最低限必要な場合はその他の情報も含む):
 
@@ -20,9 +20,10 @@
 3. Home address
 -->
 
-本書に明記される要件に従い妥当性確認および検証が行われ, かつ, その CSP がその属性情報を収集し保存することに対して, 個々に対して明示的な同意を得た場合については, 身元確認の段階で, 個別にその他の追加情報を集めることも可能である.
+Applicant の Identity Proofing を行うプロセスにおいて, CSP が 追加の情報を収集することは許容される.
+ただし Valication と Verification は本ドキュメントで定める要件に従い, Applicant が CSP の属性収集・保存に対する明示的な同意を行うことが前提である.
 
-<!-- It is possible that additional information could be collected in the process of identity proofing an individual, provided validation and verification follow the requirements contained herein, and the individual explicitly consents to the CSP collecting and storing the attributes. -->
+<!-- It is permissible for the CSP to collect additional information in the process of identity proofing an applicant, provided validation and verification follow the requirements contained herein, and the applicant explicitly consents to the CSP collecting and storing the attributes. -->
 
 ## 4.1. Process Flow
 
@@ -63,7 +64,7 @@
 
 [Table 4-2](#63aSec4-Table2) は, M-04-04 の保証レベル (LOA) を満たすことが許容されている身元保証レベル (IAL) の拡張セットを記している. 各機関は, M-04-04の保証レベル (LOA) に基づいて, 対応するIALを選択する必要がある (SHALL). また, 各機関は, より強固な身元確認を行うことにおけるプライバシーリスクを考慮するべきであり (SHOULD), 事業目的を敏感に考慮して必要以上に高いIALを選択してはならない (SHOULD NOT).
 
-<!-- However, [Table 4-2](#63aSec4-Table2) shows the expanded set of IAL's that are allowable to meet M-04-04 Level of Assurance. Agencies SHALL select the corresponding IAL based on the assessed M-04-04 LOA. Agencies SHOULD consider the privacy risks of stronger identity proofing and SHOULD NOT select an IAL that is higher than necessary considering the sensitivity of the business purpose. -->
+<!-- However, [Table 4-2](#63aSec4-Table2) shows the expanded set of IALs that are allowable to meet M-04-04 Levels of Assurance. Agencies SHALL select the corresponding IAL based on the assessed M-04-04 LOA. Agencies SHOULD consider the privacy risks of stronger identity proofing and SHOULD NOT select an IAL that is higher than necessary considering the sensitivity of the business purpose. -->
 
 <a name="63aSec4-Table2"></a>
 
@@ -88,8 +89,8 @@
 1. 身元確認は, サービスや利益を享受するのに適切である/権利があるか否かの決定ために行うのは好ましくない (SHALL NOT).
 <!-- 1. Identity proofing SHALL NOT be performed to determine suitability/entitlement to gain access to services or benefits. -->
 
-2. CSP は, 他のいかなる属性情報をもってしても, ユーザを一意に特定することができない場合を除き, SSN を集めるべきではない (SHALL NOT).
-<!-- 2. The CSP SHALL NOT collect the SSN unless it is necessary for performing identity resolution and cannot be accomplished by collection of another attribute or combination of attributes. -->
+2. CSP は, 他のいかなる属性情報をもってしても, ユーザを一意に特定することができない場合を除き, SSN を集めるべきではない (SHOULD NOT).
+<!-- 2. The CSP SHOULD NOT collect the SSN unless it is necessary for performing identity resolution and cannot be accomplished by collection of another attribute or combination of attributes. -->
 
 2. 個人を特定できる情報 (PII) の収集は, 申請者の主張する内容が実在して有効であることを確認するため, また, 最善策に基づいて, ユーザを適切に一意に特定し, 検証し, 有効性確認を行うために必要な最低限に限定されるべきである (SHALL).
 <!-- 2. Collection of personally identifiable information (PII) SHALL be limited to the minimum necessary to validate the existence of the claimed identity and associate the claimed identity to the applicant providing identity evidence based on best available practices for appropriate identity resolution, validation, and verification. -->
@@ -97,8 +98,8 @@
 3. 身元確認のために必要な属性情報を収集し, 記録・維持する目的について, CSP は, 申請者に対して情報を収集する際に明示的に通知を行わなければならない (SHALL). その属性情報が任意な情報の場合はもちろん, 身元確認を行うために必須な場合でも, また, その結果属性情報を提示しないという結果に至ったとしても, 通知を行う必要がある (SHALL).
 <!-- 3. The CSP SHALL provide explicit notice at the time of collection to the applicant regarding the purpose for collecting and maintaining a record of the attributes necessary for identity proofing, including whether the such attributes are voluntary or mandatory in order to complete the identity proofing transactions and the consequences for not providing the attributes. -->
 
-5. CSP は, いかなる目的でも次にあげる目的以外に身元確認時に収集し保存した属性情報を利用する際は, ユーザの明示的な同意を得なければならない (SHALL NOT): 身元確認, 認証, 認可, 属性情報の証明, その他法律または法的手続きを遵守するもの.   
-<!-- 5.     The CSP SHALL NOT use attributes collected and maintained in the identity proofing process for any purpose other than identity proofing, authentication, authorization or attribute assertions, or to comply with law or legal process unless the CSP provides clear notice and obtains consent from the subscriber for additional uses. -->
+5. CSP は, いかなる目的でも次にあげる目的以外に身元確認時に収集し保存した属性情報を利用する際は, ユーザの明示的な同意を得なければならない (SHALL NOT): 身元確認, 認証, 認可, 属性情報の証明, その他法律または法的手続きを遵守するもの. CSP は同意をサービス利用条件とはしないこと (SHALL NOT).
+<!-- 5. The CSP SHALL NOT use attributes collected and maintained in the identity proofing process for any purpose other than identity proofing, authentication, authorization or attribute assertions, or to comply with law or legal process unless the CSP provides clear notice and obtains consent from the subscriber for additional uses. CSPs SHALL NOT make consent a condition of the service. -->
 
 6. CSP は, 申請者の公平を保つ補償や身元確認で発生する問題に対応するための効果的な手段を提供しなければならない (SHALL). これれの手段は, 申請者からアクセスしやすく見つけやすいところに配置しなければならない (SHALL).
 <!-- 6.    The CSP SHALL provide effective mechanisms for redress of applicant complaints or problems arising from the identity proofing. These mechanisms SHALL be easy for applicants to find and access. -->
