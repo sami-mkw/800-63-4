@@ -27,14 +27,14 @@ supersede NIST SP 800-63-1 and SP 800-63-2. OMB M-04-04 defines four levels of
 assurance, Levels 1 to 4, in terms of the consequences of authentication
 errors and misuse of credentials. Level 1 is the lowest assurance level
 and Level 4 is the highest. The guidance defines the required level of
-identity assurance in terms of the likely consequences of an
+assurance in terms of the likely consequences of an
 authentication error. As the consequences of an authentication error
 become more serious, the required level of assurance increases. The OMB
 guidance provides agencies with criteria for determining the level of
 assurance required for specific digital transactions
 and systems, based on the risks and their likelihood of occurrence.
 
-SP 800-63 is organized as a family of documents as follows:
+SP 800-63 is organized as a suite of documents as follows:
 
 - SP 800-63A *Enrollment and Identity Proofing* - Deals with the processes by which a credential, and authenticator(s) associated with that credential can be bound to a specific individual. This typically happens when that individual is enrolled in an identity system, through the identity proofing process.
 
@@ -86,8 +86,8 @@ their authentication assurance requirements:
     assessment guidelines specified in SP 800-53A [[SP
     800-53A]](#SP800-53A) for conducting the security assessment.
 
-This family of documents provides guidelines for implementing the third step of the
-above process. In particular, this document maps the four (4) Levels of Assurance defined in OMB M-04-04 into corresponding authenticator assurance and identity assurance levels. Other documents in the family state specific technical
+This suite of documents provides guidelines for implementing the third step of the
+above process. In particular, this document maps the four (4) Levels of Assurance defined in OMB M-04-04 into corresponding authenticator assurance and identity assurance levels. Other documents in the suite state specific technical
 requirements for identity assurance and authenticator assurance in the following
 areas:
 
@@ -107,7 +107,7 @@ areas:
     authentication if these results are sent to other parties (covered
     in SP 800-63C).
 
-The M-04-04 Level of Assurance is determined by considering the identity assurance, authenticator assurance level, and federation assurance level achieved for each of the elements listed above, and determining the Level of Assurance satisfied by all elements.
+The M-04-04 Level of Assurance is determined by considering the identity assurance level, authenticator assurance level, and federation assurance level achieved for each of the elements listed above, and determining the Level of Assurance satisfied by all elements.
 
 Within a given level of assurance, agencies may employ additional risk mitigation measures and compensating controls. Easing credential assurance level requirements may result in benefits such as
 increasing the size of the enabled customer pool, but agencies shall
@@ -283,7 +283,7 @@ clarifications.
 
 #### 2.2.3. SP 800-63-3
 
-NIST SP 800-63-3 is a substantial update and restructuring of Special Publication 800-63-2. It introduces the concepts of authenticator assurance level and identity assurance level to support the growing need for independent treatment of authentication strength and confidence in the claimant's identity (for example, in strong pseudonymous authentication). It also moves from a single document describing authentication to a family of four documents, of which SP 800-63-3 is the top-level document.
+NIST SP 800-63-3 is a substantial update and restructuring of Special Publication 800-63-2. It introduces the concepts of authenticator assurance level, identity assurance level, and federation assurance level to support the growing need for independent treatment of authentication strength and confidence in the claimant's identity (for example, in strong pseudonymous authentication). It also moves from a single document describing authentication to a suite of four documents, of which SP 800-63-3 is the top-level document.
 
 Other areas of update to SP 800-63-2 include:
 
