@@ -136,14 +136,14 @@ Client は ID Token をパースして Subscriber および IdP における Pri
  - `iss`: 当該 Assertion を発行した IdP を識別する HTTPS URL.
  - `sub`: Subscriber に紐付いた IdP 固有の Subject Identifier.
  - `aud`: IdP 固有の Audience Identifier. IdP における当該 Client の OAuith 2.0 Client Identifier 値.
- - `exp`: ID Token の有効期限を示す Timestamp. この時刻をすぎて当該 ID Token を受け入れてはならない (MUST NOT).
- - `iat`: ID Token の発行日時を示す Timestamp. この時刻より前に当該 ID Token を受け入れてはならない (MUST NOT).
+ - `exp`: ID Token の有効期限を示す Timestamp. この時刻をすぎて当該 ID Token を受け入れてはならない (SHALL NOT).
+ - `iat`: ID Token の発行日時を示す Timestamp. この時刻より前に当該 ID Token を受け入れてはならない (SHALL NOT).
 
  <!-- - `iss`: An HTTPS URL identifying the IdP that issued the assertion
  - `sub`: An IdP-specific subject identifier representing the subscriber
  - `aud`: An IdP-specific audience identifier, equal to the OAuth 2.0 client identifier of the client at the IdP
- - `exp`: The timestamp at which the ID Token expires and after which MUST NOT be accepted the client
- - `iat`: The timestamp at which the ID Token was issued and before which MUST NOT be accepted by the client -->
+ - `exp`: The timestamp at which the ID Token expires and after which SHALL NOT be accepted the client
+ - `iat`: The timestamp at which the ID Token was issued and before which SHALL NOT be accepted by the client -->
 
 ID Token に加え, IdP は Client に対して OAuth 2.0 Access Token を発行する.
 この Access Token は IdP の UserInfo Endpoint にアクセスするために利用できる.
