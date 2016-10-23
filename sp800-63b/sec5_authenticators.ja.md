@@ -1028,13 +1028,13 @@ Authentication protocols that are verifier impersonation resistant SHALL authent
 2. Determine whether the verifier's authenticated hostname or domain name is on a list of trusted verifiers, and release the authenticator output only to a verifier on that list.
 -->
 
-検証主体なりすまし耐性のある認証プロトコルの以前のクラス例としては、クライアント認証TLSがある。ネゴシエーション済みの特定TLSコネクション対して一意であるようなプロトコルから予めメッセージを受取り、そのメッセージに連動した認証器出力をクライアントが署名する。もし意図した検証主体に対して中継される場合は、検証主体のホスト名またはドメインを認証器出力の生成に不可逆に含めるようなテクニックを用いて、なりすました検証主体(攻撃者)には使えないような認証器出力を生成してもよい(MAY)。
+検証主体なりすまし耐性のある認証プロトコルの以前の分類の例としては、クライアント認証TLSがある。ネゴシエーション済みの特定TLSコネクション対して一意であるようなプロトコルから予めメッセージを受取り、そのメッセージに連動した認証器出力をクライアントが署名する。もし意図した検証主体に対して中継される場合は、検証主体のホスト名またはドメインを認証器出力の生成に不可逆に含めるようなテクニックを用いて、なりすました検証主体(攻撃者)には使えないような認証器出力を生成してもよい(MAY)。
 
 <!--
 One example of the former class of verifier impersonation resistant authentication protocols is client-authenticated TLS, because the client signs the authenticator output along with earlier messages from the protocol that are unique to the particular TLS connection being negotiated. Other protocols that MAY be used are techniques that irreversibly include the verifier's hostname or domain in the generation of the authenticator output, making that authenticator output unusable by a fraudulent verifier (the attacker) if proxied to the intended verifier.
 -->
 
-検証主体なりすまし耐性プロトコルの近頃のクラスでは、認証器出力を信頼されている検証主体にのみ受け渡すようなアクセスコントロールに頼ったものもある。
+検証主体なりすまし耐性プロトコルの近頃の分類では、認証器出力を信頼されている検証主体にのみ受け渡すようなアクセスコントロールに頼ったものもある。
 
 <!--
 The latter class of verifier impersonation resistant protocols relies on access control to release the authenticator output only to trusted verifiers.
