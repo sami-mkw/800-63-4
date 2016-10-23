@@ -964,33 +964,85 @@ Biometric samples collected in the authentication process MAY be used to train m
 Biometrics are also used in some cases to prevent repudiation of registration and to verify that the same individual participates in all phases of the registration process as described in SP 800-63A.
 -->
 
+#### <a name="attestation"></a>5.2.4 Attestation(証明)
+<!--
 #### <a name="attestation"></a>5.2.4 Attestation
+-->
 
+エンドポイントに対して直接接続、または埋め込まれた認証器は次のように認証プロトコルの一部として検証主体に対してAttestation(証明)情報を伝達する:
+
+<!--
 Authenticators that are directly connected to or embedded in endpoints MAY convey attestation information to the verifier as part of the authentication protocol such as:
+-->
 
+* 出処、健康、認証器やエンドポイントの一貫性
+* 認証器のセキュリティ機能
+* バイオメトリックセンサーのセキュリティや性能特性
+* センサーモダリティ
+
+<!--
 * The provenance, health, and/or integrity of the authenticator and/or endpoint
 * Security features of the authenticator
 * Security and performance characteristics of biometric sensor(s)
 * Sensor modality
+-->
 
+Attestation(証明)が署名されている場合、最低でも[[SP 800-131A]](#SP800-131A)の最新版で定義されたセキュリティ強度(現在は112ビット)を提供するデジタル署名を用いるものとする(SHALL)。Attestation(証明)情報はリスクベース認証の判断の一部として利用してもよい(MAY)。
+
+<!--
 If this attestation is signed, it SHALL be signed using a digital signature that provides at least the minimum security strength specified in the latest revision of [[SP 800-131A]](#SP800-131A) (currently 112 bits). Attestation information MAY be used as part of a risk-based authentication decision.
+-->
 
+[SP 800-63C](sp800-63c.html)で記載されている連携認証を行う場合、検証主体は何らかのAttestation(証明)情報をRelying partyに提供するアサーションに含めるべきである(SHOULD)。
+
+<!--
 When federated authentication is being performed as described in [SP 800-63C](sp800-63c.html), the verifier SHOULD include any such attestation information in the assertion it provides to the relying party.
+-->
 
+#### <a name="verifimpers"></a>5.2.5 検証主体なりすまし対策
+<!--
 #### <a name="verifimpers"></a>5.2.5 Verifier impersonation resistance
+-->
 
+検証主体なりすまし攻撃、しばしばフィッシング攻撃と言われ、検証主体やRelying Partyになりすまして不用心な申請者を騙して詐欺サイトに対して認証させる試みとして知られている。SP 800-63の以前の版では、検証主体なりすまし攻撃に対する耐性があるプロトコルが、中間者攻撃への強い耐性(strongly man-in-the-middle registant)として知られていた。
+
+<!--
 Verifier impersonation attacks, sometimes referred to as "phishing attacks", refer to attempts by fraudulent verifiers and relying parties to fool an unwary claimant into authenticating to an impostor website. In previous editions of SP 800-63, protocols that are resistant to verifier impersonation attacks were also referred to as "strongly man-in-the-middle resistant".
+-->
 
+検証主体なりすまし耐性のある認証プロトコルは検証主体を認証し、以下のどちらかを実施すること(SHALL):
+
+<!--
 Authentication protocols that are verifier impersonation resistant SHALL authenticate the verifier and either:
+-->
 
+1. 強くかつ不可逆に、検証主体によって送信・提示される証明書の公開鍵や、検証主体の認証済みホスト名・ドメイン名に認証器出力を結びつける、または
+
+<!--
 1. Strongly and irreversibly bind the authenticator output to the public key of the certificate presented by the verifier to which it is sent, or to that verifier's authenticated hostname or domain name; or
+-->
 
+2. 検証主体の認証済みホスト名・ドメイン名が信頼済み検証主体のリストに記載されているかどうかを決定し、認証器出力をリスト内の検証主体にのみ受け渡す。
+
+<!--
 2. Determine whether the verifier's authenticated hostname or domain name is on a list of trusted verifiers, and release the authenticator output only to a verifier on that list.
+-->
 
+検証主体なりすまし耐性のある認証プロトコルの以前のクラス例としては、クライアント認証TLSがある。ネゴシエーション済みの特定TLSコネクション対して一意であるようなプロトコルから予めメッセージを受取り、そのメッセージに連動した認証器出力をクライアントが署名する。もし意図した検証主体に対して中継される場合は、検証主体のホスト名またはドメインを認証器出力の生成に不可逆に含めるようなテクニックを用いて、なりすました検証主体(攻撃者)には使えないような認証器出力を生成してもよい(MAY)。
+
+<!--
 One example of the former class of verifier impersonation resistant authentication protocols is client-authenticated TLS, because the client signs the authenticator output along with earlier messages from the protocol that are unique to the particular TLS connection being negotiated. Other protocols that MAY be used are techniques that irreversibly include the verifier's hostname or domain in the generation of the authenticator output, making that authenticator output unusable by a fraudulent verifier (the attacker) if proxied to the intended verifier.
+-->
 
+検証主体なりすまし耐性プロトコルの近頃のクラスでは、認証器出力を信頼されている検証主体にのみ受け渡すようなアクセスコントロールに頼ったものもある。
+
+<!--
 The latter class of verifier impersonation resistant protocols relies on access control to release the authenticator output only to trusted verifiers.
+-->
 
+対称的に、OOBやワンタイムパスワード認証器のような認証器出力を手動入力するような認証器では、申請者が注意して意図した検証主体と通信していることを見極めることが前提となるため、検証主体なりすまし耐性がないと考える(SHALL NOT)。
+
+<!--
 In contrast, authenticators that involve the manual entry of an authenticator output, such as out of band and one-time password authenticators, SHALL NOT be considered verifier impersonation resistant because they assume the vigilance of the claimant to determine that they are communicating with the intended verifier.
-
+-->
 
