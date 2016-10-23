@@ -313,12 +313,11 @@ If the out-of-band authenticator sends an approval message over the secondary co
 
 SMSメッセージや音声コールが傍受されたりリダイレクトされたりするかもしれないというリスクに起因し、新システムの実装者は代替となる認証器を注意深く検討すべきである(SHOULD)。もし経路外検証が公衆交換電話網(PSTN:public switched telephone network)を用いて行われるならば、検証主体は事前登録された電話番号がVoIP(または他のソフトウェアベースの)サービスと関連付けられていないことを検証することとする(SHALL)。そのうえでSMSや音声メッセージは事前登録された電話番号に対して送信される。事前登録された電話番号の変更が、変更時に2要素認証なしで可能となっていないものとする(SHALL NOT)。 
 
-注記: 公衆交換電話網(SMSまたは音声)を用いた経路外(OOB)認証は非推奨*あり、このガイドラインの将来の版では削除される。
+> 注記: 公衆交換電話網(SMSまたは音声)を用いた経路外(OOB)認証は非推奨であり、このガイドラインの将来の版では削除される。
 
 <!--
 Due to the risk that SMS messages or voice calls may be intercepted or redirected, implementers of new systems SHOULD carefully consider alternative authenticators. If the out-of-band verification is to be made using the public switched telephone network (PSTN), the verifier SHALL verify that the pre-registered telephone number being used is not associated with a VoIP (or other software-based) service. It then sends the SMS or voice message to the pre-registered telephone number. Changing the pre-registered telephone number SHALL NOT be possible without two-factor authentication at the time of the change.
-
-> Note: Out-of-band authentication using the PSTN (SMS or voice) is deprecated, and is being considered for removal in future editions of this guideline.
+Note: Out-of-band authentication using the PSTN (SMS or voice) is deprecated, and is being considered for removal in future editions of this guideline.
 -->
 
 経路外検証がセキュアなアプリケーション(例:スマートフォン上)を利用して行われる場合、検証主体はデバイスに対してPush通知を行ってもよい(MAY)。検証主体は保護された認証済みチャネルの確立を待ち、認証器の識別キーを検証する。認証器は識別キー自身を記録しないものとする(SHALL NOT)が、承認済み(approved)のハッシュ関数を用いたハッシュのような検証方法を用いるか、認証器を一意に識別するための識別キーの所持証明をおこなうものとする(SHALL)。認証すると、検証主体は認証シークレットを認証器に対して送信する。
@@ -776,67 +775,194 @@ The verifier has either symmetric or asymmetric cryptographic keys corresponding
 The challenge nonce SHALL be at least 64 bits in length, and SHALL either be unique over the lifetime of the authenticator or statistically unique (generated using an approved random bit generator). The verification operation SHALL use approved cryptography.
 -->
 
+#### 5.2. 一般認証器要求事項
+<!--
 #### 5.2. General Authenticator Requirements
+-->
 
+
+#### 5.2.1. 物理認証器
+<!--
 #### 5.2.1. Physical Authenticators
+-->
 
+CSPは加入者に対して、認証器の盗難や紛失を正しく防止する方法について指示するものとする(SHALL)。CSPは加入者から認証機の盗難や紛失の疑いがある旨の通知に対し、直ちに認証器を無効化、中断するメカニズムを備えるものとする(SHALL)。
+
+<!--
 CSPs SHALL provide subscriber instructions on how to appropriately  protect the authenticator against theft or loss. The CSP SHALL provide a mechanism to revoke or suspend the authenticator immediately upon notification from subscriber that loss or theft of the authenticator is suspected.
+-->
 
+#### <a name="throttle"></a>5.2.2. レート制限 (スロットリング)
+<!--
 #### <a name="throttle"></a>5.2.2. Rate Limiting (Throttling)
+-->
 
+*800-63-2 sec 8.2.3, p.75参照*
+
+<!--
 *cf. 800-63-2 sec 8.2.3, p.75*
+-->
 
+認証器出力やアクティベーションシークレットが十分なエントロピーを持たない場合、検証主体はオンライン推測攻撃に対抗するための制御を実装するものとする(SHALL)。指定された認証器の説明に記載がなければ、検証主体は、オンライン攻撃者に対し、同一アカウントで30日間で100回の認証失敗しか試行できないよう効果的に制限をするものとする(SHALL)。
+
+<!--
 When the authenticator output or activation secret does not have sufficient entropy, the verifier SHALL implement controls to protect against online guessing attacks. Unless otherwise specified in the description of a given authenticator, the verifier SHALL effectively limit online attackers to 100 consecutive failed attempts on a single account in any 30 day period.
+-->
 
+加入者と思われる認証試行を、攻撃者によるものと思われる試行よりも優先させるような追加のテクニックを用いてもよい(MAY):
+
+<!--
 Additional techniques MAY be used to prioritize authentication attempts that are likely to come from the subscriber over those that are more likely to come from an attacker:
+-->
 
+- 申請者に対して、認証する前にCAPTCHA(Completely Automated Public Turing test to tell Computers and Humans Apart)の入力を要求
+
+<!--
 - Requiring the claimant to complete a Completely Automated Public Turing test to tell Computers and Humans Apart (CAPTCHA) before attempting authentication
+-->
 
+- 申請者に対して、認証失敗後に再度認証する前に短期間の待ち(許容する最大認証失敗にどれだけ近づいているか次第で、30秒から1時間まで任意)を要求
+
+<!--
 - Requiring the claimant to wait for a short period of time (anything from 30 seconds to an hour, depending on how close the system is to its maximum allowance for failed attempts) before attempting Authentication following a failed attempt
+-->
 
+- 加入者が以前認証成功したことがあるIPアドレスのホワイトリストからのみ認証要求を受理
+
+<!--
 - Only accepting authentication requests from a white list of IP addresses at which the subscriber has been successfully authenticated before
+-->
 
+- ユーザの振る舞いが通常の範疇にあるかないかを特定するリスクベースまたは適応型認証の手法を活用
+
+<!--
 - Leveraging other risk-based or adaptive authentication techniques to identify user behavior that falls within, or out of, typical norms.
+-->
 
-Since these measures often create user inconvenience, the verifier SHOULD allow a certain number of failed authentication attempts before employing the above techniques. 
+これらはしばしばユーザに不便を感じさせてしまうため、検証主体は、上記の手法を用いる前に、ある程度の回数の認証失敗を許容すべき(SHOULD)である。
 
+<!--
+Since these measures often create user inconvenience, the verifier SHOULD allow a certain number of failed authentication attempts before employing the above techniques.
+--> 
+
+加入者が認証に成功した際、検証主体は同一IPアドレスからの以前の認証失敗回数を無視すべきである(SHOULD)。
+
+<!--
 When the subscriber successfully authenticates, the verifier SHOULD disregard any previous failed attempts from the same IP address.
+-->
 
+#### <a name="biometric_use"></a>5.2.3. バイオメトリクスの利用
+<!--
 #### <a name="biometric_use"></a>5.2.3. Use of Biometrics
+-->
 
+様々な理由で、本書は認証におけるバイオメトリクスの利用を限定的にサポートする。それらは以下のとおりである:
+
+<!--
 For a variety of reasons, this document supports only limited use of biometrics for authentication. These include:
+-->
 
+- バイオメトリクスにおけるマッチすべきものがマッチしない割合(False Match Rate: FMR)及びマッチすべきではないものがマッチしてしまう割合(False Non-Match Rate: FNMR)は、それら自身は加入者認証に確実性を与えるものではない。更に、FMRとFNMRはスプーフィング攻撃の原因にはならない。
+
+<!--
 - Biometric False Match Rates (FMR) and False Non-Match Rates (FNMR) do not provide confidence in the authentication of the subscriber by themselves. In addition, FMR and FNMR do not account for spoofing attacks.
+-->
+
+- バイオメトリクスマッチングは確率的なものであるが、一方他の認証要素を決定的なものである。
+
+<!--
 - Biometric matching is probabilistic, whereas the other authentication factors are deterministic.
+-->
+
+- バイオメトリクスのテンプレート保護スキームは、他の認証要素(例: PKI証明書やパスワード)に相当するバイオメトリッククレデンシャルを無効化するための手段を提供する。しかしながら、そのようなソリューションの可用性は制限されており、これらの手段を試験するための標準も策定中の段階である。
+
+<!--
 - Biometric template protection schemes provide a method for revoking biometric credentials that are comparable to other authentication factors (e.g., PKI certificates and passwords). However, the availability of such solutions is limited, and standards for testing these methods are under development.
+-->
+
+- バイオメトリクス特性はシークレットにはならない。それらはオンラインで取得したり、知識のあるなしに関わらず誰かが携帯電話のカメラで(顔)写真を取ることができ、誰かが触った物から(例えば潜在的に指紋を)採取することができ、高精細な画像から(例えば青い目の虹彩パターンを)キャプチャすることができる。生体検知のようなPresentation attack detaction(PAD)技術は、これらのタイプの攻撃リスクを緩和することができるが、CSPと加入者のニーズに合うようにセンサーがPADを適切に処理することを保証する必要がある。
+
+<!--
 - Biometric characteristics do not constitute secrets.  They can be obtained online or by taking a picture of someone with a camera phone (e.g. facial images) with or without their knowledge, lifted from through objects someone touches (e.g., latent fingerprints), or captured  with high resolution images (e.g., iris patterns for blue eyes). While presentation attack detection (PAD) technologies such as liveness detection can mitigate the risk of these types of attacks, additional trust in the sensor is required to ensure that PAD is operating properly in accordance with the needs of the CSP and the subscriber.
+-->
 
+したがって、認証におけるバイオメトリクスの使用は、以下の要件とガイドラインの下でサポートされる:
+
+<!--
 Therefore, the use of biometrics for authentication is supported, with the following requirements and guidelines:
+-->
 
+バイオメトリクスはもう一つの認証要素(somthing you nowやshomething you have)とともに用いられるものとする(SHALL)。
+
+<!--
 Biometrics SHALL be used with another authentication factor (something you know or something you have).
+-->
 
+配備するバイオメトリックシステムの実証試験は、マッチング性能の面で等価エラーレートが ** 1000分の1 **またはそれよりも良いこと実証するものとする(SHALL)。バイオメトリックシステムはFMRが **1000分の1**またはそれよりも良い状態で動作するものとする(SHALL)。
+
+<!--
 Empirical testing of the biometric system to be deployed SHALL demonstrate an equal error rate of **1 in 1000** or better with respect to matching performance. The biometric system SHALL operate with a false match rate of **1 in 1000** or better.
+-->
 
+バイオメトリックセンサーと後続の処理が、センサーの置き換えを防ぐ統合ユニットと一体でない場合、センサー(またはセンサー置き換えを防ぐ統合ユニットを持つエンドポイント)は、それが認定済み、または処理エレメントに対して自身の認証を行うことで要件を満たすような適格のセンサーであることを示すものとする(SHALL)。
+
+<!--
 When the biometric sensor and subsequent processing are not part of an integral unit that resists replacement of the sensor, the sensor (or endpoint with which it is an integral unit that resists sensor replacement) SHALL demonstrate that it is a certified or qualified sensor meeting these requirements by authenticating itself to the processing element.
+-->
 
+バイオメトリックシステムはpresentation attack protection(PAD)を実装しなければならない(SHOULD)。配備されるバイオメトリックシステムの試験では、少なくともPADの(speciesとして知られている)各関連攻撃タイプに対して90%の耐性(presentation attackの阻止回数/試行回数で定義される)があることを示すべきである(SHOULD)。
+
+<!--
 The biometric system SHOULD implement presentation attack protection (PAD). Testing of the biometric system to be deployed SHOULD demonstrate at least 90% resistance to presentation attacks for each relevant attack type (aka species), where resistance is defined as the number of thwarted presentation attacks divided by the number of trial presentation attacks.
+-->
 
->Note: Presentation attack detection is being considered as a mandatory requirement in future editions of this guideline.
+>注記: Presentation attack detactionはこのガイドラインの将来の版では普遍的な要件として考えることになる。
 
+<!--
+
+<!--Note: Presentation attack detection is being considered as a mandatory requirement in future editions of this guideline.-->
+
+バイオメトリックシステムは3回までの連続した認証試行の失敗を許容するものとする(SHALL)。もし上記の要件に一致するpresentation attack detectionが実装されている場合は、10回までの連続した認証試行の失敗を許容するものとする(SHALL)。一度上限に達すると、申請者は別の認証器または記憶シークレットなどの他の要素で自身の認証器をアクティベートする必要がある。
+
+<!--
 The biometric system SHALL allow no more than 3 consecutive failed authentication attempts, or 10 consecutive failed attempts if presentation attack detection meeting the above requirements is implemented. Once that limit has been reached, the claimant SHALL be required to use a different authenticator or to activate their authenticator with a different factor such as a memorized secret.
+-->
 
+バイオメトリックマッチングは、申請者のデバイス上で局所的に行われるべき(SHOULD)、または中央の検証主体で実施してもよい(MAY)。
+
+<!--
 Biometric matching SHOULD be performed locally on claimant's device or MAY be performed at a central verifier. 
+-->
 
+マッチングを中央で実施する場合:
+
+<!--
 If matching is performed centrally:
+-->
 
+* バイオメトリックの利用は承認済み(approved)暗号法を用いて特定される単一の特定デバイスに強く結び付けられているものとする(SHALL)。
+* バイオメトリックの破棄は、[ISO/IEC 24745](#ISO24745)で触れられているバイオメトリックテンプレート保護を実装するものとする(SHALL)。
+* センサー(またはセンサー置き換え対策でエンドポイントとセンサーを結合した統合ユニット)と中央の検証主体との間の保護された認証済みチャネルが確立され、申請者からバイオメトリックのサンプルが取得される前にセンサーが認証されるものとする(SHALL)。
+* バイオメトリクスの送信は保護された認証済みチャネルを経由して行われる。
+
+<!--
 * Use of the biometric SHALL be bound tightly to a single, specific device that is identified using approved cryptography.
 * Biometric revocation, referred to as biometric template protection in [ISO/IEC 24745](#ISO24745), SHALL be implemented.
 * An authenticated protected channel between sensor (or integral unit containing endpoint and sensor that resists sensor replacement) and central verifier SHALL be established, and the sensor authenticated, **prior** to capturing the biometric sample from the claimant.
 * All transmission of biometrics shall be over the authenticated protected channel.
+-->
 
+認証プロセス中で収集されたバイオメトリックサンプルは、マッチングアルゴリズムの学習や、ユーザの同意で研究目的で利用してもよい(MAY)。バイオメトリックサンプル(及び信号処理結果のプローブのような、バイオメトリックサンプル由来の任意のバイオメトリックデータ)はパスワード生成後、直ちにメモリから消去するものとする(SHALL)。
+
+<!--
 Biometric samples collected in the authentication process MAY be used to train matching algorithms or, with user consent, for other research purposes. Biometric samples (and any biometric data derived from the biometric sample such as a probe produced through signal processing) SHALL be erased from memory immediately after a password has been generated.
+-->
 
+バイオメトリクスは登録の否認を防ぐため、及びSP 800-63Aで記載されている全ての登録プロセスのフェーズに参加する同一個人であることを検証するために、利用されることがある。
+
+<!--
 Biometrics are also used in some cases to prevent repudiation of registration and to verify that the same individual participates in all phases of the registration process as described in SP 800-63A.
+-->
 
 #### <a name="attestation"></a>5.2.4 Attestation
 
