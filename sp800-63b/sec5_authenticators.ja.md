@@ -316,7 +316,7 @@ SMSメッセージや音声コールが傍受されたりリダイレクトさ�
 注記: 公衆交換電話網(SMSまたは音声)を用いた経路外(OOB)認証は非推奨*あり、このガイドラインの将来の版では削除される。
 
 <!--
-Due to the risk that SMS messages or voice calls may be intercepted or redirected, implementers of new systems SHOULD carefully consider alternative authenticators. If the out-of-band verification is to be made using the public switched telephone network (PSTN), the verifier SHALL verify that the pre-registered telephone number being used is not associated with a VoIP (or other software-based) service. It then sends the SMS or voice message to the pre-registered telephone number. Changing the pre-registered telephone number SHALL NOT be possible without two-factor authentication at the time of the change.  
+Due to the risk that SMS messages or voice calls may be intercepted or redirected, implementers of new systems SHOULD carefully consider alternative authenticators. If the out-of-band verification is to be made using the public switched telephone network (PSTN), the verifier SHALL verify that the pre-registered telephone number being used is not associated with a VoIP (or other software-based) service. It then sends the SMS or voice message to the pre-registered telephone number. Changing the pre-registered telephone number SHALL NOT be possible without two-factor authentication at the time of the change.
 
 > Note: Out-of-band authentication using the PSTN (SMS or voice) is deprecated, and is being considered for removal in future editions of this guideline.
 -->
@@ -360,7 +360,7 @@ In all cases, the authentication SHALL be considered invalid if not completed wi
 検証主体は、承認済み(approved)乱数生成器を用いて最低20ビットのエントロピーでランダムな認証シークレットを生成するものとする(SHALL)。もし認証シークレットが64ビット未満のエントロピーを持つような場合、検証主体は[Section 5.2.2](#throttle)に記載があるように、攻撃者が加入者のアカウント乗っ取りのために試みた認証失敗の回数を有効に制限するスロットリングの仕組みを実装するものとする(SHALL)。
 
 <!--
-The verifier SHALL generate random authentication secrets with at least 20 bits of entropy using an approved random number generator. If the authentication secret has less than 64 bits of entropy, the verifier SHALL implement a throttling mechanism that effectively limits the number of failed authentication attempts an attacker can make on the subscriber’s account as described in [Section 5.2.2](#throttle).
+The verifier SHALL generate random authentication secrets with at least 20 bits of entropy using an approved random bit generator. If the authentication secret has less than 64 bits of entropy, the verifier SHALL implement a throttling mechanism that effectively limits the number of failed authentication attempts an attacker can make on the subscriber’s account as described in [Section 5.2.2](#throttle).
 -->
 
 #### 5.1.4. 単一要素OTPデバイス
@@ -393,7 +393,7 @@ Single factor OTP devices are similar to look-up secret authenticators with the 
 -->
 
 <!--
-  </tr>  
+  </tr>
   </table>
   </div>
 -->
@@ -410,7 +410,7 @@ Single factor OTP devices are similar to look-up secret authenticators with the 
 Single factor OTP authenticators contain two persistent values. The first is a symmetric key that persists for the lifetime of the device. The second is a nonce that is changed each time the authenticator is used or is based on a real-time clock.
 -->
 
-シークレットとそのアルゴリズムは最低でも[[SP 800-131A]](#SP800-131A)の最新版で定義されたセキュリティ強度(現在は112ビット)であるものとする(SHALL)。ノンスは、デバイスの生存期間に渡りデバイスが操作される都度一意であることを保証するために十分長いこととする(SHALL)。
+秘密鍵とそのアルゴリズムは最低でも[[SP 800-131A]](#SP800-131A)の最新版で定義されたセキュリティ強度(現在は112ビット)であるものとする(SHALL)。ノンスは、デバイスの生存期間に渡りデバイスが操作される都度一意であることを保証するために十分長いこととする(SHALL)。
 
 <!--
 The secret key and its algorithm SHALL provide at least the minimum security strength specified in the latest revision of [[SP 800-131A]](#SP800-131A) (currently 112 bits). The nonce SHALL be of sufficient length to ensure that it is unique for each operation of the device over its lifetime.
@@ -535,38 +535,79 @@ The verifier SHALL use approved encryption and SHALL utilize an authenticated pr
 If the authenticator output or activation secret has less than 64 bits of entropy, the verifier SHALL implement a throttling mechanism that effectively limits the number of failed authentication attempts an attacker can make on the subscriber’s account as described in [Section 5.2.2](#throttle). A biometric activation factor SHALL meet the requirements of [Section 5.2.3](#biometric_use), including limits on number of successive authentication failures.
 -->
     
-#### 5.1.6. 単一要素暗号デバイス
+#### 5.1.6. 単一要素暗号ソフトウェア
 <!--
-#### 5.1.6. Single Factor Cryptographic Devices
+#### 5.1.6. Single Factor Cryptographic Software
+-->
+
+<div class="text-left" markdown="1">
+<table style="width:100%">
+  <tr>
+    <td><img src="sp800-63b/media/Single-factor-software-crypto.png" alt="authenticator" style="width: 100px;height: 100px"/></td>
+    <td>単一要素ソフトウェア暗号認証器は、ディスクあるいは"ソフト"媒体に記録された暗号鍵である。認証は鍵の所有と制御を証明することで行われる。認認証器出力は特定の暗号プロトコルに強く依存し、一般的にはある種の署名付メッセージになっている。単一要素ソフトウェア暗号認証器は<i>something you have</i>である。</td>
+<!--
+    <td>A single factor software cryptographic authenticator is a cryptographic key stored on disk or some other “soft” media. Authentication is accomplished by proving possession and control of the key. The authenticator output is highly dependent on the specific cryptographic protocol, but it is generally some type of signed message. The SF software cryptographic authenticator is <i>something you have</i>.</td> 
+-->
+  </tr>
+  </table>
+  </div>
+
+
+
+##### 5.1.6.1. 単一要素暗号ソフトウェア認証器
+<!--
+##### 5.1.6.1. Single Factor Cryptographic Software Authenticators
+-->
+
+単一要素暗号ソフトウェア認証器は、認証器で一意な秘密鍵を保持している。利用する鍵はデバイス上で最もセキュアなストレージ(例:キーチェーン、Trusted Platform Module、可能ならばTrusted Execution Environment)に記録されるものとする(SHALL)。デバイス上のソフトウェアコンポーネントがアクセス要求を行ったときのみ鍵にアクセスできるよう制限するアクセス制御を用いて、鍵は許可のない暴露から強力に保護されているものとする(SHALL)。
+
+<!--
+Single factor software cryptographic authenticators encapsulate a secret key that is unique to the authenticator. The key SHALL be stored in the most secure storage available on the device (e.g., keychain storage, trusted platform module, or trusted execution environment if available). The key SHALL be strongly protected against unauthorized disclosure by the use of access controls that limit access to the key to only those software components on the device requiring access.
+-->
+
+##### 5.1.6.2. 単一要素暗号ソフトウェア検証主体
+<!--
+##### 5.1.6.2. Single Factor Cryptographic Software Verifiers
+-->
+
+単一要素暗号ソフトウェア検証主体に対する要求事項は、[Section 5.1.7.2](#sfcdv) に記載されている単一要素暗号デバイス検証主体に対する要求事項と同一である。
+
+<!--
+The requirements for a single factor cryptographic software verifier are identical to those for a single factor cryptographic device verifier, described in [Section 5.1.7.2](#sfcdv).
+-->
+
+#### 5.1.7. 単一要素暗号デバイス
+<!--
+#### 5.1.7. Single Factor Cryptographic Devices
 -->
 
 <div class="text-left" markdown="1">
 <table style="width:100%">
   <tr>
     <td><img src="sp800-63b/media/Single-factor-crypto.png" alt="authenticator" style="width: 100px;height: 100px"/></td>
-    <td>単一要素暗号デバイスは、保護された暗号鍵を用いた暗号操作、及びユーザエンドポイントに対する直接コネクションを介して認証器出力を提供するハードウェアデバイスである。デバイスは組み込みの対象暗号鍵、非対称暗号鍵を利用し、認証の2要素目を用いたアクティベーションを要求しない。認証は認証プロトコルを介してデバイスの所持証明を行うことにより達成される。認証器出力は特定の暗号デバイスとプロトコルに強く依存し、典型的にはある種の署名付メッセージになっている。単一要素暗号デバイスは<i>something you have</i>である。</td>
+    <td>単一要素暗号デバイスは、保護された暗号鍵を用いた暗号操作、及びユーザエンドポイントに対する直接コネクションを介して認証器出力を提供するハードウェアデバイスである。デバイスは組み込みの対象暗号鍵、非対称暗号鍵を利用し、認証の2要素目を用いたアクティベーションを要求しない。認証は認証プロトコルを介してデバイスの所持証明を行うことにより達成される。認証器出力はユーザエンドポイントに対する直接コネクションを介して提供され、特定の暗号デバイスとプロトコルに強く依存し、典型的にはある種の署名付メッセージになっている。単一要素暗号デバイスは<i>something you have</i>である。</td>
 <!--
-    <td>A single factor cryptographic device is a hardware device that performs cryptographic operations using protected cryptographic key(s) and provides the authenticator output via direct connection to the user endpoint. The device uses embedded symmetric or asymmetric cryptographic keys, and does not require activation through a second factor of authentication. Authentication is accomplished by proving possession of the device via the authentication protocol. The authenticator output is highly dependent on the specific cryptographic device and protocol, but it is typically some type of signed message. A single factor cryptographic device is <i>something you have</i>.</td> 
+    <td>A single factor cryptographic device is a hardware device that performs cryptographic operations using protected cryptographic key(s) and provides the authenticator output via direct connection to the user endpoint. The device uses embedded symmetric or asymmetric cryptographic keys, and does not require activation through a second factor of authentication. Authentication is accomplished by proving possession of the device via the authentication protocol. The authenticator output is provided by direct connection to the user endpoint and is highly dependent on the specific cryptographic device and protocol, but it is typically some type of signed message. A single factor cryptographic device is <i>something you have</i>.</td> 
 -->
   </tr>
   </table>
   </div>
 
-##### 5.1.6.1. 単一要素暗号デバイス認証器
+##### 5.1.7.1. 単一要素暗号デバイス認証器
 <!--
-##### 5.1.6.1. Single Factor Cryptographic Device Authenticators
+##### 5.1.7.1. Single Factor Cryptographic Device Authenticators
 -->
 
-単一要素暗号デバイス認証器はデバイスで一意かつエクスポートされない(デバイスから除去できない)ものとする(SHALL NOT)秘密鍵を保持している。チャレンジノンスに署名することで動作し、通常はUSBポートなどのコンピュータに対するダイレクトなインタフェースを介して提供される。
+単一要素暗号デバイス認証器はデバイスで一意かつエクスポートされない(デバイスから除去できない)ものとする(SHALL NOT)秘密鍵を保持している。チャレンジノンスに署名することで動作し、通常はUSBポートなどのコンピュータに対するダイレクトなインタフェースを介して提供される。暗号デバイスはソフトウェアを含んでいるが、全ての組み込みソフトウェアはCSP(または他の発行者)の制御下にあるという点、及び認証器全体で認証時のAALにおけるFIPS 140要求事項に適合する必要がある点において、暗号ソフトウェア認証器とは異なっている。
 
 <!--
-Single-factor cryptographic device authenticators encapsulate a secret key that is unique to the device and SHALL NOT be exportable (removed from the device). They operate by signing a challenge nonce, usually presented through a direct computer interface such as a USB port.
+Single-factor cryptographic device authenticators encapsulate a secret key that is unique to the device and SHALL NOT be exportable (removed from the device). They operate by signing a challenge nonce, usually presented through a direct computer interface such as a USB port. Although cryptographic devices contain software, they differ from cryptographic software authenticators by the fact that all embedded software is under control of the CSP (or other issuer), and that the entire authenticator is subject to any applicable FIPS 140 requirements at the AAL being authenticated.
 -->
 
-シークレットとそのアルゴリズムは最低でも[[SP 800-131A]](#SP800-131A)の最新版で定義されたセキュリティ強度(現在は112ビット)であるものとする(SHALL)。チャレンジノンスは少なくとも64ビット長であるものとする(SHALL)。認証器出力は普通はコンピュータのインタフェース(通常、チャレンジの値を受け取ったものと同じもの)を介して提供される。
+秘密鍵とそのアルゴリズムは最低でも[[SP 800-131A]](#SP800-131A)の最新版で定義されたセキュリティ強度(現在は112ビット)であるものとする(SHALL)。チャレンジノンスは少なくとも64ビット長であるものとする(SHALL)。承認済み(Approved)暗号法が利用されるものとする(SHALL)。
 
 <!--
-The secret key and its algorithm SHALL provide at least the minimum security length specified in the latest revision of [[SP 800-131A]](#SP800-131A) (currently 112 bits). The challenge nonce SHALL be at least 64 bits in length. The authenticator output is normally provided via a computer interface (usually the same one from which the challenge value was received).
+The secret key and its algorithm SHALL provide at least the minimum security length specified in the latest revision of [[SP 800-131A]](#SP800-131A) (currently 112 bits). The challenge nonce SHALL be at least 64 bits in length. Approved cryptography SHALL be used.
 -->
 
 単一要素暗号デバイス認証器は動作のためにボタンを押すなどの物理的な入力を必要とすべきである(SHOULD)。これにより、デバイスが接続している先がセキュリティ侵害をうけているようなときに起こりうるデバイスの意図しない動作を防止することができる。
@@ -576,9 +617,9 @@ Single-factor cryptographic device authenticators SHOULD require a physical inpu
 -->
 
 
-##### 5.1.6.2. 単一要素暗号デバイス検証主体
+##### 5.1.7.2. 単一要素暗号デバイス検証主体
 <!--
-##### 5.1.6.2. Single Factor Cryptographic Device Verifiers
+##### 5.1.7.2. <a name="sfcdv"></a>Single Factor Cryptographic Device Verifiers
 -->
 
 単一要素暗号デバイス検証主体はチャレンジノンスを生成し、対応する認証器に送信する。また、認証器出力をデバイスの所有を検証するために利用する。認証器出力は特定の暗号デバイスとプロトコルに強く依存し、一般的にはある種の署名付メッセージになっている。
@@ -599,16 +640,16 @@ The verifier has either symmetric or asymmetric cryptographic keys corresponding
 The challenge nonce SHALL be at least 64 bits in length, and SHALL either be unique over the lifetime of the authenticator or statistically unique (generated using an approved random bit generator).
 -->
     
-#### 5.1.7. 多要素暗号ソフトウェア
+#### 5.1.8. 多要素暗号ソフトウェア
 <!--
-#### 5.1.7. Multi-Factor Cryptographic Software
+#### 5.1.8. Multi-Factor Cryptographic Software
 -->
 
 <div class="text-left" markdown="1">
 <table style="width:100%">
   <tr>
     <td><img src="sp800-63b/media/Multi-factor-software-crypto.png" alt="authenticator" style="width: 100px;height: 100px"/></td>
-    <td>多要素ソフトウェア暗号認証器は、認証の2要素目を用いたアクティベーションを必要とする、ディスクあるいは"ソフト"媒体にに記録された暗号鍵である。認証は鍵の所有と制御を証明することで行われる。認認証器出力は特定の暗号プロトコルに強く依存し、一般的にはある種の署名付メッセージになっている。多要素ソフトウェア暗号認証器は<i>something you have</i>であり、<i>something you know</i>または<i>something you are</i>のどちらかによってアクティベートされるものとする(SHALL)。</td>
+    <td>多要素ソフトウェア暗号認証器は、認証の2要素目を用いたアクティベーションを必要とする、ディスクあるいは"ソフト"媒体に記録された暗号鍵である。認証は鍵の所有と制御を証明することで行われる。認認証器出力は特定の暗号プロトコルに強く依存し、一般的にはある種の署名付メッセージになっている。多要素ソフトウェア暗号認証器は<i>something you have</i>であり、<i>something you know</i>または<i>something you are</i>のどちらかによってアクティベートされるものとする(SHALL)。</td>
 
 <!--
     <td>A multi-factor software cryptographic authenticator is a cryptographic key is stored on disk or some other “soft” media that requires activation through a second factor of authentication. Authentication is accomplished by proving possession and control of the key. The authenticator output is highly dependent on the specific cryptographic protocol, but it is generally some type of signed message. The MF software cryptographic authenticator is <i>something you have</i>, and it SHALL be activated by either <i>something you know</i> or <i>something you are</i>.</td> 
@@ -619,9 +660,9 @@ The challenge nonce SHALL be at least 64 bits in length, and SHALL either be uni
 
 
 
-##### 5.1.7.1. 多要素暗号ソフトウェア認証器
+##### 5.1.8.1. 多要素暗号ソフトウェア認証器
 <!--
-##### 5.1.7.1. Multi-Factor Cryptographic Software Authenticators
+##### 5.1.8.1. Multi-Factor Cryptographic Software Authenticators
 -->
 
 多要素暗号ソフトウェア認証器は、認証器で一意かつ、記憶シークレットや生体情報などの追加の要素の入力なしではアクセスすることができない秘密鍵を保持している。利用する鍵はデバイス上で最もセキュアなストレージ(例:キーチェーン、Trusted Platform Module、可能ならばTrusted Execution Environment)に記録されるべきである(SHOULD)。
@@ -648,20 +689,20 @@ Any memorized secret used by the authenticator for activation SHALL be at least 
 The unencrypted key and activation secret or biometric sample (and any biometric data derived from the biometric sample such as a probe produced through signal processing) SHALL be erased from memory immediately after an authentication transaction has taken place.
 -->
 
-##### 5.1.7.2. 多要素暗号ソフトウェア検証主体
+##### 5.1.8.2. 多要素暗号ソフトウェア検証主体
 <!--
-##### 5.1.7.2. Multi-Factor Cryptographic Software Verifiers
+##### 5.1.8.2. Multi-Factor Cryptographic Software Verifiers
 -->
 
 多要素暗号ソフトウェア検証主体に対する要求事項は、[Section 5.1.8.2](#mfcdv)に記載されている多要素暗号デバイス検証主体に対する要求事項と同一である。
 
 <!--
-The requirements for a multi-factor cryptographic software verifier are identical to those for a multi-factor cryptographic device verifier, described in [Section 5.1.8.2](#mfcdv).
+The requirements for a multi-factor cryptographic software verifier are identical to those for a multi-factor cryptographic device verifier, described in [Section 5.1.9.2](#mfcdv).
 -->
 
-#### 5.1.8. 多要素暗号デバイス
+#### 5.1.9. 多要素暗号デバイス
 <!--
-#### 5.1.8. Multi-Factor Cryptographic Devices
+#### 5.1.9. Multi-Factor Cryptographic Devices
 -->
 
 <div class="text-left" markdown="1">
@@ -677,21 +718,21 @@ The requirements for a multi-factor cryptographic software verifier are identica
   </div>
 
 
-##### 5.1.8.1. 多要素暗号デバイス認証器
+##### 5.1.9.1. 多要素暗号デバイス認証器
 <!--
-##### 5.1.8.1. Multi-Factor Cryptographic Device Authenticators
+##### 5.1.9.1. Multi-Factor Cryptographic Device Authenticators
 -->
 
-多要素暗号デバイス認証器は、認証器で一意かつ、記憶シークレットや生体情報などの追加要素の入力がある場合のみアクセス可能な秘密鍵を保持する目的で、耐タンパ性を持ったハードウェアを利用する。シークレットとそのアルゴリズムは最低でも[[SP 800-131A]](#SP800-131A)の最新版で定義されたセキュリティ強度(現在は112ビット)であるものとする(SHALL)。承認済み(Approved)暗号法が用いられるものとする(SHALL)。
+多要素暗号デバイス認証器は、認証器で一意かつ、記憶シークレットや生体情報などの追加要素の入力がある場合のみアクセス可能な秘密鍵を保持する目的で、耐タンパ性を持ったハードウェアを利用する。暗号デバイスはソフトウェアを含んでいるが、全ての組み込みソフトウェアはCSP(または他の発行者)の制御下にあるという点、及び認証器全体で認証時のAALにおけるFIPS 140要求事項に適合する必要がある点において、暗号ソフトウェア認証器とは異なっている。
 
 <!--
-Multi-factor cryptographic device authenticators use tamper-resistant hardware to encapsulate a secret key that is unique to the authenticator and is accessible only through the input of an additional factor, either a memorized secret or a biometric. The secret key and its algorithm SHALL provide at least the minimum security length specified in the latest revision of [[SP 800-131A]](#SP800-131A) (currently 112 bits). Approved cryptography SHALL be used.
+Multi-factor cryptographic device authenticators use tamper-resistant hardware to encapsulate a secret key that is unique to the authenticator and is accessible only through the input of an additional factor, either a memorized secret or a biometric.  Although cryptographic devices contain software, they differ from cryptographic software authenticators by the fact that all embedded software is under control of the CSP (or other issuer), and that the entire authenticator is subject to any applicable FIPS 140 requirements at the AAL being authenticated.
 -->
 
-認認証器出力は特定の暗号デバイスとプロトコルに強く依存し、一般的にはある種の署名付メッセージになっている。
+秘密鍵とそのアルゴリズムは最低でも[[SP 800-131A]](#SP800-131A)の最新版で定義されたセキュリティ強度(現在は112ビット)であるものとする(SHALL)。チャレンジノンスは少なくとも64ビット長であるものとする(SHALL)。承認済み(Approved)暗号法が利用されるものとする(SHALL)。
 
 <!--
-The authenticator output is highly dependent on the specific cryptographic device and protocol, but it is generally some type of signed message.
+The secret key and its algorithm SHALL provide at least the minimum security length specified in the latest revision of [[SP 800-131A]](#SP800-131A) (currently 112 bits). The challenge nonce SHALL be at least 64 bits in length. Approved cryptography SHALL be used.
 -->
 
 認証器を用いた各認証操作は追加の要素の入力を要求すべきである(SHOULD)。追加要素の入力はデバイス上での直接入力またはハードウェア接続(例: USBやスマートカード)を介して行われてもよい(MAY)。
@@ -712,9 +753,9 @@ Any memorized secret used by the authenticator for activation SHALL be at least 
 The unencrypted key and activation secret or biometric sample (and any biometric data derived from the biometric sample such as a probe produced through signal processing) SHALL be erased from memory immediately after an authentication transaction has taken place.
 -->
 
-##### <a name="mfcdv"></a>5.1.8.2 多要素暗号デバイス検証主体
+##### <a name="mfcdv"></a>5.1.9.2 多要素暗号デバイス検証主体
 <!--
-##### <a name="mfcdv"></a>5.1.8.2 Multi-Factor Cryptographic Device Verifiers
+##### <a name="mfcdv"></a>5.1.9.2. Multi-Factor Cryptographic Device Verifiers
 -->
 
 多要素暗号デバイス検証主体はチャレンジノンスを生成し、対応する認証器に送信する。また、認証器出力をデバイスとアクティベーション要素の所有を検証するために利用する。
@@ -789,7 +830,7 @@ Biometric matching SHOULD be performed locally on claimant's device or MAY be pe
 If matching is performed centrally:
 
 * Use of the biometric SHALL be bound tightly to a single, specific device that is identified using approved cryptography.
-* Biometric revocation SHOULD be implemented.
+* Biometric revocation, referred to as biometric template protection in [ISO/IEC 24745](#ISO24745), SHALL be implemented.
 * An authenticated protected channel between sensor (or integral unit containing endpoint and sensor that resists sensor replacement) and central verifier SHALL be established, and the sensor authenticated, **prior** to capturing the biometric sample from the claimant.
 * All transmission of biometrics shall be over the authenticated protected channel.
 
@@ -799,7 +840,14 @@ Biometrics are also used in some cases to prevent repudiation of registration an
 
 #### <a name="attestation"></a>5.2.4 Attestation
 
-Authenticators that are directly connected to or embedded in endpoints MAY convey attestation information such as the provenance or health and integrity of the authenticator (and possibly the endpoint as well) to the verifier as part of the authentication protocol. If this attestation is signed, it SHALL be signed using a difital signature that provides at least the minimum security strength specified in the latest revision of [[SP 800-131A]](#SP800-131A) (currently 112 bits). Attestation information MAY be used as part of a risk-based authentication decision.
+Authenticators that are directly connected to or embedded in endpoints MAY convey attestation information to the verifier as part of the authentication protocol such as:
+
+* The provenance, health, and/or integrity of the authenticator and/or endpoint
+* Security features of the authenticator
+* Security and performance characteristics of biometric sensor(s)
+* Sensor modality
+
+If this attestation is signed, it SHALL be signed using a digital signature that provides at least the minimum security strength specified in the latest revision of [[SP 800-131A]](#SP800-131A) (currently 112 bits). Attestation information MAY be used as part of a risk-based authentication decision.
 
 When federated authentication is being performed as described in [SP 800-63C](sp800-63c.html), the verifier SHOULD include any such attestation information in the assertion it provides to the relying party.
 
