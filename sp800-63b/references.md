@@ -22,7 +22,14 @@
 
 <a name="ISOIEC10646">[ISO/IEC 10646]</a> International Standards Organization, *Universal Coded Character Set*, 2014, available at http://standards.iso.org/ittf/PubliclyAvailableStandards/c063182_ISO_IEC_10646_2014.zip
 
-<a name="SAML">[SAML]</a> OASIS, SAML, *Security Assertion Markup Language 2.0", v2.0, March 2005, available at http://oasis-open.org/standards#samlv2.0
+<a name="ISO24745">[ISO/IEC 24745]</a> International Standards Organization, *Information technology -- Security techniques -- Biometric information protection*, 2011, available at http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=52946
+
+<a name="SAML">[SAML]</a> OASIS, SAML, *Security Assertion Markup Language 2.0*, v2.0, March 2005, available at http://oasis-open.org/standards#samlv2.0
+
+<a name="ISO9241-11">[ISO 9241-11]</a> International Organization for Standardization, *Ergonomic requirements for office work with visual display terminals (VDTs) – Part 11: Guidance on Usability*, ISO 9241-11:1998, ISO: Geneva, Switzerland, 1998.
+
+[[UAX 15]](#UAX15)
+<a name="UAX15">[UAX 15]</a> Unicode Consortium, *Unicode Normalization Forms*, Unicode Standard Annex 15, Version 9.0.0, February, 2016. Available at http://www.unicode.org/reports/tr15/
 
 ### 11.2. NIST Special Publications
 

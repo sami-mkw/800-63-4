@@ -6,13 +6,18 @@
 
 ### Authentication and Lifecycle Management
 
-Paul A. Grassi  
-Elaine M. Newton  
-Ray A. Perlner  
-Andrew R. Regenscheid  
-William E. Burr  
-James L. Fenton  
-Justin P. Richer
+Paul A. Grassi    
+James L. Fenton    
+Elaine M. Newton    
+Ray A. Perlner    
+Andrew R. Regenscheid    
+William E. Burr    
+Justin P. Richer  
+Naomi B. Lefkovitz  
+Jamie M. Danker  
+Yee-Yin Choong      
+Kristen K. Greene      
+Mary F. Theofanos   
 
 {::comment}
 
@@ -32,15 +37,19 @@ http://dx.doi.org/10.6028/NIST.SP.XXX
 
 Paul A. Grassi  
 *Applied Cybersecurity Division  
-Information Technology Laboratory*
+Information Technology Laboratory*  
+
+James L. Fenton  
+*Altmode Networks  
+Los Altos, CA*  
 
 Elaine M. Newton  
 *Office of the Director  
-Information Technology Laboratory*
+Information Technology Laboratory*  
 
 Ray A. Perlner  
 *Computer Security Division  
-Information Technology Laboratory*
+Information Technology Laboratory*  
 
 Andrew R. Regenscheid  
 *Computer Security Division  
@@ -50,13 +59,23 @@ William E. Burr
 *Dakota Consulting, Inc.  
 Silver Spring, MD*
 
-James L. Fenton  
-*Altmode Networks  
-Los Altos, CA*
-
 Justin P. Richer  
 *Bespoke Engineering  
-Billerica, MA*
+Billerica, MA*  
+
+Naomi B. Lefkovitz  
+*Applied Cybersecurity Division  
+Information Technology Laboratory*  
+
+Jamie M. Danker  
+*National Protection and Programs Directorate  
+Department of Homeland Security*  
+
+Yee-Yin Choong      
+Kristen K. Greene      
+Mary F. Theofanos   
+*Information Access Division  
+Information Technology Laboratory*
 
 {::comment}
 
@@ -179,17 +198,17 @@ The terms “CAN” and “CANNOT” indicate a possibility and capability, whet
 
 ## Executive Summary
 
-Digital authentication is the process of establishing confidence that a given claimant is the same as a subscriber that has previously authenticated. The robustness of this confidence is described by categorization known as the Authenticator Assurance Level (AAL). The separation of AAL from Identity Assurance Level (IAL), described in SP 800-63A, better supports applications requiring strong authentication that may be pseudonomymous. The separation of authenticator issuance from the establishment of credentials binding those authenticators to individuals provides additional flexibility in the enrollment and identity proofing process.
+Digital authentication is the process of establishing confidence in user identities electronically presented to an information system. The robustness of this confidence is described by categorization known as the Authenticator Assurance Level (AAL). The separation of AAL from Identity Assurance Level (IAL), described in SP 800-63A, better supports applications requiring strong authentication that may be pseudonomymous. The separation of authenticator issuance from the establishment of credentials binding those authenticators to individuals provides additional flexibility in the enrollment and identity proofing process.
 
 This guideline addresses how an individual, known as a claimant, can securely authenticate to a Credential Service Provider to establish the context for a remote digital interaction.
 
 The three AALs reflect the options agencies will select based on their risk profile and the potential harm caused by an invalid or fraudulent user accessing their systems. The AALs are as follows:
 
-**AAL 1**: AAL 1 requires single factor authentication, giving some assurance that the same claimant who participated in previous transactions is accessing the protected transaction or data.
+**Authenticator Assurance Level 1** - AAL 1 provides some assurance that the claimant controls the authenticator registered to a subscriber. AAL 1 uses single-factor authentication using a wide range of available authentication technologies. Successful authentication requires that the claimant prove through a secure authentication protocol that he or she possesses and controls the authenticator.
 
-**AAL 2**: AAL 2 requires two different authentication factors, providing higher assurance that the same claimaint who participated in previous transactions is accessing the protected transaction or data.
+**Authenticator Assurance Level 2** – AAL 2 provides high confidence that the claimant controls the authenticator registered to a subscriber. Two different authentication factors are required. Approved cryptographic techniques are required at AAL 2 and above.
 
-**AAL 3**: AAL 3 provides the highest practical remote digital authentication assurance. It requires proof of possession of a key in a physical multifactor authenticator through a cryptographic protocol.
+**Authenticator Assurance Level 3** – AAL 3 provides very high confidence that the claimant controls the authenticator registered to a subscriber. Authentication at AAL 3 is based on proof of possession of a key through a cryptographic protocol. AAL 3 is similar to AAL 2 except that a "hard" cryptographic authenticator that also provides impersonation resistance is required.
 
 
 ## Table of Contents

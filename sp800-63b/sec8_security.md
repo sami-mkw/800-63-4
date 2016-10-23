@@ -14,9 +14,18 @@ An attacker who can gain control of an authenticator will often be able to masqu
     
 - *Something you are* may be replicated. An attacker may obtain a copy of the subscriber’s fingerprint and construct a replica - assuming that the biometric system(s) employed do not block such attacks by employing robust liveness detection techniques.
 
-This document assumes that the subscriber is not colluding with the attacker who is attempting to falsely authenticate to the verifier. With this assumption in mind, the threats to the authenticator(s) used for e-authentication are listed in Table 4, along with some examples.
+- *Out of band* secrets may be intercepted. An attacker may receive a challenge or response by eavesdropping on the primary or secondary communications channel. The attacker might then authenticate their own channel or save the message for later replay.
 
-**Table 4 – Authenticator Threats**
+This document assumes that the subscriber is not colluding with the attacker who is attempting to falsely authenticate to the verifier. With this assumption in mind, the threats to the authenticator(s) used for e-authentication are listed in [Table 8-1](#63bSec8-Table1), along with some examples.
+
+<a name="63bSec8-Table1"></a>
+
+<div class="text-center" markdown="1">
+
+**Table 8-1.  Authenticator Threats**
+
+</div>
+
 
 | **Authenticator Threats/Attacks**  | **Description**  | **Examples** |
 |------------------------------------|------------------|--------------|
@@ -31,6 +40,8 @@ This document assumes that the subscriber is not colluding with the attacker who
 | Eavesdropping | The authenticator secret or authenticator output is revealed to the attacker as the subscriber is authenticating. | Memorized secrets are obtained by watching keyboard entry. |
 | | | Memorized secrets or authenticator outputs are intercepted by keystroke logging software. |
 | | | A PIN is captured from PIN pad device. |
+| | | A hashed password is obtained and used by an attacker for another authentication (*pass-the-hash attack*) |
+| | An out of band secret is intercepted by the attacker by compromising the communication channel. | An out of band secret is transmitted via unencrypted wifi and received by the attacker. |
 | Offline cracking | The authenticator is exposed using analytical methods outside the authentication mechanism. | A software PKI authenticator is subjected to dictionary attack to identify the correct password to use to decrypt the private key. |
 | Side channel attack | The authenticator secret is exposed using physical characteristics of the authenticator. | A key is extracted by differential power analysis on a hardware cryptographic authenticator. |
 | | | A cryptographic authenticator secret is extracted by analysis of the response time of the authenticator over a number of attempts. |
@@ -39,32 +50,44 @@ This document assumes that the subscriber is not colluding with the attacker who
 | | | A memorized secret is revealed by the subscriber at a bogus verifier website reached through DNS spoofing.
 | Social engineering | The attacker establishes a level of trust with a subscriber in order to convince the subscriber to reveal his or her authenticator secret or authenticator output. | A memorized secret is revealed by the subscriber to an officemate asking for the password on behalf of the subscriber’s boss. |
 | | | A memorized secret is revealed by a subscriber in a telephone inquiry from an attacker masquerading as a system administrator. |
+| | | An out of band secret sent via SMS is received by an attacker who has convinced the mobile operator to redirect the victim's mobile phone to the attacker. |
 | Online guessing | The attacker connects to the verifier online and attempts to guess a valid authenticator output in the context of that verifier. | Online dictionary attacks are used to guess memorized secrets. |
 | | | Online guessing is used to guess authenticator outputs for a one-time password device registered to a legitimate claimant. |
 | Endpoint compromise | Malicious code on the endpoint proxies remote access to a connected authenticator without user consent. | A cryptographic authenticator connected to the endpoint is used to authenticate remote attackers. |
 | | Malicious code on the endpoint causes authentication to other than the intended verifier. | Authentication is performed on behalf of an attacker rather than the subscriber.
+| | | A malicious app on the endpoint reads an out of band secret sent via SMS; the attacker uses the secret to authenticate.
 | | Malicious code on the endpoint compromises a multi-factor software cryptographic authenticator. | Malicious code proxies authentication or exports authenticator keys from the endpoint.
 
 ### 8.2. Threat Mitigation Strategies
-Related mechanisms that assist in mitigating the threats identified above are summarized in Table 5.
+Related mechanisms that assist in mitigating the threats identified above are summarized in [Table 8-2](#63bSec8-Table2).
 
-**Table 5 - Mitigating Authenticator Threats**
+<a name="63bSec8-Table2"></a>
+
+<div class="text-center" markdown="1">
+
+**Table 8-1 - Mitigating Authenticator Threats**
+
+</div>
+
 
 | **Authenticator Threat/Attack** | **Threat Mitigation Mechanisms** |
 |---------------------------------|----------------------------------|
-| Theft | Use multi-factor authenticators which need to be activated through a PIN or biometric.|
-| Duplication |  Use authenticators that are difficult to duplicate, such as hardware cryptographic authenticators. |
-| Discovery | Use methods in which the responses to prompts cannot be easily discovered.
-| Eavesdropping | Use authenticators with dynamic outputs where knowledge of one authenticator does not assist in deriving a subsequent authenticator.
-| | Use authenticators that generate authenticators based on an authenticator input value or challenge.
-| | Establish authenticators through a separate channel.
+| Theft | Use multi-factor authenticators which need to be activated through a memorized secret or biometric.|
+| Duplication |  Use authenticators from which it is difficult to extract and duplicate long-term authentication secrets. |
+| Eavesdropping | Ensure the security of the endpoint, especially with respect to freedom from malware such as key loggers, prior to use.
+| | Maintain situational awareness when entering memorized secrets and one-time passwords to ensure that they cannot be observed by others.
+| | Authenticate over authenticated protected channels (observe lock icon in browser window, for example)
+| | Use authentication protocols that are resistant to replay attacks such as *pass-the-hash*
 | Offline cracking | Use an authenticator with a high entropy authenticator secret.
-| | Use an authenticator that locks up after a number of repeated failed activation attempts.
 | | Store memorized secrets in a salted, hashed form to raise the cost of dictionary attacks; use a keyed hash.
 | Side channel attack | Use authenticator algorithms that are designed to maintain constant power consumption and timing regardless of secret values.
-| Phishing or pharming | Use authenticators with dynamic outputs where knowledge of one output does not assist in deriving a subsequent output.
-| Social engineering | Use authenticators with dynamic outputs where knowledge of one output does not assist in deriving a subsequent output.
+| Phishing or pharming | Use authenticators that provide verifier impersonation resistance.
+| | Be alert for unexpected hostnames in URLs.
+| | Do not click on links in email messages; instead, enter the URL manually or through a trusted bookmark.
+| Social engineering | Do not reveal authentication secrets to others, regardless of their story.
+| | Avoid use of authenticators that present a risk of social engineering of third parties such as customer service agents.
 | Online guessing | Use authenticators that generate high entropy output.
+| | Use an authenticator that locks up after a number of repeated failed activation attempts.
 | Endpoint compromise | Use hardware authenticators that require physical action by the subscriber.
 | | Provide secure display of identity of verifier and relying party.
 | | Maintain software-based keys in restricted-access storage.
@@ -88,5 +111,3 @@ There are several other strategies that may be applied to mitigate the threats d
 The weak point in many authentication mechanisms is the process followed when a subscriber loses control of one or more authenticators and needs to replace them. In many cases, the options remaining available to authenticate the subscriber are limited, and economic concerns (cost of maintaining call centers, etc.) motivate the use of inexpensive, and frequently less secure, backup authentication methods. To the extent that authenticator recovery is human-assisted, there is also the risk of social engineering attacks.
 
 In order to maintain the integrity of the authentication factors, it is essential that it not be possible to leverage an authentication involving one factor to obtain an authenticator of a different factor. For example, a memorized secret must not be usable to obtain a new list of look-up secrets.
-
-Subscribers should be encouraged to maintain at least two valid authenticators of each factor they will be using. For example, a subscriber that usually uses a one-time OTP device as a physical authenticator should also be issued a number of look-up secret authenticators, or should register a device for out-of-band authentication, in case the physical authenticator is lost, stolen, or damaged.

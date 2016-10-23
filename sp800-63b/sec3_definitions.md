@@ -22,7 +22,7 @@ A data object, created in conjunction with an assertion, which identifies the ve
 In the context of [[OMB M-04-04]](#M-04-04) and this document, assurance is defined as 1) the degree of confidence in the vetting process used to establish the identity of an individual to whom the credential was issued, and 2) the degree of confidence that the individual who uses the credential is the individual to whom the credential was issued.
 
 #### Asymmetric Keys
-Two related keys, a public key and a private key that are used to perform complementary operations, such as encryption and decryption or signature generation and signature verification.
+Two related keys, consisting of a public key and a private key, that are used to perform complementary operations such as encryption and decryption or signature verification and generation.
 
 #### Attack
 An attempt by an unauthorized individual to defeat security controls. For example, to fool a verifier or a Relying Party into believing that the unauthorized individual in question is the subscriber.
@@ -31,16 +31,19 @@ An attempt by an unauthorized individual to defeat security controls. For exampl
 A party who acts with malicious intent to compromise an information system.
 
 #### Attribute
-A claim of a named quality or characteristic inherent in or ascribed to someone or something. (See term in [[ICAM]](#ICAM) for more information.)
+A quality or characteristic ascribed to someone or something.
 
 #### Authenticated Protected Channel
 A communication channel that uses approved encryption where the initiator of the connection (client) has authenticated the recipient (server). Authenticated protected channels provide confidentiality and man-in-the-middle protection and are frequently used in the user authentication process. TLS [[BCP 195]](#bcp195) is an example of an authenticated protected channel when the certificate presented by the recipient is verified by the initiator.
 
 #### Authentication
-The process of establishing confidence in the identity of users or information systems.
+The process of establishing confidence in the identity of users or information systems. Authentication of users (subscribers) implies confirmation of the subscriber's presence and intent to authenticate.
+
+#### Authentication Factor
+The three types of authentication factors are *something you know*, *something you have*, and *something you are*. Every authenticator has one or more authentication factors.
 
 #### Authentication Protocol
-A defined sequence of messages between a claimant and a verifier that demonstrates that the claimant has possession and control of a valid authenticator to establish his/her identity. Secure authentication protocols also demonstrate to the claimant that he or she is communicating with the intended verifier.
+A defined sequence of messages between a claimant and a verifier that demonstrates that the claimant has possession and control of one or more valid authenticators to establish his/her identity. Secure authentication protocols also demonstrate to the claimant that he or she is communicating with the intended verifier.
 
 #### Authentication Protocol Run
 An exchange of messages between a claimant and a verifier that results in authentication (or authentication failure) between the two parties.
@@ -51,7 +54,7 @@ A generic term for any secret value that could be used by an attacker to imperso
 These are further divided into *short-term authentication secrets*, which are only useful to an attacker for a limited period of time, and *long-term authentication secrets*, which allow an attacker to impersonate the subscriber until they are manually reset. The authenticator secret is the canonical example of a long term authentication secret, while the authenticator output, if it is different from the authenticator secret, is usually a short term authentication secret.
 
 #### Authenticator
-Something that the claimant possesses and controls (typically a cryptographic module or password) that is used to authenticate the claimant’s identity. In previous versions of this guideline, this was referred to as a *token*.
+Something that the claimant possesses and controls (typically a cryptographic module or password) that is used to authenticate the claimant’s identity. In previous editions of SP 800-63, this was referred to as a *token*.
 
 #### Authenticator Assurance Level (AAL)
 A metric describing robustness of the authentication process proving that the claimant is in control of a given subscriber's authenticator(s).
@@ -68,13 +71,13 @@ An assertion that does not provide a mechanism for the subscriber to prove that 
 #### Biometrics
 Automated recognition of individuals based on their behavioral and biological characteristics.
 
-In this document, biometrics may be used to unlock multifactor authenticators and prevent repudiation of registration.
+In this document, biometrics may be used to unlock multi-factor authenticators and prevent repudiation of registration.
 
 #### Challenge-Response Protocol
 An authentication protocol where the verifier sends the claimant a challenge (usually a random value or a nonce) that the claimant combines with a secret (such as by hashing the challenge and a shared secret together, or by applying a private key operation to the challenge) to generate a response that is sent to the verifier. The verifier can independently verify the response generated by the claimant (such as by re-computing the hash of the challenge and the shared secret and comparing to the response, or performing a public key operation on the response) and establish that the claimant possesses and controls the secret.
 
 #### Claimant
-A party whose identity is to be verified using an authentication protocol.
+A party whose identity is to be verified using one or more authentication protocols.
 
 #### Completely Automated Public Turing test to tell Computers and Humans Apart (CAPTCHA)
 An interactive feature added to web-forms to distinguish use of the form by humans as opposed to automated agents. Typically, it requires entering text corresponding to a distorted image or from a sound stream.
@@ -101,7 +104,10 @@ A value used to control cryptographic operations, such as decryption, encryption
 See also Asymmetric keys, Symmetric key.
 
 #### Cryptographic Authenticator
-An authenticator where the secret is a cryptographic key.
+An authenticator where the secret is a cryptographic key. A hardware cryptographic authenticator is a cryptographic module containing one or more cryptographic keys.
+
+#### Cryptographic Module
+A set of hardware, software, and/or firmware that implements approved security functions (including cryptographic algorithms and key generation).
 
 #### Data Integrity
 The property that data has not been altered by an unauthorized entity.
@@ -109,17 +115,20 @@ The property that data has not been altered by an unauthorized entity.
 #### Derived Credential
 A credential issued based on proof of possession and control of one or more authenticators associated with a previously issued credential, so as not to duplicate the identity proofing process.
 
+#### Digital Authentication
+The process of establishing confidence in user identities electronically presented to an information system. In previous editions of SP 800-63, this was referred to as *Electronic Authentication*.
+
 #### Digital Signature
-An asymmetric key operation where the private key is used to digitally sign data and the public key is used to verify the signature. Digital signatures provide authenticity protection, integrity protection, and non-repudiation.
+An asymmetric key operation where the private key is used to digitally sign data and the public key is used to verify the signature. Digital signatures provide authenticity protection, integrity protection, and non-repudiation but not confidentiality protection.
 
 #### Eavesdropping Attack
 An attack in which an attacker listens passively to the authentication protocol to capture information which can be used in a subsequent active attack to masquerade as the claimant.
 
 #### Electronic Authentication (E-Authentication)
-The process of establishing confidence in user identities electronically presented to an information system.
+See *Digital Authentication*.
 
 #### Entropy
-A measure of the amount of uncertainty that an attacker faces to determine the value of a secret. Entropy is usually stated in bits.
+A measure of the amount of uncertainty that an attacker faces to determine the value of a secret. Entropy is usually stated in bits. A value having *n* bits of entropy has the same degree of uncertainty as a uniformly-distributed *n*-bit random value.
 
 #### Equal Error Rate (EER)
 The value where the false match rate (FMR) and false non-match rate (FNMR) of a sensor are equal. EER is a figure of merit for the sensor; the lower the EER is, the more certain the sensor's decision is likely to be.
@@ -152,21 +161,18 @@ A metric describing degree of confidence that the Applicant’s Claimed Identity
 #### Kerberos
 A widely used authentication protocol developed at MIT. In “classic” Kerberos, users share a secret password with a Key Distribution Center (KDC). The user, Alice, who wishes to communicate with another user, Bob, authenticates to the KDC and is furnished a “ticket” by the KDC to use to authenticate with Bob.
 
-When Kerberos authentication is based on passwords, the protocol is known to be vulnerable to offline dictionary attacks by eavesdroppers who capture the initial user-to- KDC exchange. Longer password length and complexity provide some mitigation to this vulnerability, although sufficiently long passwords tend to be cumbersome for users.
-
-#### Knowledge Based Authentication
-Authentication of an individual based on knowledge of information associated with his or her claimed identity in public databases. Knowledge of such information is considered to be private rather than secret, because it may be used in contexts other than authentication to a verifier, thereby reducing the overall assurance associated with the authentication process.
+When Kerberos authentication is based on passwords, the protocol is known to be vulnerable to offline dictionary attacks by eavesdroppers who capture the initial user-to-KDC exchange. Longer password length and complexity provide some mitigation to this vulnerability, although sufficiently long passwords tend to be cumbersome for users.
 
 #### Man-in-the-Middle Attack (MitM)
-An attack on the authentication protocol run in which the attacker positions himself or herself in between the claimant and verifier so that he can intercept and alter data traveling between them.
+An attack on the authentication protocol in which the attacker positions himself or herself in between the claimant and verifier so that he or she can intercept and/or alter data traveling between them.
 
 #### Message Authentication Code (MAC)
 A cryptographic checksum on data that uses a symmetric key to detect both accidental and intentional modifications of the data. MACs provide authenticity and integrity protection, but not non-repudiation protection.
 
 #### Multi-Factor
-A characteristic of an authentication system or an authenticator that uses more than one authentication factor.
+A characteristic of an authentication system or an authenticator that requires more than one authentication factor for successful authentication. Multi-factor authentication can be performed using a single authenticator that provides more than one factor or by a combination of authenticators that provide different factors.
 
-The three types of authentication factors are something you know, something you have, and something you are.
+The three authentication factors are something you know, something you have, and something you are.
 
 #### Network
 An open communications medium, typically the Internet, that is used to transport messages between the claimant and other parties. Unless otherwise stated, no assumptions are made about the security of the network; it is assumed to be open and subject to active (i.e., impersonation, man-in-the-middle, session hijacking) and passive (i.e., eavesdropping) attack at any point between the parties (e.g., claimant, verifier, CSP or RP).
@@ -191,9 +197,6 @@ A secret that a claimant memorizes and uses to authenticate his or her identity.
 
 #### Personal Identification Number (PIN)
 A password consisting only of decimal digits.
-
-#### Personal Identity Verification (PIV) Card
-Defined by \[FIPS 201\] as a physical artifact (e.g., identity card, smart card) issued to federal employees and contractors that contains stored credentials (e.g., photograph, cryptographic keys, digitized fingerprint representation) so that the claimed identity of the cardholder can be verified against the stored credentials by another person (human readable and verifiable) or an automated process (computer readable and verifiable).
 
 #### Pharming
 An attack in which an attacker corrupts an infrastructure service such as DNS (Domain Name Service) causing the subscriber to be misdirected to a forged verifier/RP, which could cause the subscriber to reveal sensitive information, download harmful software or contribute to a fraudulent act.
@@ -230,8 +233,11 @@ A digital document issued and digitally signed by the private key of a certifica
 #### Public Key Infrastructure (PKI)
 A set of policies, processes, server platforms, software and workstations used for the purpose of administering certificates and public-private key pairs, including the ability to issue, maintain, and revoke public key certificates.
 
+#### Reauthentication
+The process of confirming the subscriber's continued presence and intent to be authenticated during an extended usage session.
+
 #### Registration
-The process through which an Applicant applies to become a subscriber of a CSP and the CSP validates the identity of the Applicant.
+The process through which an applicant applies to become a subscriber of a CSP and the CSP validates the identity of the applicant.
 
 #### Relying Party (RP)
 An entity that relies upon the subscriber's authenticator and credentials or a verifier's assertion of a claimant’s identity, typically to process a transaction or grant access to information or a system.
@@ -274,16 +280,13 @@ An attack in which the attacker is able to insert himself or herself between a c
 A secret used in authentication that is known to the claimant and the verifier.
 
 #### Side Channel Attack
-An attack enabled by leakage of information from a physical cryptosystem. Timing, power consumption, and electromagnetic emissions are examples of characteristics that could be exploited in a side-channel attack.
+An attack enabled by leakage of information from a physical cryptosystem. Timing, power consumption, electromagnetic and acoustic emissions are examples of characteristics that could be exploited in a side-channel attack.
 
 #### Social Engineering
 The act of deceiving an individual into revealing sensitive information by associating with the individual to gain confidence and trust.
 
 #### Special Publication (SP)
 A type of publication issued by NIST. Specifically, the Special Publication 800-series reports on the Information Technology Laboratory's research, guidelines, and outreach efforts in computer security, and its collaborative activities with industry, government, and academic organizations.
-
-#### Strongly Bound Credentials
-Credentials that are bound to a subscriber in a tamper-evident fashion.
 
 #### Subscriber
 A party who has received a credential bound to an authenticator from a CSP.
@@ -306,11 +309,15 @@ An authentication and security protocol widely implemented in browsers and web s
 #### Trust Anchor
 A public or symmetric key that is trusted because it is directly built into hardware or software, or securely provisioned via out-of-band means, rather than because it is vouched for by another trusted entity (e.g. in a public key certificate).
 
+#### Usability
+
+Per ISO/IEC 9241-11: Extent to which a product can be used by specified users to achieve specified goals with effectiveness, efficiency and satisfaction in a specified context of use
+
 #### Verifier
 An entity that verifies the claimant’s identity by verifying the claimant’s possession and control of one or two authenticators using an authentication protocol. To do this, the verifier may also need to validate credentials that link the authenticator(s) and identity and check their status.
 
-#### Verifier Impersonation Attack
-A scenario where the attacker impersonates the verifier in an authentication protocol, usually to capture information that can be used to masquerade as a subscriber to the real verifier.
+#### Verifier Impersonation
+A scenario where the attacker impersonates the verifier in an authentication protocol, usually to capture information that can be used to masquerade as a subscriber to the real verifier. In previous editions of SP 800-63, authentication protocols that are resistant to verifier impersonation have been described as "strongly man-in-the-middle resistant".
 
 #### Weakly Bound Credentials
 Credentials that are bound to a subscriber in a manner than can be modified without invalidating the credential.
