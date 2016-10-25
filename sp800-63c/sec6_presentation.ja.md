@@ -60,6 +60,7 @@ Assertion の参照には以下のような要件が求められる.
 - Onetime (single-use) であること (SHALL)
 - 数秒〜数分程度と有効期限が短いこと (SHOULD)
 - RP が認証された状態で提示されること (SHOULD)
+
 <!--
  - SHALL be limited to use by a single RP
  - SHALL be single-use
