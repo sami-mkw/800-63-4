@@ -22,9 +22,9 @@ CSP は, 多様な形式の証明書 (Evidence), Authoritative レコード, 3rd
 
 ## <a name="validate"></a>5.2. Identity Evidence Validation
 
-身元検証 (Identity Validation) の目的は, 申請者から最も適切な身分証 (パスポート, 免許証等) を取得し, その信憑性・有効性・正確性を確認することである. 身元検証は, 適切な身分証を取得するプロセスと, その身分証に記載されているデータが正当で現存する個人と結びついているものであることを確認するプロセスの, 2つから成る.
+身元検証 (Identity Validation) の目的は, 申請者から最も適切な身分証 (パスポート, 免許証等) を取得し, その信憑性・有効性・正確性を確認することである. 身元検証は, 適切な身分証を取得しそれが正規の信頼できるものであることを確認するプロセス, その身分証に記載されているデータが正当かつ最新で現存する個人と結びついているものであることを確認するプロセスの, 2つから成る.
 
-<!-- The goal of identity validation is to collect from the applicant the most appropriate identity evidence (for example, a passport or drivers license) and determine its authenticity, validity, and accuracy.  Identity validation is made up of two process steps: collecting the appropriate identity evidence and confirming the data contained on the identity evidence is valid and related to an actual, live individual. -->
+<!-- The goal of identity validation is to collect from the applicant the most appropriate identity evidence (for example, a passport or drivers license) and determine its authenticity, validity, and accuracy.  Identity validation is made up of two process steps: collecting the appropriate identity evidence, confirming the evidence is genuine and authentic, and confirming the data contained on the identity evidence is valid, current, and related to an actual, live individual. -->
 
 ### 5.2.1. Identity Evidence Characteristic Requirements
 
@@ -113,9 +113,9 @@ CSPが情報を収集際には, 下記のことが決定できる証明書が提
 
 ## 5.3. <a name="verify"></a> Identity Verification
 
-身元検証の目標は, 提示された物理的に現存しているアイデンティティと, それらを提示している実際の人物を紐付けることである.
+身元検証の目標は, 実際に身分証を提示している実在する個人がClaimed Identity に紐付いていることを確認し, その紐づけを確立することである.
 
-<!-- The goal of identity validation is to establish a linkage to the physical, live existence of the claimed identity to the person actually presenting the evidence. -->
+<!-- The goal of identity validation is to confirm and establish a linkage between the claimed identity and the physical, live existence of the person actually presenting the evidence. -->
 
 ### 5.3.1. Identity Verification Methods
 

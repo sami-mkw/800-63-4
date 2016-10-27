@@ -6,7 +6,7 @@
 
 <!-- These privacy considerations are non-normative. -->
 
-9.1 Minimizing Tracking and Profiling
+### 9.1 Minimizing Tracking and Profiling
 
 Section 4, 4.1.4 および 5.2.5 では, Tracking および Profiling 能力の向上によりもたらされる Privacy リスクの最小化を目的とした要件をまとめた.
 例えば複数の RP に対して同じ IdP を利用して認証を行う Subscriber がいた場合, IdP は Federation を行わない時は存在しえなかった Subscriber Transaction の Profile を構築することができるようになる.
@@ -23,7 +23,7 @@ IdP のポリシーと手順は適切な利用制限および目的明確化の�
 <!-- Section 4 also encourages the use of technical measures to provide unlinkability and prevent subscriber activity tracking and profiling.  While IdP policies and procedures are important in ensuring adherence to appropriate use limitation and purpose specification principles, technical measures such as outlined in 4.1.4 for distributed federation and 5.2.5 for pairwise pseudonymous identifiers, can increase the effectiveness of these policies by making subscriber data more difficult to access. -->
 
 
-9.2 Notice and Consent
+### 9.2 Notice and Consent
 
 Federation において Subscriber の Trust を構築するには, Subscriber に対して Transparency が確保されていなければならず, どのような情報が送信されるのか, どれが必須でどれがオプショナルなのかが Subscriber に理解され, オプショナルな属性を RP に送るかどうかの決定権が Subscriber に与えられている必要がある.
 Section 6 が Subscriber に関するいかなる属性の送信に際してもその送信前に Subscriber による Positive Confirmation を要求しているのも, そのような訳である.
@@ -42,7 +42,7 @@ Federation においては, Subscriber に Notice を行い Consent を得るた
 
 
 
-9.3 Data Minimization
+### 9.3 Data Minimization
 
 IdP が RP の要求以上の追加属性を収集することもあるが, 送信する属性は RP が明示的に要求したものに限定すること.
 場合によっては, RP がある属性についての完全な値を必要としないこともありうる.
@@ -54,7 +54,7 @@ Subscriber が13歳以上かどうかを知りたいが, 完全な生年月日�
 <!-- Although an IdP may collect additional attributes beyond what the RP requires for its use case, only those attributes that were explicitly requested by the RP are to be transmitted by the IdP. In some instances, an RP does not require a full value of an attribute is not necessary; for example an RP may need to know whether the subscriber is over 13 years old, but has no need for the full date of birth. To minimize the collection of potentially sensitive PII, the RP may request an attribute claim (e.g., is the subscriber over 13 years old? Y/N, Pass/Fail).  This minimizes the RPs collection of potentially sensitive and unnecessary PII.  Accordingly, Section 6.4 requires the RP to, where feasible, request attribute claims rather than full attribute values.  To support this RP requirement, IdPs are in turn, required to support attribute claims. -->
 
 
-9.4 Agency Specific Privacy Compliance
+### 9.4 Agency Specific Privacy Compliance
 
 Section 4 では Privacy Compliance Requirements 策定のため SAOP (Senior Agency Official for Privacy) と協議すべき要件について定めている.
 各機関は Digital Authentication システム構築の早い段階から担当 SAOP を関与させること.
