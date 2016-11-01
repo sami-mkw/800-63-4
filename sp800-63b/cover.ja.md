@@ -143,7 +143,7 @@ activities with industry, government, and academic organizations.
 <!--This document and its companion documents, SP 800-63-3, SP 800-63A, and SP 800-63C, provide technical and procedural guidelines to agencies implementing electronic authentication to choose and implement effective authentication processes based on risk. The recommendation covers remote authentication of users (such as employees, contractors, or private individuals) interacting with government IT systems over open networks. It defines technical requirements for each
 of the three authenticator assurance levels. This publication supersedes corresponding sections of NIST SP 800-63-1 and SP 800-63-2.-->
 
-本書及び付随文書であるSP 800-63-3、SP 800-63A、SP 800-63Cは、電子的な認証を実装する機関が、リスクに基づいて効果的な認証プロセスを選択、実装する際の技術的及び手続き上の指針を提供する。その推奨は、オープンネットワークを介して、政府のITシステムとやり取りを行う（従業員、契約者、または私的な個人のような）ユーザのリモート認証について取り上げる。それは、3つの認証器保証レベルそれぞれに対する技術要件を定義する。この刊行物はNIST SP 800-63-1及びSP 800-63-2の対応する章に代わるものである。
+本書及び付随文書であるSP 800-63-3、SP 800-63A、SP 800-63Cは、電子的な認証を実装する機関が、リスクに基づいて効果的な認証プロセスを選択、実装する際の技術的及び手続き上の指針を提供する。
 
 
 <!--### Keywords-->
@@ -208,7 +208,7 @@ The authors would like to acknowledge the thought leadership and innovation of t
 
 <!--Digital authentication is the process of establishing confidence that a given claimant is the same as a subscriber that has previously authenticated. The robustness of this confidence is described by categorization known as the Authenticator Assurance Level (AAL). The separation of AAL from Identity Assurance Level (IAL), described in SP 800-63A, better supports applications requiring strong authentication that may be pseudonymous. The separation of authenticator issuance from the establishment of credentials binding those authenticators to individuals provides additional flexibility in the enrollment and identity proofing process.-->
 
-デジタル認証は、与えられた要求者と以前認証を行った加入者とが同一である、という確からしさを証明するためのプロセスである。この確からしさの堅牢性については、認証器保証レベル(Authenticator Assurance Level、以下AAL)として知られている分類を用いて表される。AALはsp 800-63Aにおいてアイデンティティ保証レベル(Identity Assurance Level、以下IAL)と区別される。これはより高いAALをサポートするようなアプリケーションでは、仮名を用いた高度な認証を要求するようなことがあるかもしれないためである。
+デジタル認証は、与えられた要求者と以前認証を行った加入者とが同一である、という確からしさを証明するためのプロセスである。この確からしさの堅牢性については、認証器信頼レベル(Authenticator Assurance Level、以下AAL)として知られている分類を用いて表される。AALはsp 800-63Aにおいてアイデンティティ信頼レベル(Identity Assurance Level、以下IAL)と区別される。これはより高いAALをサポートするようなアプリケーションでは、仮名を用いた高度な認証を要求するようなことがあるかもしれないためである。
 
 <!--This guideline addresses how an individual, known as a claimant, can securely authenticate to a Credential Service Provider to establish the context for a remote digital interaction.-->
 
@@ -222,18 +222,18 @@ The authors would like to acknowledge the thought leadership and innovation of t
 **AAL 1**: AAL 1 requires single factor authentication, giving some assurance that the same claimant who participated in previous transactions is accessing the protected transaction or data.
 -->
 
-**AAL 1**: ALL 1は、単一要素の認証を必要とする。これは、保護された取引/データへアクセスしようとする要求者が以前の取引に関わった人と同一であるという、ある程度の確実性を持つ。
+**AAL 1**: ALL 1は、単一要素の認証を必要とする。これは、保護された取引/データへアクセスしようとする要求者が以前の取引に関わった人と同一であるという、ある程度の信頼性を持つ。
 
 <!--
 **AAL 2**: AAL 2 requires two different authentication factors, providing higher assurance that the same claimaint who participated in previous transactions is accessing the protected transaction or data.
 -->
 
-**AAL 2**: AAL 2は、2つの異なる要素の認証を必要とする。これは、保護された取引/データへアクセスしようとする要求者が以前の取引に関わった人と同一であるという、より高い確実性を提供する。
+**AAL 2**: AAL 2は、2つの異なる要素の認証を必要とする。これは、保護された取引/データへアクセスしようとする要求者が以前の取引に関わった人と同一であるという、より高い信頼性を提供する。
 
 <!--
 **AAL 3**: AAL 3 provides the highest practical remote digital authentication assurance. It requires proof of possession of a key in a physical multifactor authenticator through a cryptographic protocol.-->
 
-**AAL 3**: AAL 3は、遠隔で行われるデジタル認証のうち最も実用的な確実性を提供する。これは、暗号理論に基づくプロトコルを介して、物理的な多要素認証器内部にある鍵の所有者であることを証明することを必要とする。
+**AAL 3**: AAL 3は、遠隔で行われるデジタル認証のうち最も実用的な信頼性を提供する。これは、暗号理論に基づくプロトコルを介して、物理的な多要素認証器内部にある鍵の所有者であることを証明することを必要とする。
 
 
 <!-- ## Table of Contents -->
@@ -246,9 +246,9 @@ The authors would like to acknowledge the thought leadership and innovation of t
 
 [3. 定義及び略語](#sec3)
 
-[4. 認証器保証レベル(Authenticator Assurance Levels)](#sec4)
+[4. 認証器信頼レベル(Authenticator Assurance Levels)](#sec4)
 
-[5. 認証器(Authenticator)及び検証主体(Verifier)の要件](#sec5)
+[5. 認証器(Authenticator)及び検証器(Verifier)の要件](#sec5)
 
 [6. 認証器ライフサイクルの要件](#sec6)
 

@@ -1048,7 +1048,7 @@ An authentication and security protocol widely implemented in browsers and web s
 A public or symmetric key that is trusted because it is directly built into hardware or software, or securely provisioned via out-of-band means, rather than because it is vouched for by another trusted entity (e.g. in a public key certificate).
 -->
 
-#### ユーザビリティ (Usability)
+#### ユーザビリティ
 
 <!--
 #### Usability
@@ -1061,7 +1061,7 @@ Per ISO/IEC 9241-11: Extent to which a product can be used by specified users to
 -->
 
 
-#### 検証主体 (Verifier)
+#### 検証主体
 認証プロトコルを利用して、1つまたは2つの認証器を申請者が所有、管理できることを検証し、申請者のアイデンティティを検証する存在。
 
 <!--
@@ -1069,7 +1069,7 @@ Per ISO/IEC 9241-11: Extent to which a product can be used by specified users to
 An entity that verifies the claimant’s identity by verifying the claimant’s possession and control of one or two authenticators using an authentication protocol. To do this, the verifier may also need to validate credentials that link the authenticator(s) and identity and check their status.
 -->
 
-#### 検証主体なりすまし攻撃 (Verifier Impersonation Attack)
+#### 検証主体なりすまし
 認証プロトコルにおいて、攻撃者が検証主体になりすまし、一般的には真の検証主体に対して加入者を詐称することを目的として情報を集めるようなシナリオ。
 以前のSP 800-63の版では、検証主体なりすまし攻撃へ耐性のある認証プロトコルについて"strongly man-in-the-middle resistant"として記述されていた。
 
@@ -1079,7 +1079,7 @@ A scenario where the attacker impersonates the verifier in an authentication pro
 
 -->
 
-#### 弱結合クレデンシャル (Weakly Bound Credentials)
+#### 弱結合クレデンシャル
 クレデンシャルを無効化することなく改ざんできてしまう方法で、加入者と結びつけられたクレデンシャル。
 
 <!--
@@ -1087,7 +1087,7 @@ A scenario where the attacker impersonates the verifier in an authentication pro
 Credentials that are bound to a subscriber in a manner than can be modified without invalidating the credential.
 -->
 
-#### ゼロ化 (Zeroize)
+#### ゼロ化
 データを破壊し、復元できないようにするために、ゼロ値のビットだけで構成されるデータによってメモリを上書きすること。これはしばしば、データそのものを破壊するのではなく、ファイルシステム上のデータへの参照を破壊するだけの削除手法と対比される。
 
 <!--
@@ -1095,7 +1095,7 @@ Credentials that are bound to a subscriber in a manner than can be modified with
 Overwrite a memory location with data consisting entirely of bits with the value zero so that the data is destroyed and not recoverable. This is often contrasted with deletion methods that merely destroy reference to data within a file system rather than the data itself.
 -->
 
-#### ゼロ知識パスワードプロトコル (Zero-knowledge Password Protocol)
+#### ゼロ知識パスワードプロトコル
 申請者が検証主体に対して認証を行う際、検証主体に対してパスワードを提示する必要がないようなパスワードベースの認証プロトコル。
 プロトコルの例としては、EKE、SPEKE及びSRPがある。
 
