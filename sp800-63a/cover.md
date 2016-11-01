@@ -7,10 +7,12 @@
 ### Enrollment and Identity Proofing Requirements
 
 Paul A. Grassi  
-Naomi B. Lefkovitz  
-Jamie M. Danker    
-William E. Burr  
-James L. Fenton
+James L. Fenton  
+Naomi B. Lefkovitz    
+Jamie M. Danker       
+Yee-Yin Choong    
+Kristen K. Greene    
+Mary F. Theofanos   
 
 {::comment}
 
@@ -28,22 +30,27 @@ http://dx.doi.org/10.6028/NIST.SP.XXX
 
 ###  Enrollment and Identity Proofing Requirements
 
-Paul A. Grassi  
-Naomi B. Lefkovitz  
-*Applied Cybersecurity Division  
-Information Technology Laboratory*
+Paul A. Grassi
+Applied Cybersecurity Division
+Information Technology Laboratory
 
-Jamie M. Danker  
-*National Protection and Programs Directorate  
-Department of Homeland Security*  
+James L. Fenton
+Altmode Networks
+Los Altos, CA
 
-William E. Burr  
-*Dakota Consulting, Inc.  
-Silver Spring, MD*
+Naomi B. Lefkovitz
+Applied Cybersecurity Division
+Information Technology Laboratory
 
-James L. Fenton  
-*Altmode Networks  
-Los Altos, CA*
+Jamie M. Danker
+National Protection and Programs Directorate
+Department of Homeland Security
+
+Yee-Yin Choong  
+Kristen K. Greene  
+Mary F. Theofanos  
+Information Access Division  
+Information Technology Laboratory  
 
 {::comment}
 
@@ -167,11 +174,11 @@ The terms “CAN” and “CANNOT” indicate a possibility and capability, whet
 
 ## Executive Summary
 
-This guideline deals with how an individual, known as an applicant, can prove their identity to a Credential Service Provider (CSP) and become enrolled as a valid identity.
+This guideline deals with how an individual, known as an applicant, can prove their identity to a Credential Service Provider (CSP) and become enrolled as a valid subscriber.
 
 Identity Assurance Level (IAL) refers to the robustness of the identity proofing process and the binding between an authenticator and a specific individual. The separation of IAL from Authenticator Assurance Level (AAL) better supports applications requiring strong authentication that may be pseudonymous, and the separation of authenticator issuance from the establishment of credentials binding those authenticators to individuals.
 
-The three (3) IALs reflect the options agencies may select based on their risk profile and the potential harm caused by an invalid or fraudulent identity accessing their systems.  The IALs are as follows:
+The three IALs reflect the options agencies may select based on their risk profile and the potential harm caused by an invalid or fraudulent identity accessing their systems.  The IALs are as follows:
 
 
 **IAL 1**:
@@ -195,7 +202,8 @@ At Identity Assurance Level 3, in-person identity proofing is required. Identify
 
 [5. Identity Resolution, Validation and Verification](#sec5)
 
-[6. Requirements for Derived Credentials](#sec6)
+[6. Leveraging Antecedent Proofing Events
+](#sec6)
 
 [7. Threats and Security Considerations](#sec7)
 
