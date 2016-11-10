@@ -23,12 +23,12 @@
 |登録 | 偽装された身分証 | 偽装した運転免許章を利用して不正な申請が行われる. |
 | | 他者の証明書の不正利用 | 他人のパスポートを利用して不正な申請が行われる. |
 | | 登録の否認| 登録済のユーザが, CSPに対して登録していないと主張し, 登録を否認する. |
-||Social engineering|A malicious applicant manipulates an individual responsible for identity proofing in order to be enrolled as another individual.
+||Social engineering| 攻撃対象のアイデンティティを所有する個人誘導し，別の個人として登録する. |
 |発行 |漏えい | CSPにより, 登録済みユーザに発行されたキーが攻撃者によってコピーされ, オーセンティケーターを発行する際にCSPからユーザにそれが渡されてしまう. |
 | |改ざん | ユーザによって作成された新しいパスワードが攻撃者によって変更され, CSPでのクレデンシャル発行フェーズで登録されてしまう. |
 | |不正発行 | 実際にはそのユーザではないにもかかわらずそうであると主張する攻撃者に対して, そのユーザのクレデンシャルを発行してしまう. |
-||Social engineering|A malicious person manipulates an individual responsible for issuance in order to obtain a credential bound to another, valid subscriber.
-|||If social engineering was successful at enrollment, obtaining a credential requires no extra effort.
+||Social engineering| 攻撃対象のアイデンティティを所有する個人誘導し，別の個人として登録する. |
+|||Social engineering で登録時に成功した場合，それ以上お労力を必要としなくともクレデンシャルを取得することができてしまう. |
 
 <!--
 |**Activity**   |     **Threat/Attack**  | **Example** |
@@ -65,15 +65,15 @@ to the enrollment and issuance processes. -->
 | **行動**   |     **脅威/攻撃**  | **低減策** |
 | 登録 | 偽装された身分証 | 提示された証明書の物理的なセキュリティ機能を検証する. |
 | | 他者の証明書の不正利用 | 他の発行元あるいは信頼できるソースから得られた情報と突合して申請者の提示する身分証を検証する, あるいは生体情報を検証する. |
-| | | Verify Applicant-provided non-government issued documentation  (e.g. electricity bills in the name of the Applicant with the current address of the Applicant printed on the bill, or a credit card bill)  to help in achieving a higher level of confidence in the identity of the applicant. |
-| | 登録の否認 | Have the applicant sign a form acknowledging participation in the enrollment activity. |
-||Social engineering|Duplicate records check.
+| | | 申請者の情報がより高いレベルで信頼できるように，申請者から公的でない文書（申請者の名前が記載された電気代やクレジットカードの請求書に記されている現住所など）が提示された場合は検証を行う．|
+| | 登録の否認 | 申請者にから登録したことを認める署名をもらう．|
+||Social engineering| 重複レコードをチェックする．
 | | |
-| 発行 | 漏えい | Issue the authenticator in person, physically mail it in a sealed envelope to a secure location, or use a protected session to send the authenticator electronically.|
-| | 改ざん | Issue credentials in person, physically mailing storage media in a sealed envelope, or through the use of a communication protocol that protects the integrity of the session data.|
-| | | Establish a procedure that allows the Subscriber to authenticate the CSP as the source of any authenticator and credential data that he or she may receive.|
-| | 不正発行 / Social engineering | Establish procedures to ensure that the individual who receives the authenticator is the same individual who participated in the enrollment procedure.|
-| | | Implement a dual-control issuance process that ensures two independent individuals shall cooperate in order to issue an authenticator.|
+| 発行 | 漏えい | CSP自身がオーセンティケーターを発行し，密封された封筒に入れて安全な場所に物理的に郵送する，あるいは保護されたセッションを利用して電子的に郵送する．|
+| | 改ざん | CSP自身がクレデンシャルを発行し，密封された封筒に記録した媒体を入れて物理的に郵送する，あるいはセッションの整合性を保った通信プロトコルを利用して送信する．|
+| | | 申請済みのユーザが，受け取るオーセンティケータやクレデンシャルの発行元CSPが本物であるか確認する手順を確立する．|
+| | 不正発行 / Social engineering | オーセンティケーターを受け取る人物が，登録の手続きを行った人物と同じであることを確認する手順を確立する．|
+| | | 2つの独立した人物が協力しなければ，オーセンティケーターを発行できないような二重制御の発行プロセスを実装する．|
 
 <!--
 | **Activity** | **Threat/Attack** | **Mitigation Strategy** |
